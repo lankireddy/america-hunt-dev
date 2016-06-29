@@ -1,0 +1,18 @@
+postgres: &postgres
+  adapter: postgresql
+  encoding: utf8
+  host: <%= ENV['DB_HOST'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  database: <%= ENV['DB_NAME'] %>
+
+test:
+  <<: *postgres
+  database: <%= ENV['DB_NAME'] %>_test
+
+development:
+  <<: *postgres
+
+production:
+  <<: *postgres
+  pool: 25

@@ -1,0 +1,32 @@
+//
+//= require_self
+//
+
+@import "bootstrap/overrides",
+        "bootstrap-sprockets",
+        "bootstrap",
+        "bootstrap/variables",
+        "bootstrap/mixins",
+        "base/*",
+        "layouts/*",
+        "modules/*";
+
+// Folder structure definitions
+//
+//  base - where all base styles that are non specified go, no classes
+//    _globals - the meat of your base styles go here
+//    _variables - any non-color scss variables go here
+//    _colors - any color scss variables go here
+//    _fonts - all your @font-face declarations
+//    _forms - all form styles go here
+//    _mixins - all scss mixins go here
+//  layouts - global styles for header, container, and footer
+//    _header - layout header styles go here
+//    _footer - layout footer styles go here
+//    _container - global layout container styles go here
+//    specific page files should go in this section
+//  modules - all moduled blocks of pages go here(keep it DRY)
+//    view more about modules here - https://smacss.com/book/type-module
+//
+// This structure is based on Jonathan Snook's SMACSS idea. You can find out more
+// about it at https://smacss.com/

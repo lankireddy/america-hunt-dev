@@ -1,0 +1,1 @@
+GCM.key = ENV['GCM_SERVER_KEY']
