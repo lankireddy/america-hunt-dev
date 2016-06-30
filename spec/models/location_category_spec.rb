@@ -1,0 +1,2 @@
+describe LocationCategory do
+end

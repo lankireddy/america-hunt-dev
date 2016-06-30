@@ -1,0 +1,2 @@
+describe Category do
+end

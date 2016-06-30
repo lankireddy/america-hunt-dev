@@ -1,4 +1,6 @@
 class Location < ActiveRecord::Base
+  has_many :location_category
+
   validates :travelier_id, uniqueness: true
 
   enum handicap_status: [:handicap_na, :handicap_inaccessible, :handicap_accessible, :handicap_limited, :handicap_unknown]

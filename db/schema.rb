@@ -49,6 +49,27 @@ ActiveRecord::Schema.define(version: 20160630135109) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "travelier_id"
+    t.integer  "parent_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "categories", ["parent_id"], name: "index_categories_on_parent_id", using: :btree
+  add_index "categories", ["travelier_id"], name: "index_categories_on_travelier_id", using: :btree
+
+  create_table "location_categories", force: :cascade do |t|
+    t.integer  "location_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "location_categories", ["category_id"], name: "index_location_categories_on_category_id", using: :btree
+  add_index "location_categories", ["location_id"], name: "index_location_categories_on_location_id", using: :btree
+
   create_table "locations", force: :cascade do |t|
     t.integer  "travelier_id"
     t.string   "name"
@@ -73,6 +94,7 @@ ActiveRecord::Schema.define(version: 20160630135109) do
     t.integer  "pet_status"
     t.string   "state"
   end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

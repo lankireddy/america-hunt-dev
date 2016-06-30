@@ -20,7 +20,6 @@ class ScrapeLocationsJob < ActiveJob::Base
           location_ids.each do |id|
             location = Location.new
             location.travelier_id = id
-            #binding.pry
             a.get(domain + "/admin/locations/#{id}/edit") do |page|
               direct_import_attributes.each do |param|
                 location[param.to_sym] = get_value(page, param)
