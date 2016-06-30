@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :locations
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   mount Avocado::Engine => '/avocado'
