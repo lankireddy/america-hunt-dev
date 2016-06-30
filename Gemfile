@@ -80,3 +80,4 @@ end
 
 gem 'mechanize'
 gem 'pry'
+gem 'activeadmin'

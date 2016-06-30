@@ -1,0 +1,2 @@
+describe AdminUser do
+end
