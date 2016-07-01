@@ -65,7 +65,8 @@ class ScrapeLocationsJob < ActiveJob::Base
       travelier_category_ids = page.search('.sortable-categories input[id*="category_id"]').map { |cat| cat['value'] }
       #binding.pry
       location.category_ids = Category.where(travelier_id: travelier_category_ids).ids
-
+      location.travelier_image_paths = page.search('.location-images-containers img').map{|img| img['src']}.join(';')
+      binding.pry if location.travelier_image_paths.present?
     end
   end
 

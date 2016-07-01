@@ -16,6 +16,7 @@ ActiveAdmin.register Category do
     column :id
     column :parent
     column :name
+    actions
   end
 
 end

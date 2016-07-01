@@ -19,6 +19,7 @@ ActiveAdmin.register Location do
     column :name
     column :city
     column :state
+    actions
   end
 
 
