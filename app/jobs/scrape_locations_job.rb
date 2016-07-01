@@ -32,6 +32,8 @@ class ScrapeLocationsJob < ActiveJob::Base
               location.handicap_status = get_radio('handicap_status', page)
               location.pet_status = get_radio('pet_status', page)
               location.state = page.search('#location_state option[selected]')[0]['value']
+              travelier_category_ids = page.search('.sortable-categories input[id*="category_id"]').map { |cat| cat['value']}
+              location.category_ids = Category.where(travelier_id: travelier_category_ids).ids
               location.save
             end
           end
