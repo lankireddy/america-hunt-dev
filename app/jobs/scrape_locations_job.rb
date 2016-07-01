@@ -11,7 +11,7 @@ class ScrapeLocationsJob < ActiveJob::Base
     begin
       ajax_headers = { 'X-Requested-With' => 'XMLHttpRequest', 'Accept' => 'application/json, text/javascript, */*'}
       next_page_link = '/admin/locations'
-
+      next_page_link << "/?page=#{args[0]}" if args.present?
       loop do
         puts "getting #{next_page_link}"
         a.get(DOMAIN + next_page_link,[],nil,ajax_headers) do |js|
@@ -30,7 +30,7 @@ class ScrapeLocationsJob < ActiveJob::Base
 
   def build_locations(a, location_rows)
     Location.where(travelier_id: location_rows.map { |l| l[0].to_i }).delete_all
-    location_rows.each do |row|
+    Parallel.each(location_rows, in_processes: 8) do |row|
       location = Location.new
       location.travelier_id = row[0]
       setup_author(location, row[1])
@@ -38,6 +38,7 @@ class ScrapeLocationsJob < ActiveJob::Base
       set_details(a, location)
       location.save
     end
+    Location.connection.reconnect!
   end
 
   def setup_author(location, author_name)

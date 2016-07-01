@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160701120002) do
+ActiveRecord::Schema.define(version: 20160701135218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160701120002) do
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+  add_index "admin_users", ["name"], name: "index_admin_users_on_name", using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "categories", force: :cascade do |t|
@@ -98,6 +99,8 @@ ActiveRecord::Schema.define(version: 20160701120002) do
     t.integer  "author_id"
     t.text     "travelier_image_paths"
   end
+
+  add_index "locations", ["travelier_id"], name: "index_locations_on_travelier_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
