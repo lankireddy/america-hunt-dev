@@ -14,6 +14,8 @@ ActiveAdmin.register Location do
 # end
   index do
     column :id
+    column :author
+    column :status
     column :name
     column :city
     column :state
