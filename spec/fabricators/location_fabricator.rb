@@ -1,18 +1,18 @@
 Fabricator(:location) do
-  travelier_id 1
-  name         "MyString"
-  website      "MyText"
-  contact_page "MyText"
-  phone        "MyString"
-  email        "MyString"
-  address_1    "MyString"
-  address_2    "MyString"
-  city         "MyString"
-  zip          "MyString"
-  lat          "9.99"
-  long         "9.99"
-  opening_date "2016-06-29"
+  travelier_id Faker::Number.between(1,10000)
+  name         Faker::Company.name
+  website      Faker::Internet.url
+  contact_page Faker::Internet.url
+  phone        Faker::PhoneNumber.phone_number
+  email        Faker::Internet.email
+  address_1    Faker::Address.street_address
+  address_2    Faker::Address.secondary_address
+  city         Faker::Address.city
+  zip          Faker::Address.zip
+  lat          Faker::Address.latitude
+  long         Faker::Address.longitude
+  opening_date Faker::Date.backward(1000)
   featured     false
   follow_up    false
-  description  "MyText"
+  description  Faker::Lorem.paragraph
 end

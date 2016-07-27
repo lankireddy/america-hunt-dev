@@ -1,25 +1,26 @@
-feature "GET /users/sign_up" do
+feature 'GET /users/sign_up' do
   before do
-    @user = User.create(email: 'test@test.com', password: 'testtesttest')
+    @user = Fabricate :user
     visit new_user_registration_path
   end
 
-  context "correct username and password" do
-    scenario "shows the login page when not logged in" do
+  context 'correct username and password' do
+    scenario 'shows the login page when not logged in' do
       expect(page).to have_css('#user_email')
       expect(page).to have_css('#user_password')
     end
 
-    scenario "allows the user to sign up and shows a successful message" do
-      signup "#{SecureRandom.hex(6)}@test.com", 'metova123'
+    scenario 'allows the user to sign up and shows a successful message' do
+      signup '#{SecureRandom.hex(6)}@test.com', 'metova123'
       expect(page).to have_css('.alert-notice')
-      expect(page).to have_content("Welcome! You have signed up successfully.")
+      expect(page).to have_content('Welcome! You have signed up successfully.')
     end
-
-    scenario "shows a successful message after signing up" do
+  end
+  context 'duplicate username' do
+    scenario 'shows a failure message after signing up' do
       signup @user.email, 'metova'
-      expect(page).to have_content("has already been taken")
-      expect(page).to have_content("minimum is 8 characters")
+      expect(page).to have_content('has already been taken')
+      expect(page).to have_content('minimum is 8 characters')
     end
   end
 

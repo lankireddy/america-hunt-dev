@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module TravelierWebScraper2
+module AmericanHunt
   class Application < Rails::Application
 
     config.autoload_paths += %W(

@@ -1,22 +1,15 @@
-require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe "categories/index", type: :view do
+RSpec.describe 'categories/index', type: :view do
+  let(:categories) { Fabricate.times 2, :category }
   before(:each) do
-    assign(:categories, [
-      Category.create!(
-        :name => "Name",
-        :travelier_id => 1
-      ),
-      Category.create!(
-        :name => "Name",
-        :travelier_id => 1
-      )
-    ])
+    assign(:categories, categories)
   end
 
-  it "renders a list of categories" do
+  it 'renders a list of categories' do
     render
-    assert_select "tr>td", :text => "Name".to_s, :count => 2
-    assert_select "tr>td", :text => 1.to_s, :count => 2
+    categories.each do |category|
+      expect(rendered).to include(ERB::Util.html_escape(category.name))
+    end
   end
 end

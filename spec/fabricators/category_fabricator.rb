@@ -1,4 +1,4 @@
 Fabricator(:category) do
-  name         "MyString"
-  travelier_id 1
+  name         Faker::Commerce.department
+  travelier_id Faker::Number.between(1,10000)
 end
