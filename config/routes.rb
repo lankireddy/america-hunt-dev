@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  resources :categories
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :locations
+  resources :locations, only: [:index, :show, :new, :create]
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   mount Avocado::Engine => '/avocado'

@@ -29,6 +29,8 @@ RSpec.configure do |config|
   #config.global_fixtures = :all
   #config.fixture_path = Rails.root.join('spec', 'fixtures')
   config.include Devise::TestHelpers, type: :controller
-
+  config.include Devise::TestHelpers, type: :view
+  config.extend ControllerMacros, type: :controller
+  config.example_status_persistence_file_path = 'only-failures.log'
   Capybara::Webkit.configure(&:block_unknown_urls)
 end

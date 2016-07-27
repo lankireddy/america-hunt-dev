@@ -1,17 +1,8 @@
 ActiveAdmin.register Location do
-
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if resource.something?
-#   permitted
-# end
+  permit_params :name, :website, :contact_page, :phone, :email,
+                :address_1, :address_2, :city, :zip, :lat, :long,
+                :opening_date, :featured, :follow_up, :description,
+                :handicap_status, :child_status, :pet_status, :state, :status, :author_id
   index do
     column :id
     column :author
@@ -21,6 +12,4 @@ ActiveAdmin.register Location do
     column :state
     actions
   end
-
-
 end

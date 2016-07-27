@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_action :set_location, only: [:show]
 
   # GET /locations
   def index
@@ -15,10 +15,6 @@ class LocationsController < ApplicationController
     @location = Location.new
   end
 
-  # GET /locations/1/edit
-  def edit
-  end
-
   # POST /locations
   def create
     @location = Location.new(location_params)
@@ -30,21 +26,6 @@ class LocationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /locations/1
-  def update
-    if @location.update(location_params)
-      redirect_to @location, notice: 'Location was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /locations/1
-  def destroy
-    @location.destroy
-    redirect_to locations_url, notice: 'Location was successfully destroyed.'
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_location
@@ -53,6 +34,9 @@ class LocationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def location_params
-      params.require(:location).permit(:travelier_id, :name, :website, :contact_page, :phone, :email, :address_1, :address_2, :city, :zip, :lat, :long, :opening_date, :featured, :follow_up, :description)
+      params.require(:location).permit(:name, :website, :contact_page, :phone, :email,
+                                       :address_1, :address_2, :city, :zip, :lat, :long,
+                                       :opening_date, :featured, :follow_up, :description,
+                                       :handicap_status, :child_status, :pet_status, :state)
     end
 end

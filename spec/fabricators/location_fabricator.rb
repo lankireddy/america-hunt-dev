@@ -1,5 +1,4 @@
 Fabricator(:location) do
-  travelier_id Faker::Number.between(1,10000)
   name         Faker::Company.name
   website      Faker::Internet.url
   contact_page Faker::Internet.url
