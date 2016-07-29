@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'home_page/index'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :locations, only: [:index, :show, :new, :create]
@@ -8,5 +10,5 @@ Rails.application.routes.draw do
 
   devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout' }
 
-  root to: 'users#profile'
+  root to: 'home_page#index'
 end

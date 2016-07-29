@@ -59,6 +59,7 @@ group :test do
   gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'rspec-sidekiq'
+  gem 'shoulda-matchers', require: false
   gem 'simplecov', require: false
   gem 'webmock'
   gem 'webmock-rspec-helper'

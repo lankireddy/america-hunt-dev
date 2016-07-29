@@ -10,8 +10,17 @@ ENV["RAILS_ENV"] = 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'avocado/rspec'
 require 'rspec/rails'
-
+require 'shoulda/matchers'
+require 'pundit/rspec'
 require 'webmock/rspec'
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+
 WebMock.disable_net_connect! allow_localhost: true
 
 ActiveRecord::Migration.maintain_test_schema!

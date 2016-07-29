@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+<% if !current_user.nil? %>
+    <li class="nav-link"><%= link_to t('navigation.links.logout'), destroy_user_session_path, method: :delete %></li>
+<% else %>
+    <li class="nav-link"><%= link_to t('navigation.links.login'), new_user_session_path %></li>
+<% end %>
+<h1>America Hunt</h1>
+<p>Find me in app/views/home_page/index.html.erb</p>

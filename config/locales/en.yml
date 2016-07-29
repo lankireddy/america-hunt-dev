@@ -34,3 +34,7 @@ en:
     # labels:
     #   user:
     #     email: 'Email'
+  navigation:
+      links:
+        logout: 'Logout'
+        login: 'Login'
