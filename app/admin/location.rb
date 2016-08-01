@@ -55,7 +55,7 @@ ActiveAdmin.register Location do
 
   controller do
     def create
-      @author = current_user
+      @author = current_admin_user
       @location = Location.new(permitted_params[:location])
       @location.author = @author
       if @location.save
