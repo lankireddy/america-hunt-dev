@@ -14,4 +14,6 @@ Fabricator(:location) do
   featured     false
   follow_up    false
   description  { Faker::Lorem.paragraph }
+  hunting_area_size { Faker::Lorem.sentence }
+  terrain  { Faker::Lorem.paragraph }
 end

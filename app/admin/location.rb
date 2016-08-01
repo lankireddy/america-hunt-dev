@@ -1,8 +1,10 @@
 ActiveAdmin.register Location do
   permit_params :name, :website, :contact_page, :phone, :email,
-                :address_1, :address_2, :city, :zip, :lat, :long,
+                :address_1, :address_2, :city, :state, :zip, :lat, :long,
                 :opening_date, :featured, :follow_up, :description,
-                :handicap_status, :child_status, :pet_status, :state, :status, :author_id, category_ids: []
+                :hunting_area_size, :terrain,
+                :handicap_status, :child_status, :pet_status,
+                :status, :author_id, category_ids: []
   index do
     column :id
     column :author
@@ -43,6 +45,10 @@ ActiveAdmin.register Location do
       input :zip
       input :lat
       input :long
+    end
+    inputs 'Terrain & Wildlife' do
+      input :hunting_area_size
+      input :terrain
     end
     actions
   end
