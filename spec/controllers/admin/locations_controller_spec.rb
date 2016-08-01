@@ -53,6 +53,14 @@ RSpec.describe Admin::LocationsController, type: :controller do
         expect(assigns(:location)).to be_persisted
       end
 
+      it 'assigns categories based on ids' do
+        categories = Fabricate.times 2, :category
+        post :create, { location: valid_attributes.merge({ category_ids: categories.map(&:id) }) }
+        location = assigns(:location)
+        expect(location.categories.count).to eq(2)
+        expect(location.category_ids).to eq(categories.map(&:id))
+      end
+
       it 'redirects to the created location' do
         post :create, {:location => valid_attributes}
         expect(response).to redirect_to(admin_location_path(Location.last))
@@ -91,6 +99,15 @@ RSpec.describe Admin::LocationsController, type: :controller do
         expect(assigns(:location)).to eq(location)
       end
 
+      it 'changes category list to reflect ids' do
+        location = Location.create! valid_attributes
+        location.categories << (Fabricate :category)
+        new_categories = Fabricate.times 2, :category
+        put :update, {:id => location.to_param, location: { category_ids: new_categories.map(&:id) }}
+        location.reload
+        expect(location.categories).to eq(new_categories)
+      end
+
       it 'redirects to the location' do
         location = Location.create! valid_attributes
         put :update, {:id => location.to_param, :location => valid_attributes}
@@ -127,5 +144,4 @@ RSpec.describe Admin::LocationsController, type: :controller do
       expect(response).to redirect_to(admin_locations_path)
     end
   end
-
 end
