@@ -6,5 +6,4 @@ ActiveAdmin.register Category do
     column :name
     actions
   end
-
 end

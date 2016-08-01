@@ -6,4 +6,7 @@ class Category < ActiveRecord::Base
   validates :travelier_id, uniqueness: true, allow_nil: true
   validates :name, presence: true
 
+  def to_s
+    name
+  end
 end
