@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TravelierWebScraper2</title>
+  <title><%= @page_title or 'America Hunt' %></title>
+  <%= content_for(:metas) %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -9,8 +10,14 @@
 <body>
 
 <%= render 'shared/flash', flash: flash if flash %>
+<% if content_for?(:content) %>
+    <%= content_for(:content) %>
+<%  else %>
+  <header>
 
-<%= yield %>
-
+  </header>
+  <%= yield %>
+    <% end %>
+<%= render '/shared/footer' %>
 </body>
 </html>

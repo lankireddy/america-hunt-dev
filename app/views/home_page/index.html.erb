@@ -1,8 +1,21 @@
+<% content_for :content do %>
 <p id="notice"><%= notice %></p>
-<% if !current_user.nil? %>
-    <li class="nav-link"><%= link_to t('navigation.links.logout'), destroy_user_session_path, method: :delete %></li>
-<% else %>
-    <li class="nav-link"><%= link_to t('navigation.links.login'), new_user_session_path %></li>
+<header>
+  <div class="container">
+    <h1>AMERICA HUNT</h1>
+  <% if !current_user.nil? %>
+      <li class="nav-link"><%= link_to t('navigation.links.logout'), destroy_user_session_path, method: :delete %></li>
+  <% else %>
+      <li class="nav-link hidden"><%= link_to t('navigation.links.login'), new_user_session_path %></li>
+  <% end %>
+    <h2>America’s  hunting directory for every hunt.</h2>
+    <%= form_tag '/locations', method: 'get', class:'location-search location-search-hp' do |f| %>
+      <div class="form-group">
+        <label for="location">Where would you like to hunt?</label>
+        <%= search_field_tag 'location', class: 'form-control' %>
+      </div>
+      <%= submit_tag 'Go Hunt!' %>
+    <% end %>
+  </div>
+</header>
 <% end %>
-<h1>America Hunt</h1>
-<p>Find me in app/views/home_page/index.html.erb</p>
