@@ -15,3 +15,10 @@
   text-decoration: underline;
   color: $text-color;
 }
+.location-search-interior .form-control {
+  border-width: 0 1px 0 0;
+}
+.location-search-interior .btn {
+  border-width: 0 0 0 1px;
+
+}
