@@ -7,17 +7,45 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= @body_classes %>">
 
 <%= render 'shared/flash', flash: flash if flash %>
 <% if content_for?(:content) %>
     <%= content_for(:content) %>
 <%  else %>
   <header>
-
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1">
+          <a href="/">Logo</a>
+        </div>
+        <div class="col-md-8">
+          <%= form_tag '/locations', method: 'get', class:'location-search location-search-hp' do |f| %>
+              <label for="location" class="sr-only">Where would you like to hunt?</label>
+              <div class="input-group input-group-lg">
+                <div class="input-group-btn">
+                  <%= button_tag(type: 'submit', class: 'btn btn-default') do %>
+                      <span class="glyphicon glyphicon-search"></span>
+                  <% end %>
+                </div>
+                <%= search_field_tag 'location','', class: 'form-control' %>
+              </div>
+          <% end %>
+        </div>
+        <div class="col-md-3">
+          <%= render '/shared/membership_links' %>
+        </div>
+      </div>
+    </div>
   </header>
-  <%= yield %>
-    <% end %>
+  <div class="main">
+    <div class="container" %>
+      <div class="col-md-9">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+<% end %>
 <%= render '/shared/footer' %>
 </body>
 </html>

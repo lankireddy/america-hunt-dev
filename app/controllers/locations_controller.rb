@@ -4,6 +4,7 @@ class LocationsController < ApplicationController
   # GET /locations
   def index
     @locations = Location.all
+    @body_classes = 'content-list'
   end
 
   # GET /locations/1

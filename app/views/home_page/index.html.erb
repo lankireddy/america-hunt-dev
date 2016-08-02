@@ -3,11 +3,9 @@
 <header>
   <div class="container">
     <h1>AMERICA HUNT</h1>
-  <% if !current_user.nil? %>
-      <li class="nav-link"><%= link_to t('navigation.links.logout'), destroy_user_session_path, method: :delete %></li>
-  <% else %>
-      <li class="nav-link hidden"><%= link_to t('navigation.links.login'), new_user_session_path %></li>
-  <% end %>
+    <div class="col-md-3">
+      <%= render '/shared/membership_links' %>
+    </div>
     <h2>America’s  hunting directory for every hunt.</h2>
     <%= form_tag '/locations', method: 'get', class:'location-search location-search-hp' do |f| %>
       <div class="form-group">

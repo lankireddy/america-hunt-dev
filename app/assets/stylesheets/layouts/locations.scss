@@ -1,0 +1,17 @@
+// Place all the styles related to the Locations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.locations {
+  background-color: #f6f6f6;
+}
+.location.panel {
+  box-shadow: -2.4px 2.6px 4.2px 0.8px rgba(32, 32, 32, 0.11);
+}
+.location.panel h3 {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.city-state-link {
+  text-decoration: underline;
+  color: $text-color;
+}

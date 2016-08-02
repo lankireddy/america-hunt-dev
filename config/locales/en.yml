@@ -38,3 +38,4 @@ en:
       links:
         logout: 'Logout'
         login: 'Login'
+        register: 'Sign Up'

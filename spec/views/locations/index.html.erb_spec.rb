@@ -8,8 +8,27 @@ RSpec.describe 'locations/index', type: :view do
 
   it 'renders a list of locations' do
     render
+    expect(rendered).to have_selector('.panel.location', count: locations.count)
+  end
+
+  it 'links to a search for the city/state' do
+    render
     locations.each do |location|
-      expect(rendered).to include(ERB::Util.html_escape(location.name))
+      expect(rendered).to have_link(location.city_state, href: locations_path(query: location.city_state))
+    end
+  end
+
+  it 'has a linked title for each location' do
+    render
+    locations.each do |location|
+      expect(rendered).to have_link(ERB::Util.html_escape(location.name), href: location_path(location))
+    end
+  end
+
+  it 'has a linked excerpt for each location' do
+    render
+    locations.each do |location|
+      expect(rendered).to have_link(location.excerpt, href: location_path(location))
     end
   end
 end
