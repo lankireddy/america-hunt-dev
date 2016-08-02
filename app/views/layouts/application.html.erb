@@ -28,7 +28,7 @@
                       <span class="glyphicon glyphicon-search"></span>
                   <% end %>
                 </div>
-                <%= search_field_tag 'location','', class: 'form-control' %>
+                <%= search_field_tag 'query',@query||'', class: 'form-control' %>
               </div>
           <% end %>
         </div>

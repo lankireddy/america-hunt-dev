@@ -1,14 +1,21 @@
 class LocationsController < ApplicationController
+  DEFAULT_SEARCH_RADIUS = 50
   before_action :set_location, only: [:show]
 
   # GET /locations
   def index
-    @locations = Location.all
+    @query = params[:query]
+    if @query
+      @locations = Location.near(@query,DEFAULT_SEARCH_RADIUS)
+    else
+      @locations = []
+    end
     @body_classes = 'content-list'
   end
 
   # GET /locations/1
   def show
+    @query = params[:query]
   end
 
   # GET /locations/new

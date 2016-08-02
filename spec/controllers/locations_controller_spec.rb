@@ -8,10 +8,23 @@ RSpec.describe LocationsController, type: :controller do
 
 
   describe 'GET #index' do
-    it 'assigns all locations as @locations' do
+    it 'assigns no locations to @locations when there is no query' do
+
       location = Location.create! valid_attributes
       get :index, {}
-      expect(assigns(:locations)).to eq([location])
+      expect(assigns(:locations)).to eq([])
+    end
+    it 'assigns nearby locations as @locations' do
+      far_location = Fabricate :location, state: 'Alaska', city:'Fairbanks', address_1: '100 Main St.'
+      close_locations = [
+          (Fabricate :location, state: 'Tennessee', city:'Franklin', address_1: '3301 Aspen Grove Dr'),
+          (Fabricate :location, state: 'Tennessee', city:'Franklin', address_1: '120 4th Ave S')
+      ]
+      query = 'Franklin, TN'
+      allow(Location).to receive(:near) { close_locations }
+      expect(Location).to receive(:near).with(query, LocationsController::DEFAULT_SEARCH_RADIUS)
+      get :index, { query: query }
+      expect(assigns(:locations)).to include(*close_locations)
     end
   end
 
