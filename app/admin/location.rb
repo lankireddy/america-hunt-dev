@@ -28,8 +28,19 @@ ActiveAdmin.register Location do
       input :name
       input :description
       input :category_ids, as: :check_boxes, :collection => Category.order('name ASC').all
-      input :handicap_status, as: :select, collection: Location.handicap_statuses.keys.map { |key| [(key.to_s[9..-1]).humanize, key]}, include_blank: false
-      input :pet_status, as: :select, collection: Location.pet_statuses.keys.map { |key| [(key.to_s[4..-1]).humanize, key]}, include_blank: false
+      input :handicap_status, as: :select,
+            collection:  Location.handicap_statuses.keys.map { |key| [(key.to_s[9..-1]).humanize, key]},
+            include_blank: false,
+            selected: 'handicap_unknown'
+      input :pet_status, as: :select,
+            collection: Location.pet_statuses.keys.map { |key| [(key.to_s[4..-1]).humanize, key]},
+            include_blank: false,
+            selected: 'pet_unknown'
+      input :child_status, as: :select,
+            collection: Location.child_statuses.keys.map { |key| [(key.to_s[(key.index('_')+1)..-1]).humanize, key]},
+            include_blank: false,
+            selected: 'children_unknown'
+
     end
     inputs 'Contact Info' do
       input :website, as: :url

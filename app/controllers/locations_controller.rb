@@ -17,6 +17,8 @@ class LocationsController < ApplicationController
   def show
     @query = params[:query]
     @previous_page = request.referer
+    @page_title = 'America Hunt: ' + @location.name
+    @page_description = @location.excerpt
   end
 
   # GET /locations/new
