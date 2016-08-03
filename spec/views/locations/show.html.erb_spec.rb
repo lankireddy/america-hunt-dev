@@ -4,6 +4,8 @@ RSpec.describe 'locations/show', type: :view do
   before(:each) do
     @location = Fabricate :location
     @previous_page = '/locations?query=Portland,TX'
+    @page_title = 'America Hunt: ' + @location.name
+    @page_description = @location.excerpt
   end
 
   it 'displays name in title' do

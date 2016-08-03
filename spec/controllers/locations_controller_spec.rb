@@ -9,7 +9,6 @@ RSpec.describe LocationsController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns no locations to @locations when there is no query' do
-
       location = Location.create! valid_attributes
       get :index, {}
       expect(assigns(:locations)).to eq([])
@@ -33,6 +32,23 @@ RSpec.describe LocationsController, type: :controller do
       location = Location.create! valid_attributes
       get :show, {:id => location.to_param}
       expect(assigns(:location)).to eq(location)
+    end
+    it 'assigns request referrer to @previous_page' do
+      previous_page = '/locations?query=Franklin, TN'
+      expect(controller.request).to receive(:referer).and_return(previous_page)
+      location = Location.create! valid_attributes
+      get :show, {:id => location.to_param}
+      expect(assigns(:previous_page)).to eq(previous_page)
+    end
+    it 'assigns the location name as @page_title' do
+      location = Location.create! valid_attributes
+      get :show, {:id => location.to_param}
+      expect(assigns(:page_title)).to eq('America Hunt: ' + location.name)
+    end
+    it 'assigns the location excerpt as @page_description' do
+      location = Location.create! valid_attributes
+      get :show, {:id => location.to_param}
+      expect(assigns(:page_description)).to eq(location.excerpt)
     end
   end
 
