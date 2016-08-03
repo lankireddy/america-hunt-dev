@@ -1,79 +1,21 @@
-<p id="notice"><%= notice %></p>
-
-
-<p>
-  <strong>Name:</strong>
-  <%= @location.name %>
-</p>
-
-<p>
-  <strong>Website:</strong>
-  <%= @location.website %>
-</p>
-
-<p>
-  <strong>Contact page:</strong>
-  <%= @location.contact_page %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @location.phone %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @location.email %>
-</p>
-
-<p>
-  <strong>Address 1:</strong>
-  <%= @location.address_1 %>
-</p>
-
-<p>
-  <strong>Address 2:</strong>
-  <%= @location.address_2 %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @location.city %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @location.zip %>
-</p>
-
-<p>
-  <strong>Lat:</strong>
-  <%= @location.lat %>
-</p>
-
-<p>
-  <strong>Long:</strong>
-  <%= @location.long %>
-</p>
-
-<p>
-  <strong>Opening date:</strong>
-  <%= @location.opening_date %>
-</p>
-
-<p>
-  <strong>Featured:</strong>
-  <%= @location.featured %>
-</p>
-
-<p>
-  <strong>Follow up:</strong>
-  <%= @location.follow_up %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @location.description %>
-</p>
-
-<%= link_to 'Back', locations_path %>
+<%= link_to @previous_page, class: 'back-link' do %>
+    <span class="glyphicon glyphicon-menu-left"></span> Back to search results
+<% end %>
+<%= content_tag_for :article, @location, class:'vcard', itemscope:'',itemtype:'http://schema.org/Place' do %>
+    <header>
+      <hgroup>
+        <h1 class="h2 location-name" itemprop="name"><%= @location.name %></h1>
+        <h2 class="h3" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress"><span class="glyphicon glyphicon-map-marker"></span> <span itemprop="addressLocality"><%= @location.city %></span>, <span class="region" itemprop="addressRegion"><%= @location.state %></span></h2>
+      </hgroup>
+    </header>
+    <section class="location-description">
+      <%= @location.description %>
+    </section>
+    <section class="row">
+      <div class="col-md-5">
+        <div class="location-handicap"><%= @location.handicap_status.try(:humanize).try(:titleize) %></div>
+        <%= link_to 'Visit the Website', @location.website, itemprop:'url', class:'location-website' if @location.website.present? %>
+        <%= link_to @location.phone, "tel:#{@location.phone}", itemprop:'telephone', class:'location-telephone' if @location.phone.present? %>
+      </div>
+    </section>
+<% end %>

@@ -10,7 +10,7 @@
     <%= form_tag '/locations', method: 'get', class:'location-search location-search-hp' do |f| %>
       <div class="form-group">
         <label for="location">Where would you like to hunt?</label>
-        <%= search_field_tag 'query', class: 'form-control' %>
+        <%= search_field_tag 'query','', class: 'form-control' %>
       </div>
       <%= submit_tag 'Go Hunt!' %>
     <% end %>

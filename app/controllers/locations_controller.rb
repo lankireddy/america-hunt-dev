@@ -16,6 +16,7 @@ class LocationsController < ApplicationController
   # GET /locations/1
   def show
     @query = params[:query]
+    @previous_page = request.referer
   end
 
   # GET /locations/new
