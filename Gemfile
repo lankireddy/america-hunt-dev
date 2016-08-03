@@ -83,3 +83,4 @@ end
 gem 'activeadmin'
 gem 'geocoder'
 gem 'pry'
+gem 'rails_12factor', group: :production
