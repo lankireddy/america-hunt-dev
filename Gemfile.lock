@@ -547,6 +547,7 @@ DEPENDENCIES
   pundit
   quiet_assets
   rails (~> 4.2.6)
+  rake
   rb-fchange
   rb-fsevent
   rb-inotify
