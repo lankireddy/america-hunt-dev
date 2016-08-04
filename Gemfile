@@ -80,7 +80,9 @@ group :development, :test do
   gem 'sqlite3'
 end
 
-gem 'activeadmin'
+gem 'activeadmin', '~> 1.0.0.pre4'
+gem 'ckeditor'
+gem 'friendly_id', '~> 5.1.0'
 gem 'geocoder'
 gem 'pry'
 gem 'rails_12factor', group: :production

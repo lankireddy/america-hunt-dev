@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'home_page/index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -11,4 +12,6 @@ Rails.application.routes.draw do
   devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout' }
 
   root to: 'home_page#index'
+
+  get ':id' => 'pages#show'
 end

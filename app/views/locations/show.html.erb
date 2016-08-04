@@ -1,29 +1,31 @@
-<%= link_to @previous_page, class: 'back-link' do %>
-    <span class="glyphicon glyphicon-menu-left"></span>Back to search results
-<% end %>
-<%= content_tag_for :article, @location, class:'vcard', itemscope:'',itemtype:'http://schema.org/Place' do %>
-    <header>
-      <hgroup>
-        <h1 class="h2 location-name" itemprop="name"><%= @location.name %></h1>
-        <h2 class="h3" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress"><span class="glyphicon glyphicon-map-marker"></span> <span itemprop="addressLocality"><%= @location.city %></span>, <span class="region" itemprop="addressRegion"><%= @location.state %></span></h2>
-      </hgroup>
-    </header>
-    <section class="location-description">
-      <%= @location.description %>
-    </section>
-    <section class="row">
-      <div class="col-md-5">
-        <% if @location.handicap_accessible? %>
-          <div class="location-handicap"><small class="text-info"><%= @location.handicap_status.try(:humanize).try(:titleize) %></small></div>
-        <% end %>
-        <% if @location.pet_no? %>
-            <div class="location-pet"><small class="text-danger">Dogs not permitted</small></div>
-        <% end %>
-        <% if @location.children_not_allowed? %>
-            <div class="location-child"><small class="text-danger">Children not permitted</small></div>
-        <% end %>
-        <%= link_to 'Visit the Website', @location.website, itemprop:'url', class:'location-website' if @location.website.present? %>
-        <%= link_to @location.phone, "tel:#{@location.phone}", itemprop:'telephone', class:'location-telephone' if @location.phone.present? %>
-      </div>
-    </section>
-<% end %>
+<div class="col-md-9">
+  <%= link_to @previous_page, class: 'back-link' do %>
+      <span class="glyphicon glyphicon-menu-left"></span>Back to search results
+  <% end %>
+  <%= content_tag_for :article, @location, class:'vcard', itemscope:'',itemtype:'http://schema.org/Place' do %>
+      <header>
+        <hgroup>
+          <h1 class="location-name" itemprop="name"><%= @location.name %></h1>
+          <h2 itemprop="address" itemscope itemtype="http://schema.org/PostalAddress"><span class="glyphicon glyphicon-map-marker"></span> <span itemprop="addressLocality"><%= @location.city %></span>, <span class="region" itemprop="addressRegion"><%= @location.state %></span></h2>
+        </hgroup>
+      </header>
+      <section class="location-description">
+        <%= @location.description %>
+      </section>
+      <section class="row">
+        <div class="col-md-5">
+          <% if @location.handicap_accessible? %>
+            <div class="location-handicap"><small class="text-info"><%= @location.handicap_status.try(:humanize).try(:titleize) %></small></div>
+          <% end %>
+          <% if @location.pet_no? %>
+              <div class="location-pet"><small class="text-danger">Dogs not permitted</small></div>
+          <% end %>
+          <% if @location.children_not_allowed? %>
+              <div class="location-child"><small class="text-danger">Children not permitted</small></div>
+          <% end %>
+          <%= link_to 'Visit the Website', @location.website, itemprop:'url', class:'location-website' if @location.website.present? %>
+          <%= link_to @location.phone, "tel:#{@location.phone}", itemprop:'telephone', class:'location-telephone' if @location.phone.present? %>
+        </div>
+      </section>
+  <% end %>
+</div>
