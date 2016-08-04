@@ -10,7 +10,7 @@ class LocationsController < ApplicationController
     else
       @locations = []
     end
-    @body_classes = 'content-list'
+    @body_classes = 'content-list margin-header'
   end
 
   # GET /locations/1
@@ -19,6 +19,8 @@ class LocationsController < ApplicationController
     @previous_page = request.referer
     @page_title = 'America Hunt: ' + @location.name
     @page_description = @location.excerpt
+    @body_classes = 'margin-header'
+
   end
 
   # GET /locations/new

@@ -1,0 +1,13 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+article.post p {
+  line-height: 2;
+  letter-spacing: 0.2px;
+}
+article.post h1 {
+  text-align:center;
+}
+article.post .subtitle {
+  font-style: italic;
+}

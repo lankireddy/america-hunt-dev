@@ -1,0 +1,11 @@
+<%= content_tag_for :article, @post do %>
+  <header class="col-md-12">
+    <h1><%= @post.title %></h1>
+  </header>
+  <div class="col-md-7">
+    <p class="subtitle"><%= @post.subtitle %></p>
+    <section class="body">
+      <%= @post.body.html_safe %>
+    </section>
+  </div>
+<% end %>

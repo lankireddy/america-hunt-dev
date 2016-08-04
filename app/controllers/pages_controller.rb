@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 
   before_action :set_page, only: :show
+
   def show
     @page_title = @page.title
   end
