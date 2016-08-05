@@ -1,10 +1,10 @@
-<%= content_tag_for :article, @post do %>
+<%= content_tag_for :article, @post, itemscope:'',itemtype:'http://schema.org/BlogPosting' do %>
   <header class="col-md-12">
-    <h1><%= @post.title %></h1>
+    <h1 itemprop="headline"><%= @post.title %></h1>
   </header>
   <div class="col-md-7">
-    <p class="subtitle"><%= @post.subtitle %></p>
-    <section class="body">
+    <p class="subtitle" itemprop="alternativeHeadline"><%= @post.subtitle %></p>
+    <section class="body" itemprop="articleBody">
       <%= @post.body.html_safe %>
     </section>
   </div>

@@ -2,7 +2,7 @@
   <%= link_to @previous_page, class: 'back-link' do %>
       <span class="glyphicon glyphicon-menu-left"></span>Back to search results
   <% end %>
-  <%= content_tag_for :article, @location, class:'vcard', itemscope:'',itemtype:'http://schema.org/Place' do %>
+  <%= content_tag_for :article, @location, itemscope:'',itemtype:'http://schema.org/Place' do %>
       <header>
         <hgroup>
           <h1 class="location-name" itemprop="name"><%= @location.name %></h1>
