@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .header-homepage {
   background-image: url(image-path("dev-hunting.jpg"));
+  background-size: cover;
   z-index: 1;
   position:relative;
   color: white;
