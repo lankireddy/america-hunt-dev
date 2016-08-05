@@ -15,4 +15,8 @@ class Post < ActiveRecord::Base
   def title_short
     title.truncate_words(TITLE_SHORT_LENGTH)
   end
+
+  def to_s
+    title
+  end
 end

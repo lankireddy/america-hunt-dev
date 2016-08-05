@@ -5,4 +5,8 @@ class Page < ActiveRecord::Base
   belongs_to :author, class_name: 'AdminUser'
 
   validates :title, presence: true
+
+  def to_s
+    title
+  end
 end

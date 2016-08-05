@@ -1,7 +1,7 @@
 <div class="col-md-7">
   <%= content_tag_for :article, @page, itemscope:'', itemtype:'https://schema.org/WebPage' do %>
       <header>
-        <h1 itemprop="headline"><%= @page.title %></h1>
+        <h1 itemprop="headline"><%= @page %></h1>
       </header>
       <section class="body" itemprop="text">
         <%= @page.body.html_safe %>

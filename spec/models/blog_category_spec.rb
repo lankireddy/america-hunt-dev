@@ -1,0 +1,13 @@
+describe BlogCategory do
+  let(:blog_category) { Fabricate :blog_category }
+
+  it 'should have a valid fabricator' do
+    expect(Fabricate.build :blog_category).to be_valid
+  end
+
+  describe '#to_s' do
+    it 'returns the name of the category' do
+      expect("#{blog_category}").to eq(blog_category.name)
+    end
+  end
+end
