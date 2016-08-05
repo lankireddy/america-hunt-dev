@@ -1,18 +1,20 @@
 <% content_for :content do %>
-<p id="notice"><%= notice %></p>
-<header>
+<header class="header-homepage">
   <div class="container">
-    <h1>AMERICA HUNT</h1>
-    <div class="col-md-3">
-      <%= render '/shared/membership_links' %>
+    <div class="row">
+      <h1 class="col-md-3 logo-header"><%= image_tag('logo_white.png') %></h1>
+      <div class="col-md-3 pull-right">
+        <%= render '/shared/membership_links' %>
+      </div>
     </div>
-    <h2>America’s  hunting directory for every hunt.</h2>
+
+    <h2 class="h1 text-center">America’s  hunting directory for every hunt.</h2>
     <%= form_tag '/locations', method: 'get', class:'location-search location-search-hp' do |f| %>
       <div class="form-group">
         <label for="location">Where would you like to hunt?</label>
         <%= search_field_tag 'query','', class: 'form-control' %>
       </div>
-      <%= submit_tag 'Go Hunt!' %>
+      <%= submit_tag 'Go Hunt!', class:'btn btn-primary' %>
     <% end %>
   </div>
 </header>
