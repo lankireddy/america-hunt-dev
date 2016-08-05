@@ -10,7 +10,7 @@ RSpec.describe 'posts/show', type: :view do
     expect(rendered).to have_selector('h1', text: @post.title)
   end
 
-  it 'renders subtitle in ' do
+  it 'renders subtitle in p' do
     render
     expect(rendered).to have_selector('p', text: @post.subtitle)
   end

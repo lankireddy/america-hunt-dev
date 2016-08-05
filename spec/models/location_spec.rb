@@ -13,6 +13,12 @@ describe Location do
     end
   end
 
+  describe 'excerpt' do
+    it 'returns the excerpt length word count' do
+      expect(location.excerpt.scan(/\w+/).size).to be <= (Location::EXCERPT_LENGTH)
+    end
+  end
+
   describe '#geocode_street_address' do
     it 'returns a string for geocoding' do
       expect(location.geocode_street_address).to eq("#{location.address_1}, #{location.city}, #{location.state}")
