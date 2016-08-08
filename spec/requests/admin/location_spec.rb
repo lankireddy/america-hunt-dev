@@ -21,4 +21,13 @@ describe 'Location' do
     end
   end
 
+  describe 'new' do
+    it 'displays available categories as checkboxes' do
+      Fabricate.times 5, :category
+      visit new_admin_location_path
+      Category.all.each do |category|
+        expect(page).to have_field('location[category_ids][]',with: category.id)
+      end
+    end
+  end
 end

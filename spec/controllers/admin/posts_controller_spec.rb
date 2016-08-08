@@ -53,6 +53,14 @@ RSpec.describe Admin::PostsController, type: :controller do
         expect(assigns(:post)).to be_persisted
       end
 
+      it 'assigns categories based on ids' do
+        blog_categories = Fabricate.times 2, :blog_category
+        post :create, { post: valid_attributes.merge({ blog_category_ids: blog_categories.map(&:id) }) }
+        post = assigns(:post)
+        expect(post.blog_categories.count).to eq(2)
+        expect(post.blog_category_ids).to eq(blog_categories.map(&:id))
+      end
+
       it 'redirects to the created post' do
         post :create, {:post => valid_attributes}
         expect(response).to redirect_to(admin_post_path(Post.last))
@@ -89,6 +97,15 @@ RSpec.describe Admin::PostsController, type: :controller do
         post = Post.create! valid_attributes
         put :update, {:id => post.to_param, :post => valid_attributes}
         expect(assigns(:post)).to eq(post)
+      end
+
+      it 'changes blog_category list to reflect ids' do
+        post = Post.create! valid_attributes
+        post.blog_categories << (Fabricate :blog_category)
+        new_blog_categories = Fabricate.times 2, :blog_category
+        put :update, {:id => post.to_param, post: { blog_category_ids: new_blog_categories.map(&:id) }}
+        post.reload
+        expect(post.blog_categories).to eq(new_blog_categories)
       end
 
       it 'redirects to the post' do

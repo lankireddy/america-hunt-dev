@@ -1,6 +1,9 @@
 describe Post do
   let!(:post) { Fabricate :post }
 
+  it { is_expected.to have_many :blog_category_posts }
+  it { is_expected.to have_many(:blog_categories).through(:blog_category_posts) }
+
   it 'should have a valid fabricator' do
     expect(Fabricate.build :post).to be_valid
   end

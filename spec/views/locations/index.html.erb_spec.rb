@@ -21,7 +21,7 @@ RSpec.describe 'locations/index', type: :view do
   it 'has a linked title for each location' do
     render
     locations.each do |location|
-      expect(rendered).to have_link(ERB::Util.html_escape(location.name), href: location_path(location))
+      expect(rendered).to have_link(location.name, href: location_path(location))
     end
   end
 

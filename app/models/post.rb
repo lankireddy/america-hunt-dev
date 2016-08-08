@@ -1,4 +1,7 @@
 class Post < ActiveRecord::Base
+  has_many :blog_category_posts, dependent: :destroy
+  has_many :blog_categories, through: :blog_category_posts
+
   TITLE_SHORT_LENGTH=10
 
   extend FriendlyId

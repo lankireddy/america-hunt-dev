@@ -1,5 +1,5 @@
 ActiveAdmin.register Post do
-  permit_params :title, :subtitle, :body
+  permit_params :title, :subtitle, :body, blog_category_ids: []
 
   index do
     column :id
@@ -10,11 +10,20 @@ ActiveAdmin.register Post do
     actions
   end
 
+  sidebar :categories, only: :show do
+    ul do
+      post.blog_categories.each do |category|
+        li link_to(category, admin_blog_category_path(category))
+      end
+    end
+  end
+
   form do |f|
     inputs 'Details' do
       input :title
       input :subtitle
       input :body, as: :ckeditor
+      input :blog_category_ids, as: :check_boxes, :collection => BlogCategory.order('name ASC').all
     end
     actions
   end

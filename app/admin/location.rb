@@ -18,7 +18,7 @@ ActiveAdmin.register Location do
   sidebar :categories, only: :show do
     ul do
       location.categories.each do |category|
-        li category
+        li link_to(category, admin_category_path(category))
       end
     end
   end
