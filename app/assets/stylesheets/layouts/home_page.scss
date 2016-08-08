@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .header-homepage {
+  padding-bottom: 5em;
   background-image: url(image-path("dev-hunting.jpg"));
   background-size: cover;
   z-index: 1;
@@ -18,6 +19,20 @@
   z-index: -1;
   background-color: rgba(0,0,0,0.5);
 }
-.header-homepage h2{
-  font-weight: normal;
+.header-homepage h2 {
+  margin: 3.5em 0 1em;
+  font-size: 55px;
+  font-weight: 300;
+}
+.location-search .form-control {
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+}
+.location-search label {
+  font-size: 16px;
+  font-weight: 300;
+}
+.location-search .btn {
+  padding: 17px 40px;
+  margin-top: 2em;
 }

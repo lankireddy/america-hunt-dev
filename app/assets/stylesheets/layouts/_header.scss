@@ -6,3 +6,15 @@
   margin-bottom:2em;
   box-shadow: -1px 1.1px 7.6px 0.9px rgba(32, 32, 32, 0.11);
 }
+.header-homepage .btn-sign-up {
+  background-color: transparent;
+  border: solid 3px white;
+  color: white;
+}
+.header-homepage .btn-login, .header-homepage .btn-logout {
+  color: white;
+  font-weight: 300;
+}
+.membership-links {
+  margin-top: 28px;
+}
