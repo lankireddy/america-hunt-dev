@@ -7,3 +7,76 @@
 //        url('webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
 //        url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
 // }
+@font-face {
+  font-family: 'Avenir';
+  src: font-url('avenir/AvenirLTCom-Roman.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Avenir';
+  src: font-url('avenir/AvenirLTCom-Oblique.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Avenir';
+  src: font-url('avenir/AvenirLTCom-Heavy.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Avenir';
+  src: font-url('avenir/AvenirLTCom-HeavyOblique.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Avenir';
+  src: font-url('avenir/AvenirLTCom-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Avenir';
+  src: font-url('avenir/AvenirLTCom-BlackOblique.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Avenir';
+  src: font-url('avenir/AvenirLTCom-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Avenir';
+  src: font-url('avenir/AvenirLTCom-LightOblique.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: font-url('brandon/Brandon_med.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: font-url('brandon/Brandon_blk.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: font-url('brandon/Brandon_blk.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: font-url('brandon/Brandon_light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
