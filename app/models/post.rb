@@ -11,6 +11,8 @@ class Post < ActiveRecord::Base
 
   validates :title, presence: true
 
+  scope :content_posts, -> { where.not(body: nil)}
+
   def slug_candidates
     [:title_short, :title]
   end

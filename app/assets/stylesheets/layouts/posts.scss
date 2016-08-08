@@ -11,3 +11,11 @@ article.post h1 {
 article.post .subtitle {
   font-style: italic;
 }
+
+.panel.post .panel-heading {
+  background-color: rgba(0,0,0,0.5);
+  padding-bottom: 15px;
+}
+.panel.post .panel-heading a {
+  color: white;
+}
