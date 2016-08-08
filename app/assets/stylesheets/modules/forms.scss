@@ -5,4 +5,11 @@ form {
     padding-left: 5px;
     color: $state-danger-text;
   }
+  .input-group-xl .form-control {
+    height: 86px;
+    padding: 25px 16px;
+    font-size: 25px;
+    line-height: 1.3333333;
+    border-radius: 0px;
+  }
 }
