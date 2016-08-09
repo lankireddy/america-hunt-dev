@@ -13,18 +13,33 @@ RSpec.describe LocationsController, type: :controller do
       get :index, {}
       expect(assigns(:locations)).to eq([])
     end
-    it 'assigns nearby locations as @locations' do
-      far_location = Fabricate :location, state: 'Alaska', city:'Fairbanks', address_1: '100 Main St.'
-      close_locations = [
-          (Fabricate :location, state: 'Tennessee', city:'Franklin', address_1: '3301 Aspen Grove Dr'),
-          (Fabricate :location, state: 'Tennessee', city:'Franklin', address_1: '120 4th Ave S')
-      ]
-      query = 'Franklin, TN'
-      allow(Location).to receive(:near) { close_locations }
-      expect(Location).to receive(:near).with(query, LocationsController::DEFAULT_SEARCH_RADIUS)
-      get :index, { query: query }
-      expect(assigns(:locations)).to include(*close_locations)
+    describe 'with location query' do
+      before do
+        far_location = Fabricate :location, state: 'Alaska', city:'Fairbanks', address_1: '100 Main St.'
+        city = 'Franklin'
+        state = 'TN'
+        @close_locations = [
+            (Fabricate :location, state: state, city: city, address_1: '3301 Aspen Grove Dr'),
+            (Fabricate :location, state: state, city: city, address_1: '120 4th Ave S')
+        ]
+        @query = [city, state].join(', ')
+        allow(Location).to receive(:near) { Location.where(id: @close_locations.map(&:id)) }
+      end
+
+      it 'assigns nearby locations as @locations' do
+        expect(Location).to receive(:near).with(@query, LocationsController::DEFAULT_SEARCH_RADIUS)
+        get :index, { query: @query, category_id:'' }
+        expect(assigns(:locations)).to include(*@close_locations)
+      end
+
+      it 'limits @locations to a category when category id is present' do
+        category = Fabricate :category
+        @close_locations[0].categories << category
+        get :index, { query: @query, category_id: category.id }
+        expect(assigns(:locations)).to eq([@close_locations[0]])
+      end
     end
+
   end
 
   describe 'GET #show' do
