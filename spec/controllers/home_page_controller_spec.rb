@@ -11,5 +11,11 @@ describe HomePageController do
       get :index, {}
       expect(assigns(:content_posts)).to eq([content_post])
     end
+
+    it 'assigns all categories as @categories' do
+      category = Fabricate :category
+      get :index, {}
+      expect(assigns(:categories)).to eq([category])
+    end
   end
 end

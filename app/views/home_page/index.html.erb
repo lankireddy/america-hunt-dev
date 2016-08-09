@@ -9,23 +9,16 @@
     </div>
 
     <h2 class="h1 text-center">America’s  hunting directory for every hunt.</h2>
-    <%= form_tag '/locations', method: 'get', class:'location-search location-search-hp' do |f| %>
-      <div class="form-group-lg">
-        <label for="location">Where would you like to hunt?</label>
-        <%= search_field_tag 'query','', class: 'form-control', placeholder: 'Location' %>
-      </div>
-      <%= submit_tag 'Go Hunt!', class:'btn btn-info center-block' %>
-    <% end %>
+    <%= render 'location_search' %>
   </div>
 </header>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-9">
-          <section>
-            <%= render 'posts/list' %>
-          </section>
-        </div>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <section>
+        <%= render 'posts/list' %>
+      </section>
     </div>
-
+  </div>
+</div>
 <% end %>

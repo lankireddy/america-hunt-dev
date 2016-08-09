@@ -36,3 +36,13 @@
   padding: 17px 40px;
   margin-top: 2em;
 }
+.header-homepage .location-search .form-group {
+  width: 50%;
+  float:left;
+}
+.header-homepage .location-search .form-control {
+  $color: #ffffff;
+  &::-moz-placeholder           { color: $color; } // Firefox
+  &:-ms-input-placeholder       { color: $color; } // Internet Explorer 10+
+  &::-webkit-input-placeholder  { color: $color; } // Safari and Chrome
+}

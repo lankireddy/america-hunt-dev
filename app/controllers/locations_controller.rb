@@ -7,6 +7,7 @@ class LocationsController < ApplicationController
     @query = params[:query]
     if @query
       @locations = Location.near(@query,DEFAULT_SEARCH_RADIUS)
+      @locations = @locations.joins(:location_categories).where(location_categories:{ category_id: params[:category_id] }) if(params[:category_id].present?)
     else
       @locations = []
     end

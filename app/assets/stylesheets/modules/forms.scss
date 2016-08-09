@@ -12,4 +12,9 @@ form {
     line-height: 1.3333333;
     border-radius: 0px;
   }
+  .form-group-lg select.form-control {
+    -webkit-border-radius: 0px;
+    -webkit-appearance: none;
+    padding: 0px 16px;
+  }
 }

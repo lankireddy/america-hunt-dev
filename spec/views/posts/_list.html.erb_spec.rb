@@ -10,6 +10,7 @@ RSpec.describe 'posts/_list', type: :view do
   end
 
   it 'renders the most recent post first' do
+    render
     expect(content_posts.maximum(:created_at)).to eq(content_posts.first.created_at)
     expect(content_posts[0].created_at).to_not eq(content_posts[4].created_at)
   end
