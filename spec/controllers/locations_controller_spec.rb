@@ -13,6 +13,19 @@ RSpec.describe LocationsController, type: :controller do
       get :index, {}
       expect(assigns(:locations)).to eq([])
     end
+
+    it 'assigns all categories as @categories' do
+      category = Fabricate :category
+      get :index, {}
+      expect(assigns(:categories)).to eq([category])
+    end
+
+    it 'assigns current category id as @category_id' do
+      category = Fabricate :category
+      get :index, { category_id: category.id}
+      expect(assigns(:category_id)).to eq(category.id.to_s)
+    end
+
     describe 'with location query' do
       before do
         far_location = Fabricate :location, state: 'Alaska', city:'Fairbanks', address_1: '100 Main St.'
@@ -24,6 +37,11 @@ RSpec.describe LocationsController, type: :controller do
         ]
         @query = [city, state].join(', ')
         allow(Location).to receive(:near) { Location.where(id: @close_locations.map(&:id)) }
+      end
+
+      it 'assigns current query as @query' do
+        get :index, { query: @query}
+        expect(assigns(:query)).to eq(@query)
       end
 
       it 'assigns nearby locations as @locations' do

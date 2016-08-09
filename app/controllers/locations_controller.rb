@@ -5,13 +5,15 @@ class LocationsController < ApplicationController
   # GET /locations
   def index
     @query = params[:query]
+    @category_id = params[:category_id]
     if @query
       @locations = Location.near(@query,DEFAULT_SEARCH_RADIUS)
-      @locations = @locations.joins(:location_categories).where(location_categories:{ category_id: params[:category_id] }) if(params[:category_id].present?)
+      @locations = @locations.joins(:location_categories).where(location_categories:{ category_id: @category_id }) if(params[:category_id].present?)
     else
       @locations = []
     end
     @body_classes = 'content-list margin-header'
+    @categories = Category.all
   end
 
   # GET /locations/1

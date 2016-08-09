@@ -3,6 +3,8 @@ require 'spec_helper'
 RSpec.describe 'locations/index', type: :view do
   let(:locations) { Fabricate.times 2, :location }
   before(:each) do
+    categories = Fabricate.times 5, :category
+    @categories = Category.where(id: categories.map(&:id))
     assign(:locations, locations)
   end
 
