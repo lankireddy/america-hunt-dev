@@ -22,6 +22,8 @@ RSpec.describe 'users/registrations/new', type: :view do
 
       assert_select 'input#user_city[name=?]', 'user[city]'
 
+      assert_select 'input#user_state[name=?]', 'user[state]'
+
       assert_select 'input#user_zip[name=?]', 'user[zip]'
 
       assert_select 'input#user_password[name=?]', 'user[password]'
