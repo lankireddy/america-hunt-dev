@@ -1,5 +1,5 @@
 ActiveAdmin.register Post do
-  permit_params :title, :subtitle, :body, blog_category_ids: []
+  permit_params :title, :subtitle, :body, :external_link, blog_category_ids: []
 
   index do
     column :id
@@ -23,6 +23,7 @@ ActiveAdmin.register Post do
       input :title
       input :subtitle
       input :body, as: :ckeditor
+      input :external_link, as: :url
       input :blog_category_ids, as: :check_boxes, :collection => BlogCategory.order('name ASC').all
     end
     actions

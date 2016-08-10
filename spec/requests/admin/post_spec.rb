@@ -29,5 +29,10 @@ describe 'Post' do
         expect(page).to have_field('post[blog_category_ids][]',with: blog_category.id)
       end
     end
+
+    it 'has field for external link' do
+      visit new_admin_post_path
+      expect(page).to have_field('post[external_link]', type: 'url')
+    end
   end
 end
