@@ -1,0 +1,32 @@
+<% content_for :pre_main do %>
+    <header class="header-sign-up col-md-12 header-overlayed">
+      <h1 class="text-center">Join the America Hunt Community</h1>
+    </header>
+<% end %>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), defaults: { input_html: { class: 'input-lg' } }) do |f| %>
+  <div class="col-md-6">
+    <h2 class="h2-bold">Contact Info</h2>
+    <%= f.error_notification %>
+    <div class="col-md-6">
+      <%= f.input :first_name, required: true %>
+      <%= f.input :last_name, required: true %>
+      <%= f.input :email, required: true %>
+      <%= f.input :phone %>
+      <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :address_1 %>
+      <%= f.input :city %>
+      <%= f.input :state %>
+      <%= f.input :zip %>
+      <%= f.input :password_confirmation, required: true %>
+    </div>
+    <div class="col-md-12">
+      <small class="text-error">Note: Your information will not be shared with any other parties without your permission</small>
+      <div class="form-actions">
+        <%= f.button :submit, 'Finish', class:'btn btn-info btn-lg' %>
+      </div>
+    </div>
+  </div>
+<% end %>

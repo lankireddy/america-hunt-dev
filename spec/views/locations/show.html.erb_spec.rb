@@ -10,7 +10,7 @@ RSpec.describe 'locations/show', type: :view do
 
   it 'displays name in title' do
     render
-    expect(rendered).to have_selector('h1',text:ERB::Util.html_escape(@location.name))
+    expect(rendered).to have_selector('h1',text:@location.name)
   end
 
   it 'displays description' do

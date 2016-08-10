@@ -4,25 +4,10 @@
 .header-homepage {
   padding-bottom: 5em;
   background-image: url(image-path("dev-hunting.jpg"));
-  background-size: cover;
-  z-index: 1;
-  position:relative;
-  color: white;
 }
-.header-homepage:after {
-  content: ' ';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: -1;
-  background-color: rgba(0,0,0,0.5);
-}
+
 .header-homepage h2 {
   margin: 3.5em 0 1em;
-  font-size: 55px;
-  font-weight: 300;
 }
 .header-homepage .location-search .form-control {
   background-color: rgba(0,0,0,0.5);

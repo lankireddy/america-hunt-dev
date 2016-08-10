@@ -29,3 +29,23 @@
 .header-homepage .membership-links {
   margin-top: 28px;
 }
+.header-overlayed {
+  background-size: cover;
+  z-index: 1;
+  position:relative;
+  color: white;
+}
+.header-overlayed:after {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  background-color: rgba(0,0,0,0.5);
+}
+.header-overlayed h1, .header-overlayed h2{
+  font-size: 55px;
+  font-weight: 300;
+}
