@@ -2,10 +2,18 @@
   <header class="col-md-12">
     <h1 itemprop="headline"><%= @post %></h1>
   </header>
-  <div class="col-md-7">
+  <div class="col-md-9">
     <p class="subtitle" itemprop="alternativeHeadline"><%= @post.subtitle %></p>
     <section class="body" itemprop="articleBody">
       <%= @post.body.html_safe %>
     </section>
+  </div>
+  <div class="col-md-2 col-md-offset-1">
+    <a href="http://www.basspro.com/" target="_blank">
+      <%= image_tag 'ads/bass-pro-shops.png', class:'img-responsive ad ad-sidebar' %>
+    </a>
+    <a href="http://yeti.com/" target="_blank">
+      <%= image_tag 'ads/yeti.png', class:'img-responsive ad ad-sidebar' %>
+    </a>
   </div>
 <% end %>

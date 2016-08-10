@@ -10,7 +10,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= @body_classes %>">
-
+<%= image_tag 'ads/cabelas-top.png', class: 'img-responsive header-ad' %>
 <%= render 'shared/flash', flash: flash if flash %>
 <% if content_for?(:content) %>
     <%= content_for(:content) %>
