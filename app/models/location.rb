@@ -1,6 +1,8 @@
 class Location < ActiveRecord::Base
   has_many :location_categories, dependent: :destroy
   has_many :categories, through: :location_categories
+  has_many :species, through: :location_species
+  has_many :location_species
   belongs_to :author, class_name: 'AdminUser'
 
   validates :travelier_id, uniqueness: true, allow_nil: true

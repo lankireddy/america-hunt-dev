@@ -29,5 +29,14 @@ describe 'Location' do
         expect(page).to have_field('location[category_ids][]',with: category.id)
       end
     end
+
+    it 'displays specific species as checkboxes' do
+      parent = Fabricate :species, name: 'Pokemon'
+      Fabricate.times 5, :species, parent_id: parent.id
+      visit new_admin_location_path
+      Species.specific.each do |species|
+        expect(page).to have_field('location[species_ids][]',with: species.id)
+      end
+    end
   end
 end

@@ -19,3 +19,21 @@
   width: 79.5% !important;
   overflow: hidden;
 }
+.nested_checkboxes {
+  ol legend {
+    display: none;
+  }
+  ol > li {
+    > label {
+      font-size: 1.5em;
+      display: block;
+      width: 100%;
+      > input {
+        display: none;
+      }
+    }
+  }
+  .sub-item input{
+    margin-right: 0.2em;
+  }
+}

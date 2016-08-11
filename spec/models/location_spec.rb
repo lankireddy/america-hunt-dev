@@ -2,6 +2,8 @@ describe Location do
   let!(:location) { Fabricate :location }
   it { is_expected.to have_many :location_categories }
   it { is_expected.to have_many(:categories).through(:location_categories) }
+  it { is_expected.to have_many :location_species }
+  it { is_expected.to have_many(:species).through(:location_species) }
 
   it 'should have a valid fabricator' do
     expect(Fabricate.build :location).to be_valid

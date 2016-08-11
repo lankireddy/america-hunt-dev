@@ -4,7 +4,7 @@ ActiveAdmin.register Location do
                 :opening_date, :featured, :follow_up, :description,
                 :hunting_area_size, :terrain,
                 :handicap_status, :child_status, :pet_status,
-                :status, :author_id, category_ids: []
+                :status, :author_id, category_ids: [], species_ids: []
   index do
     column :id
     column :author
@@ -60,6 +60,9 @@ ActiveAdmin.register Location do
     inputs 'Terrain & Wildlife' do
       input :hunting_area_size
       input :terrain
+    end
+    inputs 'Species', class: 'nested_checkboxes' do
+      f.input :species_ids, as: :check_boxes, collection: Species.where(parent_id: nil), nested_set: true
     end
     actions
   end

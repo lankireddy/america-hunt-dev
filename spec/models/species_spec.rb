@@ -3,6 +3,8 @@ describe Species do
 
   it { is_expected.to have_many :children }
   it { is_expected.to belong_to :parent }
+  it { is_expected.to have_many :location_species }
+  it { is_expected.to have_many(:locations).through(:location_species) }
 
 
   it 'should have a valid fabricator' do
