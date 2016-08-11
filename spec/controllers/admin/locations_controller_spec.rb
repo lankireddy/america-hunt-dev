@@ -61,6 +61,14 @@ RSpec.describe Admin::LocationsController, type: :controller do
         expect(location.category_ids).to eq(categories.map(&:id))
       end
 
+      it 'assigns species based on ids' do
+        species = Fabricate.times 2, :species
+        post :create, { location: valid_attributes.merge({ species_ids: species.map(&:id) }) }
+        location = assigns(:location)
+        expect(location.species.count).to eq(2)
+        expect(location.species_ids).to eq(species.map(&:id))
+      end
+
       it 'redirects to the created location' do
         post :create, {:location => valid_attributes}
         expect(response).to redirect_to(admin_location_path(Location.last))
@@ -106,6 +114,15 @@ RSpec.describe Admin::LocationsController, type: :controller do
         put :update, {:id => location.to_param, location: { category_ids: new_categories.map(&:id) }}
         location.reload
         expect(location.categories).to eq(new_categories)
+      end
+
+      it 'changes species list to reflect ids' do
+        location = Location.create! valid_attributes
+        location.species << (Fabricate :species)
+        new_species = Fabricate.times 2, :species
+        put :update, {:id => location.to_param, location: { species_ids: new_species.map(&:id) }}
+        location.reload
+        expect(location.species).to eq(new_species)
       end
 
       it 'redirects to the location' do
