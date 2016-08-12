@@ -122,7 +122,7 @@ RSpec.describe Admin::LocationsController, type: :controller do
         new_species = Fabricate.times 2, :species
         put :update, {:id => location.to_param, location: { species_ids: new_species.map(&:id) }}
         location.reload
-        expect(location.species).to eq(new_species)
+        expect(location.species).to match_array(new_species)
       end
 
       it 'redirects to the location' do

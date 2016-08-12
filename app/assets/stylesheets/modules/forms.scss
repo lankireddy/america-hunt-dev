@@ -21,3 +21,19 @@ form {
 .simple_form label {
   font-weight: 300;
 }
+.form-group-lg {
+  button.multiselect {
+    height: $input-height-large;
+    padding: $padding-large-vertical $padding-large-horizontal;
+    font-size: $font-size-large;
+    line-height: $line-height-large;
+    border-radius: $input-border-radius-large;
+    width: 100%;
+    border: 1px solid $input-border;
+  }
+}
+.multiselect-native-select {
+  .btn-group, .multiselect-container{
+    width:100%;
+  }
+}

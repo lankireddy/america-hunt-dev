@@ -17,5 +17,12 @@ describe HomePageController do
       get :index, {}
       expect(assigns(:categories)).to eq([category])
     end
+
+    it 'assigns top level species as @species' do
+      top_level_species = Fabricate.times 2, :species
+      other_species = Fabricate.times 2, :species, parent_id: top_level_species[0].id
+      get :index, {}
+      expect(assigns(:species)).to match_array(top_level_species)
+    end
   end
 end

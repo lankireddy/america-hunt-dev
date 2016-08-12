@@ -9,25 +9,28 @@
 .header-homepage h2 {
   margin: 3.5em 0 1em;
 }
-.header-homepage .location-search .form-control {
-  background-color: rgba(0,0,0,0.5);
-  color: white;
+.header-homepage .location-search {
+  .form-control, button.multiselect {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+  }
+  label {
+    font-size: 16px;
+    font-weight: 300;
+  }
+  .btn-search {
+    padding: 17px 40px;
+    margin-top: 2em;
+  }
+  .form-group {
+    width: 33%;
+    float:left;
+  }
+  .form-control {
+    $color: #ffffff;
+    &::-moz-placeholder           { color: $color; } // Firefox
+    &:-ms-input-placeholder       { color: $color; } // Internet Explorer 10+
+    &::-webkit-input-placeholder  { color: $color; } // Safari and Chrome
+  }
 }
-.header-homepage .location-search label {
-  font-size: 16px;
-  font-weight: 300;
-}
-.header-homepage .location-search .btn {
-  padding: 17px 40px;
-  margin-top: 2em;
-}
-.header-homepage .location-search .form-group {
-  width: 50%;
-  float:left;
-}
-.header-homepage .location-search .form-control {
-  $color: #ffffff;
-  &::-moz-placeholder           { color: $color; } // Firefox
-  &:-ms-input-placeholder       { color: $color; } // Internet Explorer 10+
-  &::-webkit-input-placeholder  { color: $color; } // Safari and Chrome
-}
+

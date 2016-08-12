@@ -6,9 +6,12 @@ class LocationsController < ApplicationController
   def index
     @query = params[:query]
     @category_id = params[:category_id]
+    @top_level_species_ids = params[:top_level_species_ids]
     if @query
       @locations = Location.near(@query,DEFAULT_SEARCH_RADIUS)
-      @locations = @locations.joins(:location_categories).where(location_categories:{ category_id: @category_id }) if(params[:category_id].present?)
+      @locations = @locations.joins(:location_categories).where(location_categories:{ category_id: @category_id }) if(@category_id.present?)
+      @locations = @locations.joins(:species).where(species: { parent_id: @top_level_species_ids}) if(@top_level_species_ids.present?)
+      @locations = @locations.uniq
     else
       @locations = []
     end

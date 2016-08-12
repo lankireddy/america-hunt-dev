@@ -26,6 +26,12 @@ RSpec.describe LocationsController, type: :controller do
       expect(assigns(:category_id)).to eq(category.id.to_s)
     end
 
+    it 'assigns current top_level_species_ids as @top_level_species_ids' do
+      species_list = Fabricate.times 5, :species
+      get :index, { top_level_species_ids: species_list.map(&:id)}
+      expect(assigns(:top_level_species_ids)).to eq(species_list.map{ |species| species.id.to_s })
+    end
+
     describe 'with location query' do
       before do
         far_location = Fabricate :location, state: 'Alaska', city:'Fairbanks', address_1: '100 Main St.'
@@ -33,7 +39,9 @@ RSpec.describe LocationsController, type: :controller do
         state = 'TN'
         @close_locations = [
             (Fabricate :location, state: state, city: city, address_1: '3301 Aspen Grove Dr'),
-            (Fabricate :location, state: state, city: city, address_1: '120 4th Ave S')
+            (Fabricate :location, state: state, city: city, address_1: '120 4th Ave S'),
+            (Fabricate :location, state: state, city: city, address_1: '121 4th Ave S'),
+            (Fabricate :location, state: state, city: city, address_1: '122 4th Ave S')
         ]
         @query = [city, state].join(', ')
         allow(Location).to receive(:near) { Location.where(id: @close_locations.map(&:id)) }
@@ -55,6 +63,21 @@ RSpec.describe LocationsController, type: :controller do
         @close_locations[0].categories << category
         get :index, { query: @query, category_id: category.id }
         expect(assigns(:locations)).to eq([@close_locations[0]])
+      end
+
+      it 'limits @locations by species within top level species when top level species ids are present' do
+        selected_top_level_species = Fabricate :species, name: 'Pokemon'
+        matching_specific_species = Fabricate.times 2, :species, parent_id: selected_top_level_species.id
+        not_selected_top_level_species = Fabricate :species, name: 'UnPokemon'
+        non_matching_specific_species = Fabricate.times 2, :species, parent_id: not_selected_top_level_species.id
+
+        @close_locations[0].species << matching_specific_species[1]
+        @close_locations[1].species << matching_specific_species[0]
+        @close_locations[2].species << non_matching_specific_species[1]
+        @close_locations[3].species << non_matching_specific_species[0]
+
+        get :index, { query: @query, top_level_species_ids: [selected_top_level_species.id] }
+        expect(assigns(:locations)).to match_array([@close_locations[0],@close_locations[1]])
       end
     end
 
