@@ -10,8 +10,14 @@
         </div>
         <div class="col-md-3">
           <div class="form-group form-group-lg">
-            <label for="species_id" class="sr-only">What would you like to hunt?</label>
+            <label for="species_id" class="sr-only">What would you like to hunt for?</label>
             <%= select_tag 'species_ids', option_groups_from_collection_for_select(@top_level_species,:children, :name, :id, :name), include_blank: 'What?', class: 'form-control select-multi', multiple: true, data: { enableFiltering: true } %>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group form-group-lg">
+            <label for="weapon_type_id" class="sr-only">What would you like to hunt with?</label>
+            <%= select_tag 'weapon_type_id', options_from_collection_for_select(@weapon_types, 'id', 'name', @weapon_type_id), include_blank: 'Using?', class: 'form-control' %>
           </div>
         </div>
         <div class="col-md-3">

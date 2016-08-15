@@ -45,6 +45,18 @@ RSpec.describe LocationsController, type: :controller do
       expect(assigns(:species_ids)).to eq(species_list.map{ |species| species.id.to_s })
     end
 
+    it 'assigns current weapon type id as @weapon_type_id' do
+      weapon_type = Fabricate :weapon_type
+      get :index, { weapon_type_id: weapon_type.id}
+      expect(assigns(:weapon_type_id)).to eq(weapon_type.id.to_s)
+    end
+
+    it 'assigns all weapon types as @weapon_types' do
+      weapon_type = Fabricate :weapon_type
+      get :index, {}
+      expect(assigns(:weapon_types)).to eq([weapon_type])
+    end
+
     describe 'with location query' do
       before do
         far_location = Fabricate :location, state: 'Alaska', city:'Fairbanks', address_1: '100 Main St.'
@@ -78,7 +90,14 @@ RSpec.describe LocationsController, type: :controller do
         expect(assigns(:locations)).to eq([@close_locations[0]])
       end
 
-      describe 'filer by species' do
+      it 'limits @locations to a weapon_type when weapon_type id is present' do
+        weapon_type = Fabricate :weapon_type
+        @close_locations[3].weapon_types << weapon_type
+        get :index, { query: @query, weapon_type_id: weapon_type.id }
+        expect(assigns(:locations)).to eq([@close_locations[3]])
+      end
+
+      describe 'filter by species' do
         before do
           @selected_top_level_species = Fabricate :species, name: 'Pokemon'
           @matching_specific_species = Fabricate.times 2, :species, parent_id: @selected_top_level_species.id

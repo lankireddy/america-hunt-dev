@@ -11,6 +11,8 @@ RSpec.describe 'locations/index', type: :view do
       Fabricate.times 2, :species, parent_id: species.id
     end
     @top_level_species = Species.top_level
+    weapon_types = Fabricate.times 5, :weapon_type
+    @weapon_types = WeaponType.all
   end
 
   it 'renders a list of locations' do
