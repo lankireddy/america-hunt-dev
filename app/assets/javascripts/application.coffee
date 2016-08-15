@@ -6,11 +6,13 @@
 #= require_directory .
 
 $ ->
-  $('.select-multi').multiselect
-    nonSelectedText: $('.select-multi').children('option[value=""]').text(),
+  multiselect =  $('.select-multi')
+  show_filter = !!multiselect.data('enablefiltering')
+  multiselect.multiselect
+    nonSelectedText: multiselect.children('option[value=""]').text(),
     enableCollapsibleOptGroups: true,
-    enableFiltering: $('.select-multi').data('enablefiltering'),
-    enableCaseInsensitiveFiltering: true,
+    enableFiltering: show_filter,
+    enableCaseInsensitiveFiltering: show_filter,
     onDropdownShown: (event) ->
       $('.caret-container').click()
     , onInitialized: (select, container) ->
