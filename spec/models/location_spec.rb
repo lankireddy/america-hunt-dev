@@ -4,6 +4,8 @@ describe Location do
   it { is_expected.to have_many(:categories).through(:location_categories) }
   it { is_expected.to have_many :location_species }
   it { is_expected.to have_many(:species).through(:location_species) }
+  it { is_expected.to have_many :location_weapon_types }
+  it { is_expected.to have_many(:weapon_types).through(:location_weapon_types) }
 
   it 'should have a valid fabricator' do
     expect(Fabricate.build :location).to be_valid

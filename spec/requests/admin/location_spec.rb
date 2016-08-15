@@ -19,6 +19,25 @@ describe 'Location' do
         expect(page).to have_selector('li',text:category.to_s)
       end
     end
+    it 'displays the attached species' do
+      parent = Fabricate :top_level_species
+      location.species << (Fabricate :species, parent_id: parent.id)
+      location.species << (Fabricate :species, parent_id: parent.id)
+      expect(location.species.count).to eq(2)
+      visit admin_location_path(location)
+      location.species.each do |species|
+        expect(page).to have_selector('li',text:species.to_s)
+      end
+    end
+    it 'displays the attached weapon types' do
+      location.weapon_types << (Fabricate :weapon_type)
+      location.weapon_types << (Fabricate :weapon_type)
+      expect(location.weapon_types.count).to eq(2)
+      visit admin_location_path(location)
+      location.weapon_types.each do |weapon_type|
+        expect(page).to have_selector('li',text:weapon_type.to_s)
+      end
+    end
   end
 
   describe 'new' do
@@ -27,6 +46,14 @@ describe 'Location' do
       visit new_admin_location_path
       Category.all.each do |category|
         expect(page).to have_field('location[category_ids][]',with: category.id)
+      end
+    end
+
+    it 'displays available categories as checkboxes' do
+      Fabricate.times 5, :weapon_type
+      visit new_admin_location_path
+      Category.all.each do |weapon_type|
+        expect(page).to have_field('location[weapon_type_ids][]',with: weapon_type.id)
       end
     end
 

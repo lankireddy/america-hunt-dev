@@ -1,8 +1,8 @@
 describe WeaponType do
   let!(:weapon_type) { Fabricate :weapon_type }
 
-  #it { is_expected.to have_many :location_weapon_types }
-  #it { is_expected.to have_many(:locations).through(:location_weapon_types) }
+  it { is_expected.to have_many :location_weapon_types }
+  it { is_expected.to have_many(:locations).through(:location_weapon_types) }
 
   it { is_expected.to validate_uniqueness_of(:name) }
 

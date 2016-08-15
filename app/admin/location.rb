@@ -4,7 +4,7 @@ ActiveAdmin.register Location do
                 :opening_date, :featured, :follow_up, :description,
                 :hunting_area_size, :terrain,
                 :handicap_status, :child_status, :pet_status,
-                :status, :author_id, category_ids: [], species_ids: []
+                :status, :author_id, category_ids: [], species_ids: [], weapon_type_ids: []
   index do
     column :id
     column :author
@@ -16,9 +16,22 @@ ActiveAdmin.register Location do
   end
 
   sidebar :categories, only: :show do
+    h4 'Categories'
     ul do
       location.categories.each do |category|
         li link_to(category, admin_category_path(category))
+      end
+    end
+    h4 'Species'
+    ul do
+      location.species.each do |species|
+        li link_to(species, admin_species_path(species))
+      end
+    end
+    h4 'Weapon Types'
+    ul do
+      location.weapon_types.each do |weapon_type|
+        li link_to(weapon_type, admin_weapon_type_path(weapon_type))
       end
     end
   end
@@ -63,6 +76,9 @@ ActiveAdmin.register Location do
     end
     inputs 'Species', class: 'nested_checkboxes' do
       f.input :species_ids, as: :check_boxes, collection: Species.where(parent_id: nil), nested_set: true
+    end
+    inputs 'Weapon Types' do
+      f.input :weapon_type_ids, as: :check_boxes, collection: WeaponType.all
     end
     actions
   end
