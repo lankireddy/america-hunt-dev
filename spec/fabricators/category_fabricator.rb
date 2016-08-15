@@ -1,3 +1,3 @@
 Fabricator(:category) do
-  name       { Faker::Commerce.department }
+  name      { sequence(:category) { |i| "#{Faker::Commerce.department} ##{i}" } }
 end

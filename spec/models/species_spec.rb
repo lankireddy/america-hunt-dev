@@ -6,6 +6,8 @@ describe Species do
   it { is_expected.to have_many :location_species }
   it { is_expected.to have_many(:locations).through(:location_species) }
 
+  it { is_expected.to validate_uniqueness_of(:name) }
+
 
   it 'should have a valid fabricator' do
     expect(Fabricate.build :species).to be_valid

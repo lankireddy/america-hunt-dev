@@ -4,6 +4,8 @@ describe Category do
   it { is_expected.to have_many :location_categories }
   it { is_expected.to have_many(:locations).through(:location_categories) }
 
+  it { is_expected.to validate_uniqueness_of(:name) }
+
   it 'should have a valid fabricator' do
     expect(Fabricate.build :category).to be_valid
   end
