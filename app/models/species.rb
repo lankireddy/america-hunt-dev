@@ -4,7 +4,7 @@ class Species < ActiveRecord::Base
   has_many :locations, through: :location_species
   has_many :location_species
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   default_scope { order :name}
 

@@ -7,16 +7,20 @@ class LocationsController < ApplicationController
     @query = params[:query]
     @category_id = params[:category_id]
     @top_level_species_ids = params[:top_level_species_ids]
+    @species_ids = params[:species_ids]
+
     if @query
       @locations = Location.near(@query,DEFAULT_SEARCH_RADIUS)
       @locations = @locations.joins(:location_categories).where(location_categories:{ category_id: @category_id }) if(@category_id.present?)
       @locations = @locations.joins(:species).where(species: { parent_id: @top_level_species_ids}) if(@top_level_species_ids.present?)
+      @locations = @locations.joins(:species).where(species: { id: @species_ids}) if(@species_ids.present?)
       @locations = @locations.uniq
     else
       @locations = []
     end
     @body_classes = 'content-list margin-header'
     @categories = Category.all
+    @top_level_species = Species.top_level
   end
 
   # GET /locations/1

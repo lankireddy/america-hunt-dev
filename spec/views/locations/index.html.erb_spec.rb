@@ -6,6 +6,11 @@ RSpec.describe 'locations/index', type: :view do
     categories = Fabricate.times 5, :category
     @categories = Category.where(id: categories.map(&:id))
     assign(:locations, locations)
+    top_level_species = Fabricate.times 5, :species
+    top_level_species.each do |species|
+      Fabricate.times 2, :species, parent_id: species.id
+    end
+    @top_level_species = Species.top_level
   end
 
   it 'renders a list of locations' do

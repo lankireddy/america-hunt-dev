@@ -6,8 +6,15 @@
 #= require_directory .
 
 $ ->
-  $('.select-multi').multiselect({
+  $('.select-multi').multiselect
     nonSelectedText: $('.select-multi').children('option[value=""]').text(),
-    onInitialized: (select, container) ->
-      container.find('input[value=""]').parents('li').hide()
-  })
+    enableCollapsibleOptGroups: true,
+    enableFiltering: $('.select-multi').data('enablefiltering'),
+    enableCaseInsensitiveFiltering: true,
+    onDropdownShown: (event) ->
+      $('.caret-container').click()
+    , onInitialized: (select, container) ->
+      container.find('input[value=""]').parents('li').remove()
+    , onChange: (option) ->
+      query = $('.multiselect-container li.multiselect-filter input').val()
+      $('.multiselect-container li.multiselect-filter input').val('').trigger('keydown') if query?

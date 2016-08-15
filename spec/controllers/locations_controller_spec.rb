@@ -26,10 +26,23 @@ RSpec.describe LocationsController, type: :controller do
       expect(assigns(:category_id)).to eq(category.id.to_s)
     end
 
+    it 'assigns all top level species as @top_level_species' do
+      species = Fabricate :species
+      get :index, {}
+      expect(assigns(:top_level_species)).to eq([species])
+    end
+
     it 'assigns current top_level_species_ids as @top_level_species_ids' do
       species_list = Fabricate.times 5, :species
       get :index, { top_level_species_ids: species_list.map(&:id)}
       expect(assigns(:top_level_species_ids)).to eq(species_list.map{ |species| species.id.to_s })
+    end
+
+    it 'assigns current species_ids as @species_ids' do
+      parent_species = Fabricate :species, name: 'Pokemon'
+      species_list = Fabricate.times 5, :species, parent_id: parent_species.id
+      get :index, { species_ids: species_list.map(&:id)}
+      expect(assigns(:species_ids)).to eq(species_list.map{ |species| species.id.to_s })
     end
 
     describe 'with location query' do
@@ -65,22 +78,30 @@ RSpec.describe LocationsController, type: :controller do
         expect(assigns(:locations)).to eq([@close_locations[0]])
       end
 
-      it 'limits @locations by species within top level species when top level species ids are present' do
-        selected_top_level_species = Fabricate :species, name: 'Pokemon'
-        matching_specific_species = Fabricate.times 2, :species, parent_id: selected_top_level_species.id
-        not_selected_top_level_species = Fabricate :species, name: 'UnPokemon'
-        non_matching_specific_species = Fabricate.times 2, :species, parent_id: not_selected_top_level_species.id
+      describe 'filer by species' do
+        before do
+          @selected_top_level_species = Fabricate :species, name: 'Pokemon'
+          @matching_specific_species = Fabricate.times 2, :species, parent_id: @selected_top_level_species.id
+          @not_selected_top_level_species = Fabricate :species, name: 'UnPokemon'
+          @non_matching_specific_species = Fabricate.times 2, :species, parent_id: @not_selected_top_level_species.id
 
-        @close_locations[0].species << matching_specific_species[1]
-        @close_locations[1].species << matching_specific_species[0]
-        @close_locations[2].species << non_matching_specific_species[1]
-        @close_locations[3].species << non_matching_specific_species[0]
+          @close_locations[0].species << @matching_specific_species[1]
+          @close_locations[1].species << @matching_specific_species[0]
+          @close_locations[2].species << @non_matching_specific_species[1]
+          @close_locations[3].species << @non_matching_specific_species[0]
+        end
 
-        get :index, { query: @query, top_level_species_ids: [selected_top_level_species.id] }
-        expect(assigns(:locations)).to match_array([@close_locations[0],@close_locations[1]])
+        it 'limits @locations by species within top level species when top level species ids are present' do
+          get :index, { query: @query, top_level_species_ids: [@selected_top_level_species.id] }
+          expect(assigns(:locations)).to match_array([@close_locations[0],@close_locations[1]])
+        end
+
+        it 'limits @locations by species when species ids are present' do
+          get :index, { query: @query, species_ids: @matching_specific_species.map(&:id) }
+          expect(assigns(:locations)).to match_array([@close_locations[0],@close_locations[1]])
+        end
       end
     end
-
   end
 
   describe 'GET #show' do

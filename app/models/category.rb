@@ -4,7 +4,7 @@ class Category < ActiveRecord::Base
   belongs_to :parent, class_name: Category
 
   validates :travelier_id, uniqueness: true, allow_nil: true
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   def to_s
     name

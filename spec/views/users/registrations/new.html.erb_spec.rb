@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe 'users/registrations/new', type: :view do
   before(:each) do
-    view.should_receive(:resource).and_return(Fabricate.build :user)
-    view.should_receive(:resource_name).at_least(:once).and_return(:user)
+    allow(view).to receive(:resource) { (Fabricate.build :user) }
+    allow(view).to receive(:resource_name) { :user }
   end
 
   it 'renders new user form' do
