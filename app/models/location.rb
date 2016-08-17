@@ -41,7 +41,7 @@ class Location < ActiveRecord::Base
   end
 
   def excerpt
-    description.truncate_words(EXCERPT_LENGTH)
+    description.try(:truncate_words, EXCERPT_LENGTH)
   end
 
   def city_state

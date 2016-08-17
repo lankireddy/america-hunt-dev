@@ -1,8 +1,24 @@
 require 'spec_helper'
 
 RSpec.describe 'locations/new', type: :view do
+  let!(:user) { Fabricate :user}
+  let!(:top_level_species) do
+    top_level_species = Fabricate.times 5, :species
+    top_level_species.each do |species|
+      Fabricate.times 2, :species, parent_id: species.id
+    end
+    top_level_species
+  end
   before(:each) do
+    allow(view).to receive(:user_signed_in?).and_return(true)
+    allow(view).to receive(:current_user).and_return(user)
+    allow(view).to receive(:policy).and_return(double('some policy', update?: true))
     assign(:location, (Fabricate.build :location))
+    categories = Fabricate.times 5, :category
+    @categories = Category.where(id: categories.map(&:id))
+    @top_level_species = Species.top_level
+    weapon_types = Fabricate.times 5, :weapon_type
+    @weapon_types = WeaponType.all
   end
 
   it 'renders new location form' do
@@ -12,9 +28,7 @@ RSpec.describe 'locations/new', type: :view do
       
       assert_select 'input#location_name[name=?]', 'location[name]'
 
-      assert_select 'textarea#location_website[name=?]', 'location[website]'
-
-      assert_select 'textarea#location_contact_page[name=?]', 'location[contact_page]'
+      assert_select 'input#location_website[name=?]', 'location[website]'
 
       assert_select 'input#location_phone[name=?]', 'location[phone]'
 
@@ -28,15 +42,15 @@ RSpec.describe 'locations/new', type: :view do
 
       assert_select 'input#location_zip[name=?]', 'location[zip]'
 
-      assert_select 'input#location_lat[name=?]', 'location[lat]'
+      assert_select 'input#location_handicap_status_handicap_accessible[name=?]', 'location[handicap_status]'
 
-      assert_select 'input#location_long[name=?]', 'location[long]'
+      assert_select 'input#location_handicap_status_handicap_na[name=?]', 'location[handicap_status]'
 
-      assert_select 'input#location_featured[name=?]', 'location[featured]'
+      assert_select 'input#location_hunting_area_size[name=?]', 'location[hunting_area_size]'
 
-      assert_select 'input#location_follow_up[name=?]', 'location[follow_up]'
+      assert_select 'textarea#location_terrain[name=?]', 'location[terrain]'
 
-      assert_select 'textarea#location_description[name=?]', 'location[description]'
+      assert_select 'textarea#location_submitter_notes[name=?]', 'location[submitter_notes]'
     end
   end
 end

@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
   DEFAULT_SEARCH_RADIUS = 50
   before_action :set_location, only: [:show]
+  before_action :set_filters, only: [:index, :new]
 
   # GET /locations
   def index
@@ -21,9 +22,6 @@ class LocationsController < ApplicationController
       @locations = []
     end
     @body_classes = 'content-list margin-header'
-    @categories = Category.all
-    @top_level_species = Species.top_level
-    @weapon_types = WeaponType.all
   end
 
   # GET /locations/1
@@ -44,10 +42,14 @@ class LocationsController < ApplicationController
   # POST /locations
   def create
     @location = Location.new(location_params)
-
+    authorize @location
+    @location.submitter_id = current_user.id
+    @location.status = :pending
     if @location.save
-      redirect_to @location, notice: 'Location was successfully created.'
+      render
+      #redirect_to @location, notice: 'Location was successfully created.'
     else
+      set_filters
       render :new
     end
   end
@@ -58,11 +60,18 @@ class LocationsController < ApplicationController
       @location = Location.find(params[:id])
     end
 
+    def set_filters
+      @categories = Category.all
+      @top_level_species = Species.top_level
+      @weapon_types = WeaponType.all
+    end
+
     # Only allow a trusted parameter "white list" through.
     def location_params
-      params.require(:location).permit(:name, :website, :contact_page, :phone, :email,
-                                       :address_1, :address_2, :city, :zip, :lat, :long,
-                                       :opening_date, :featured, :follow_up, :description,
-                                       :handicap_status, :child_status, :pet_status, :state)
+      params.require(:location).permit(:name, :website, :phone, :email,
+                                       :address_1, :address_2, :city, :zip, :state, :handicap_status,
+                                       :hunting_area_size, :terrain, :submitter_notes,
+                                       species_ids: [], weapon_type_ids: [], category_ids: []
+                                       )
     end
 end

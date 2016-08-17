@@ -1,5 +1,17 @@
-<h1>New Location</h1>
+<% content_for :pre_main do %>
+    <header class="header-interior header-sign-up header-add-destination col-md-12 header-overlayed">
+      <h1 class="text-center">Add a Hunting Destination</h1>
+    </header>
+<% end %>
+<% if user_signed_in? %>
+  <div class="col-md-3">
 
-<%= render 'form' %>
-
-<%= link_to 'Back', locations_path %>
+  </div>
+  <div class="col-md-6">
+    <%= render 'form' %>
+  </div>
+<% else %>
+    <div class="col-md-12">
+      <p>Please Log in to submit destinations</p>
+    </div>
+<% end %>

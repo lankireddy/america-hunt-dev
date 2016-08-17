@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815165117) do
+ActiveRecord::Schema.define(version: 20160815213200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,8 @@ ActiveRecord::Schema.define(version: 20160815165117) do
     t.text     "travelier_image_paths"
     t.string   "hunting_area_size"
     t.text     "terrain"
+    t.text     "submitter_notes"
+    t.integer  "submitter_id"
   end
 
   add_index "locations", ["travelier_id"], name: "index_locations_on_travelier_id", using: :btree

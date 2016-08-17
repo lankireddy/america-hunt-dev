@@ -39,6 +39,10 @@ ActiveAdmin.register Location do
   form do |f|
     inputs 'Details' do
       input :name
+      input :status, as: :select,
+            collection: Location.statuses.keys,
+            include_blank: false,
+            selected: 'approved'
       input :description
       input :category_ids, as: :check_boxes, :collection => Category.order('name ASC').all
       input :handicap_status, as: :select,

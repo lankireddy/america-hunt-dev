@@ -21,8 +21,11 @@ en:
 
   activerecord:
     attributes:
-     SINGULAR_MODEL_NAME:
-        ATTRIBUTE_NAME: '' # alias to attribute
+      location:
+        phone: 'Phone Number'
+        email: 'Email Address'
+      user:
+        phone: 'Phone Number'
     errors:
       models:
         SINGULAR_MODEL_NAME:

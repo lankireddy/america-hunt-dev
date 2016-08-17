@@ -21,6 +21,11 @@ describe Location do
     it 'returns the excerpt length word count' do
       expect(location.excerpt.scan(/\w+/).size).to be <= (Location::EXCERPT_LENGTH)
     end
+
+    it 'returns nil when there is no description' do
+      location_without_description = Fabricate.build :location, description: nil
+      expect(location_without_description.excerpt).to be_nil
+    end
   end
 
   describe '#geocode_street_address' do
