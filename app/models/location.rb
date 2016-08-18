@@ -6,6 +6,7 @@ class Location < ActiveRecord::Base
   has_many :weapon_types, through: :location_weapon_types
   has_many :location_weapon_types
   belongs_to :author, class_name: 'AdminUser'
+  belongs_to :submitter, class_name: 'User'
 
   validates :travelier_id, uniqueness: true, allow_nil: true
   validates :name, presence: true

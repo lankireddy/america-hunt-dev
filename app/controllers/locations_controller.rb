@@ -43,7 +43,7 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)
     authorize @location
-    @location.submitter_id = current_user.id
+    @location.submitter = current_user
     @location.status = :pending
     if @location.save
       render
