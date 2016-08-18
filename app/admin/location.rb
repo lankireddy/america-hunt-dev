@@ -40,7 +40,7 @@ ActiveAdmin.register Location do
     inputs 'Details' do
       input :name
       input :status, as: :select,
-            collection: Location.statuses.keys,
+            collection: Location.statuses.keys.map { |key| [key, key]},
             include_blank: false,
             selected: 'approved'
       input :description

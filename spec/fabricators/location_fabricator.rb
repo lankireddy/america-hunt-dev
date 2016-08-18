@@ -11,10 +11,8 @@ Fabricator(:location) do
   zip          { Faker::Address.zip }
   lat          { Faker::Address.latitude }
   long         { Faker::Address.longitude }
-  opening_date { Faker::Date.backward(1000) }
-  featured     false
-  follow_up    false
   description  { Faker::Lorem.paragraph }
   hunting_area_size { Faker::Lorem.sentence }
   terrain  { Faker::Lorem.paragraph }
+  status       'approved'
 end

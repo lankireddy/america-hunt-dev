@@ -4,7 +4,7 @@ RSpec.describe Admin::LocationsController, type: :controller do
   login_admin
   render_views
 
-  let!(:valid_attributes) { (Fabricate.build :location).attributes }
+  let!(:valid_attributes) { (Fabricate.build :location).attributes.merge('status' => 'approved') }
 
   let(:invalid_attributes) { { name: ''} }
 
@@ -55,6 +55,7 @@ RSpec.describe Admin::LocationsController, type: :controller do
 
       it 'assigns categories based on ids' do
         categories = Fabricate.times 2, :category
+        binding.pry
         post :create, { location: valid_attributes.merge({ category_ids: categories.map(&:id) }) }
         location = assigns(:location)
         expect(location.categories.count).to eq(2)

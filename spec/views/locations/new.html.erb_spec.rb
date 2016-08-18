@@ -40,6 +40,8 @@ RSpec.describe 'locations/new', type: :view do
 
       assert_select 'input#location_city[name=?]', 'location[city]'
 
+      assert_select 'input#location_state[name=?]', 'location[state]'
+
       assert_select 'input#location_zip[name=?]', 'location[zip]'
 
       assert_select 'input#location_handicap_status_handicap_accessible[name=?]', 'location[handicap_status]'
