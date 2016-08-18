@@ -15,12 +15,14 @@ describe 'Location Filter', type: :feature do
       visit locations_path
       expect(page).to have_selector('.multiselect-native-select .btn-group')
     end
+
     it 'displays a list of options when clicked', js: true do
       visit locations_path
       expect(page).to have_selector('.multiselect-native-select .btn-group')
       click_button('What?')
       expect(page).to have_selector('.multiselect-native-select ul.dropdown-menu')
     end
+
     it 'displays an option group for each top level species ', js: true do
       visit locations_path
       expect(page).to have_selector('.multiselect-native-select .btn-group')
@@ -31,6 +33,7 @@ describe 'Location Filter', type: :feature do
         end
       end
     end
+
     it 'displays an option for each specific species ', js: true do
       visit locations_path
       expect(page).to have_selector('.multiselect-native-select .btn-group')
@@ -42,6 +45,7 @@ describe 'Location Filter', type: :feature do
         end
       end
     end
+
     it 'species ids are posted on form submit', js: true do
       first_species = top_level_species[0].children.first
       visit locations_path

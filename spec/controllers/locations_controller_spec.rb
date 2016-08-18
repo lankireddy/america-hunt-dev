@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 
 RSpec.describe LocationsController, type: :controller do
 

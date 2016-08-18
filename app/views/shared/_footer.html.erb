@@ -3,16 +3,16 @@
     <div class="row">
       <div class="col-md-8">
         <ul id="footer-nav-tier-1" class="footer-nav list-inline">
-          <li><a href="/about">About</a></li>
+          <li><%= link_to 'About', page_path('about') %></li>
           <li><a href="#">Contact Us</a></li>
-          <li><a href="/locations/new">Add a Hunting Destination</a></li>
+          <li><%= link_to 'Add a Hunting Destination', new_location_path %></li>
           <li><a href="#">Newsletter</a></li>
         </ul>
         <ul id="footer-nav-tier-2" class="footer-nav list-inline">
-          <li><a href="/press-&amp;-media">Press & Media</a></li>
-          <li><a href="/faq">FAQ</a></li>
-          <li><a href="/terms-of-service">Terms of Service</a></li>
-          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><%= link_to 'Press & Media', page_path('press-&amp;-media') %></li>
+          <li><%= link_to 'FAQ', page_path('faq') %></li>
+          <li><%= link_to 'Terms of Service', page_path('terms-of-service') %></li>
+          <li><%= link_to 'Privacy Policy', page_path('privacy-policy') %></li>
         </ul>
       </div>
       <div class="col-md-3 col-md-offset-1 text-right">

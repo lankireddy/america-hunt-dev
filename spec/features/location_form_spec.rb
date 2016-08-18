@@ -39,9 +39,11 @@ describe 'Location Form', type: :feature do
           expect(page).to have_selector('.multiselect-native-select .btn-group')
           click_button(button_text)
         end
+
         it 'displays a list of options when clicked', js: true do
           expect(page).to have_selector('.multiselect-native-select ul.dropdown-menu')
         end
+
         it 'displays an option group for each top level species ', js: true do
           within(:css, '.multiselect-native-select ul.dropdown-menu') do
             top_level_species.each do |species|
@@ -49,6 +51,7 @@ describe 'Location Form', type: :feature do
             end
           end
         end
+
         it 'displays an option for each specific species ', js: true do
           within(:css, '.multiselect-native-select ul.dropdown-menu') do
             page.all('.caret-container').each { |caret| caret.click() }
@@ -138,9 +141,11 @@ describe 'Location Form', type: :feature do
           expect(page).to have_selector(".multiselect-native-select button.multiselect[title='#{button_text}']")
           click_button(button_text)
         end
+
         it 'displays a list of options when clicked', js: true do
           expect(page).to have_selector('.multiselect-native-select ul.dropdown-menu')
         end
+
         it 'displays an option for each weapon_type ', js: true do
           within(:css, '.multiselect-native-select ul.dropdown-menu') do
             WeaponType.all.each do |weapon_type|

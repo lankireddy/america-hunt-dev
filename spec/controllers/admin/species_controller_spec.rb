@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 
 RSpec.describe Admin::SpeciesController, type: :controller do
   login_admin

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe PostsController, type: :controller do
 
   describe 'GET #show' do

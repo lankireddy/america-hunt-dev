@@ -1,4 +1,4 @@
-require 'spec_helper'
+
 
 RSpec.describe Admin::WeaponTypesController, type: :controller do
   login_admin
