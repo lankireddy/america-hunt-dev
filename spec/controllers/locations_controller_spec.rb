@@ -72,6 +72,11 @@ RSpec.describe LocationsController, type: :controller do
         allow(Location).to receive(:near) { Location.where(id: @close_locations.map(&:id)) }
       end
 
+      it 'scopes results to approved status' do
+        expect(Location).to receive(:approved)  { Location.where(id: @close_locations.map(&:id)) }
+        get :index, { query: @query}
+      end
+
       it 'assigns current query as @query' do
         get :index, { query: @query}
         expect(assigns(:query)).to eq(@query)
@@ -170,6 +175,11 @@ RSpec.describe LocationsController, type: :controller do
           post :create, {:location => valid_attributes}
           expect(assigns(:location)).to be_a(Location)
           expect(assigns(:location)).to be_persisted
+        end
+
+        it 'newly created location has pending status' do
+          post :create, {:location => valid_attributes}
+          expect(assigns(:location).status).to eq('pending')
         end
 
         it 'renders the "create" template' do

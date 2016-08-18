@@ -41,6 +41,10 @@ describe 'Location' do
   end
 
   describe 'new' do
+    it 'displays statuses dropdown' do
+      visit new_admin_location_path
+      expect(page).to have_select('location[status]')
+    end
     it 'displays available categories as checkboxes' do
       Fabricate.times 5, :category
       visit new_admin_location_path
@@ -49,7 +53,7 @@ describe 'Location' do
       end
     end
 
-    it 'displays available categories as checkboxes' do
+    it 'displays available weapon types as checkboxes' do
       Fabricate.times 5, :weapon_type
       visit new_admin_location_path
       Category.all.each do |weapon_type|

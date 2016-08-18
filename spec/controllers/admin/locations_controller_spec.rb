@@ -55,7 +55,6 @@ RSpec.describe Admin::LocationsController, type: :controller do
 
       it 'assigns categories based on ids' do
         categories = Fabricate.times 2, :category
-        binding.pry
         post :create, { location: valid_attributes.merge({ category_ids: categories.map(&:id) }) }
         location = assigns(:location)
         expect(location.categories.count).to eq(2)
@@ -71,7 +70,7 @@ RSpec.describe Admin::LocationsController, type: :controller do
       end
 
       it 'redirects to the created location' do
-        post :create, {:location => valid_attributes}
+        post :create, { location: valid_attributes}
         expect(response).to redirect_to(admin_location_path(Location.last))
       end
     end

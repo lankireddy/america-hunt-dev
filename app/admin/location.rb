@@ -1,4 +1,9 @@
 ActiveAdmin.register Location do
+
+  scope :approved, default: true
+  scope :pending
+  scope :unapproved
+
   permit_params :name, :website, :contact_page, :phone, :email,
                 :address_1, :address_2, :city, :state, :zip, :lat, :long,
                 :opening_date, :featured, :follow_up, :description,
@@ -14,6 +19,15 @@ ActiveAdmin.register Location do
     column :state
     actions
   end
+
+  filter :author
+  filter :name
+  filter :state
+  filter :categories
+  filter :species
+  filter :weapon_types
+  filter :created_at
+  filter :updated_at
 
   sidebar :categories, only: :show do
     h4 'Categories'
@@ -42,7 +56,7 @@ ActiveAdmin.register Location do
       input :status, as: :select,
             collection: Location.statuses.keys.map { |key| [key, key]},
             include_blank: false,
-            selected: 'approved'
+            selected: f.object.status || 'approved'
       input :description
       input :category_ids, as: :check_boxes, :collection => Category.order('name ASC').all
       input :handicap_status, as: :select,
