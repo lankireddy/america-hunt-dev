@@ -161,41 +161,48 @@ RSpec.describe LocationsController, type: :controller do
   end
 
   describe 'POST #create' do
+    describe 'as unauthorized user' do
+      it 'raises unauthorized error' do
+        expect do
+          post :create, { location: valid_attributes }
+        end.to raise_error(Pundit::NotAuthorizedError)
+      end
+    end
     describe 'as logged in user' do
       login_user
 
       context 'with valid params' do
         it 'creates a new Location' do
           expect {
-            post :create, {:location => valid_attributes}
+            post :create, { location: valid_attributes }
           }.to change(Location, :count).by(1)
         end
 
         it 'assigns a newly created location as @location' do
-          post :create, {:location => valid_attributes}
+          post :create, { location: valid_attributes }
           expect(assigns(:location)).to be_a(Location)
           expect(assigns(:location)).to be_persisted
         end
 
         it 'newly created location has pending status' do
-          post :create, {:location => valid_attributes}
+          post :create, { location: valid_attributes }
           expect(assigns(:location).status).to eq('pending')
         end
 
         it 'renders the "create" template' do
-          post :create, {:location => valid_attributes}
+          post :create, { location: valid_attributes }
           expect(response).to render_template('create')
         end
       end
 
       context 'with invalid params' do
         it 'assigns a newly created but unsaved location as @location' do
-          post :create, {:location => invalid_attributes}
+          post :create, { location: invalid_attributes }
           expect(assigns(:location)).to be_a_new(Location)
         end
 
         it 're-renders the "new" template' do
-          post :create, {:location => invalid_attributes}
+          post :create, { location: invalid_attributes }
           expect(response).to render_template('new')
         end
       end
