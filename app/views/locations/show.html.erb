@@ -28,18 +28,21 @@
         </div>
       </section>
       <section>
-        <header>
-          <h2 class="h1-bold">Reviews</h2>
+        <header class="clearfix">
+          <h2 class="h1-bold pull-left">Reviews</h2>
+          <a href="#new_review" class="pull-right write-a-review">Write a Review</a>
         </header>
         <div id="reviews">
           <%= content_tag_for :article, @location.reviews, class: 'panel' do |review| %>
             <p><%= review.body %></p>
           <% end %>
         </div>
+        <a name="new_review"></a>
         <% if user_signed_in? %>
           <%= render 'reviews/form' %>
         <% else %>
-          Please log in to leave a review.
+            <h3>Add a Review</h3>
+            <p>Please log in to leave a review.</p>
         <% end %>
       </section>
   <% end %>
