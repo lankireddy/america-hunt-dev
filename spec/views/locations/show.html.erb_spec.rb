@@ -26,6 +26,11 @@ RSpec.describe 'locations/show', type: :view do
     expect(rendered).to have_link('Back to search results', href: @previous_page)
   end
 
+  it 'has a link to the review form anchor' do
+    render
+    expect(rendered).to have_link('Write a Review')
+  end
+
   it 'has review form as logged in user' do
     allow(view).to receive(:user_signed_in?).and_return(true)
     allow(view).to receive(:current_user).and_return(user)
