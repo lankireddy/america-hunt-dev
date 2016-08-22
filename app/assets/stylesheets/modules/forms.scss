@@ -43,3 +43,7 @@ form {
 form.text-book label {
   font-weight: 300;
 }
+
+form .rating-container .filled-stars {
+  color: $brand-info;
+}

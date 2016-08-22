@@ -27,6 +27,21 @@
           <%= link_to @location.phone, "tel:#{@location.phone}", itemprop:'telephone', class:'location-telephone' if @location.phone.present? %>
         </div>
       </section>
+      <section>
+        <header>
+          <h2 class="h1-bold">Reviews</h2>
+        </header>
+        <div id="reviews">
+          <%= content_tag_for :article, @location.reviews, class: 'panel' do |review| %>
+            <p><%= review.body %></p>
+          <% end %>
+        </div>
+        <% if user_signed_in? %>
+          <%= render 'reviews/form' %>
+        <% else %>
+          Please log in to leave a review.
+        <% end %>
+      </section>
   <% end %>
 </div>
 <div class="col-md-2 col-md-offset-1">

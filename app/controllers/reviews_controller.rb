@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
         if @review.save
           render json: @review.to_json
         else
-          render json: @review.to_json, status: :unprocessable_entity
+          render json: @review.errors.to_json, status: :unprocessable_entity
         end
       end
     end

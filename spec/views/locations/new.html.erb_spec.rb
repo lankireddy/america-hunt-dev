@@ -12,7 +12,7 @@ RSpec.describe 'locations/new', type: :view do
   before(:each) do
     allow(view).to receive(:user_signed_in?).and_return(true)
     allow(view).to receive(:current_user).and_return(user)
-    allow(view).to receive(:policy).and_return(double('some policy', update?: true))
+    allow(view).to receive(:policy).and_return(double('some policy', new?: true))
     assign(:location, (Fabricate.build :location))
     categories = Fabricate.times 5, :category
     @categories = Category.where(id: categories.map(&:id))
