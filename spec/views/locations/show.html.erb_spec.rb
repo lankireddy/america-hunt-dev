@@ -26,6 +26,12 @@ RSpec.describe 'locations/show', type: :view do
     expect(rendered).to have_link('Back to search results', href: @previous_page)
   end
 
+  it 'displays all reviews' do
+    Fabricate.times 5, :review, location: @location
+    render
+    expect(rendered).to have_selector('article.review', count: 5)
+  end
+
   it 'has a link to the review form anchor' do
     render
     expect(rendered).to have_link('Write a Review')

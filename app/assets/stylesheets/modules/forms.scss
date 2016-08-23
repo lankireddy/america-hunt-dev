@@ -44,6 +44,14 @@ form.text-book label {
   font-weight: 300;
 }
 
-form .rating-container .filled-stars {
-  color: $brand-info;
+.review, form {
+  .rating-container .filled-stars {
+    color: $brand-info;
+  }
+}
+.review .rating-container .empty-stars{
+  color: transparent;
+}
+.rating-xxs {
+  font-size: 1em;
 }

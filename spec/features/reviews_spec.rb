@@ -1,9 +1,18 @@
 require 'spec_helper'
 
 describe 'Reviews', type: :feature do
+  let(:location) { Fabricate :location }
+
+  describe 'review listing' do
+    it 'renders stars for ratings', js: true do
+      Fabricate :review, location: location
+      visit location_path(location)
+      expect(page).to have_selector('.filled-stars .star')
+    end
+  end
 
   describe 'review form' do
-    let(:location) { Fabricate :location }
+
     let(:empty_star_selector) { '.rating-container .empty-stars .star' }
 
     describe 'as logged in user' do
@@ -23,10 +32,14 @@ describe 'Reviews', type: :feature do
       end
 
       it 'clicking on a star sets the rating', js: true do
+        skip('Need a way to click the stars')
         visit location_path(location)
         expect(page).to have_selector(empty_star_selector, count: 5)
-        all(empty_star_selector).last.trigger(:click)
-        expect(page).to have_selector('#review_star_rating', visible: false)
+        page.driver.browser.mouse.move_to( find('#new_review .rating').native, 120, 10 ).click.perform
+        #all(empty_star_selector + ' i').last.trigger(:click)
+        expect(page).to have_selector('.rating-container .filled-stars .star', count: 5)
+        binding.pry
+        expect(page).to have_selector('#review_star_rating', visible: false, text: '5')
       end
 
       it 'sends review via ajax', js: true do
@@ -34,8 +47,17 @@ describe 'Reviews', type: :feature do
         expect do
           fill_in 'review_body', with: 'Message text'
           click_button 'Finish'
-          expect(page).to have_content 'Message text'
+          expect(page).to have_content user.first_name
         end.to change(Review, :count).by 1
+      end
+
+      it 'resets form on successful creation', js: true do
+        visit location_path(location)
+        fill_in 'review_body', with: 'Message text'
+        click_button 'Finish'
+        expect(page).to have_content user.first_name
+        expect(page).to have_selector('#review_body', text:'')
+        expect(page).to have_selector('#review_star_rating', visible: false, text: '')
       end
 
       it 'displays errors on the page from ajax submit', js: true do

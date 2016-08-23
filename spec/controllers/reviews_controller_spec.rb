@@ -37,7 +37,7 @@ RSpec.describe ReviewsController, type: :controller do
         it 'returns object' do
           post :create, { review: valid_attributes, location_id: location.id, format: 'json' }, valid_session
           expect(response).to be_success
-          expect(response.body).to eq(assigns(:review).to_json)
+          expect(response.body).to eq(assigns(:review).to_json(include: :submitter))
         end
       end
   

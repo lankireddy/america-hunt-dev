@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       format.json do
         if @review.save
-          render json: @review.to_json
+          render json: @review.to_json(include: :submitter)
         else
           render json: @review.errors.to_json, status: :unprocessable_entity
         end
@@ -21,12 +21,6 @@ class ReviewsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_location
     @location = Location.find(params[:location_id])
-  end
-
-  def set_filters
-    @categories = Category.all
-    @top_level_species = Species.top_level
-    @weapon_types = WeaponType.all
   end
 
   def review_params
