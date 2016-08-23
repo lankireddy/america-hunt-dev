@@ -49,4 +49,8 @@ class Location < ActiveRecord::Base
   def city_state
     "#{city}, #{state}"
   end
+
+  def average_star_rating
+    reviews.average(:star_rating)
+  end
 end

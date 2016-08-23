@@ -5,9 +5,11 @@
   <%= content_tag_for :article, @location, itemscope:'', itemtype:'http://schema.org/Place' do %>
       <header>
         <hgroup>
-          <h1 class="location-name h1-bold" itemprop="name"><%= @location %></h1>
+          <h1 class="location-name h1-bold inline-block" itemprop="name"><%= @location %></h1>
+          <input class="rating" value="<%= @location.average_star_rating %>" data-display-only="true" data-size="xs" data-container-class="inline-block rating-info hide-empty-stars" />
           <h2 itemprop="address" itemscope itemtype="http://schema.org/PostalAddress"><span class="glyphicon glyphicon-map-marker"></span> <span itemprop="addressLocality"><%= @location.city %></span>, <span class="region" itemprop="addressRegion"><%= @location.state %></span></h2>
         </hgroup>
+
       </header>
       <section class="location-description" itemprop="description">
         <%= @location.description %>

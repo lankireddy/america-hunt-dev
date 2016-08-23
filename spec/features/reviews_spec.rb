@@ -3,17 +3,25 @@ require 'spec_helper'
 describe 'Reviews', type: :feature do
   let(:location) { Fabricate :location }
 
+  describe 'location header' do
+    it 'renders stars for average rating', js: true do
+      Fabricate :review, location: location
+      visit location_path(location)
+      expect(page).to have_selector('header .filled-stars .star')
+    end
+  end
+
   describe 'review listing' do
     it 'renders stars for ratings', js: true do
       Fabricate :review, location: location
       visit location_path(location)
-      expect(page).to have_selector('.filled-stars .star')
+      expect(page).to have_selector('.review .filled-stars .star')
     end
   end
 
   describe 'review form' do
 
-    let(:empty_star_selector) { '.rating-container .empty-stars .star' }
+    let(:empty_star_selector) { '#new_review .rating-container .empty-stars .star' }
 
     describe 'as logged in user' do
       let!(:user) { Fabricate :user}

@@ -40,4 +40,11 @@ RSpec.describe 'locations/index', type: :view do
       expect(rendered).to have_link(location.excerpt, href: location_path(location))
     end
   end
+
+  it 'has an input with average star rating for each location' do
+    render
+    locations.each do |location|
+      expect(rendered).to have_selector('input.rating', visible: false, text: location.average_star_rating)
+    end
+  end
 end

@@ -2,7 +2,9 @@
     <div class="panel-heading">
       <h3 class="inline-block h4"><%= review.submitter %></h3>
       <time class="pull-right">><%= time_ago_in_words(review.created_at) %> ago</time>
-      <input class="rating" value="<%= review.star_rating %>" data-display-only="true" data-size="xxs" />
+      <% unless review.star_rating.nil? %>
+        <input class="rating" value="<%= review.star_rating %>" data-display-only="true" data-size="xxs" data-container-class="hide-empty-stars rating-info" />
+      <% end %>
     </div>
     <div class="panel-body">
       <p><%= review.body %></p>

@@ -43,15 +43,18 @@ form {
 form.text-book label {
   font-weight: 300;
 }
-
-.review, form {
-  .rating-container .filled-stars {
+.rating-container {
+  &.rating-info .filled-stars {
     color: $brand-info;
   }
+  &.hide-empty-stars .empty-stars{
+    color: transparent;
+  }
 }
-.review .rating-container .empty-stars{
-  color: transparent;
-}
+
 .rating-xxs {
   font-size: 1em;
+}
+input.rating {
+  display: none;
 }
