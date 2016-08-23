@@ -5,7 +5,7 @@ describe 'Reviews', type: :feature do
 
   describe 'location header' do
     it 'renders stars for average rating', js: true do
-      Fabricate :review, location: location
+      Fabricate :review, location: location, status: 'approved'
       visit location_path(location)
       expect(page).to have_selector('header .filled-stars .star')
     end
@@ -13,7 +13,7 @@ describe 'Reviews', type: :feature do
 
   describe 'review listing' do
     it 'renders stars for ratings', js: true do
-      Fabricate :review, location: location
+      Fabricate :review, location: location, status: 'approved'
       visit location_path(location)
       expect(page).to have_selector('.review .filled-stars .star')
     end

@@ -26,8 +26,9 @@ RSpec.describe 'locations/show', type: :view do
     expect(rendered).to have_link('Back to search results', href: @previous_page)
   end
 
-  it 'displays all reviews' do
-    Fabricate.times 5, :review, location: @location
+  it 'displays all approved reviews' do
+    Fabricate.times 5, :review, location: @location, status: 'approved'
+    Fabricate.times 2, :review, location: @location, status: 'pending'
     render
     expect(rendered).to have_selector('article.review', count: 5)
   end

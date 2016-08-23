@@ -35,7 +35,7 @@
           <a href="#new_review" class="pull-right write-a-review">Write a Review</a>
         </header>
         <div id="reviews">
-          <%= render @location.reviews %>
+          <%= render @location.reviews.approved %>
         </div>
         <a name="new_review"></a>
         <% if user_signed_in? %>
