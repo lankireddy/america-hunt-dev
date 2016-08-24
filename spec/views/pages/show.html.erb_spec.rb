@@ -14,4 +14,9 @@ RSpec.describe 'pages/show', type: :view do
     render
     expect(rendered).to have_selector('section', text: @page.body)
   end
+
+  it 'renders nav' do
+    render
+    expect(view.content_for(:pre_main)).to have_selector('nav.pages-nav')
+  end
 end
