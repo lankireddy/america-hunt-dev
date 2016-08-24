@@ -1,26 +1,27 @@
 // Define your layout footer styles here
-footer {
+footer.footer-main {
   background-color: #313131;
   padding: 5em 0;
   line-height: 2.2;
   letter-spacing: 0.6px;
-  color:white;
-}
-footer a {
-  color: #ffffff;
-}
-footer a:hover {
-  color: #990a13;
-}
-footer .list-inline > li{
-  padding:0 10px;
-}
-#footer-nav-tier-1{
-  font-weight: 500;
-}
-#footer-nav-tier-2 li {
-  padding: 0 20px 0 10px;
-}
-.logo-footer img {
-  height: 26px;
+  color: white;
+
+  a {
+    color: #ffffff;
+    &:hover {
+      color: #990a13;
+    }
+  }
+  .list-inline > li {
+    padding: 0 10px;
+  }
+  #footer-nav-tier-1 {
+    font-weight: 500;
+  }
+  #footer-nav-tier-2 li {
+    padding: 0 20px 0 10px;
+  }
+  .logo-footer img {
+    height: 26px;
+  }
 }

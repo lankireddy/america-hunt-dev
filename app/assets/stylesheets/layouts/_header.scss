@@ -34,21 +34,35 @@
   z-index: 1;
   position:relative;
   color: white;
-}
-.header-overlayed:after {
-  content: ' ';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: -1;
-  background-color: rgba(0,0,0,0.5);
-}
-.header-overlayed h1, .header-overlayed h2{
-  font-size: 55px;
-  font-weight: 300;
+  &:after {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: rgba(0,0,0,0.5);
+  }
+  h1, h2{
+    font-size: 55px;
+    font-weight: 300;
+  }
 }
 .pre-main .header-interior {
   margin-bottom: 2em;
+}
+.pages-nav{
+  background-color: $brand-info;
+  padding: 1.3em 0;
+  margin-bottom: 5em;
+  a {
+    color: $nav-link-color;
+    &.active {
+      color: white;
+    }
+  }
+  .list-inline > li {
+    padding-right: 40px;
+  }
 }

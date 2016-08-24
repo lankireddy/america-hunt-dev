@@ -1,5 +1,5 @@
 ActiveAdmin.register Page do
-  permit_params :title, :body
+  permit_params :title, :body, :slug
 
   index do
     column :id
@@ -13,9 +13,21 @@ ActiveAdmin.register Page do
   form do |f|
     inputs 'Details' do
       input :title
+      input :slug
       input :body, as: :ckeditor
     end
     actions
+  end
+
+  show do
+    attributes_table do
+      row :title
+      row :body
+      row :created_at
+      row :slug
+      row :author
+    end
+    active_admin_comments
   end
 
   controller do
