@@ -9,7 +9,7 @@ ActiveAdmin.register Location do
                 :opening_date, :featured, :follow_up, :description,
                 :hunting_area_size, :terrain,
                 :handicap_status, :child_status, :pet_status,
-                :status, :author_id, category_ids: [], species_ids: [], weapon_type_ids: []
+                :status, :author_id, :featured_image, category_ids: [], species_ids: [], weapon_type_ids: []
   index do
     column :id
     column :author
@@ -49,6 +49,38 @@ ActiveAdmin.register Location do
       end
     end
   end
+  
+  show do
+    attributes_table do
+      row :name
+      row :status
+      row :featured_image do
+        image_tag   location.featured_image.url(:medium), class:'featured-image'
+      end
+      row :description
+      row :created_at
+      row :updated_at
+      row :slug
+      row :author
+      row :handicap_status
+      row :pet_status
+      row :child_status
+      row :website
+      row :contact_page
+      row :phone
+      row :email
+      row :address_1
+      row :address_2
+      row :city
+      row :state
+      row :zip
+      row :lat
+      row :long
+      row :hunting_area_size
+      row :terrain
+    end
+    active_admin_comments
+  end
 
   form do |f|
     inputs 'Details' do
@@ -58,6 +90,7 @@ ActiveAdmin.register Location do
             include_blank: false,
             selected: f.object.status || 'approved'
       input :description
+      input :featured_image
       input :category_ids, as: :check_boxes, :collection => Category.order('name ASC').all
       input :handicap_status, as: :select,
             collection:  Location.handicap_statuses.keys.map { |key| [(key.to_s[9..-1]).humanize, key]},

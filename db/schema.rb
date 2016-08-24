@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160823185410) do
+ActiveRecord::Schema.define(version: 20160824145727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,14 +125,14 @@ ActiveRecord::Schema.define(version: 20160823185410) do
     t.string   "address_2"
     t.string   "city"
     t.string   "zip"
-    t.decimal  "lat",                   precision: 10, scale: 6
-    t.decimal  "long",                  precision: 10, scale: 6
+    t.decimal  "lat",                         precision: 10, scale: 6
+    t.decimal  "long",                        precision: 10, scale: 6
     t.date     "opening_date"
     t.boolean  "featured"
     t.boolean  "follow_up"
     t.text     "description"
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
     t.integer  "handicap_status"
     t.integer  "child_status"
     t.integer  "pet_status"
@@ -144,6 +144,10 @@ ActiveRecord::Schema.define(version: 20160823185410) do
     t.text     "terrain"
     t.text     "submitter_notes"
     t.integer  "submitter_id"
+    t.string   "featured_image_file_name"
+    t.string   "featured_image_content_type"
+    t.integer  "featured_image_file_size"
+    t.datetime "featured_image_updated_at"
   end
 
   add_index "locations", ["travelier_id"], name: "index_locations_on_travelier_id", using: :btree

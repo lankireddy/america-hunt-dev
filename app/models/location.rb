@@ -12,6 +12,9 @@ class Location < ActiveRecord::Base
   validates :travelier_id, uniqueness: true, allow_nil: true
   validates :name, presence: true
 
+  has_attached_file :featured_image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: '/images/:style/missing.png'
+  validates_attachment_content_type :featured_image, content_type: /\Aimage\/.*\z/
+
   enum handicap_status: [:handicap_na, :handicap_inaccessible, :handicap_accessible, :handicap_limited, :handicap_unknown]
   enum child_status: [:children_na, :child_centered, :children_allowed, :children_not_allowed, :children_limited, :children_unknown]
   enum pet_status: [:pet_na, :pet_yes, :pet_service, :pet_no, :pet_limited, :pet_unknown]

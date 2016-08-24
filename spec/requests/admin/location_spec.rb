@@ -10,6 +10,12 @@ describe 'Location' do
   end
 
   describe 'show' do
+    it 'displays the featured image' do
+      visit admin_location_path(location)
+      expect(page).to have_selector('img.featured-image')
+      expect(find('img.featured-image')['src']).to eq location.featured_image.url(:medium)
+    end
+
     it 'displays the attached categories' do
       location.categories << (Fabricate :category)
       location.categories << (Fabricate :category)
@@ -19,6 +25,7 @@ describe 'Location' do
         expect(page).to have_selector('li',text:category.to_s)
       end
     end
+
     it 'displays the attached species' do
       parent = Fabricate :top_level_species
       location.species << (Fabricate :species, parent_id: parent.id)
@@ -29,6 +36,7 @@ describe 'Location' do
         expect(page).to have_selector('li',text:species.to_s)
       end
     end
+
     it 'displays the attached weapon types' do
       location.weapon_types << (Fabricate :weapon_type)
       location.weapon_types << (Fabricate :weapon_type)
@@ -68,6 +76,11 @@ describe 'Location' do
       Species.specific.each do |species|
         expect(page).to have_field('location[species_ids][]',with: species.id)
       end
+    end
+
+    it 'had featured image upload field' do
+      visit new_admin_location_path
+      expect(page).to have_selector('#location_featured_image[type="file"]')
     end
   end
 end
