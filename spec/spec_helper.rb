@@ -7,10 +7,11 @@ end
 
 ENV["RAILS_ENV"] = 'test'
 
-require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path('../../config/environment', __FILE__)
 require 'avocado/rspec'
 require 'rspec/rails'
 require 'shoulda/matchers'
+require 'paperclip/matchers'
 require 'pundit/rspec'
 require 'webmock/rspec'
 
@@ -42,4 +43,5 @@ RSpec.configure do |config|
   config.extend ControllerMacros, type: :controller
   config.example_status_persistence_file_path = 'only-failures.log'
   Capybara::Webkit.configure(&:block_unknown_urls)
+  config.include Paperclip::Shoulda::Matchers
 end

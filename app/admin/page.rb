@@ -1,5 +1,5 @@
 ActiveAdmin.register Page do
-  permit_params :title, :body, :slug
+  permit_params :title, :body, :slug, :featured_image
 
   index do
     column :id
@@ -15,6 +15,7 @@ ActiveAdmin.register Page do
       input :title
       input :slug
       input :body, as: :ckeditor
+      input :featured_image
     end
     actions
   end
@@ -22,6 +23,9 @@ ActiveAdmin.register Page do
   show do
     attributes_table do
       row :title
+      row :featured_image do
+        image_tag   page.featured_image.url(:medium)
+      end
       row :body
       row :created_at
       row :slug

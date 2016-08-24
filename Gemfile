@@ -81,8 +81,10 @@ group :development, :test do
 end
 
 gem 'activeadmin', '~> 1.0.0.pre4'
+gem 'aws-sdk', '>= 2.0.34'
 gem 'ckeditor'
 gem 'friendly_id', '~> 5.1.0'
 gem 'geocoder'
+gem 'paperclip', '~> 5.0.0'
 gem 'pry'
 gem 'rails_12factor', group: :production
