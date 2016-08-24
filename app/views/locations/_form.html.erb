@@ -57,6 +57,10 @@
     </label>
   </div>
   <div class="form-group">
+    <%= f.label :featured_image, 'Upload a Photo' %>
+    <%= f.file_field :featured_image, class: 'form-control' %>
+  </div>
+  <div class="form-group">
     <%= f.label :hunting_area_size, 'What’s the size of your hunting area?' %><br>
     <%= f.text_field :hunting_area_size, class: 'form-control' %>
   </div>

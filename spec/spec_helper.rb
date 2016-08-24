@@ -44,4 +44,7 @@ RSpec.configure do |config|
   config.example_status_persistence_file_path = 'only-failures.log'
   Capybara::Webkit.configure(&:block_unknown_urls)
   config.include Paperclip::Shoulda::Matchers
+  config.after(:suite) do
+    FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
+  end
 end

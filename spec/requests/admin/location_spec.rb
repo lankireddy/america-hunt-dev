@@ -82,5 +82,19 @@ describe 'Location' do
       visit new_admin_location_path
       expect(page).to have_selector('#location_featured_image[type="file"]')
     end
+
+    it 'saves the attached file' do
+      visit new_admin_location_path
+
+      fill_in('location[name]', with: 'File Upload Test')
+
+      attach_file('location[featured_image]', File.absolute_path("#{Rails.root}/spec/support/files/4.jpg"))
+
+      click_button('Create Location')
+
+      expect(page).to have_selector('div.flash', text:'Location was successfully created.')
+      new_location = Location.order(:created_at).last
+      expect(new_location.featured_image.url).to include('4.jpg')
+    end
   end
 end

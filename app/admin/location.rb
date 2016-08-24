@@ -78,6 +78,8 @@ ActiveAdmin.register Location do
       row :long
       row :hunting_area_size
       row :terrain
+      row :submitter
+      row :submitter_notes
     end
     active_admin_comments
   end

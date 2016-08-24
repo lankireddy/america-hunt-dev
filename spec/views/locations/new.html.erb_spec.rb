@@ -48,6 +48,8 @@ RSpec.describe 'locations/new', type: :view do
 
       assert_select 'input#location_handicap_status_handicap_na[name=?]', 'location[handicap_status]'
 
+      assert_select 'input#location_featured_image[name=?]', 'location[featured_image]'
+
       assert_select 'input#location_hunting_area_size[name=?]', 'location[hunting_area_size]'
 
       assert_select 'textarea#location_terrain[name=?]', 'location[terrain]'

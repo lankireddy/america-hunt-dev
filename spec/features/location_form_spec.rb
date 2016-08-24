@@ -170,5 +170,21 @@ describe 'Location Form', type: :feature do
         expect(new_location.weapon_type_ids).to include(first_weapon_type.id)
       end
     end
+
+    describe 'featured image upload' do
+      it 'saves the attached file' do
+        visit new_location_path
+
+        fill_in('location[name]', with: 'File Upload Test')
+
+        attach_file('location[featured_image]', File.absolute_path("#{Rails.root}/spec/support/files/4.jpg"))
+
+        find('.btn-save').click()
+
+        expect(page).to have_selector('h2', text:'Thank you for submitting a destination')
+        new_location = Location.order(:created_at).last
+        expect(new_location.featured_image.url).to include('4.jpg')
+      end
+    end
   end
 end
