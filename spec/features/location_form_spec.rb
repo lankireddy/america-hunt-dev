@@ -74,7 +74,7 @@ describe 'Location Form', type: :feature do
         end
 
         find('.btn-save').trigger('click')
-        expect(page).to have_selector('h2', text:'Thank you for submitting a destination')
+        expect(page).to have_selector('h2', text: 'Thank you for submitting a destination')
         new_location = Location.order(:created_at).last
         expect(new_location.name).to eq('Species Test')
         expect(new_location.species_ids).to include(first_species.id)
@@ -118,7 +118,7 @@ describe 'Location Form', type: :feature do
         click_button(button_text)
         check first_category.name
         find('.btn-save').trigger('click')
-        expect(page).to have_selector('h2', text:'Thank you for submitting a destination')
+        expect(page).to have_selector('h2', text: 'Thank you for submitting a destination')
         new_location = Location.order(:created_at).last
         expect(new_location.name).to eq(new_location_name)
         expect(new_location.category_ids).to include(first_category.id)
@@ -164,7 +164,7 @@ describe 'Location Form', type: :feature do
         click_button(button_text)
         check first_weapon_type.name
         find('.btn-save').trigger('click')
-        expect(page).to have_selector('h2', text:'Thank you for submitting a destination')
+        expect(page).to have_selector('h2', text: 'Thank you for submitting a destination')
         new_location = Location.order(:created_at).last
         expect(new_location.name).to eq(new_location_name)
         expect(new_location.weapon_type_ids).to include(first_weapon_type.id)
@@ -181,7 +181,7 @@ describe 'Location Form', type: :feature do
 
         find('.btn-save').click()
 
-        expect(page).to have_selector('h2', text:'Thank you for submitting a destination')
+        expect(page).to have_selector('h2', text: 'Thank you for submitting a destination')
         new_location = Location.order(:created_at).last
         expect(new_location.featured_image.url).to include('4.jpg')
       end

@@ -1,9 +1,9 @@
 <div class="membership-links pull-right">
 <% if !current_user.nil? %>
-    <%= link_to t('navigation.links.logout'), destroy_user_session_path, method: :delete, class:'btn btn-link btn-logout' %>
+    <%= link_to t('navigation.links.logout'), destroy_user_session_path, method: :delete, class: 'btn btn-link btn-logout' %>
 <% else %>
     <%= link_to t('navigation.links.login'), new_user_session_path, class: 'btn btn-link btn-login' %>
 
-    <%= link_to t('navigation.links.register'), new_user_registration_path, class:'btn btn-default btn-sign-up' %>
+    <%= link_to t('navigation.links.register'), new_user_registration_path, class: 'btn btn-default btn-sign-up' %>
 <% end %>
 </div>

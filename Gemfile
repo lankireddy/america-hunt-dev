@@ -9,6 +9,7 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 gem 'uglifier'
 
 gem 'capistrano', '~> 3.0', require: false

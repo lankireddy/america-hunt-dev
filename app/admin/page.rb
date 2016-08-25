@@ -24,7 +24,7 @@ ActiveAdmin.register Page do
     attributes_table do
       row :title
       row :featured_image do
-        image_tag   page.featured_image.url(:medium), class: 'featured-image'
+        image_tag page.featured_image.url(:medium), class: 'featured-image'
       end
       row :body
       row :created_at

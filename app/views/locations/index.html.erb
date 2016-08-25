@@ -3,9 +3,9 @@
 <% end %>
 <div class="col-md-9">
   <div class="locations">
-    <%= div_for(@locations, class:'panel panel-default', itemscope:'', itemtype:'http://schema.org/Place' ) do |location| %>
+    <%= div_for(@locations, class: 'panel panel-default', itemscope: '', itemtype: 'http://schema.org/Place' ) do |location| %>
       <div class="panel-heading clearfix">
-        <h3 class="panel-title pull-left location-name h3-bold"><%= link_to location, location_path(location, query: @query), itemprop:'url' %></h3>
+        <h3 class="panel-title pull-left location-name h3-bold"><%= link_to location, location_path(location, query: @query), itemprop: 'url' %></h3>
         <input class="rating" value="<%= location.average_star_rating %>" data-display-only="true" data-size="xxs" data-container-class="rating-info hide-empty-stars pull-right col-md-offset-1" />
         <%= link_to location.city_state, locations_path(query: location.city_state), class: 'pull-right city-state-link' %>
       </div>
@@ -17,12 +17,12 @@
 </div>
 <div class="col-md-2 col-md-offset-1">
   <a href="http://www.basspro.com/" target="_blank">
-    <%= image_tag 'ads/bass-pro-shops.png', class:'img-responsive ad ad-sidebar' %>
+    <%= image_tag 'ads/bass-pro-shops.png', class: 'img-responsive ad ad-sidebar' %>
   </a>
   <a href="http://yeti.com/" target="_blank">
-    <%= image_tag 'ads/yeti.png', class:'img-responsive ad ad-sidebar' %>
+    <%= image_tag 'ads/yeti.png', class: 'img-responsive ad ad-sidebar' %>
   </a>
   <a href="http://www.drakewaterfowl.com/" target="_blank">
-    <%= image_tag 'ads/drake.png', class:'img-responsive ad ad-sidebar' %>
+    <%= image_tag 'ads/drake.png', class: 'img-responsive ad ad-sidebar' %>
   </a>
 </div>

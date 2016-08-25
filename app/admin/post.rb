@@ -25,7 +25,7 @@ ActiveAdmin.register Post do
       row :body
       row :external_link
       row :featured_image do
-        image_tag   post.featured_image.url(:medium), class:'featured-image'
+        image_tag post.featured_image.url(:medium), class: 'featured-image'
       end
     end
   end

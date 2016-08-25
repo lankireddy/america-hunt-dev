@@ -12,7 +12,7 @@
   </nav>
 <% end %>
 <div class="col-md-7">
-  <%= content_tag_for :article, @page, itemscope:'', itemtype:'https://schema.org/WebPage' do %>
+  <%= content_tag_for :article, @page, itemscope: '', itemtype: 'https://schema.org/WebPage' do %>
       <header>
         <h1 class="h1-bold" itemprop="headline"><%= @page %></h1>
       </header>
@@ -22,5 +22,5 @@
   <% end %>
 </div>
 <div class="col-md-offset-1 col-md-4">
-  <%= image_tag @page.featured_image.url, class:'img-responsive' if @page.featured_image.present? %>
+  <%= image_tag @page.featured_image.url, class: 'img-responsive' if @page.featured_image.present? %>
 </div>

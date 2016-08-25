@@ -1,4 +1,4 @@
-<%= form_tag '/locations', method: 'get', class:'location-search location-search-hp' do |f| %>
+<%= form_tag '/locations', method: 'get', class: 'location-search location-search-hp' do |f| %>
     <div class="form-group form-group-lg">
       <label for="location">Where would you like to hunt?</label>
       <%= search_field_tag 'query','', class: 'form-control', placeholder: 'Location', required: true %>
@@ -12,5 +12,5 @@
       <%= select_tag 'top_level_species_ids', options_from_collection_for_select(@species, 'id', 'name'), include_blank: 'What?', class: 'form-control select-multi', multiple: true %>
     </div>
     <div class="clearfix"></div>
-    <%= submit_tag 'Go Hunt!', class:'btn btn-info btn-search center-block' %>
+    <%= submit_tag 'Go Hunt!', class: 'btn btn-info btn-search center-block' %>
 <% end %>

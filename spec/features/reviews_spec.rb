@@ -64,7 +64,7 @@ describe 'Reviews', type: :feature do
         fill_in 'review_body', with: 'Message text'
         click_button 'Finish'
         expect(page).to have_content user.first_name
-        expect(page).to have_selector('#review_body', text:'')
+        expect(page).to have_selector('#review_body', text: '')
         expect(page).to have_selector('#review_star_rating', visible: false, text: '')
       end
 

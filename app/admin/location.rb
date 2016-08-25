@@ -55,7 +55,7 @@ ActiveAdmin.register Location do
       row :name
       row :status
       row :featured_image do
-        image_tag   location.featured_image.url(:medium), class:'featured-image'
+        image_tag location.featured_image.url(:medium), class: 'featured-image'
       end
       row :description
       row :created_at

@@ -80,7 +80,7 @@ describe 'Location' do
 
     it 'had featured image upload field' do
       visit new_admin_location_path
-      expect(page).to have_selector('#location_featured_image[type="file"]')
+      expect(page).to have_field('location[featured_image]', type: 'file')
     end
 
     it 'saves the attached file' do
@@ -92,7 +92,7 @@ describe 'Location' do
 
       click_button('Create Location')
 
-      expect(page).to have_selector('div.flash', text:'Location was successfully created.')
+      expect(page).to have_selector('div.flash', text: 'Location was successfully created.')
       new_location = Location.order(:created_at).last
       expect(new_location.featured_image.url).to include('4.jpg')
     end

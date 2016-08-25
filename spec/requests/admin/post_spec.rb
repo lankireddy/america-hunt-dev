@@ -43,7 +43,7 @@ describe 'Post' do
 
     it 'had featured image upload field' do
       visit new_admin_post_path
-      expect(page).to have_selector('#post_featured_image[type="file"]')
+      expect(page).to have_field('post[featured_image]', type: 'file')
     end
 
     it 'saves the attached file' do
@@ -55,7 +55,7 @@ describe 'Post' do
 
       click_button('Create Post')
 
-      expect(page).to have_selector('div.flash', text:'Post was successfully created.')
+      expect(page).to have_selector('div.flash', text: 'Post was successfully created.')
       new_post = Post.order(:created_at).last
       expect(new_post.featured_image.url).to include('4.jpg')
     end

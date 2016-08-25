@@ -13,12 +13,12 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :star_rating, class:'sr-only' %>
-    <%= f.text_field :star_rating, class:'rating', data: { min: 0, max: 5, step: '0.5', size:'xxs', 'show-clear' => 'false', 'show-caption' => 'false', 'container-class' => 'rating-info'} %>
+    <%= f.label :star_rating, class: 'sr-only' %>
+    <%= f.text_field :star_rating, class: 'rating', data: { min: 0, max: 5, step: '0.5', size: 'xxs', 'show-clear' => 'false', 'show-caption' => 'false', 'container-class' => 'rating-info'} %>
   </div>
   <div class="form-group">
-    <%= f.label :body, class:'sr-only' %>
-    <%= f.text_area :body, class:'form-control' %>
+    <%= f.label :body, class: 'sr-only' %>
+    <%= f.text_area :body, class: 'form-control' %>
   </div>
   <div class="actions">
     <%= f.submit 'Finish', class: 'btn btn-info' %>

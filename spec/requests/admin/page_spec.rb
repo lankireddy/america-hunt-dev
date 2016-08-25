@@ -20,7 +20,7 @@ describe 'Page' do
   describe 'new' do
     it 'had featured image upload field' do
       visit new_admin_page_path
-      expect(page).to have_selector('#page_featured_image[type="file"]')
+      expect(page).to have_field('page[featured_image]', type: 'file')
     end
 
     it 'saves the attached file' do
@@ -32,7 +32,7 @@ describe 'Page' do
 
       click_button('Create Page')
 
-      expect(page).to have_selector('div.flash', text:'Page was successfully created.')
+      expect(page).to have_selector('div.flash', text: 'Page was successfully created.')
       new_page = Page.order(:created_at).last
       expect(new_page.featured_image.url).to include('4.jpg')
     end

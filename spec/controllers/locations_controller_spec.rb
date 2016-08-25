@@ -59,7 +59,7 @@ RSpec.describe LocationsController, type: :controller do
 
     describe 'with location query' do
       before do
-        far_location = Fabricate :location, state: 'Alaska', city:'Fairbanks', address_1: '100 Main St.'
+        far_location = Fabricate :location, state: 'Alaska', city: 'Fairbanks', address_1: '100 Main St.'
         city = 'Franklin'
         state = 'TN'
         @close_locations = [
@@ -84,7 +84,7 @@ RSpec.describe LocationsController, type: :controller do
 
       it 'assigns nearby locations as @locations' do
         expect(Location).to receive(:near).with(@query, LocationsController::DEFAULT_SEARCH_RADIUS)
-        get :index, { query: @query, category_id:'' }
+        get :index, { query: @query, category_id: '' }
         expect(assigns(:locations)).to include(*@close_locations)
       end
 

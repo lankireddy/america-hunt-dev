@@ -1,11 +1,11 @@
-<% if @post.featured_image.present?
-    content_for :pre_main do %>
+<% if @post.featured_image.present? %>
+  <% content_for :pre_main do %>
     <header class="header-interior header-post col-md-12 header-overlayed" style="background-image: url(<%= @post.featured_image.url(:hero) %>)">
       <h1 class="text-center"><%= @post %></h1>
     </header>
-<%  end
-   end %>
-<%= content_tag_for :article, @post, itemscope:'',itemtype:'http://schema.org/BlogPosting' do %>
+  <% end %>
+<% end %>
+<%= content_tag_for :article, @post, itemscope: '',itemtype: 'http://schema.org/BlogPosting' do %>
   <div class="col-md-9">
     <% unless @post.featured_image.present? %>
       <header>
@@ -19,10 +19,10 @@
   </div>
   <div class="col-md-2 col-md-offset-1">
     <a href="http://www.basspro.com/" target="_blank">
-      <%= image_tag 'ads/bass-pro-shops.png', class:'img-responsive ad ad-sidebar' %>
+      <%= image_tag 'ads/bass-pro-shops.png', class: 'img-responsive ad ad-sidebar' %>
     </a>
     <a href="http://yeti.com/" target="_blank">
-      <%= image_tag 'ads/yeti.png', class:'img-responsive ad ad-sidebar' %>
+      <%= image_tag 'ads/yeti.png', class: 'img-responsive ad ad-sidebar' %>
     </a>
   </div>
 <% end %>
