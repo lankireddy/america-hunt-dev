@@ -1,12 +1,20 @@
 <% content_for :pre_main do %>
-    <header class="header-sign-up col-md-12 header-overlayed">
+    <header class="header-interior header-sign-up col-md-12 header-overlayed">
       <h1 class="text-center">Join the America Hunt Community</h1>
     </header>
 <% end %>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), defaults: { input_html: { class: 'input-lg' } }) do |f| %>
-  <div class="col-md-6">
+  <div class="col-md-10 col-md-offset-2">
     <h2 class="h2-bold">Contact Info</h2>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <%= f.input :profile_image, label: 'Add a Photo' %>
+    </div>
+  </div>
+  <div class="col-md-6">
+
     <%= f.error_notification %>
     <div class="col-md-6">
       <%= f.input :first_name, required: true %>

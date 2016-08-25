@@ -33,6 +33,9 @@ ActiveAdmin.register User do
       row :email
       row :first_name
       row :last_name
+      row :profile_image do
+        image_tag user.profile_image.url(:small), class: 'profile-image'
+      end
       row :address_1
       row :city
       row :state

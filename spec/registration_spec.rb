@@ -1,3 +1,5 @@
+
+
 feature 'GET /users/sign_up' do
   before do
     @user = Fabricate :user
@@ -15,6 +17,22 @@ feature 'GET /users/sign_up' do
       expect(page).to have_css('.alert-notice')
       expect(page).to have_content('Welcome! You have signed up successfully.')
     end
+
+    describe 'profile image upload' do
+      it 'saves the attached file' do
+        fill_form '#{SecureRandom.hex(6)}@test.com', 'metova123'
+
+        attach_file('user_profile_image', File.absolute_path("#{Rails.root}/spec/support/files/4.jpg"))
+
+        find('input[type=submit]').click
+
+        expect(page).to have_css('.alert-notice')
+        expect(page).to have_content('Welcome! You have signed up successfully.')
+
+        new_user = User.order(:created_at).last
+        expect(new_user.profile_image.url).to include('4.jpg')
+      end
+    end
   end
   context 'duplicate username' do
     scenario 'shows a failure message after signing up' do
@@ -26,12 +44,16 @@ feature 'GET /users/sign_up' do
 
   def signup(email, password, first_name: @user.first_name, last_name: @user.last_name)
     visit new_user_registration_path
+    fill_form(email, password, first_name: first_name, last_name: last_name)
+    find('input[type=submit]').click
+  end
+
+  def fill_form(email, password, first_name: @user.first_name, last_name: @user.last_name)
     fill_in 'user_email', with: email
     fill_in 'user_password', with: password
     fill_in 'user_password_confirmation', with: password
     fill_in 'user_first_name', with: first_name
     fill_in 'user_last_name', with: last_name
-    find('input[type=submit]').click
   end
 
 end
