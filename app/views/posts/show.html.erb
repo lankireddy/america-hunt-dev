@@ -1,8 +1,17 @@
+<% if @post.featured_image.present?
+    content_for :pre_main do %>
+    <header class="header-interior header-post col-md-12 header-overlayed" style="background-image: url(<%= @post.featured_image.url(:hero) %>)">
+      <h1 class="text-center"><%= @post %></h1>
+    </header>
+<%  end
+   end %>
 <%= content_tag_for :article, @post, itemscope:'',itemtype:'http://schema.org/BlogPosting' do %>
-  <header class="col-md-12">
-    <h1 itemprop="headline"><%= @post %></h1>
-  </header>
   <div class="col-md-9">
+    <% unless @post.featured_image.present? %>
+      <header>
+        <h1 itemprop="headline"><%= @post %></h1>
+      </header>`
+    <% end %>
     <p class="subtitle" itemprop="alternativeHeadline"><%= @post.subtitle %></p>
     <section class="body" itemprop="articleBody">
       <%= @post.body.html_safe %>

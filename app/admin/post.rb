@@ -1,5 +1,5 @@
 ActiveAdmin.register Post do
-  permit_params :title, :subtitle, :body, :external_link, blog_category_ids: []
+  permit_params :title, :subtitle, :body, :external_link, :featured_image, blog_category_ids: []
 
   index do
     column :id
@@ -18,12 +18,24 @@ ActiveAdmin.register Post do
     end
   end
 
+  show do
+    attributes_table do
+      row :title
+      row :subtitle
+      row :body
+      row :external_link
+      row :featured_image do
+        image_tag   post.featured_image.url(:medium), class:'featured-image'
+      end
+    end
+  end
   form do |f|
     inputs 'Details' do
       input :title
       input :subtitle
       input :body, as: :ckeditor
       input :external_link, as: :url
+      input :featured_image
       input :blog_category_ids, as: :check_boxes, :collection => BlogCategory.order('name ASC').all
     end
     actions

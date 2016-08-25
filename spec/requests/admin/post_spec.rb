@@ -19,6 +19,12 @@ describe 'Post' do
         expect(page).to have_selector('li',text:blog_category.to_s)
       end
     end
+
+    it 'displays the featured image' do
+      visit admin_post_path(post)
+      expect(page).to have_selector('img.featured-image')
+      expect(find('img.featured-image')['src']).to eq post.featured_image.url(:medium)
+    end
   end
 
   describe 'new' do
@@ -33,6 +39,25 @@ describe 'Post' do
     it 'has field for external link' do
       visit new_admin_post_path
       expect(page).to have_field('post[external_link]', type: 'url')
+    end
+
+    it 'had featured image upload field' do
+      visit new_admin_post_path
+      expect(page).to have_selector('#post_featured_image[type="file"]')
+    end
+
+    it 'saves the attached file' do
+      visit new_admin_post_path
+
+      fill_in('post[title]', with: 'File Upload Test')
+
+      attach_file('post[featured_image]', File.absolute_path("#{Rails.root}/spec/support/files/4.jpg"))
+
+      click_button('Create Post')
+
+      expect(page).to have_selector('div.flash', text:'Post was successfully created.')
+      new_post = Post.order(:created_at).last
+      expect(new_post.featured_image.url).to include('4.jpg')
     end
   end
 end

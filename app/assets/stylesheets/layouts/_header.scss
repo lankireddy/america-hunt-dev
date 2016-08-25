@@ -52,6 +52,13 @@
 .pre-main .header-interior {
   margin-bottom: 2em;
 }
+.header-interior {
+  background-position: center top;
+  height: 50vw;
+  h1{
+    margin-top: 22vw;
+  }
+}
 .pages-nav{
   background-color: $brand-info;
   padding: 1.3em 0;
