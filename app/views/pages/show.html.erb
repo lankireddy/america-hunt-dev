@@ -1,5 +1,5 @@
 <% content_for :pre_main do %>
-  <nav class="pages-nav">
+  <nav class="secondary-nav pages-nav">
     <div class="container">
       <ul class="list-inline">
         <li><%= link_to_active_class 'About', page_path('about') %></li>
@@ -13,7 +13,7 @@
 <% end %>
 <div class="col-md-7">
   <%= content_tag_for :article, @page, itemscope: '', itemtype: 'https://schema.org/WebPage' do %>
-      <header>
+      <header class="header-no-hero">
         <h1 class="h1-bold" itemprop="headline"><%= @page %></h1>
       </header>
       <section class="body" itemprop="text">

@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :reviews, only: :create
   end
   resources :posts, only: [:show]
+
+  get 'sales', to: 'posts#sales', as: :sales
+
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   mount Avocado::Engine => '/avocado'

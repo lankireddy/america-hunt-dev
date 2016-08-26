@@ -6,10 +6,16 @@ describe HomePageController do
       expect(response).to have_http_status(:success)
     end
 
-    it 'assigns all content posts as @content_posts' do
-      content_post = Fabricate :content_post
+    it 'assigns max of 5 content posts as @content_posts' do
+      content_posts = Fabricate.times 7, :content_post
       get :index, {}
-      expect(assigns(:content_posts)).to eq([content_post])
+      expect(assigns(:content_posts).count).to eq(5)
+    end
+
+    it 'assigns max of 5 link posts as @link_posts' do
+      link_posts = Fabricate.times 7, :link_post
+      get :index, {}
+      expect(assigns(:link_posts).count).to eq(5)
     end
 
     it 'assigns all categories as @categories' do

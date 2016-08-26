@@ -59,10 +59,10 @@
     margin-top: 22vw;
   }
 }
-.pages-nav{
+.secondary-nav{
   background-color: $brand-info;
   padding: 1.3em 0;
-  margin-bottom: 5em;
+  margin-bottom: 3em;
   a {
     color: $nav-link-color;
     &.active {
@@ -72,4 +72,7 @@
   .list-inline > li {
     padding-right: 40px;
   }
+}
+.header-no-hero {
+  margin-bottom: 2em;
 }

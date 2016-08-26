@@ -15,9 +15,21 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9">
-      <section>
+      <section id="hunting-news">
+        <h1 class="h2 h2-bold">Hunting News</h1>
         <%= render 'posts/list_content' %>
-        <%= render 'posts/list_link' %>
+        <%= link_to 'Read More Hunting News', posts_path, class:'small link-underline' %>
+      </section>
+      <section id="hunting-sales" class="panel">
+        <div class="panel-heading">
+          <h1 class="h2 h2-bold">Hunting Sales</h1>
+        </div>
+        <div class="panel-body">
+          <%= render 'posts/list_link' %>
+        </div>
+        <div class="panel-footer">
+          <%= link_to 'Read More Hunting Sales', sales_path, class:'small link-underline' %>
+        </div>
       </section>
     </div>
     <div class="col-md-2 col-md-offset-1">

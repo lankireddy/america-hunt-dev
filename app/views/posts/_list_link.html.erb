@@ -1,13 +1,5 @@
-<section id="hunting-sales" class="panel">
-  <div class="panel-heading">
-    <h1 class="h2 h2-bold">Hunting Sales</h1>
-  </div>
-  <div class="panel-body">
-    <ul class="link-posts list-unstyled">
-      <%= content_tag_for('li', @link_posts, class: '', itemscope: '',itemtype: 'http://schema.org/SaleEvent') do |post| %>
-          <%= link_to post.title, post.external_link, target:'_blank' %>
-      <% end %>
-    </ul>
-  </div>
-
-</section>
+<ul class="link-posts list-unstyled">
+  <%= content_tag_for('li', @link_posts, class: '', itemscope: '',itemtype: 'http://schema.org/SaleEvent') do |post| %>
+      <%= link_to post.title, post.external_link, target:'_blank' %>
+  <% end %>
+</ul>

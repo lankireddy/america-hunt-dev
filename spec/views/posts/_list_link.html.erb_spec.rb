@@ -17,7 +17,7 @@ RSpec.describe 'posts/_list_link', type: :view do
   end
   it 'renders a list of posts' do
     render
-    expect(rendered).to have_selector('#hunting-sales li', count: link_posts.count)
+    expect(rendered).to have_selector('.link-posts li', count: link_posts.count)
   end
 
   it 'has a linked title for each post' do
