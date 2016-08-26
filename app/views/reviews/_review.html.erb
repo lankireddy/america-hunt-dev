@@ -1,10 +1,17 @@
 <%= content_tag_for :article, review, class: 'panel' do %>
     <div class="panel-heading">
-      <h3 class="inline-block h4"><%= review.submitter %></h3>
-      <time class="pull-right">><%= time_ago_in_words(review.created_at) %> ago</time>
-      <% unless review.star_rating.nil? %>
-        <input class="rating" value="<%= review.star_rating %>" data-display-only="true" data-size="xxs" data-container-class="hide-empty-stars rating-info" />
+      <% if review.submitter.profile_image.present? %>
+      <div class="col-md-2">
+        <%= image_tag review.submitter.profile_image.url(:small), class: 'profile-image img-responsive' %>
+      </div>
       <% end %>
+      <div class="<%= review.submitter.profile_image.present? ? 'col-md-10' : 'col-md-12' %>">
+        <h3 class="inline-block h4"><%= review.submitter %></h3>
+        <time class="pull-right">><%= time_ago_in_words(review.created_at) %> ago</time>
+        <% unless review.star_rating.nil? %>
+            <input class="rating" value="<%= review.star_rating %>" data-display-only="true" data-size="xxs" data-container-class="hide-empty-stars rating-info" />
+        <% end %>
+      </div>
     </div>
     <div class="panel-body">
       <p><%= review.body %></p>
