@@ -7,7 +7,7 @@ $ ->
                           <div class=\"panel-heading\">
                           <h3 class=\"inline-block h4\">#{data.submitter.first_name} #{data.submitter.last_name}</h3>
                           <time class=\"pull-right\">Now</time>
-                          <input class=\"rating\" value='#{data.star_rating}' data-display-only='true' />
+                          <input class=\"rating\" value='#{data.star_rating}' data-display-only='true' data-container-class='hide-empty-stars rating-info' />
                           </div>
                           <div class=\"panel-body\">
                           <p class='text-warning'>This review is private pending review</p>
