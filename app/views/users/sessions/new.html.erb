@@ -1,0 +1,9 @@
+<% content_for(:body_classes) do %>
+    margin-header
+<% end %>
+<header>
+  <h1>Login</h1>
+</header>
+<div class="col-md-6">
+  <%= render 'users/sessions/new', resource: resource, resource_name: resource_name, devise_mapping: devise_mapping %>
+</div>

@@ -9,9 +9,8 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= @body_classes %>">
+<body class="<%= @body_classes %> <%= yield :body_classes %>">
 <%= image_tag 'ads/cabelas-top.png', class: 'img-responsive header-ad' %>
-<%= render 'shared/flash', flash: flash if flash %>
 <% if content_for?(:content) %>
     <%= content_for(:content) %>
 <%  else %>
@@ -45,7 +44,8 @@
     <%= content_for(:pre_main) %>
   </div>
   <% end %>
-  <main class="main">
+    <%= render 'shared/flash', flash: flash if flash %>
+    <main class="main">
     <div class="container" %>
       <div class="row">
         <%= yield %>

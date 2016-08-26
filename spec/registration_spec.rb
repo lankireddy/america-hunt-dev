@@ -21,11 +21,12 @@ feature 'GET /users/sign_up' do
     describe 'profile image upload' do
       it 'saves the attached file' do
         fill_form '#{SecureRandom.hex(6)}@test.com', 'metova123'
+        within('form.user-registration-form') do
 
-        attach_file('user_profile_image', File.absolute_path("#{Rails.root}/spec/support/files/4.jpg"))
+          attach_file('user_profile_image', File.absolute_path("#{Rails.root}/spec/support/files/4.jpg"))
 
-        find('input[type=submit]').click
-
+          find('input[type=submit]').click
+        end
         expect(page).to have_css('.alert-notice')
         expect(page).to have_content('Welcome! You have signed up successfully.')
 
@@ -45,15 +46,18 @@ feature 'GET /users/sign_up' do
   def signup(email, password, first_name: @user.first_name, last_name: @user.last_name)
     visit new_user_registration_path
     fill_form(email, password, first_name: first_name, last_name: last_name)
-    find('input[type=submit]').click
+    within('.user-registration-form') do
+      find('input[type=submit]').click
+    end
   end
 
   def fill_form(email, password, first_name: @user.first_name, last_name: @user.last_name)
-    fill_in 'user_email', with: email
-    fill_in 'user_password', with: password
-    fill_in 'user_password_confirmation', with: password
-    fill_in 'user_first_name', with: first_name
-    fill_in 'user_last_name', with: last_name
+    within('.user-registration-form') do
+      fill_in 'user_email', with: email
+      fill_in 'user_password', with: password
+      fill_in 'user_password_confirmation', with: password
+      fill_in 'user_first_name', with: first_name
+      fill_in 'user_last_name', with: last_name
+    end
   end
-
 end

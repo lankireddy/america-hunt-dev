@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
   def show
     @page_title = @post.title
-    @body_classes = 'margin-header' unless @post.featured_image.present?
+    @page_description = @post.subtitle
   end
 
   private

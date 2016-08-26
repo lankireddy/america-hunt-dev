@@ -8,6 +8,9 @@
 <%= content_tag_for :article, @post, itemscope: '',itemtype: 'http://schema.org/BlogPosting' do %>
   <div class="col-md-9">
     <% unless @post.featured_image.present? %>
+        <% content_for(:body_classes) do %>
+            margin-header
+        <% end %>
       <header class="header-no-hero">
         <h1 itemprop="headline"><%= @post %></h1>
       </header>

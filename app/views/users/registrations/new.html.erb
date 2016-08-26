@@ -4,7 +4,7 @@
     </header>
 <% end %>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), defaults: { input_html: { class: 'input-lg' } }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), defaults: { input_html: { class: 'input-lg' } }, html: { class:'user-registration-form'} ) do |f| %>
   <div class="col-md-10 col-md-offset-2">
     <h2 class="h2-bold">Contact Info</h2>
   </div>

@@ -1,7 +1,7 @@
 feature 'GET /users/login' do
   before do
     @user = Fabricate :user
-    visit new_user_session_path
+    visit '/'
   end
 
   context 'correct admin username and password' do
