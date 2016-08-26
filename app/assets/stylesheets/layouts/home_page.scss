@@ -36,3 +36,15 @@
 #hunting-news {
   margin-bottom: 2em;
 }
+#join-community {
+  background-image: url(image-path("join_community.png"));
+  padding: 3em;
+  text-align:center;
+  color: white;
+  h1 {
+    font-size: 55px;
+  }
+  .btn {
+    margin-top: 2em;
+  }
+}
