@@ -15,12 +15,30 @@ article.post .subtitle {
 .panel.post .panel-heading {
   background-color: rgba(0,0,0,0.5);
   padding-bottom: 15px;
-}
-.panel.post .panel-heading a {
-  color: white;
+  a {
+    color: white;
+  }
+  h2 {
+    margin: 0;
+  }
 }
 .header-post {
   h1 {
     font-size: 2em;
+  }
+}
+
+#hunting-sales {
+  border: 4px solid $brand-info;
+  h1, li a {
+    color: $brand-info;
+    text-transform: uppercase;
+  }
+  li {
+    margin-bottom: 1em;
+  }
+  a {
+    text-decoration: underline;
+    font-weight:900;
   }
 }

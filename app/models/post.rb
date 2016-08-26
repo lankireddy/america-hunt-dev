@@ -16,7 +16,9 @@ class Post < ActiveRecord::Base
 
   default_scope { order(created_at: :desc) }
 
-  scope :content_posts, -> { where.not(body: nil)}
+  scope :content_posts, -> { where.not(body: '') }
+  scope :link_posts, -> { where(body: '') }
+
 
   def slug_candidates
     [:title_short, :title]

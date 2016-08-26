@@ -10,7 +10,7 @@ describe 'Page' do
   end
 
   describe 'show' do
-    it 'displays the featured image' do
+    it 'displays the featured image', js: true do
       visit admin_page_path(page_object)
       expect(page).to have_selector('img.featured-image')
       expect(find('img.featured-image')['src']).to eq page_object.featured_image.url(:medium)

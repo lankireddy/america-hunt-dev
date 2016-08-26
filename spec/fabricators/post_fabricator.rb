@@ -15,4 +15,5 @@ end
 Fabricator(:link_post, from: :post) do
   title { Faker::Commerce.department }
   external_link  { Faker::Internet.url }
+  body ''
 end

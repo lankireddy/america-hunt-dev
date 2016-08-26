@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe 'posts/_list', type: :view do
+RSpec.describe 'posts/_list_content', type: :view do
   let(:content_posts) do
     Fabricate.times 5, :content_post
     Post.content_posts

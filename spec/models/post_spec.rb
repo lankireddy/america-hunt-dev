@@ -4,8 +4,12 @@ describe Post do
   it { is_expected.to have_many :blog_category_posts }
   it { is_expected.to have_many(:blog_categories).through(:blog_category_posts) }
 
-  it 'should have a valid fabricator' do
+  it 'should have valid fabricators' do
     expect(Fabricate.build :post).to be_valid
+    expect(Fabricate.build :link_post).to be_valid
+    expect(Fabricate.build :content_post).to be_valid
+
+
   end
 
   describe '#title_short' do
