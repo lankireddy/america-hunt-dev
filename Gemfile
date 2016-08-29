@@ -89,3 +89,4 @@ gem 'geocoder'
 gem 'paperclip', '~> 5.0.0'
 gem 'pry'
 gem 'rails_12factor', group: :production
+gem 'roo'
