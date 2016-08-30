@@ -35,6 +35,12 @@
 }
 #hunting-news {
   margin-bottom: 2em;
+  li {
+    margin-bottom: 1em;
+    a {
+      text-decoration: underline;
+    }
+  }
 }
 #join-community {
   background-image: url(image-path("join_community.png"));
@@ -47,4 +53,16 @@
   .btn {
     margin-top: 2em;
   }
+}
+#video-background {
+  position: absolute;
+  width: 100%;
+}
+.post-widgets {
+  position: relative;
+  background-color: white;
+  z-index: 2;
+}
+.over-video-content {
+  position: relative;
 }

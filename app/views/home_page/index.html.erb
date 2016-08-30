@@ -1,7 +1,8 @@
 <% content_for :content do %>
     <%= render 'shared/flash', flash: flash if flash %>
 <header class="header-homepage header-overlayed">
-  <div class="container">
+  <%= video_tag @videos.first.video.url, autoplay: true, id:'video-background', data: { playlist: '[' + @videos.map { |video| "\"#{video.video.url}\"" }.join(',') + ']'} if @videos.present?  %>
+  <div class="container over-video-content">
     <div class="row">
       <h1 class="col-md-3 logo-header"><%= image_tag('logo_white.png') %></h1>
       <div class="col-md-3 pull-right">
@@ -13,36 +14,43 @@
     <%= render 'location_search' %>
   </div>
 </header>
-<div class="container">
-  <div class="row">
-    <div class="col-md-9">
-      <section id="hunting-news">
-        <h1 class="h2 h2-bold">Hunting News</h1>
-        <%= render 'posts/list_content' %>
-        <%= link_to 'Read More Hunting News', posts_path, class:'small link-underline' %>
-      </section>
-      <section id="hunting-sales" class="panel">
-        <div class="panel-heading">
-          <h1 class="h2 h2-bold">Hunting Sales</h1>
-        </div>
-        <div class="panel-body">
-          <%= render 'posts/list_link' %>
-        </div>
-        <div class="panel-footer">
-          <%= link_to 'Read More Hunting Sales', sales_path, class:'small link-underline' %>
-        </div>
-      </section>
-    </div>
-    <div class="col-md-2 col-md-offset-1">
-      <a href="http://www.basspro.com/" target="_blank">
-        <%= image_tag 'ads/bass-pro-shops.png', class: 'img-responsive ad ad-sidebar' %>
-      </a>
-      <a href="http://yeti.com/" target="_blank">
-        <%= image_tag 'ads/yeti.png', class: 'img-responsive ad ad-sidebar' %>
-      </a>
+<div class="post-widgets">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <section id="hunting-news">
+          <h1 class="h2 h2-bold">Hunting News</h1>
+          <ul class="list-unstyled">
+            <% @content_posts.each do |post| %>
+                <li><%= link_to "#{post.created_at.strftime('%B%e')}: #{post.title}", post_path(post) %></li>
+            <% end %>
+          </ul>
+          <%= link_to 'Read More Hunting News', posts_path, class:'small link-underline' %>
+        </section>
+        <section id="hunting-sales" class="panel">
+          <div class="panel-heading">
+            <h1 class="h2 h2-bold">Hunting Sales</h1>
+          </div>
+          <div class="panel-body">
+            <%= render 'posts/list_link' %>
+          </div>
+          <div class="panel-footer">
+            <%= link_to 'Read More Hunting Sales', sales_path, class:'small link-underline' %>
+          </div>
+        </section>
+      </div>
+      <div class="col-md-2 col-md-offset-1">
+        <a href="http://www.basspro.com/" target="_blank">
+          <%= image_tag 'ads/bass-pro-shops.png', class: 'img-responsive ad ad-sidebar' %>
+        </a>
+        <a href="http://yeti.com/" target="_blank">
+          <%= image_tag 'ads/yeti.png', class: 'img-responsive ad ad-sidebar' %>
+        </a>
+      </div>
     </div>
   </div>
 </div>
+
 <aside id="join-community">
   <header>
     <h1 class="h1-bold">Join the America Hunt Community</h1>
