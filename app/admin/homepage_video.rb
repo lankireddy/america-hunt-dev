@@ -29,7 +29,7 @@ ActiveAdmin.register HomepageVideo do
     attributes_table do
       row :name
       row :video do
-        video_tag homepage_video.video.url, class: 'video'
+        video_tag homepage_video.video.url, class: 'video', controls: true
       end
       row :order
       row :created_at
