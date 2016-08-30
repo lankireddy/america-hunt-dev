@@ -30,5 +30,12 @@ describe HomePageController do
       get :index, {}
       expect(assigns(:species)).to match_array(top_level_species)
     end
+
+    it 'assigns published videos to @videos' do
+      videos = Fabricate.times 2, :homepage_video, published: true
+      unpublished_videos = Fabricate.times 2, :homepage_video
+      get :index, {}
+      expect(assigns(:videos)).to match_array(videos)
+    end
   end
 end

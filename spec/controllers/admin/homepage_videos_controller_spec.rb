@@ -10,7 +10,7 @@ RSpec.describe Admin::HomepageVideosController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns all homepage videos as @homepage_videos' do
-      homepage_video = HomepageVideo.create! valid_attributes
+      homepage_video = HomepageVideo.create! valid_attributes.merge({ published: true})
       get :index, {}
       expect(assigns(:homepage_videos)).to eq([homepage_video])
     end
@@ -50,7 +50,6 @@ RSpec.describe Admin::HomepageVideosController, type: :controller do
       it 'assigns a newly created homepage video as @homepage_video' do
         post :create, { homepage_video: valid_attributes }
         expect(assigns(:homepage_video)).to be_a(HomepageVideo)
-        binding.pry
         expect(assigns(:homepage_video)).to be_persisted
       end
 
