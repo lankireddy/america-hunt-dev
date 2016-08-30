@@ -10,7 +10,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= @body_classes %> <%= yield :body_classes %>">
-<%= image_tag 'ads/cabelas-top.png', class: 'img-responsive header-ad' %>
+<%= image_tag @top_ad.image.url(:original), class: 'img-responsive header-ad' if @top_ad.present? %>
 <% if content_for?(:content) %>
     <%= content_for(:content) %>
 <%  else %>

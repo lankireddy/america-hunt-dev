@@ -50,14 +50,4 @@
       </section>
   <% end %>
 </div>
-<div class="col-md-2 col-md-offset-1">
-  <a href="http://www.basspro.com/" target="_blank">
-    <%= image_tag 'ads/bass-pro-shops.png', class: 'img-responsive ad ad-sidebar' %>
-  </a>
-  <a href="http://yeti.com/" target="_blank">
-    <%= image_tag 'ads/yeti.png', class: 'img-responsive ad ad-sidebar' %>
-  </a>
-  <a href="http://www.drakewaterfowl.com/" target="_blank">
-    <%= image_tag 'ads/drake.png', class: 'img-responsive ad ad-sidebar' %>
-  </a>
-</div>
+<%= render 'shared/ads_sidebar', count: 3 %>

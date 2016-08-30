@@ -1,0 +1,8 @@
+<% count ||= 3 %>
+<div class="col-md-2 col-md-offset-1">
+  <% @sidebar_ads.limit(count).each do |ad| %>
+      <%= link_to ad.url, target:'_blank' do %>
+          <%= image_tag ad.image.url, class: 'img-responsive ad ad-sidebar' %>
+      <% end %>
+  <% end %>
+</div>

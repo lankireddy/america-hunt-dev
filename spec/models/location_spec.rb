@@ -11,6 +11,8 @@ describe Location do
   it { is_expected.to belong_to(:submitter)}
   it { is_expected.to have_attached_file(:featured_image) }
 
+  it { is_expected.to validate_presence_of(:name) }
+
   it 'should have a valid fabricator' do
     expect(Fabricate.build :location).to be_valid
   end

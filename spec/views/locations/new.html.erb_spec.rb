@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 RSpec.describe 'locations/new', type: :view do
+  include_context 'ad_page'
+
   let!(:user) { Fabricate :user}
   let!(:top_level_species) do
     top_level_species = Fabricate.times 5, :species

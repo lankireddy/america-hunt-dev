@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 RSpec.describe 'pages/show', type: :view do
+  include_context 'ad_page'
+
   before(:each) do
     @page = assign(:page, (Fabricate :page))
   end

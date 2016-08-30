@@ -1,8 +1,14 @@
 require 'spec_helper'
 
 RSpec.describe 'posts/show', type: :view do
+  include_context 'ad_page'
   before(:each) do
     @post = assign(:post, (Fabricate :post))
+  end
+
+  it 'displays sidebar ads' do
+    render
+    expect(rendered).to have_selector('img.ad')
   end
 
   context 'with featured image' do

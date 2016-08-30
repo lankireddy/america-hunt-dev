@@ -4,6 +4,9 @@ describe Page do
 
   it { is_expected.to have_attached_file(:featured_image) }
 
+  it { is_expected.to validate_presence_of(:title) }
+
+
   it 'should have a valid fabricator' do
     expect(Fabricate.build :page).to be_valid
   end

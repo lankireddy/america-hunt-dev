@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 RSpec.describe 'locations/show', type: :view do
+  include_context 'ad_page'
+
   let!(:user) { Fabricate :user}
 
   before(:each) do

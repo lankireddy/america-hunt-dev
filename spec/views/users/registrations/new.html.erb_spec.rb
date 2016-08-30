@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe 'users/registrations/new', type: :view do
+  include_context 'ad_page'
   before(:each) do
     allow(view).to receive(:resource) { (Fabricate.build :user) }
     allow(view).to receive(:resource_name) { :user }

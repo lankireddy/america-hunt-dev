@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe 'locations/index', type: :view do
+  include_context 'ad_page'
   let(:locations) { Fabricate.times 2, :location }
   before(:each) do
     categories = Fabricate.times 5, :category
