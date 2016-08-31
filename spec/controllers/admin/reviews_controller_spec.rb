@@ -17,7 +17,7 @@ RSpec.describe Admin::ReviewsController, type: :controller do
   describe 'GET #show' do
     it 'assigns the requested review as @review' do
       review = Fabricate :review
-      get :show, {:id => review.to_param}
+      get :show, { id: review.to_param }
       expect(assigns(:review)).to eq(review)
     end
   end
@@ -25,7 +25,7 @@ RSpec.describe Admin::ReviewsController, type: :controller do
   describe 'GET #edit' do
     it 'assigns the requested review as @review' do
       review = Fabricate :review
-      get :edit, {:id => review.to_param}
+      get :edit, { id: review.to_param }
       expect(assigns(:review)).to eq(review)
     end
   end
@@ -38,20 +38,20 @@ RSpec.describe Admin::ReviewsController, type: :controller do
 
       it 'updates the requested review' do
         review = Fabricate :review
-        put :update, {:id => review.to_param, :review => new_attributes}
+        put :update, { id: review.to_param, :review => new_attributes}
         review.reload
         expect(review.status).to eq(new_attributes[:status])
       end
 
       it 'assigns the requested review as @review' do
         review = Fabricate :review
-        put :update, {:id => review.to_param, :review => valid_attributes}
+        put :update, { id: review.to_param, :review => valid_attributes }
         expect(assigns(:review)).to eq(review)
       end
 
       it 'redirects to the review' do
         review = Fabricate :review
-        put :update, {:id => review.to_param, :review => valid_attributes}
+        put :update, { id: review.to_param, :review => valid_attributes }
         expect(response).to redirect_to(admin_review_path(review))
       end
     end
@@ -61,13 +61,13 @@ RSpec.describe Admin::ReviewsController, type: :controller do
     it 'destroys the requested review' do
       review = Fabricate :review
       expect {
-        delete :destroy, {:id => review.to_param}
+        delete :destroy, { id: review.to_param }
       }.to change(Review, :count).by(-1)
     end
 
     it 'redirects to the reviews list' do
       review = Fabricate :review
-      delete :destroy, {:id => review.to_param}
+      delete :destroy, { id: review.to_param }
       expect(response).to redirect_to(admin_reviews_path)
     end
   end

@@ -14,7 +14,7 @@ describe 'Species' do
       Fabricate.times 5, :species
       visit new_admin_species_path
       Species.top_level.each do |species|
-        expect(page).to have_selector('option',text: species.name)
+        expect(page).to have_selector('option', text: species.name)
       end
     end
   end

@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  DEFAULT_SEARCH_RADIUS = 50
+  DEFAULT_SEARCH_RADIUS = 100
   before_action :set_location, only: [:show]
   before_action :set_filters, only: [:index, :new]
 
@@ -17,10 +17,12 @@ class LocationsController < ApplicationController
       @locations = @locations.joins(:location_weapon_types).where(location_weapon_types: { weapon_type_id: @weapon_type_id}) if(@weapon_type_id.present?)
       @locations = @locations.joins(:species).where(species: { parent_id: @top_level_species_ids}) if(@top_level_species_ids.present?)
       @locations = @locations.joins(:species).where(species: { id: @species_ids}) if(@species_ids.present?)
-      @locations = @locations.uniq
+      @locations = @locations.uniq.page params[:page]
     else
-      @locations = []
+      @locations = Location.none.page params[:page]
     end
+    @page_title = ['America Hunt: Hunting Destinations near ', @query].join(' ')
+    @location_params = params.except(:page)
     @body_classes = 'content-list margin-header'
   end
 

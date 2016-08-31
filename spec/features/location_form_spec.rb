@@ -19,7 +19,7 @@ describe 'Location Form', type: :feature do
       login Fabricate :user
     end
     describe 'species multi-select' do
-      let!(:button_text) { 'No Species'}
+      let!(:button_text) { 'No Species' }
       let!(:top_level_species) { Fabricate.times 5, :top_level_species }
 
       before do
@@ -83,7 +83,7 @@ describe 'Location Form', type: :feature do
 
     describe 'category multiselect' do
       let!(:categories) { Fabricate.times 5, :category }
-      let!(:button_text) { 'No Categories'}
+      let!(:button_text) { 'No Categories' }
 
 
       it 'displays a button in place of the category select', js: true do
@@ -127,7 +127,7 @@ describe 'Location Form', type: :feature do
 
     describe 'weapon type multiselect' do
       let!(:weapon_types) { Fabricate.times 5, :weapon_type }
-      let!(:button_text) { 'No Weapon Types'}
+      let!(:button_text) { 'No Weapon Types' }
 
 
       it 'displays a button in place of the weapon_type select', js: true do

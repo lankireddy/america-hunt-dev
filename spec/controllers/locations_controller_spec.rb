@@ -4,7 +4,7 @@ RSpec.describe LocationsController, type: :controller do
 
   let!(:valid_attributes) { (Fabricate.build :location).attributes }
 
-  let(:invalid_attributes) { { name: ''} }
+  let(:invalid_attributes) { { name: '' } }
 
 
   describe 'GET #index' do
@@ -34,14 +34,14 @@ RSpec.describe LocationsController, type: :controller do
 
     it 'assigns current top_level_species_ids as @top_level_species_ids' do
       species_list = Fabricate.times 5, :species
-      get :index, { top_level_species_ids: species_list.map(&:id)}
+      get :index, { top_level_species_ids: species_list.map(&:id) }
       expect(assigns(:top_level_species_ids)).to eq(species_list.map{ |species| species.id.to_s })
     end
 
     it 'assigns current species_ids as @species_ids' do
       parent_species = Fabricate :species, name: 'Pokemon'
       species_list = Fabricate.times 5, :species, parent_id: parent_species.id
-      get :index, { species_ids: species_list.map(&:id)}
+      get :index, { species_ids: species_list.map(&:id) }
       expect(assigns(:species_ids)).to eq(species_list.map{ |species| species.id.to_s })
     end
 
@@ -131,24 +131,24 @@ RSpec.describe LocationsController, type: :controller do
   describe 'GET #show' do
     it 'assigns the requested location as @location' do
       location = Location.create! valid_attributes
-      get :show, {:id => location.to_param}
+      get :show, { id: location.to_param }
       expect(assigns(:location)).to eq(location)
     end
     it 'assigns request referrer to @previous_page' do
       previous_page = '/locations?query=Franklin, TN'
       expect(controller.request).to receive(:referer).and_return(previous_page)
       location = Location.create! valid_attributes
-      get :show, {:id => location.to_param}
+      get :show, { id: location.to_param }
       expect(assigns(:previous_page)).to eq(previous_page)
     end
     it 'assigns the location name as @page_title' do
       location = Location.create! valid_attributes
-      get :show, {:id => location.to_param}
+      get :show, { id: location.to_param }
       expect(assigns(:page_title)).to eq('America Hunt: ' + location.name)
     end
     it 'assigns the location excerpt as @page_description' do
       location = Location.create! valid_attributes
-      get :show, {:id => location.to_param}
+      get :show, { id: location.to_param }
       expect(assigns(:page_description)).to eq(location.excerpt)
     end
   end

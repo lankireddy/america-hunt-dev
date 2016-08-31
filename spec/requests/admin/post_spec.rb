@@ -16,7 +16,7 @@ describe 'Post' do
       expect(post.blog_categories.count).to eq(2)
       visit admin_post_path(post)
       post.blog_categories.each do |blog_category|
-        expect(page).to have_selector('li',text:blog_category.to_s)
+        expect(page).to have_selector('li', text:blog_category.to_s)
       end
     end
 
@@ -32,7 +32,7 @@ describe 'Post' do
       Fabricate.times 5, :blog_category
       visit new_admin_post_path
       BlogCategory.all.each do |blog_category|
-        expect(page).to have_field('post[blog_category_ids][]',with: blog_category.id)
+        expect(page).to have_field('post[blog_category_ids][]', with: blog_category.id)
       end
     end
 

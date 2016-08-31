@@ -1,0 +1,9 @@
+<% if collection.num_pages > 1 %>
+  <%  params ||= {}
+      entry_name ||= 'Results'
+  %>
+  <%= page_entries_info collection, params: params, entry_name: entry_name %><br/>
+  <%= link_to_previous_page collection, '<span class="glyphicon glyphicon-menu-left"></span>'.html_safe, params: params %>
+  <%= collection.current_page %> / <%= collection.total_pages %>
+  <%= link_to_next_page collection, '<span class="glyphicon glyphicon-menu-right"></span>'.html_safe, params: params %>
+<% end %>

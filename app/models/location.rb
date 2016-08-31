@@ -23,7 +23,9 @@ class Location < ActiveRecord::Base
   EXCERPT_LENGTH = 40
 
   geocoded_by :geocode_street_address, latitude: :lat, longitude: :long
-  after_validation :geocode, if: ->(obj){ obj.address_present? && obj.address_changed? && !obj.coordinates_changed?}
+  after_validation :geocode, if: ->(obj){ obj.address_present? && obj.address_changed? && !obj.coordinates_changed? }
+
+  paginates_per 10
 
   def address_present?
     address_1.present? && city.present? && state.present?

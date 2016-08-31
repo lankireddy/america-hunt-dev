@@ -4,7 +4,7 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
   login_admin
   render_views
 
-  let(:valid_attributes) { (Fabricate.build :admin_user).attributes.except(:id).merge({ password: 'testPassword'}) }
+  let(:valid_attributes) { (Fabricate.build :admin_user).attributes.except(:id).merge({ password: 'testPassword' }) }
   let(:invalid_attributes) { { email: 'invalid_email.com' } }
 
 
@@ -19,7 +19,7 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
   describe 'GET #show' do
     it 'assigns the requested admin_user as @admin_user' do
       admin_user = Fabricate :admin_user
-      get :show, {:id => admin_user.to_param}
+      get :show, { id: admin_user.to_param }
       expect(assigns(:admin_user)).to eq(admin_user)
     end
   end
@@ -34,7 +34,7 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
   describe 'GET #edit' do
     it 'assigns the requested admin_user as @admin_user' do
       admin_user = Fabricate :admin_user
-      get :edit, {:id => admin_user.to_param}
+      get :edit, { id: admin_user.to_param }
       expect(assigns(:admin_user)).to eq(admin_user)
     end
   end
@@ -43,30 +43,30 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
     context 'with valid params' do
       it 'creates a new admin_user' do
         expect {
-          post :create, {admin_user: valid_attributes}
+          post :create, {admin_user: valid_attributes }
         }.to change(AdminUser, :count).by(1)
       end
 
       it 'assigns a newly created admin_user as @admin_user' do
-        post :create, {:admin_user => valid_attributes}
+        post :create, {:admin_user => valid_attributes }
         expect(assigns(:admin_user)).to be_a(AdminUser)
         expect(assigns(:admin_user)).to be_persisted
       end
 
       it 'redirects to the created admin_user' do
-        post :create, {:admin_user => valid_attributes}
+        post :create, {:admin_user => valid_attributes }
         expect(response).to redirect_to(admin_admin_user_path(AdminUser.last))
       end
     end
 
     context 'with invalid params' do
       it 'assigns a newly created but unsaved admin_user as @admin_user' do
-        post :create, {:admin_user => invalid_attributes}
+        post :create, {:admin_user => invalid_attributes }
         expect(assigns(:admin_user)).to be_a_new(AdminUser)
       end
 
       it 're-renders the "new" template' do
-        post :create, {:admin_user => invalid_attributes}
+        post :create, {:admin_user => invalid_attributes }
         expect(response).to render_template('new')
       end
     end
@@ -83,18 +83,18 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
 
 
       it 'updates the requested admin_user' do
-        put :update, {:id => @admin_user.to_param, :admin_user => new_attributes}
+        put :update, { id: @admin_user.to_param, :admin_user => new_attributes}
         @admin_user.reload
         expect(@admin_user.email).to eq(new_attributes[:email])
       end
 
       it 'assigns the requested admin_user as @admin_user' do
-        put :update, {:id => @admin_user.to_param, :admin_user => valid_attributes}
+        put :update, { id: @admin_user.to_param, :admin_user => valid_attributes }
         expect(assigns(:admin_user)).to eq(@admin_user)
       end
 
       it 'redirects to the admin_user' do
-        put :update, {:id => @admin_user.to_param, :admin_user => valid_attributes}
+        put :update, { id: @admin_user.to_param, :admin_user => valid_attributes }
 
         expect(response).to redirect_to(admin_admin_user_path(@admin_user))
       end
@@ -102,12 +102,12 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
 
     context 'with invalid params' do
       it 'assigns the admin_user as @admin_user' do
-        put :update, {:id => @admin_user.to_param, :admin_user => invalid_attributes}
+        put :update, { id: @admin_user.to_param, :admin_user => invalid_attributes }
         expect(assigns(:admin_user)).to eq(@admin_user)
       end
 
       it 're-renders the "edit" template' do
-        put :update, {:id => @admin_user.to_param, :admin_user => invalid_attributes}
+        put :update, { id: @admin_user.to_param, :admin_user => invalid_attributes }
         expect(response).to render_template('edit')
       end
     end
@@ -120,12 +120,12 @@ RSpec.describe Admin::AdminUsersController, type: :controller do
 
     it 'destroys the requested admin_user' do
       expect {
-        delete :destroy, {:id => @admin_user.to_param}
+        delete :destroy, { id: @admin_user.to_param }
       }.to change(AdminUser, :count).by(-1)
     end
 
     it 'redirects to the AdminUsers list' do
-      delete :destroy, {:id => @admin_user.to_param}
+      delete :destroy, { id: @admin_user.to_param }
       expect(response).to redirect_to(admin_admin_users_path)
     end
   end

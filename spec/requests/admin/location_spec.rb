@@ -22,7 +22,7 @@ describe 'Location' do
       expect(location.categories.count).to eq(2)
       visit admin_location_path(location)
       location.categories.each do |category|
-        expect(page).to have_selector('li',text:category.to_s)
+        expect(page).to have_selector('li', text:category.to_s)
       end
     end
 
@@ -33,7 +33,7 @@ describe 'Location' do
       expect(location.species.count).to eq(2)
       visit admin_location_path(location)
       location.species.each do |species|
-        expect(page).to have_selector('li',text:species.to_s)
+        expect(page).to have_selector('li', text:species.to_s)
       end
     end
 
@@ -43,7 +43,7 @@ describe 'Location' do
       expect(location.weapon_types.count).to eq(2)
       visit admin_location_path(location)
       location.weapon_types.each do |weapon_type|
-        expect(page).to have_selector('li',text:weapon_type.to_s)
+        expect(page).to have_selector('li', text:weapon_type.to_s)
       end
     end
   end
@@ -57,7 +57,7 @@ describe 'Location' do
       Fabricate.times 5, :category
       visit new_admin_location_path
       Category.all.each do |category|
-        expect(page).to have_field('location[category_ids][]',with: category.id)
+        expect(page).to have_field('location[category_ids][]', with: category.id)
       end
     end
 
@@ -65,7 +65,7 @@ describe 'Location' do
       Fabricate.times 5, :weapon_type
       visit new_admin_location_path
       Category.all.each do |weapon_type|
-        expect(page).to have_field('location[weapon_type_ids][]',with: weapon_type.id)
+        expect(page).to have_field('location[weapon_type_ids][]', with: weapon_type.id)
       end
     end
 
@@ -74,7 +74,7 @@ describe 'Location' do
       Fabricate.times 5, :species, parent_id: parent.id
       visit new_admin_location_path
       Species.specific.each do |species|
-        expect(page).to have_field('location[species_ids][]',with: species.id)
+        expect(page).to have_field('location[species_ids][]', with: species.id)
       end
     end
 

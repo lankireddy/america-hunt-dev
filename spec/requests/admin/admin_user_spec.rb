@@ -21,7 +21,7 @@ describe 'Admin User' do
 
   describe 'admin create', js: true do
     let!(:new_admin_user) { Fabricate.build :admin_user }
-    let!(:new_title) { 'New Admin User'}
+    let!(:new_title) { 'New Admin User' }
 
     it 'will create an admin user' do
       visit admin_admin_users_path

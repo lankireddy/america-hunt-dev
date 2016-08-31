@@ -6,7 +6,7 @@ RSpec.describe Admin::PostsController, type: :controller do
 
   let(:valid_attributes) { (Fabricate.build :post).attributes }
 
-  let(:invalid_attributes) { { title: ''} }
+  let(:invalid_attributes) { { title: '' } }
 
   describe 'GET #index' do
     it 'assigns all posts as @posts' do
@@ -19,7 +19,7 @@ RSpec.describe Admin::PostsController, type: :controller do
   describe 'GET #show' do
     it 'assigns the requested post as @post' do
       post = Post.create! valid_attributes
-      get :show, {:id => post.to_param}
+      get :show, { id: post.to_param }
       expect(assigns(:post)).to eq(post)
     end
   end
@@ -34,7 +34,7 @@ RSpec.describe Admin::PostsController, type: :controller do
   describe 'GET #edit' do
     it 'assigns the requested post as @post' do
       post = Post.create! valid_attributes
-      get :edit, {:id => post.to_param}
+      get :edit, { id: post.to_param }
       expect(assigns(:post)).to eq(post)
     end
   end
@@ -43,12 +43,12 @@ RSpec.describe Admin::PostsController, type: :controller do
     context 'with valid params' do
       it 'creates a new Post' do
         expect {
-          post :create, {:post => valid_attributes}
+          post :create, {:post => valid_attributes }
         }.to change(Post, :count).by(1)
       end
 
       it 'assigns a newly created post as @post' do
-        post :create, {:post => valid_attributes}
+        post :create, {:post => valid_attributes }
         expect(assigns(:post)).to be_a(Post)
         expect(assigns(:post)).to be_persisted
       end
@@ -62,19 +62,19 @@ RSpec.describe Admin::PostsController, type: :controller do
       end
 
       it 'redirects to the created post' do
-        post :create, {:post => valid_attributes}
+        post :create, {:post => valid_attributes }
         expect(response).to redirect_to(admin_post_path(Post.last))
       end
     end
 
     context 'with invalid params' do
       it 'assigns a newly created but unsaved post as @post' do
-        post :create, {:post => invalid_attributes}
+        post :create, {:post => invalid_attributes }
         expect(assigns(:post)).to be_a_new(Post)
       end
 
       it 're-renders the "new" template' do
-        post :create, {:post => invalid_attributes}
+        post :create, {:post => invalid_attributes }
         expect(response).to render_template('new')
       end
     end
@@ -88,14 +88,14 @@ RSpec.describe Admin::PostsController, type: :controller do
 
       it 'updates the requested post' do
         post = Post.create! valid_attributes
-        put :update, {:id => post.to_param, :post => new_attributes}
+        put :update, { id: post.to_param, :post => new_attributes}
         post.reload
         expect(post.title).to eq(new_attributes[:title])
       end
 
       it 'assigns the requested post as @post' do
         post = Post.create! valid_attributes
-        put :update, {:id => post.to_param, :post => valid_attributes}
+        put :update, { id: post.to_param, :post => valid_attributes }
         expect(assigns(:post)).to eq(post)
       end
 
@@ -103,14 +103,14 @@ RSpec.describe Admin::PostsController, type: :controller do
         post = Post.create! valid_attributes
         post.blog_categories << (Fabricate :blog_category)
         new_blog_categories = Fabricate.times 2, :blog_category
-        put :update, {:id => post.to_param, post: { blog_category_ids: new_blog_categories.map(&:id) }}
+        put :update, { id: post.to_param, post: { blog_category_ids: new_blog_categories.map(&:id) }}
         post.reload
         expect(post.blog_categories).to eq(new_blog_categories)
       end
 
       it 'redirects to the post' do
         post = Post.create! valid_attributes
-        put :update, {:id => post.to_param, :post => valid_attributes}
+        put :update, { id: post.to_param, :post => valid_attributes }
         expect(response).to redirect_to(admin_post_path(post))
       end
     end
@@ -118,13 +118,13 @@ RSpec.describe Admin::PostsController, type: :controller do
     context 'with invalid params' do
       it 'assigns the post as @post' do
         post = Post.create! valid_attributes
-        put :update, {:id => post.to_param, :post => invalid_attributes}
+        put :update, { id: post.to_param, :post => invalid_attributes }
         expect(assigns(:post)).to eq(post)
       end
 
       it 're-renders the "edit" template' do
         post = Post.create! valid_attributes
-        put :update, {:id => post.to_param, :post => invalid_attributes}
+        put :update, { id: post.to_param, :post => invalid_attributes }
         expect(response).to render_template('edit')
       end
     end
@@ -134,13 +134,13 @@ RSpec.describe Admin::PostsController, type: :controller do
     it 'destroys the requested post' do
       post = Post.create! valid_attributes
       expect {
-        delete :destroy, {:id => post.to_param}
+        delete :destroy, { id: post.to_param }
       }.to change(Post, :count).by(-1)
     end
 
     it 'redirects to the posts list' do
       post = Post.create! valid_attributes
-      delete :destroy, {:id => post.to_param}
+      delete :destroy, { id: post.to_param }
       expect(response).to redirect_to(admin_posts_path)
     end
   end

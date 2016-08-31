@@ -19,6 +19,7 @@ class Post < ActiveRecord::Base
   scope :content_posts, -> { where.not(body: '') }
   scope :link_posts, -> { where(body: '') }
 
+  paginates_per 10
 
   def slug_candidates
     [:title_short, :title]

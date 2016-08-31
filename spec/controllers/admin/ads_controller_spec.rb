@@ -4,7 +4,7 @@ RSpec.describe Admin::AdsController, type: :controller do
 
   let(:valid_attributes) { (Fabricate.build :ad).attributes.merge('slot' => 'sidebar') }
 
-  let(:invalid_attributes) { { name: ''} }
+  let(:invalid_attributes) { { name: '' } }
 
   describe 'GET #index' do
     it 'assigns all ads as @ads' do
@@ -41,30 +41,30 @@ RSpec.describe Admin::AdsController, type: :controller do
     context 'with valid params' do
       it 'creates a new Ad' do
         expect {
-          post :create, { ad: valid_attributes}
+          post :create, { ad: valid_attributes }
         }.to change(Ad, :count).by(1)
       end
 
       it 'assigns a newly created ad as @ad' do
-        post :create, { ad: valid_attributes}
+        post :create, { ad: valid_attributes }
         expect(assigns(:ad)).to be_a(Ad)
         expect(assigns(:ad)).to be_persisted
       end
 
       it 'redirects to the created ad' do
-        post :create, { ad: valid_attributes}
+        post :create, { ad: valid_attributes }
         expect(response).to redirect_to(admin_ad_path(Ad.last))
       end
     end
 
     context 'with invalid params' do
       it 'assigns a newly created but unsaved ad as @ad' do
-        post :create, { ad: invalid_attributes}
+        post :create, { ad: invalid_attributes }
         expect(assigns(:ad)).to be_a_new(Ad)
       end
 
       it 're-renders the "new" template' do
-        post :create, { ad: invalid_attributes}
+        post :create, { ad: invalid_attributes }
         expect(response).to render_template('new')
       end
     end
@@ -78,7 +78,7 @@ RSpec.describe Admin::AdsController, type: :controller do
 
       it 'updates the requested ad' do
         ad = Ad.create! valid_attributes
-        put :update, {:id => ad.to_param, :ad => new_attributes}
+        put :update, { id: ad.to_param, :ad => new_attributes}
         ad.reload
         expect(ad.name).to eq(new_attributes[:name])
       end

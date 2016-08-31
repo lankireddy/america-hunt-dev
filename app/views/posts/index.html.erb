@@ -13,5 +13,6 @@
     <h1 class="h1-bold">Hunting News</h1>
   </header>
   <%= render 'posts/list_content' %>
+  <%= render 'shared/page_controls', collection: @content_posts, entry_name: 'Stories' %>
 </div>
 <%= render 'shared/ads_sidebar', count: 3 %>

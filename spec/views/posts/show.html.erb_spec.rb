@@ -14,7 +14,7 @@ RSpec.describe 'posts/show', type: :view do
   context 'with featured image' do
     it 'renders featured image as header background' do
       render
-      expect(view.content_for(:pre_main)).to have_selector("header[style='background-image: url(#{@post.featured_image.url(:hero)})']")
+      expect(view.content_for(:pre_main)).to have_selector("header[style='background-image: url(#{@post.featured_image.url(:hero) })']")
     end
 
     it 'renders title in h1' do

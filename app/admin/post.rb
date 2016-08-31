@@ -1,4 +1,8 @@
 ActiveAdmin.register Post do
+  scope :all, default: true
+  scope :link_posts
+  scope :content_posts
+
   permit_params :title, :subtitle, :body, :external_link, :featured_image, blog_category_ids: []
 
   index do

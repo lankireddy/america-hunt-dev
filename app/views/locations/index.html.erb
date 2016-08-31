@@ -13,6 +13,7 @@
         <%= location.excerpt %>
       <% end %>
     <% end %>
+    <%= render 'shared/page_controls', collection: @locations, params: @location_params, entry_name: 'Results' %>
   </div>
 </div>
 <%= render 'shared/ads_sidebar', count: 3 %>

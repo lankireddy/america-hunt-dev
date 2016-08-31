@@ -7,8 +7,8 @@ describe Location do
   it { is_expected.to have_many :location_weapon_types }
   it { is_expected.to have_many(:weapon_types).through(:location_weapon_types) }
   it { is_expected.to have_many(:reviews) }
-  it { is_expected.to belong_to(:author)}
-  it { is_expected.to belong_to(:submitter)}
+  it { is_expected.to belong_to(:author) }
+  it { is_expected.to belong_to(:submitter) }
   it { is_expected.to have_attached_file(:featured_image) }
 
   it { is_expected.to validate_presence_of(:name) }

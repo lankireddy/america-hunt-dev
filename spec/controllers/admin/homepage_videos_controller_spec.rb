@@ -6,7 +6,7 @@ RSpec.describe Admin::HomepageVideosController, type: :controller do
 
   let(:valid_attributes) { (Fabricate.build :homepage_video).attributes }
 
-  let(:invalid_attributes) { { name: ''} }
+  let(:invalid_attributes) { { name: '' } }
 
   describe 'GET #index' do
     it 'assigns all homepage videos as @homepage_videos' do
@@ -19,7 +19,7 @@ RSpec.describe Admin::HomepageVideosController, type: :controller do
   describe 'GET #show' do
     it 'assigns the requested homepage video as @homepage_video' do
       homepage_video = HomepageVideo.create! valid_attributes
-      get :show, { id: homepage_video.to_param}
+      get :show, { id: homepage_video.to_param }
       expect(assigns(:homepage_video)).to eq(homepage_video)
     end
   end
@@ -34,7 +34,7 @@ RSpec.describe Admin::HomepageVideosController, type: :controller do
   describe 'GET #edit' do
     it 'assigns the requested homepage video as @homepage_video' do
       homepage_video = HomepageVideo.create! valid_attributes
-      get :edit, { id: homepage_video.to_param}
+      get :edit, { id: homepage_video.to_param }
       expect(assigns(:homepage_video)).to eq(homepage_video)
     end
   end
@@ -87,13 +87,13 @@ RSpec.describe Admin::HomepageVideosController, type: :controller do
 
       it 'assigns the requested homepage video as @homepage_video' do
         homepage_video = HomepageVideo.create! valid_attributes
-        put :update, { id: homepage_video.to_param, homepage_video: valid_attributes}
+        put :update, { id: homepage_video.to_param, homepage_video: valid_attributes }
         expect(assigns(:homepage_video)).to eq(homepage_video)
       end
 
       it 'redirects to the homepage video' do
         homepage_video = HomepageVideo.create! valid_attributes
-        put :update, { id: homepage_video.to_param, homepage_video: valid_attributes}
+        put :update, { id: homepage_video.to_param, homepage_video: valid_attributes }
         expect(response).to redirect_to(admin_homepage_video_path(homepage_video))
       end
     end
@@ -101,13 +101,13 @@ RSpec.describe Admin::HomepageVideosController, type: :controller do
     context 'with invalid params' do
       it 'assigns the homepage video as @homepage_video' do
         homepage_video = HomepageVideo.create! valid_attributes
-        put :update, { id: homepage_video.to_param, homepage_video: invalid_attributes}
+        put :update, { id: homepage_video.to_param, homepage_video: invalid_attributes }
         expect(assigns(:homepage_video)).to eq(homepage_video)
       end
 
       it 're-renders the "edit" template' do
         homepage_video = HomepageVideo.create! valid_attributes
-        put :update, { id: homepage_video.to_param, homepage_video: invalid_attributes}
+        put :update, { id: homepage_video.to_param, homepage_video: invalid_attributes }
         expect(response).to render_template('edit')
       end
     end
@@ -117,13 +117,13 @@ RSpec.describe Admin::HomepageVideosController, type: :controller do
     it 'destroys the requested homepage video' do
       homepage_video = HomepageVideo.create! valid_attributes
       expect {
-        delete :destroy, { id: homepage_video.to_param}
+        delete :destroy, { id: homepage_video.to_param }
       }.to change(HomepageVideo, :count).by(-1)
     end
 
     it 'redirects to the homepage videos list' do
       homepage_video = HomepageVideo.create! valid_attributes
-      delete :destroy, { id: homepage_video.to_param}
+      delete :destroy, { id: homepage_video.to_param }
       expect(response).to redirect_to(admin_homepage_videos_path)
     end
   end
