@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe 'users/registrations/edit', type: :view do
   include_context 'ad_page'
+  let!(:user) { Fabricate.build :user }
   before(:each) do
-    user = Fabricate.build :user
     allow(view).to receive(:resource) { user }
     allow(view).to receive(:resource_name) { :user }
   end
@@ -34,7 +34,7 @@ RSpec.describe 'users/registrations/edit', type: :view do
 
       assert_select 'input#user_password_confirmation[name=?]', 'user[password_confirmation]'
 
-      assert_select 'input#user_current_password[name=?]', 'user[password]'
+      assert_select 'input#user_current_password[name=?]', 'user[current_password]'
 
     end
   end
