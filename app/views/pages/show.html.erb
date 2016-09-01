@@ -20,7 +20,9 @@
         <%= @page.body.html_safe %>
       </section>
       <% if @page.display_newsletter_sign_up %>
-        <%= render 'shared/newsletter_form' %>
+          <div class="page-newsletter-form">
+            <%= render 'shared/newsletter_form' %>
+          </div>
       <% end %>
   <% end %>
 </div>

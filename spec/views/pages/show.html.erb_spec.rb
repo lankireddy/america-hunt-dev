@@ -26,4 +26,11 @@ RSpec.describe 'pages/show', type: :view do
     render
     expect(rendered).to have_selector("img[src='#{@page.featured_image.url}']")
   end
+
+  it 'renders newsletter form when enabled' do
+    skip('No idea...')
+    @page = Fabricate :page, display_newsletter_sign_up: true
+    render
+    expect(rendered).to have_selector('.page-newsletter-form')
+  end
 end
