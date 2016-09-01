@@ -42,6 +42,7 @@ en:
         logout: 'Logout'
         login: 'Login'
         register: 'Sign Up'
+        edit_profile: 'Edit Profile'
   views:
     pagination:
       first: "&laquo; First"

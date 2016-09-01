@@ -11,7 +11,10 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up).push(:first_name, :last_name, :address_1, :city, :state, :zip, :phone, :profile_image)
+    devise_params = [:first_name, :last_name, :address_1, :city, :state, :zip, :phone, :profile_image]
+    devise_parameter_sanitizer.for(:sign_up).push(*devise_params)
+    devise_parameter_sanitizer.for(:account_update).push(*devise_params)
+
   end
 
   def load_ads

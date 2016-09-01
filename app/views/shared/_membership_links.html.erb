@@ -1,6 +1,7 @@
 <div class="membership-links pull-right">
-<% if !current_user.nil? %>
-    <%= link_to t('navigation.links.logout'), destroy_user_session_path, method: :delete, class: 'btn btn-link btn-logout' %>
+<% if user_signed_in? %>
+      <%= link_to t('navigation.links.edit_profile'), edit_registration_path(current_user), class: 'btn btn-link' %>
+      <%= link_to t('navigation.links.logout'), destroy_user_session_path, method: :delete, class: 'btn btn-link btn-logout' %>
 <% else %>
     <button type="button" class="btn btn-link btn-login" data-toggle="modal" data-target="#login-modal">
       <%= t('navigation.links.login') %>
