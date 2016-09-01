@@ -1,5 +1,10 @@
 class ReviewsController < ApplicationController
   before_action :set_location
+
+  def index
+    @page_title = "America Hunt: #{@location.name} reviews"
+    @reviews = @location.reviews.approved.page params[:page]
+  end
   # POST /reviews
   def create
     @review = @location.reviews.build(review_params)

@@ -1,0 +1,20 @@
+<% content_for(:body_classes) do %>
+    margin-header
+<% end %>
+<div class="col-md-9">
+  <%= link_to @location, class: 'back-link' do %>
+      <span class="glyphicon glyphicon-menu-left"></span>Back to <%= @location %>
+  <% end %>
+  <header>
+    <hgroup>
+      <h1 class="location-name h1-bold inline-block" itemprop="name"><%= @location %> Reviews</h1>
+      <input class="rating" value="<%= @location.average_star_rating %>" data-display-only="true" data-size="xs" data-container-class="inline-block rating-info hide-empty-stars" />
+    </hgroup>
+  </header>
+  <div class="reviews">
+    <%= render @reviews %>
+    <%= render 'shared/page_controls', collection: @reviews, entry_name: 'Reviews', params: { location_id: @location.id } %>
+
+  </div>
+</div>
+<%= render 'shared/ads_sidebar', count: 3 %>

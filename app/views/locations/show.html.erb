@@ -38,7 +38,8 @@
           <a href="#new_review" class="pull-right write-a-review">Write a Review</a>
         </header>
         <div id="reviews">
-          <%= render @location.reviews.approved %>
+          <%= render @location.reviews.approved.limit(4) %>
+          <%= link_to 'More Reviews', location_reviews_path(location_id: @location.id), class: 'text-info link-underline' if @location.reviews.approved.count > 4 %>
         </div>
         <a name="new_review"></a>
         <% if user_signed_in? %>

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :locations, only: [:index, :show, :new, :create] do
-    resources :reviews, only: :create
+    resources :reviews, only: [:create, :index]
   end
   resources :posts, only: [:show]
 

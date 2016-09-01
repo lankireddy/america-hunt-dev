@@ -7,7 +7,27 @@ RSpec.describe ReviewsController, type: :controller do
   let(:invalid_attributes) { { star_rating: nil } }
   
   let(:valid_session) { {} }
-  
+
+  describe 'GET #index' do
+    before do
+      location = Fabricate :location
+    end
+
+    it 'assigns approved location reviews as @reviews' do
+      approved_review = Fabricate :review, location: location, status: 'approved'
+      pending_review = Fabricate :review, location: location, status: 'pending'
+      get :index, { location_id: location.id}
+      expect(assigns(:reviews)).to include approved_review
+      expect(assigns(:reviews)).to_not include pending_review
+
+    end
+
+    it 'limits review count to 10' do
+      Fabricate.times 15, :review, location: location, status: 'approved'
+      get :index, { location_id: location.id}
+      expect(assigns(:reviews).count).to eq(10)
+    end
+  end
 
   describe 'POST #create' do
     describe 'as unauthorized user' do
