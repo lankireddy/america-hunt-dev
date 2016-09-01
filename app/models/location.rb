@@ -56,6 +56,6 @@ class Location < ActiveRecord::Base
   end
 
   def average_star_rating
-    reviews.approved.average(:star_rating)
+    reviews.approved.rated.average(:star_rating)
   end
 end
