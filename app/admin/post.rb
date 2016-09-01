@@ -6,6 +6,7 @@ ActiveAdmin.register Post do
   permit_params :title, :subtitle, :body, :external_link, :featured_image, blog_category_ids: []
 
   index do
+    selectable_column
     column :id
     column :author
     column :created_at

@@ -11,6 +11,7 @@ ActiveAdmin.register Location do
                 :handicap_status, :child_status, :pet_status,
                 :status, :author_id, :featured_image, category_ids: [], species_ids: [], weapon_type_ids: []
   index do
+    selectable_column
     column :id
     column :author
     column :status

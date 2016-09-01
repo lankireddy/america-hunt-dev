@@ -8,6 +8,7 @@ ActiveAdmin.register Review do
   scope :unapproved
 
   index do
+    selectable_column
     id_column
     column :location
     column :star_rating
@@ -33,5 +34,15 @@ ActiveAdmin.register Review do
             selected: f.object.status
     end
     actions
+  end
+
+  batch_action :approve do |ids|
+    Review.where(id: ids).update_all(status: 'approved')
+    redirect_to collection_path, alert: 'The reviews have been approved.'
+  end
+
+  batch_action :unapprove do |ids|
+    Review.where(id: ids).update_all(status: 'unapproved')
+    redirect_to collection_path, alert: 'The reviews have been unapproved.'
   end
 end
