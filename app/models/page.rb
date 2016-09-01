@@ -12,4 +12,8 @@ class Page < ActiveRecord::Base
   def to_s
     title
   end
+
+  def should_generate_new_friendly_id?
+    slug.blank?
+  end
 end

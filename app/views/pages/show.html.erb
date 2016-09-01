@@ -19,6 +19,9 @@
       <section class="body" itemprop="text">
         <%= @page.body.html_safe %>
       </section>
+      <% if @page.display_newsletter_sign_up %>
+        <%= render 'shared/newsletter_form' %>
+      <% end %>
   <% end %>
 </div>
 <div class="col-md-offset-1 col-md-4">

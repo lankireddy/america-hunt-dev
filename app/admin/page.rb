@@ -1,5 +1,5 @@
 ActiveAdmin.register Page do
-  permit_params :title, :body, :slug, :featured_image
+  permit_params :title, :body, :slug, :featured_image, :display_newsletter_sign_up
 
   index do
     column :id
@@ -16,6 +16,7 @@ ActiveAdmin.register Page do
       input :slug
       input :body, as: :ckeditor
       input :featured_image
+      input :display_newsletter_sign_up
     end
     actions
   end
