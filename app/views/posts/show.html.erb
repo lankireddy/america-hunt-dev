@@ -1,7 +1,10 @@
 <% if @post.featured_image.present? %>
   <% content_for :pre_main do %>
     <header class="header-interior header-post col-md-12 header-overlayed" style="background-image: url(<%= @post.featured_image.url(:hero) %>)">
-      <h1 class="text-center"><%= @post %></h1>
+      <hgroup>
+        <h1 class="text-center"><%= @post %></h1>
+        <h3 class="subtitle h4 text-center" itemprop="alternativeHeadline"><%= @post.subtitle %></h3>
+      </hgroup>
     </header>
   <% end %>
 <% end %>
@@ -12,10 +15,13 @@
             margin-header
         <% end %>
       <header class="header-no-hero">
-        <h1 itemprop="headline"><%= @post %></h1>
+        <hgroup>
+          <h1 itemprop="headline"><%= @post %></h1>
+          <h2 class="subtitle text-center h4" itemprop="alternativeHeadline"><%= @post.subtitle %></h2>
+        </hgroup>
+
       </header>
     <% end %>
-    <p class="subtitle" itemprop="alternativeHeadline"><%= @post.subtitle %></p>
     <section class="body" itemprop="articleBody">
       <%= @post.body.html_safe %>
     </section>

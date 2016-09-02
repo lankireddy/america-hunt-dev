@@ -21,6 +21,12 @@ RSpec.describe 'posts/show', type: :view do
       render
       expect(view.content_for(:pre_main)).to have_selector('h1', text: @post.title)
     end
+
+    it 'renders subtitle' do
+      render
+      expect(view.content_for(:pre_main)).to have_selector('.subtitle', text: @post.subtitle)
+    end
+
   end
 
   context 'without featured image' do
@@ -32,10 +38,11 @@ RSpec.describe 'posts/show', type: :view do
       render
       expect(rendered).to have_selector('h1', text: @post.title)
     end
-  end
-  it 'renders subtitle in p' do
-    render
-    expect(rendered).to have_selector('p', text: @post.subtitle)
+    it 'renders subtitle' do
+      render
+      expect(rendered).to have_selector('.subtitle', text: @post.subtitle)
+    end
+
   end
 
   it 'renders page body in section' do
