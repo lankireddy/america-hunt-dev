@@ -31,6 +31,11 @@
       <%= f.input :password_confirmation, required: true %>
     </div>
     <div class="col-md-12">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="user_newsletter_subscriber" name="user[newsletter_subscriber]"> Yes, I would like to receive the America Hunt Newsletter.
+        </label>
+      </div>
       <small class="text-error">Note: Your information will not be shared with any other parties without your permission</small>
       <div class="form-actions">
         <%= f.button :submit, 'Finish', class: 'btn btn-info btn-lg' %>

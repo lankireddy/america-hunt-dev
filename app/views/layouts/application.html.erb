@@ -10,7 +10,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= @body_classes %> <%= yield :body_classes %>">
-<%= image_tag @top_ad.image.url(:original), class: 'img-responsive header-ad' if @top_ad.present? %>
+<% if @top_ad.present? %>
+  <%= link_to @top_ad.url, target: '_blank' do %>
+    <%= image_tag @top_ad.image.url(:original), class: 'img-responsive header-ad'  %>
+  <% end %>
+<% end %>
 <% if content_for?(:content) %>
     <%= content_for(:content) %>
 <%  else %>
@@ -29,7 +33,7 @@
                       <span class="glyphicon glyphicon-search"></span>
                   <% end %>
                 </div>
-                <%= search_field_tag 'query',@query||'', class: 'form-control' %>
+                <%= search_field_tag 'query', @query||'', class: 'form-control' %>
               </div>
           <% end %>
         </div>

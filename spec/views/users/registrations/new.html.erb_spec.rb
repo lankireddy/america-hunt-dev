@@ -33,6 +33,8 @@ RSpec.describe 'users/registrations/new', type: :view do
 
       assert_select 'input#user_password_confirmation[name=?]', 'user[password_confirmation]'
 
+      assert_select 'input#user_newsletter_subscriber[name=?]', 'user[newsletter_subscriber]'
+
     end
   end
 end
