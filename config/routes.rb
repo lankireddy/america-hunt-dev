@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :posts
+  resources :contact_messages, only: [:new, :create]
   get 'home_page/index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :locations, only: [:index, :show, :new, :create] do
     resources :reviews, only: [:create, :index]
   end
-  resources :posts, only: [:show]
+  resources :posts, only: [:show, :index]
 
   get 'sales', to: 'posts#sales', as: :sales
 
