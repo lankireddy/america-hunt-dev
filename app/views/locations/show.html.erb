@@ -18,6 +18,21 @@
         <%= @location.description %>
       </section>
       <section class="row">
+        <% if @location.lat.present? %>
+          <div class="col-md-7">
+            <%= map(:center => {
+                :latlng => [@location.lat, @location.long],
+                :zoom => 15
+            },
+                    :markers => [
+                        {
+                            :latlng => [@location.lat, @location.long],
+                            :popup => @location.name
+                        }
+                    ]
+                ) %>
+          </div>
+        <% end %>
         <div class="col-md-5">
           <% if @location.handicap_accessible? %>
             <div class="location-handicap"><small class="text-info"><%= @location.handicap_status.try(:humanize).try(:titleize) %></small></div>

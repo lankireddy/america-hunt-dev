@@ -327,6 +327,7 @@ GEM
     kgio (2.10.0)
     launchy (2.4.3)
       addressable (~> 2.3)
+    leaflet-rails (0.7.7)
     lograge (0.3.6)
       actionpack (>= 3)
       activesupport (>= 3)
@@ -592,6 +593,7 @@ DEPENDENCIES
   jquery-turbolinks
   kaminari
   launchy
+  leaflet-rails
   maia
   metova
   metova-carrierwave
