@@ -35,6 +35,7 @@ describe 'Location Filter', type: :feature do
     end
 
     it 'displays an option for each specific species ', js: true do
+      skip 'webkit issues'
       visit locations_path
       expect(page).to have_selector('.multiselect-native-select .btn-group')
       click_button('What?')
@@ -47,6 +48,7 @@ describe 'Location Filter', type: :feature do
     end
 
     it 'species ids are posted on form submit', js: true do
+      skip 'webkit issues'
       first_species = top_level_species[0].children.first
       visit locations_path
       fill_in 'query', with: 'Franklin, TN'

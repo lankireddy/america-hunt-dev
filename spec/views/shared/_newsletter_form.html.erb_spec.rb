@@ -9,7 +9,7 @@ RSpec.describe 'shared/_newsletter_form', type: :view do
 
   it 'renders new user form' do
     render
-    assert_select 'form#?[method=?]', 'mc-embedded-subscribe-form', 'post' do
+    assert_select 'form#mc-embedded-subscribe-form[method=?]', 'post' do
 
       assert_select 'input#mce-EMAIL[name=?]', 'EMAIL'
 
