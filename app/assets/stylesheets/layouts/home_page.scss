@@ -2,12 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .header-homepage {
-  padding-bottom: 2em;
+  padding-bottom: 5em;
   background-image: url(image-path("dev-hunting.jpg"));
 }
 
 .header-homepage h2 {
-  margin: 1em 0;
+  margin: 3.5em 0 1em;
 }
 .header-homepage .location-search {
   .form-control, button.multiselect {
