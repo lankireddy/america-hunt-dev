@@ -25,11 +25,5 @@ RSpec.describe 'posts/_list_content', type: :view do
       expect(rendered).to have_link(post.title, href: post_path(post))
     end
   end
-
-  it 'has a linked post date for each post' do
-    render
-    content_posts.each do |post|
-      expect(rendered).to have_link(post.created_at.strftime('%A, %B %-d, %Y'), href: post_path(post))
-    end
-  end
+  
 end
