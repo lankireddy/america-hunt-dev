@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
 
   validates :title, presence: true
 
-  default_scope { order(created_at: :desc) }
+  default_scope { order(weight: :asc, created_at: :desc) }
 
   scope :content_posts, -> { where.not(body: '') }
   scope :link_posts, -> { where(body: '') }
