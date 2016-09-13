@@ -22,7 +22,7 @@
           <h1 class="h2 h2-bold">Hunting News</h1>
           <ul class="list-unstyled">
             <% @content_posts.each do |post| %>
-                <li><%= link_to "#{post.created_at.strftime('%B %-d')}: #{post.title}", post_path(post) %></li>
+                <li><%= link_to "#{post.title}", post_path(post) %></li>
             <% end %>
           </ul>
           <%= link_to 'Read More Hunting News', posts_path, class:'small link-underline' %>

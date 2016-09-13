@@ -39,3 +39,4 @@ public/test
 avocado.yml
 
 /config/application.yml
+only-failures.log
