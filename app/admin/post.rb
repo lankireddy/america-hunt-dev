@@ -3,7 +3,7 @@ ActiveAdmin.register Post do
   scope :link_posts
   scope :content_posts
 
-  permit_params :title, :subtitle, :body, :external_link, :featured_image, blog_category_ids: []
+  permit_params :title, :subtitle, :body, :weight, :external_link, :featured_image, blog_category_ids: []
 
   index do
     selectable_column
@@ -12,6 +12,7 @@ ActiveAdmin.register Post do
     column :created_at
     column :updated_at
     column :title
+    column :weight
     actions
   end
 
@@ -27,6 +28,7 @@ ActiveAdmin.register Post do
     attributes_table do
       row :title
       row :subtitle
+      row :weight
       row :body
       row :external_link
       row :featured_image do
@@ -38,6 +40,7 @@ ActiveAdmin.register Post do
     inputs 'Details' do
       input :title
       input :subtitle
+      input :weight
       input :body, as: :ckeditor
       input :external_link, as: :url
       input :featured_image
