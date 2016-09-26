@@ -1,7 +1,7 @@
 <% content_for :content do %>
     <%= render 'shared/flash', flash: flash if flash %>
 <header class="header-homepage header-overlayed">
-  <%= video_tag @videos.first.video.url, autoplay: true, id:'video-background', data: { playlist: '[' + @videos.map { |video| "\"#{video.video.url}\"" }.join(',') + ']'} if @videos.present?  %>
+  <%= video_tag @videos.first.video.url, autoplay: true, muted: true, id:'video-background', class:'hidden-xs', data: { playlist: '[' + @videos.map { |video| "\"#{video.video.url}\"" }.join(',') + ']'} if @videos.present?  %>
   <div class="container over-video-content">
     <div class="row">
       <h1 class="col-md-3 logo-header"><%= image_tag('logo_white.png') %></h1>
