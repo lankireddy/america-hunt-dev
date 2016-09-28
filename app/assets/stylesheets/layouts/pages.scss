@@ -5,16 +5,22 @@ article.page {
   h1 {
     margin-top: 0;
   }
+  .body {
+    ul, ol {
+      padding-left: 40px;
+    }
+    p {
+      line-height: 1.8;
+      letter-spacing: 0.6px;
 
-  p {
-    line-height: 1.8;
-    letter-spacing: 0.6px;
+    }
     a {
-      text-decoration: underline;
-      color: $brand-info;
-      &:hover {
-        color: $content-link-hover-color;
-      }
+       text-decoration: underline;
+       color: $brand-info;
+       &:hover {
+         color: $content-link-hover-color;
+       }
     }
   }
+
 }
