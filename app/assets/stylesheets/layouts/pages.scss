@@ -9,5 +9,12 @@ article.page {
   p {
     line-height: 1.8;
     letter-spacing: 0.6px;
+    a {
+      text-decoration: underline;
+      color: $brand-info;
+      &:hover {
+        color: $content-link-hover-color;
+      }
+    }
   }
 }

@@ -1,9 +1,16 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-article.post p {
+article.post .body p {
   line-height: 2;
   letter-spacing: 0.2px;
+  a {
+    text-decoration: underline;
+    color: $brand-info;
+    &:hover {
+      color: $content-link-hover-color;
+    }
+  }
 }
 article.post h1 {
   text-align:center;
