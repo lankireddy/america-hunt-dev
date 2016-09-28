@@ -43,7 +43,11 @@ ActiveAdmin.register Post do
       input :weight
       input :body, as: :ckeditor
       input :external_link, as: :url
-      input :featured_image
+      if f.object.featured_image.present?
+        input :featured_image, required: false, hint: image_tag(object.featured_image.url(:medium)).html_safe
+      else
+        input :featured_image
+      end
       input :blog_category_ids, as: :check_boxes, :collection => BlogCategory.order('name ASC').all
     end
     actions

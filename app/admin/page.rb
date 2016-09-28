@@ -15,7 +15,11 @@ ActiveAdmin.register Page do
       input :title
       input :slug
       input :body, as: :ckeditor
-      input :featured_image
+      if object.featured_image.present?
+        input :featured_image, required: false, hint: image_tag(object.featured_image.url(:medium)).html_safe
+      else
+        input :featured_image
+      end
       input :display_newsletter_sign_up
     end
     actions
