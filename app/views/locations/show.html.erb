@@ -61,7 +61,7 @@
           <%= render 'reviews/form' %>
         <% else %>
             <h3>Add a Review</h3>
-            <p>Please log in to leave a review.</p>
+            <p>Please <a data-toggle="modal" data-target="#login-modal" class="text-info" href="#"><%= t('navigation.links.login') %></a> or <%= link_to t('navigation.links.register'), new_user_registration_path, class:'text-info' %> to leave a review.</p>
         <% end %>
       </section>
   <% end %>

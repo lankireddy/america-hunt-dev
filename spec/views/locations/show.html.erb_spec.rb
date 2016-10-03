@@ -40,11 +40,30 @@ RSpec.describe 'locations/show', type: :view do
     expect(rendered).to have_link('Write a Review')
   end
 
-  it 'has review form as logged in user' do
-    allow(view).to receive(:user_signed_in?).and_return(true)
-    allow(view).to receive(:current_user).and_return(user)
-    allow(view).to receive(:policy).and_return(double('some policy', new?: true))
-    render
-    assert_select 'form[action=?][method=?]', location_reviews_path(@location), 'post'
+
+
+  context 'as signed in user' do
+    before do
+      allow(view).to receive(:user_signed_in?).and_return(true)
+      allow(view).to receive(:current_user).and_return(user)
+      allow(view).to receive(:policy).and_return(double('some policy', new?: true))
+    end
+    it 'has review form as logged in user' do
+      render
+      assert_select 'form[action=?][method=?]', location_reviews_path(@location), 'post'
+    end
+  end
+  context 'as anonymous user' do
+    before(:each) do
+      allow(view).to receive(:user_signed_in?).and_return(false)
+    end
+
+    it 'displays links to login or sign in' do
+      render
+      assert_select 'p' do
+        expect(rendered).to have_link(I18n.t('navigation.links.login'))
+        expect(rendered).to have_link(I18n.t('navigation.links.register'), href: new_user_registration_path)
+      end
+    end
   end
 end
