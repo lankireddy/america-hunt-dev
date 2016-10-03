@@ -807,7 +807,7 @@
             }
 
             if (this.options.enableCollapsibleOptGroups && this.options.multiple) {
-                $("li.multiselect-group .caret-container", this.$ul).on("click", $.proxy(function(event) {
+                $("li.multiselect-group a", this.$ul).on("click", $.proxy(function(event) {
                     var $li = $(event.target).closest('li');
                     var $inputs = $li.nextUntil("li.multiselect-group")
                             .not('.multiselect-filter-hidden');

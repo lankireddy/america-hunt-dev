@@ -32,4 +32,3 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(:star_rating, :body, :location_id)
   end
 end
-
