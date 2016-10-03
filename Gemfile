@@ -79,6 +79,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'timecop'
   gem 'sqlite3'
+  gem 'parallel_tests'
 end
 
 gem 'activeadmin', '~> 1.0.0.pre4'

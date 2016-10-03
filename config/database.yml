@@ -8,7 +8,7 @@ postgres: &postgres
 
 test:
   <<: *postgres
-  database: <%= ENV['DB_NAME'] %>_test
+  database: <%= ENV['DB_NAME'] %>_test<%= ENV['TEST_ENV_NUMBER'] %>
 
 development:
   <<: *postgres
