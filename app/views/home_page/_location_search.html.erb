@@ -7,10 +7,6 @@
       <label for="category_id">How would you like to hunt?</label>
       <%= select_tag 'category_id', options_from_collection_for_select(@categories, 'id', 'name'), include_blank: 'How?', class: 'form-control' %>
     </div>
-    <div class="form-group form-group-lg">
-      <label for="species_id">What would you like to hunt?</label>
-      <%= select_tag 'top_level_species_ids', options_from_collection_for_select(@species, 'id', 'name'), include_blank: 'What?', class: 'form-control select-multi', multiple: true %>
-    </div>
     <div class="clearfix"></div>
     <%= submit_tag 'Go Hunt!', class: 'btn btn-info btn-search center-block' %>
 <% end %>

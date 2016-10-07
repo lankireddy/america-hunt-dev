@@ -3,7 +3,6 @@ require 'spec_helper'
 RSpec.describe 'home_page/_location_search', type: :view do
   before(:each) do
     @categories = Fabricate.times 5, :category
-    @species = Fabricate.times 5, :species
     @content_posts = []
   end
 
