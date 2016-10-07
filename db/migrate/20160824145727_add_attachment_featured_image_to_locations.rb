@@ -1,4 +1,3 @@
-# noinspection ALL
 class AddAttachmentFeaturedImageToLocations < ActiveRecord::Migration
   def self.up
     change_table :locations do |t|

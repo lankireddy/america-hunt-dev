@@ -1,4 +1,3 @@
-# noinspection ALL
 class Ad < ActiveRecord::Base
 
   enum slot: [:top, :sidebar]

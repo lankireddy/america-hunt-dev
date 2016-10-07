@@ -13,7 +13,6 @@ class Page < ActiveRecord::Base
     title
   end
 
-  # noinspection RubyInstanceMethodNamingConvention
   def should_generate_new_friendly_id?
     slug.blank?
   end
