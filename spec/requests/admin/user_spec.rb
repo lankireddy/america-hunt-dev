@@ -16,5 +16,4 @@ describe 'User' do
       expect(find('img.profile-image')['src']).to eq user.profile_image.url(:small)
     end
   end
-
 end

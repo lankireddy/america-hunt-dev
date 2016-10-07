@@ -22,7 +22,7 @@ describe 'Location' do
       expect(location.categories.count).to eq(2)
       visit admin_location_path(location)
       location.categories.each do |category|
-        expect(page).to have_selector('li', text:category.to_s)
+        expect(page).to have_selector('li', text: category.to_s)
       end
     end
 
@@ -33,7 +33,7 @@ describe 'Location' do
       expect(location.species.count).to eq(2)
       visit admin_location_path(location)
       location.species.each do |species|
-        expect(page).to have_selector('li', text:species.to_s)
+        expect(page).to have_selector('li', text: species.to_s)
       end
     end
 
@@ -43,7 +43,7 @@ describe 'Location' do
       expect(location.weapon_types.count).to eq(2)
       visit admin_location_path(location)
       location.weapon_types.each do |weapon_type|
-        expect(page).to have_selector('li', text:weapon_type.to_s)
+        expect(page).to have_selector('li', text: weapon_type.to_s)
       end
     end
   end

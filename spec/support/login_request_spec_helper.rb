@@ -1,7 +1,7 @@
 module LoginHelper
   def login(user, password = nil)
     visit new_user_session_path
-      within 'main form#new_user' do
+    within 'main form#new_user' do
       fill_in 'user_email', with: user.email
       fill_in 'user_password', with: (password || user.password)
       find('input[type=submit]').click

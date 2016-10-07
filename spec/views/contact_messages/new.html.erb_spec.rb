@@ -1,4 +1,3 @@
-
 RSpec.describe 'contact_messages/new', type: :view do
   include_context 'ad_page'
 

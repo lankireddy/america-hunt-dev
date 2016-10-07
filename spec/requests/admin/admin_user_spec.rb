@@ -25,20 +25,19 @@ describe 'Admin User' do
 
     it 'will create an admin user' do
       visit admin_admin_users_path
-      
       find_link(new_title, href: new_admin_admin_user_path).click
 
       expect(page).to have_content new_title
 
       attributes.each do |attr|
-        fill_in(("admin_user_#{attr.to_s}"), with: new_admin_user.send(attr))
+        fill_in(("admin_user_#{attr}"), with: new_admin_user.send(attr))
       end
       fill_in 'admin_user_password_confirmation', with: new_admin_user.password
 
       expect do
-        find('input[type="submit"]',  match: :first).click
+        find('input[type="submit"]', match: :first).click
         expect(page).to have_content(new_admin_user.email)
-      end.to change { AdminUser.count }.by (1)
+      end.to change { AdminUser.count }.by 1
     end
 
     it 'must enter a email when creating a AdminUser' do
@@ -49,12 +48,12 @@ describe 'Admin User' do
       expect(page).to have_content new_title
 
       (attributes - [:email]).each do |attr|
-        fill_in(("admin_user_#{attr.to_s}"), with: new_admin_user.send(attr))
+        fill_in(("admin_user_#{attr}"), with: new_admin_user.send(attr))
       end
       fill_in 'admin_user_password_confirmation', with: new_admin_user.password
 
       expect do
-        find('input[type="submit"]',  match: :first).click
+        find('input[type="submit"]', match: :first).click
       end.not_to change { AdminUser.count }
     end
 
@@ -66,13 +65,13 @@ describe 'Admin User' do
       expect(page).to have_content new_title
 
       (attributes - [:name]).each do |attr|
-        fill_in(("admin_user_#{attr.to_s}"), with: new_admin_user.send(attr))
+        fill_in(("admin_user_#{attr}"), with: new_admin_user.send(attr))
       end
 
       fill_in 'admin_user_password_confirmation', with: new_admin_user.password
 
       expect do
-        find('input[type="submit"]',  match: :first).click
+        find('input[type="submit"]', match: :first).click
       end.not_to change { User.count }
     end
 
@@ -84,12 +83,12 @@ describe 'Admin User' do
       expect(page).to have_content new_title
 
       (attributes - [:password]).each do |attr|
-        fill_in(("admin_user_#{attr.to_s}"), with: new_admin_user.send(attr))
+        fill_in(("admin_user_#{attr}"), with: new_admin_user.send(attr))
       end
       fill_in 'admin_user_password_confirmation', with: new_admin_user.password
 
       expect do
-        find('input[type="submit"]',  match: :first).click
+        find('input[type="submit"]', match: :first).click
       end.not_to change { User.count }
     end
   end
@@ -100,17 +99,16 @@ describe 'Admin User' do
     it 'will edit a user' do
       new_user = Fabricate.build :admin_user
       user = Fabricate(:admin_user)
-      
       visit edit_admin_admin_user_path(user)
 
       expect(page).to have_content('Edit Admin User')
 
       (attributes - [:password] - [:password_confirmation]).each do |attr|
-        fill_in(("admin_user_#{attr.to_s}"), with: new_user.send(attr))
+        fill_in(("admin_user_#{attr}"), with: new_user.send(attr))
       end
 
-      find('input[type="submit"]',  match: :first).click
-      
+      find('input[type="submit"]', match: :first).click
+
       expect(page).to have_content(new_user.email)
       user.reload
 
@@ -119,16 +117,14 @@ describe 'Admin User' do
       end
     end
   end
-  
+
   it 'can destroy a User' do
     user = Fabricate(:admin_user)
 
     visit admin_admin_users_path
 
     expect(page).to have_selector("#admin_user_#{user.id}")
-    
     find('.delete_link.member_link', match: :first).click
-    
     expect(page).not_to have_selector("#admin_user_#{user.id}")
   end
 end

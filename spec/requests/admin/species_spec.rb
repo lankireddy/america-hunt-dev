@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Species' do
   let!(:admin_user) { Fabricate :admin_user }
 
-  let!(:species) { Fabricate :species}
+  let!(:species) { Fabricate :species }
 
   before do
     login_admin admin_user

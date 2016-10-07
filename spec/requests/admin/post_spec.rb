@@ -16,7 +16,7 @@ describe 'Post' do
       expect(post.blog_categories.count).to eq(2)
       visit admin_post_path(post)
       post.blog_categories.each do |blog_category|
-        expect(page).to have_selector('li', text:blog_category.to_s)
+        expect(page).to have_selector('li', text: blog_category.to_s)
       end
     end
 

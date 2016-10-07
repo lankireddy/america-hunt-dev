@@ -28,8 +28,7 @@ describe 'Ad' do
 
       fill_in('ad[name]', with: 'File Upload Test')
 
-      fill_in('ad[url]', with: Faker::Internet.url )
-
+      fill_in('ad[url]', with: Faker::Internet.url)
 
       attach_file('ad[image]', File.absolute_path("#{Rails.root}/spec/support/files/4.jpg"))
 

@@ -1,6 +1,5 @@
 
 describe 'HomePage' do
-
   before do
     Fabricate :homepage_video, published: true
   end
@@ -12,7 +11,7 @@ describe 'HomePage' do
 
     context 'extra small screen' do
       before do
-        page.current_window.resize_to(320,640)
+        page.current_window.resize_to(320, 640)
       end
 
       it 'should not display video', js: true do
