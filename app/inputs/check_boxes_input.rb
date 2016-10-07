@@ -28,7 +28,7 @@ class CheckBoxesInput < Formtastic::Inputs::CheckBoxesInput
   def html_for_nested(menu, from_nested=false)
     choice = [menu.name , menu.id]
     first_wrap = choice_wrapping(choice_wrapping_html_options(choice)) do
-      nested = from_nested ? "" : sub_children(menu)
+      nested = from_nested ? '' : sub_children(menu)
       choice_html(choice) << nested
     end
   end
@@ -38,7 +38,7 @@ class CheckBoxesInput < Formtastic::Inputs::CheckBoxesInput
                           menu.children.collect do |child|
                             html_for_nested(child, true)
                           end.join("\n").html_safe,
-                          {:style=>"margin-left:20px", :class=>"sub_item-#{menu.id} sub-item"}
+                          {:style=> 'margin-left:20px', :class=>"sub_item-#{menu.id} sub-item"}
     )  if menu.children.present?
   end
 
