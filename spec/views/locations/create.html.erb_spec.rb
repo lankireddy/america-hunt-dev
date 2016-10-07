@@ -11,5 +11,4 @@ RSpec.describe 'locations/create', type: :view do
     render
     expect(rendered).to include 'Thank you'
   end
-
 end

@@ -1,3 +1,4 @@
+# noinspection RubyClassModuleNamingConvention
 class AddSubmitterNotesAndSubmitterIdToLocations < ActiveRecord::Migration
   def change
     add_column :locations, :submitter_notes, :text

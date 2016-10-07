@@ -14,6 +14,7 @@ RSpec.describe 'posts/_list_content', type: :view do
     expect(content_posts.maximum(:created_at)).to eq(content_posts.first.created_at)
     expect(content_posts[0].created_at).to_not eq(content_posts[4].created_at)
   end
+
   it 'renders a list of posts' do
     render
     expect(rendered).to have_selector('.panel.post', count: content_posts.count)
@@ -25,5 +26,4 @@ RSpec.describe 'posts/_list_content', type: :view do
       expect(rendered).to have_link(post.title, href: post_path(post))
     end
   end
-  
 end

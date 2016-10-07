@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe 'reviews/index', type: :view do
   include_context 'ad_page'
-  let!(:location) { Fabricate :location}
+  let!(:location) { Fabricate :location }
   let!(:reviews) { Fabricate.times 15, :review, location: location }
   before(:each) do
     @location = location

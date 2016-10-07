@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe 'locations/new', type: :view do
   include_context 'ad_page'
 
-  let!(:user) { Fabricate :user}
+  let!(:user) { Fabricate :user }
 
   context 'as signed in user' do
     let!(:top_level_species) do
@@ -18,10 +18,10 @@ RSpec.describe 'locations/new', type: :view do
       allow(view).to receive(:current_user).and_return(user)
       allow(view).to receive(:policy).and_return(double('some policy', new?: true))
       assign(:location, (Fabricate.build :location))
-      categories = Fabricate.times 5, :category
-      @categories = Category.where(id: categories.map(&:id))
+      Fabricate.times 5, :category
+      @categories = Category.all
       @top_level_species = Species.top_level
-      weapon_types = Fabricate.times 5, :weapon_type
+      Fabricate.times 5, :weapon_type
       @weapon_types = WeaponType.all
     end
 
@@ -29,7 +29,6 @@ RSpec.describe 'locations/new', type: :view do
       render
 
       assert_select 'form[action=?][method=?]', locations_path, 'post' do
-
         assert_select 'input#location_name[name=?]', 'location[name]'
 
         assert_select 'input#location_website[name=?]', 'location[website]'

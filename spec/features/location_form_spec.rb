@@ -55,7 +55,7 @@ describe 'Location Form', type: :feature do
         it 'displays an option for each specific species ', js: true do
           skip 'webkit issues'
           within(:css, '.multiselect-native-select ul.dropdown-menu') do
-            page.all('.caret-container').each { |caret| caret.click() }
+            page.all('.caret-container').each { |caret| caret.click }
             Species.specific.each do |species|
               expect(page).to have_selector('label', text: species.name)
             end
@@ -71,7 +71,7 @@ describe 'Location Form', type: :feature do
         expect(page).to have_selector('.multiselect-native-select .btn-group')
         click_button(button_text)
         within(:css, '.multiselect-native-select ul.dropdown-menu') do
-          first('.caret-container').click()
+          first('.caret-container').click
           check first_species.name
         end
 
@@ -181,7 +181,7 @@ describe 'Location Form', type: :feature do
 
         attach_file('location[featured_image]', File.absolute_path("#{Rails.root}/spec/support/files/4.jpg"))
 
-        find('.btn-save').click()
+        find('.btn-save').click
 
         expect(page).to have_selector('h2', text: 'Thank you for submitting a destination')
         new_location = Location.order(:created_at).last

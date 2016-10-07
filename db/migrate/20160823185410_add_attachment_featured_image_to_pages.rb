@@ -1,3 +1,4 @@
+# noinspection RubyClassModuleNamingConvention
 class AddAttachmentFeaturedImageToPages < ActiveRecord::Migration
   def self.up
     change_table :pages do |t|

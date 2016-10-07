@@ -40,7 +40,7 @@ describe 'Location Filter', type: :feature do
       expect(page).to have_selector('.multiselect-native-select .btn-group')
       click_button('What?')
       within(:css, '.multiselect-native-select ul.dropdown-menu') do
-        page.all('.multiselect-group b').each { |label| label.click() }
+        page.all('.multiselect-group b').each { |label| label.click }
         Species.specific.each do |species|
           expect(page).to have_selector('label', text: species.name)
         end
@@ -55,7 +55,7 @@ describe 'Location Filter', type: :feature do
       expect(page).to have_selector('.multiselect-native-select .btn-group')
       click_button('What?')
       within(:css, '.multiselect-native-select ul.dropdown-menu') do
-        first('.caret-container').click()
+        first('.caret-container').click
         check first_species.name
       end
       #using trigger instead of button_click because

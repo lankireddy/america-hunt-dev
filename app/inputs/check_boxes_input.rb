@@ -2,10 +2,10 @@
 class CheckBoxesInput < Formtastic::Inputs::CheckBoxesInput
 
   def to_html
-    unless options[:nested_set]
-      super
-    else
+    if options[:nested_set]
       nested_wrapping(options)
+    else
+      super
     end
   end
 

@@ -3,10 +3,9 @@ require 'spec_helper'
 RSpec.describe 'locations/show', type: :view do
   include_context 'ad_page'
 
-  let!(:user) { Fabricate :user}
+  let!(:user) { Fabricate :user }
 
   before(:each) do
-
     @location = Fabricate :location
     @previous_page = '/locations?query=Portland, tX'
     @page_title = 'America Hunt: ' + @location.name
@@ -15,7 +14,7 @@ RSpec.describe 'locations/show', type: :view do
 
   it 'displays name in title' do
     render
-    expect(rendered).to have_selector('h1', text:@location.name)
+    expect(rendered).to have_selector('h1', text: @location.name)
   end
 
   it 'displays description' do
@@ -40,8 +39,6 @@ RSpec.describe 'locations/show', type: :view do
     expect(rendered).to have_link('Write a Review')
   end
 
-
-
   context 'as signed in user' do
     before do
       allow(view).to receive(:user_signed_in?).and_return(true)
@@ -53,6 +50,7 @@ RSpec.describe 'locations/show', type: :view do
       assert_select 'form[action=?][method=?]', location_reviews_path(@location), 'post'
     end
   end
+
   context 'as anonymous user' do
     before(:each) do
       allow(view).to receive(:user_signed_in?).and_return(false)

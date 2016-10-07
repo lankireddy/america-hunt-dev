@@ -2,18 +2,18 @@ require 'spec_helper'
 
 RSpec.describe 'locations/index', type: :view do
   include_context 'ad_page'
+
   let(:locations) { Fabricate.times 15, :location }
+  let(:categories) { Fabricate.times 5, :category }
+  let(:top_level_species) { Fabricate.times 5, :species }
+
   before(:each) do
-    categories = Fabricate.times 5, :category
     @categories = Category.where(id: categories.map(&:id))
-    @locations = Location.where(id: locations.map(&:id)).page(1)
-    top_level_species = Fabricate.times 5, :species
+    @locations = Location.where(id: locations.map(&:id)).page
     top_level_species.each do |species|
       Fabricate.times 2, :species, parent_id: species.id
     end
     @top_level_species = Species.top_level
-    weapon_types = Fabricate.times 5, :weapon_type
-    @weapon_types = WeaponType.all
   end
 
   it 'renders a list of no more than 10 locations' do

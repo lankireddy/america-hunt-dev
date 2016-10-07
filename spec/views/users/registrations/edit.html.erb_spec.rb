@@ -11,7 +11,6 @@ RSpec.describe 'users/registrations/edit', type: :view do
   it 'renders new user form' do
     render
     assert_select 'form[action=?][method=?]', user_registration_path(user), 'post' do
-
       assert_select 'input#user_profile_image[name=?]', 'user[profile_image]'
 
       assert_select 'input#user_first_name[name=?]', 'user[first_name]'
@@ -35,7 +34,6 @@ RSpec.describe 'users/registrations/edit', type: :view do
       assert_select 'input#user_password_confirmation[name=?]', 'user[password_confirmation]'
 
       assert_select 'input#user_current_password[name=?]', 'user[current_password]'
-
     end
   end
 end
