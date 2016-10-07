@@ -15,12 +15,6 @@
           </div>
         </div>
         <div class="col-md-3">
-          <div class="form-group form-group-lg">
-            <label for="weapon_type_id" class="sr-only">What would you like to hunt with?</label>
-            <%= select_tag 'weapon_type_id', options_from_collection_for_select(@weapon_types, 'id', 'name', @weapon_type_id), include_blank: 'Using?', class: 'form-control' %>
-          </div>
-        </div>
-        <div class="col-md-3">
           <%= submit_tag 'Search', class: 'btn btn-lg btn-info btn-search' %>
         </div>
     <% end %>

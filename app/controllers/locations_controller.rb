@@ -8,12 +8,10 @@ class LocationsController < ApplicationController
     @query = params[:query]
     @category_id = params[:category_id]
     @species_ids = params[:species_ids]
-    @weapon_type_id = params[:weapon_type_id]
 
     if @query
       @locations = Location.approved.near(@query,DEFAULT_SEARCH_RADIUS)
       @locations = @locations.joins(:location_categories).where(location_categories:{ category_id: @category_id }) if(@category_id.present?)
-      @locations = @locations.joins(:location_weapon_types).where(location_weapon_types: { weapon_type_id: @weapon_type_id}) if(@weapon_type_id.present?)
       @locations = @locations.joins(:species).where(species: { id: @species_ids}) if(@species_ids.present?)
       @locations = @locations.uniq.page params[:page]
     else
