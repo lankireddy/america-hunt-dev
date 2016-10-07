@@ -1,9 +1,9 @@
 class HomePageController < ApplicationController
+  STORY_LIMIT = 7
+
   def index
-    @content_posts = Post.content_posts.limit(5)
-    @link_posts = Post.link_posts.limit(5)
+    @content_posts = Post.content_posts.limit(STORY_LIMIT)
     @categories = Category.all
-    @species = Species.top_level
     @videos = HomepageVideo.published.order(:order)
   end
 end

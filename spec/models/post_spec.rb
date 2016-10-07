@@ -9,7 +9,6 @@ describe Post do
 
   it 'should have valid fabricators' do
     expect(Fabricate.build :post).to be_valid
-    expect(Fabricate.build :link_post).to be_valid
     expect(Fabricate.build :content_post).to be_valid
   end
 

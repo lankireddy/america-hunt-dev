@@ -19,24 +19,13 @@
     <div class="row">
       <div class="col-md-9">
         <section id="hunting-news">
-          <h1 class="h2 h2-bold">Hunting News</h1>
+          <h1 class="h2 h2-bold">Hunting And Shooting News</h1>
           <ul class="list-unstyled">
             <% @content_posts.each do |post| %>
                 <li><%= link_to "#{post.title}", post_path(post) %></li>
             <% end %>
           </ul>
           <%= link_to 'Read More Hunting News', posts_path, class:'small link-underline' %>
-        </section>
-        <section id="hunting-sales" class="panel">
-          <div class="panel-heading">
-            <h1 class="h2 h2-bold">Hunting Sales</h1>
-          </div>
-          <div class="panel-body">
-            <%= render 'posts/list_link' %>
-          </div>
-          <div class="panel-footer">
-            <%= link_to 'Read More Hunting Sales', sales_path, class:'small link-underline' %>
-          </div>
         </section>
       </div>
       <%= render 'shared/ads_sidebar', count: 2 %>
@@ -47,7 +36,7 @@
 <aside id="join-community">
   <header>
     <h1 class="h1-bold">Join the America Hunt Community</h1>
-    <h2>Plan a trip. Leave a review. Win awesome stuff.</h2>
+    <h2>Leave a review. </h2>
   </header>
   <p></p>
   <%= link_to 'Sign Up', new_user_registration_path, class:'btn btn-info btn-lg' %>

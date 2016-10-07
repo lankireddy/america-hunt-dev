@@ -33,12 +33,4 @@ RSpec.describe PostsController, type: :controller do
       expect(assigns(:content_posts).map(&:id)).to eq(the_order)
     end
   end
-
-  describe 'GET #sales' do
-    it 'assigns all link posts as @link_posts' do
-      link_post = Fabricate :link_post
-      get :sales, {}
-      expect(assigns(:link_posts)).to include(link_post)
-    end
-  end
 end

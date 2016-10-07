@@ -12,8 +12,3 @@ Fabricator(:content_post, from: :post) do
   featured_image { File.new("#{Rails.root}/spec/support/files/4.jpg") }
 end
 
-Fabricator(:link_post, from: :post) do
-  title { Faker::Commerce.department }
-  external_link  { Faker::Internet.url }
-  body ''
-end
