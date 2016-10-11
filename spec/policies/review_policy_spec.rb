@@ -6,5 +6,4 @@ describe ReviewPolicy do
   permissions :create? do
     it { is_expected.to permit(user) }
   end
-
 end

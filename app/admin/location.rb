@@ -50,7 +50,7 @@ ActiveAdmin.register Location do
       end
     end
   end
-  
+
   show do
     attributes_table do
       row :name
@@ -148,5 +148,15 @@ ActiveAdmin.register Location do
         render :new
       end
     end
+  end
+
+  batch_action :approve do |ids|
+    Location.where(id: ids).update_all(status: Location.statuses[:approved])
+    redirect_to collection_path, alert: 'The locations have been approved.'
+  end
+
+  batch_action :unapprove do |ids|
+    Location.where(id: ids).update_all(status: Location.statuses[:unapproved])
+    redirect_to collection_path, alert: 'The locations have been unapproved.'
   end
 end

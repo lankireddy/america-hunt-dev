@@ -8,6 +8,6 @@ describe HomepageVideo do
 
 
   it 'should have a valid fabricator' do
-    expect(Fabricate.build :homepage_video).to be_valid
+    expect(Fabricate.build(:homepage_video)).to be_valid
   end
 end

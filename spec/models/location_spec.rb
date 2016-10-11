@@ -14,18 +14,18 @@ describe Location do
   it { is_expected.to validate_presence_of(:name) }
 
   it 'should have a valid fabricator' do
-    expect(Fabricate.build :location).to be_valid
+    expect(Fabricate.build(:location)).to be_valid
   end
 
   describe '#to_s' do
     it 'returns the name of the location' do
-      expect("#{location}").to eq(location.name)
+      expect(location.to_s).to eq(location.name)
     end
   end
 
   describe 'excerpt' do
     it 'returns the excerpt length word count' do
-      expect(location.excerpt.scan(/\w+/).size).to be <= (Location::EXCERPT_LENGTH)
+      expect(location.excerpt.scan(/\w+/).size).to be <= Location::EXCERPT_LENGTH
     end
 
     it 'returns nil when there is no description' do

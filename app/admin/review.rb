@@ -29,7 +29,7 @@ ActiveAdmin.register Review do
   form do |f|
     inputs do
       input :status, as: :select,
-            collection: Review.statuses.keys.map { |key| [key, key]},
+            collection: Review.statuses.keys.map { |key| [key, key] },
             include_blank: false,
             selected: f.object.status
     end
@@ -37,12 +37,12 @@ ActiveAdmin.register Review do
   end
 
   batch_action :approve do |ids|
-    Review.where(id: ids).update_all(status: 'approved')
+    Review.where(id: ids).update_all(status: Review.statuses[:approved])
     redirect_to collection_path, alert: 'The reviews have been approved.'
   end
 
   batch_action :unapprove do |ids|
-    Review.where(id: ids).update_all(status: 'unapproved')
+    Review.where(id: ids).update_all(status: Review.statuses[:unapproved])
     redirect_to collection_path, alert: 'The reviews have been unapproved.'
   end
 end

@@ -9,16 +9,13 @@ describe Species do
   it { is_expected.to validate_uniqueness_of(:name) }
   it { is_expected.to validate_presence_of(:name) }
 
-
-
   it 'should have a valid fabricator' do
-    expect(Fabricate.build :species).to be_valid
+    expect(Fabricate.build(:species)).to be_valid
   end
 
   describe '#to_s' do
     it 'returns the name of the species' do
-      expect("#{species}").to eq(species.name)
+      expect(species.to_s).to eq(species.name)
     end
   end
-
 end

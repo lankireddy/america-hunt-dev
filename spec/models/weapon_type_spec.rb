@@ -7,14 +7,13 @@ describe WeaponType do
   it { is_expected.to validate_uniqueness_of(:name) }
   it { is_expected.to validate_presence_of(:name) }
 
-
   it 'should have a valid fabricator' do
-    expect(Fabricate.build :weapon_type).to be_valid
+    expect(Fabricate.build(:weapon_type)).to be_valid
   end
 
   describe '#to_s' do
     it 'returns the name of the weapon_type' do
-      expect("#{weapon_type}").to eq(weapon_type.name)
+      expect(weapon_type.to_s).to eq(weapon_type.name)
     end
   end
 end

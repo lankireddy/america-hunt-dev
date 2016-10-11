@@ -161,4 +161,20 @@ RSpec.describe Admin::LocationsController, type: :controller do
       expect(response).to redirect_to(admin_locations_path)
     end
   end
+
+  describe 'POST #batch_action' do
+    it 'approve action sets status of locations to approved' do
+      fabricated_locations = Fabricate.times 5, :location, status: 'unapproved'
+      post :batch_action, { collection_selection: fabricated_locations.map(&:id), batch_action: 'approve' }
+      locations = Location.where(id: fabricated_locations.map(&:id))
+      expect(locations.pluck(:status).uniq).to eq([Location.statuses[:approved]])
+    end
+
+    it 'unapprove action sets status of locations to approved' do
+      fabricated_locations = Fabricate.times 5, :location, status: 'approved'
+      post :batch_action, { collection_selection: fabricated_locations.map(&:id), batch_action: 'unapprove' }
+      locations = Location.where(id: fabricated_locations.map(&:id))
+      expect(locations.pluck(:status).uniq).to eq([Location.statuses[:unapproved]])
+    end
+  end
 end

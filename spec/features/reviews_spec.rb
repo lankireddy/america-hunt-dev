@@ -20,11 +20,10 @@ describe 'Reviews', type: :feature do
   end
 
   describe 'review form' do
-
     let(:empty_star_selector) { '#new_review .rating-container .empty-stars .star' }
 
     describe 'as logged in user' do
-      let!(:user) { Fabricate :user}
+      let!(:user) { Fabricate :user }
 
       before do
         login user
@@ -43,10 +42,9 @@ describe 'Reviews', type: :feature do
         skip('Need a way to click the stars')
         visit location_path(location)
         expect(page).to have_selector(empty_star_selector, count: 5)
-        page.driver.browser.mouse.move_to( find('#new_review .rating').native, 120, 10 ).click.perform
-        #all(empty_star_selector + ' i').last.trigger(:click)
+        page.driver.browser.mouse.move_to(find('#new_review .rating').native, 120, 10).click.perform
+        # all(empty_star_selector + ' i').last.trigger(:click)
         expect(page).to have_selector('.rating-container .filled-stars .star', count: 5)
-        binding.pry
         expect(page).to have_selector('#review_star_rating', visible: false, text: '5')
       end
 

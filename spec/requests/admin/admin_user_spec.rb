@@ -30,7 +30,7 @@ describe 'Admin User' do
       expect(page).to have_content new_title
 
       attributes.each do |attr|
-        fill_in(("admin_user_#{attr}"), with: new_admin_user.send(attr))
+        fill_in("admin_user_#{attr}", with: new_admin_user.send(attr))
       end
       fill_in 'admin_user_password_confirmation', with: new_admin_user.password
 
@@ -48,7 +48,7 @@ describe 'Admin User' do
       expect(page).to have_content new_title
 
       (attributes - [:email]).each do |attr|
-        fill_in(("admin_user_#{attr}"), with: new_admin_user.send(attr))
+        fill_in("admin_user_#{attr}", with: new_admin_user.send(attr))
       end
       fill_in 'admin_user_password_confirmation', with: new_admin_user.password
 
@@ -65,7 +65,7 @@ describe 'Admin User' do
       expect(page).to have_content new_title
 
       (attributes - [:name]).each do |attr|
-        fill_in(("admin_user_#{attr}"), with: new_admin_user.send(attr))
+        fill_in("admin_user_#{attr}", with: new_admin_user.send(attr))
       end
 
       fill_in 'admin_user_password_confirmation', with: new_admin_user.password
@@ -83,7 +83,7 @@ describe 'Admin User' do
       expect(page).to have_content new_title
 
       (attributes - [:password]).each do |attr|
-        fill_in(("admin_user_#{attr}"), with: new_admin_user.send(attr))
+        fill_in("admin_user_#{attr}", with: new_admin_user.send(attr))
       end
       fill_in 'admin_user_password_confirmation', with: new_admin_user.password
 
@@ -104,7 +104,7 @@ describe 'Admin User' do
       expect(page).to have_content('Edit Admin User')
 
       (attributes - [:password] - [:password_confirmation]).each do |attr|
-        fill_in(("admin_user_#{attr}"), with: new_user.send(attr))
+        fill_in("admin_user_#{attr}", with: new_user.send(attr))
       end
 
       find('input[type="submit"]', match: :first).click

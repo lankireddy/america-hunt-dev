@@ -71,4 +71,20 @@ RSpec.describe Admin::ReviewsController, type: :controller do
       expect(response).to redirect_to(admin_reviews_path)
     end
   end
+
+  describe 'POST #batch_action' do
+    it 'approve action sets status of reviews to approved' do
+      fabricated_reviews = Fabricate.times 5, :review, status: 'unapproved'
+      post :batch_action, { collection_selection: fabricated_reviews.map(&:id), batch_action: 'approve' }
+      reviews = Review.where(id: fabricated_reviews.map(&:id))
+      expect(reviews.pluck(:status).uniq).to eq([Review.statuses[:approved]])
+    end
+
+    it 'unapprove action sets status of reviews to approved' do
+      fabricated_reviews = Fabricate.times 5, :review, status: 'approved'
+      post :batch_action, { collection_selection: fabricated_reviews.map(&:id), batch_action: 'unapprove' }
+      reviews = Review.where(id: fabricated_reviews.map(&:id))
+      expect(reviews.pluck(:status).uniq).to eq([Review.statuses[:unapproved]])
+    end
+  end
 end

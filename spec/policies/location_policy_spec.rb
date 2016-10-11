@@ -1,6 +1,6 @@
 describe LocationPolicy do
   let(:user) { Fabricate :user }
-  let(:location) { Fabricate :location}
+  let(:location) { Fabricate :location }
 
   subject { described_class }
 
@@ -15,5 +15,4 @@ describe LocationPolicy do
   permissions :create? do
     it { is_expected.to permit(user) }
   end
-
 end

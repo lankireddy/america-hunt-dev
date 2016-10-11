@@ -8,12 +8,12 @@ describe Category do
   it { is_expected.to validate_uniqueness_of(:name) }
 
   it 'should have a valid fabricator' do
-    expect(Fabricate.build :category).to be_valid
+    expect(Fabricate.build(:category)).to be_valid
   end
 
   describe '#to_s' do
     it 'returns the name of the category' do
-      expect("#{category}").to eq(category.name)
+      expect(category.to_s).to eq(category.name)
     end
   end
 end

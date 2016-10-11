@@ -9,7 +9,6 @@ RSpec.describe 'contact_messages/new', type: :view do
     render
 
     assert_select 'form[action=?][method=?]', contact_messages_path, 'post' do
-
       assert_select 'input#contact_message_email[name=?]', 'contact_message[email]'
 
       assert_select 'input#contact_message_subject[name=?]', 'contact_message[subject]'
