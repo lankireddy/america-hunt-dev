@@ -1,4 +1,5 @@
 ActiveAdmin.register Location do
+  config.per_page = 60
 
   scope :approved, default: true
   scope :pending
