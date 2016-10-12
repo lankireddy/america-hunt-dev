@@ -6,12 +6,10 @@ class LocationsController < ApplicationController
   # GET /locations
   def index
     @state_alpha2 = params[:state_alpha2]
-    @category_id = params[:category_id]
     @species_ids = params[:species_ids]
 
     if @state_alpha2
       @locations = Location.approved.where(state: @state_alpha2)
-      @locations = @locations.joins(:location_categories).where(location_categories:{ category_id: @category_id }) if(@category_id.present?)
       @locations = @locations.joins(:species).where(species: { id: @species_ids}) if(@species_ids.present?)
       @locations = @locations.uniq.page params[:page]
     else

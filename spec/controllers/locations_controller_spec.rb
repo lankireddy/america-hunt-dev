@@ -20,12 +20,6 @@ RSpec.describe LocationsController, type: :controller do
       expect(assigns(:categories)).to eq([category])
     end
 
-    it 'assigns current category id as @category_id' do
-      category = Fabricate :category
-      get :index, { category_id: category.id}
-      expect(assigns(:category_id)).to eq(category.id.to_s)
-    end
-
     it 'assigns all top level species as @top_level_species' do
       species = Fabricate :species
       get :index, {}
@@ -66,13 +60,6 @@ RSpec.describe LocationsController, type: :controller do
       it 'assigns all locations in state as @locations' do
         get :index, { state_alpha2: @state_alpha2, category_id: '' }
         expect(assigns(:locations)).to include(*@close_locations)
-      end
-
-      it 'limits @locations to a category when category id is present' do
-        category = Fabricate :category
-        @close_locations[0].categories << category
-        get :index, { state_alpha2: @state_alpha2, category_id: category.id }
-        expect(assigns(:locations)).to eq([@close_locations[0]])
       end
 
       describe 'filter by species' do
