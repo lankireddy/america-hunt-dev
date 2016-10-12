@@ -87,6 +87,9 @@ describe 'Location' do
       visit new_admin_location_path
 
       fill_in('location[name]', with: 'File Upload Test')
+      select('Alaska', from: 'location[state]')
+      fill_in('location[city]', with: 'Fairbanks')
+      fill_in('location[zip]', with: '00000')
 
       attach_file('location[featured_image]', File.absolute_path("#{Rails.root}/spec/support/files/4.jpg"))
 

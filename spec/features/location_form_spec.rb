@@ -186,6 +186,7 @@ describe 'Location Form', type: :feature do
         visit new_location_path
 
         fill_in('location[name]', with: 'File Upload Test')
+        fill_address_fields
 
         attach_file('location[featured_image]', File.absolute_path("#{Rails.root}/spec/support/files/4.jpg"))
 

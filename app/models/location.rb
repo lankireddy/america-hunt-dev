@@ -10,7 +10,7 @@ class Location < ActiveRecord::Base
   belongs_to :submitter, class_name: 'User'
 
   validates :travelier_id, uniqueness: true, allow_nil: true
-  validates :name, presence: true
+  validates :name, :state, :city, :zip, presence: true
 
   has_attached_file :featured_image, styles: {medium: '300x300>', thumb: '100x100>'}, default_url: '/images/:style/missing.png'
   validates_attachment_content_type :featured_image, content_type: /\Aimage\/.*\z/
