@@ -21,6 +21,7 @@ class Location < ActiveRecord::Base
   enum status: [:approved, :pending, :unapproved, :modified]
 
   EXCERPT_LENGTH = 40
+  EXCLUDED_STATES = ['AA','GU','AE','AP','AS','DC','VI','UM','PR','MP']
 
   geocoded_by :geocode_street_address, latitude: :lat, longitude: :long
   after_validation :geocode, if: ->(obj){ obj.address_present? && obj.address_changed? && !obj.coordinates_changed? }
@@ -57,5 +58,9 @@ class Location < ActiveRecord::Base
 
   def average_star_rating
     reviews.approved.rated.average(:star_rating)
+  end
+
+  def self.states
+    Country['US'].states.except(*Location::EXCLUDED_STATES).map { |abbreviation, properties| [properties['name'], abbreviation] }
   end
 end

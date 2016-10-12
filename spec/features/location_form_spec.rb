@@ -1,5 +1,11 @@
 require 'spec_helper'
 
+def fill_address_fields
+  select('Alaska', from: 'location[state]')
+  fill_in('location[city]', with: 'Fairbanks')
+  fill_in('location[zip]', with: '00000')
+end
+
 describe 'Location Form', type: :feature do
 
   describe 'only displays the form for logged in users' do
@@ -116,6 +122,7 @@ describe 'Location Form', type: :feature do
         first_category = categories[0]
         visit new_location_path
         fill_in('location[name]', with: new_location_name)
+        fill_address_fields
         expect(page).to have_selector('.multiselect-native-select .btn-group')
         click_button(button_text)
         check first_category.name
@@ -162,6 +169,7 @@ describe 'Location Form', type: :feature do
         first_weapon_type = weapon_types[0]
         visit new_location_path
         fill_in('location[name]', with: new_location_name)
+        fill_address_fields
         expect(page).to have_selector('.multiselect-native-select .btn-group')
         click_button(button_text)
         check first_weapon_type.name

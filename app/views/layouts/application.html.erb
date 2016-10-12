@@ -33,7 +33,7 @@
                       <span class="glyphicon glyphicon-search"></span>
                   <% end %>
                 </div>
-                <%= search_field_tag 'query', @query||'', class: 'form-control' %>
+                <%= select_tag 'state_alpha2', options_for_select(Location.states, selected: @state_alpha2), prompt: 'State?', class:'form-control', required: true %>
               </div>
           <% end %>
         </div>

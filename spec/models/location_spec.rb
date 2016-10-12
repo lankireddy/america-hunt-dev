@@ -39,4 +39,10 @@ describe Location do
       expect(location.geocode_street_address).to eq("#{location.address_1}, #{location.city}, #{location.state}")
     end
   end
+
+  describe 'self.states' do
+    it 'returns 50 items' do
+      expect(Location.states.count).to eq 50
+    end
+  end
 end

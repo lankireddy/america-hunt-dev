@@ -46,34 +46,32 @@ RSpec.describe LocationsController, type: :controller do
         state = 'TN'
         @close_locations = [
             (Fabricate :location, state: state, city: city, address_1: '3301 Aspen Grove Dr'),
-            (Fabricate :location, state: state, city: city, address_1: '120 4th Ave S'),
+            (Fabricate :location, state: state, city: 'other city', address_1: '120 4th Ave S'),
             (Fabricate :location, state: state, city: city, address_1: '121 4th Ave S'),
             (Fabricate :location, state: state, city: city, address_1: '122 4th Ave S')
         ]
-        @query = [city, state].join(', ')
-        allow(Location).to receive(:near) { Location.where(id: @close_locations.map(&:id)) }
+        @state_alpha2 = state
       end
 
       it 'scopes results to approved status' do
         expect(Location).to receive(:approved)  { Location.where(id: @close_locations.map(&:id)) }
-        get :index, { query: @query}
+        get :index, { state_alpha2: @state_alpha2 }
       end
 
-      it 'assigns current query as @query' do
-        get :index, { query: @query}
-        expect(assigns(:query)).to eq(@query)
+      it 'assigns current state as @state_alpha2' do
+        get :index, { state_alpha2: @state_alpha2 }
+        expect(assigns(:state_alpha2)).to eq(@state_alpha2)
       end
 
-      it 'assigns nearby locations as @locations' do
-        expect(Location).to receive(:near).with(@query, LocationsController::DEFAULT_SEARCH_RADIUS)
-        get :index, { query: @query, category_id: '' }
+      it 'assigns all locations in state as @locations' do
+        get :index, { state_alpha2: @state_alpha2, category_id: '' }
         expect(assigns(:locations)).to include(*@close_locations)
       end
 
       it 'limits @locations to a category when category id is present' do
         category = Fabricate :category
         @close_locations[0].categories << category
-        get :index, { query: @query, category_id: category.id }
+        get :index, { state_alpha2: @state_alpha2, category_id: category.id }
         expect(assigns(:locations)).to eq([@close_locations[0]])
       end
 
@@ -89,7 +87,7 @@ RSpec.describe LocationsController, type: :controller do
         end
 
         it 'limits @locations by species when species ids are present' do
-          get :index, { query: @query, species_ids: @matching_specific_species.map(&:id) }
+          get :index, { state_alpha2: @state_alpha2, species_ids: @matching_specific_species.map(&:id) }
           expect(assigns(:locations)).to match_array([@close_locations[0],@close_locations[1]])
         end
       end

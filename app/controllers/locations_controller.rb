@@ -5,12 +5,12 @@ class LocationsController < ApplicationController
 
   # GET /locations
   def index
-    @query = params[:query]
+    @state_alpha2 = params[:state_alpha2]
     @category_id = params[:category_id]
     @species_ids = params[:species_ids]
 
-    if @query
-      @locations = Location.approved.near(@query,DEFAULT_SEARCH_RADIUS)
+    if @state_alpha2
+      @locations = Location.approved.where(state: @state_alpha2)
       @locations = @locations.joins(:location_categories).where(location_categories:{ category_id: @category_id }) if(@category_id.present?)
       @locations = @locations.joins(:species).where(species: { id: @species_ids}) if(@species_ids.present?)
       @locations = @locations.uniq.page params[:page]
@@ -24,7 +24,7 @@ class LocationsController < ApplicationController
 
   # GET /locations/1
   def show
-    @query = params[:query]
+    @state_alpha2 = params[:state_alpha2]
     @previous_page = request.referer || locations_path(query: @query)
     @page_title = 'America Hunt: ' + @location.name
     @page_description = @location.excerpt

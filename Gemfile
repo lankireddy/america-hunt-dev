@@ -85,6 +85,7 @@ end
 gem 'activeadmin', '~> 1.0.0.pre4'
 gem 'aws-sdk', '>= 2.0.34'
 gem 'ckeditor'
+gem 'countries', require: 'countries/global'
 gem 'friendly_id', '~> 5.1.0'
 gem 'geocoder'
 gem 'gibbon'

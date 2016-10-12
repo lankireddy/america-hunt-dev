@@ -120,7 +120,9 @@ ActiveAdmin.register Location do
       input :address_1
       input :address_2
       input :city
-      input :state
+      input :state, as: :select,
+            collection: Location.states,
+            prompt: 'Select a State'
       input :zip
       input :lat
       input :long
