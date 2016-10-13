@@ -27,12 +27,12 @@ RSpec.describe PostsController, type: :controller do
       expect(assigns(:posts)).to eq([content_post])
     end
 
-    it 'orders posts by weight then creation date' do
-      post5 = Fabricate(:content_post, weight: nil)
-      post2 = Fabricate(:content_post, weight: 4)
-      post1 = Fabricate(:content_post, weight: 1)
-      post3 = Fabricate(:content_post, weight: 7, created_at: 1.days.from_now)
-      post4 = Fabricate(:content_post, weight: nil, created_at: 1.days.from_now)
+    it 'orders posts by position then creation date' do
+      post5 = Fabricate(:content_post, position: nil)
+      post2 = Fabricate(:content_post, position: 4)
+      post1 = Fabricate(:content_post, position: 1)
+      post3 = Fabricate(:content_post, position: 7, created_at: 1.days.from_now)
+      post4 = Fabricate(:content_post, position: nil, created_at: 1.days.from_now)
 
       the_order = [post1.id, post2.id, post3.id, post4.id, post5.id]
 

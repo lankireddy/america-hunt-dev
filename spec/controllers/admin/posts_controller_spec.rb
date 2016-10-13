@@ -93,11 +93,11 @@ RSpec.describe Admin::PostsController, type: :controller do
         expect(post.title).to eq(new_attributes[:title])
       end
 
-      it 'can change the weight of a post' do
+      it 'can change the position of a post' do
         post = Post.create! valid_attributes
-        put :update, { id: post.to_param, post: { weight: 21 } }
+        put :update, { id: post.to_param, post: { position: 21 } }
         post.reload
-        expect(post.weight).to eq(21)
+        expect(post.position).to eq(21)
       end
 
       it 'assigns the requested post as @post' do

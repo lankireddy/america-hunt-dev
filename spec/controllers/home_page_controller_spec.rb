@@ -8,7 +8,6 @@ describe HomePageController do
 
     it 'assigns widget blog categories' do
       widget_categories = Fabricate.times 2, :blog_category, homepage_display: 'widget'
-
       get :index
       expect(assigns(:widget_categories).ids).to match_array(widget_categories.map(&:id))
     end

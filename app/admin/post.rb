@@ -1,15 +1,19 @@
 ActiveAdmin.register Post do
 
-  permit_params :title, :subtitle, :body, :weight, :external_link, :featured_image, blog_category_ids: []
+  config.sort_order = 'position_asc'
 
-  index do
+  reorderable
+
+  permit_params :title, :subtitle, :body, :position, :external_link, :featured_image, blog_category_ids: []
+
+  index as: :reorderable_table do
     selectable_column
     column :id
     column :author
     column :created_at
     column :updated_at
     column :title
-    column :weight
+    column :position
     actions
   end
 
@@ -25,7 +29,7 @@ ActiveAdmin.register Post do
     attributes_table do
       row :title
       row :subtitle
-      row :weight
+      row :position
       row :body
       row :external_link
       row :featured_image do
@@ -37,7 +41,7 @@ ActiveAdmin.register Post do
     inputs 'Details' do
       input :title
       input :subtitle
-      input :weight
+      input :position
       input :body, as: :ckeditor
       input :external_link, as: :url
       if f.object.featured_image.present?

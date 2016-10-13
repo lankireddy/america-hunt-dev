@@ -83,6 +83,8 @@ group :development, :test do
 end
 
 gem 'activeadmin', '~> 1.0.0.pre4'
+gem 'activeadmin_reorderable'
+gem 'acts_as_list'
 gem 'aws-sdk', '>= 2.0.34'
 gem 'ckeditor'
 gem 'countries', require: 'countries/global'
