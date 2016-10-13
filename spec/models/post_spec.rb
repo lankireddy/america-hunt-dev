@@ -34,5 +34,17 @@ describe Post do
       end
       expect(Post.all.ids).to eq Post.all.order(position: :asc).ids
     end
+
+    it 'returns posts in the correct order' do
+      post5 = Fabricate(:content_post, position: nil, title: 'no position, created now')
+      post2 = Fabricate(:content_post, position: 4, title: 'position 4, created now')
+      post1 = Fabricate(:content_post, position: 1, title: 'position 1, created now')
+      post3 = Fabricate(:content_post, position: 7, created_at: 1.days.from_now, title: 'position 7, created tomorrow')
+      post4 = Fabricate(:content_post, position: nil, created_at: 1.days.from_now, title: 'no position, created tomorrow')
+
+      the_order = [post1.title, post2.title, post3.title, post4.title, post5.title]
+
+      expect(Post.all.pluck(:title)).to eq(the_order)
+    end
   end
 end
