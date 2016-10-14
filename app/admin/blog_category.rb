@@ -7,11 +7,10 @@ ActiveAdmin.register BlogCategory do
     inputs do
       input :name
       input :homepage_display, as: :select,
-            collection: BlogCategory.homepage_displays.keys.map  { |key| [key.humanize, key]},
-            include_blank: false,
-            selected: f.object.homepage_display
+                               collection: BlogCategory.homepage_displays.keys.map { |key| [key.humanize, key] },
+                               include_blank: false,
+                               selected: f.object.homepage_display
     end
     actions
   end
-
 end
