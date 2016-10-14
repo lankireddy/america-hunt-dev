@@ -4,6 +4,8 @@ class BlogCategory < ActiveRecord::Base
 
   validates :name, presence: true
 
+  enum homepage_display: [:not_visible, :name_only, :widget]
+
   def to_s
     name
   end

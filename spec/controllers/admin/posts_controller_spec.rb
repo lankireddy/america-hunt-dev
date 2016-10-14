@@ -95,9 +95,9 @@ RSpec.describe Admin::PostsController, type: :controller do
 
       it 'can change the weight of a post' do
         post = Post.create! valid_attributes
-        put :update, { id: post.to_param, post: { weight: 21.3 } }
+        put :update, { id: post.to_param, post: { weight: 21 } }
         post.reload
-        expect(post.weight).to eq(21.3)
+        expect(post.weight).to eq(21)
       end
 
       it 'assigns the requested post as @post' do
