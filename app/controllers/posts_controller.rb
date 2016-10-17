@@ -1,15 +1,18 @@
 class PostsController < ApplicationController
 
   before_action :set_post, only: :show
+  before_action :set_blog_category, only: :index
 
   def index
-    @page_title = 'America Hunt: Hunting News'
-    @content_posts = Post.content_posts.page params[:page]
-  end
+    if @blog_category
+      @page_title = 'America Hunt: ' + @blog_category.name
+      @posts = @blog_category.posts
+    else
+      @page_title = 'America Hunt: Hunting News'
+      @posts = Post.all
+    end
 
-  def sales
-    @page_title = 'America Hunt: Hunting Sales'
-    @link_posts = Post.link_posts.page params[:page]
+    @posts = @posts.page params[:page]
   end
 
   def show
@@ -20,6 +23,10 @@ class PostsController < ApplicationController
   private
     def set_post
       @post = Post.friendly.find(params[:id])
+    end
+
+    def set_blog_category
+      @blog_category = BlogCategory.friendly.find(params[:blog_category_id]) if params[:blog_category_id].present?
     end
 end
 

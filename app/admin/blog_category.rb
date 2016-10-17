@@ -13,4 +13,10 @@ ActiveAdmin.register BlogCategory do
     end
     actions
   end
+
+  controller do
+    def find_resource
+      BlogCategory.friendly.find(params[:id])
+    end
+  end
 end

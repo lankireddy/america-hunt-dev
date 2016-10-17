@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161013141120) do
+ActiveRecord::Schema.define(version: 20161014142838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,10 +67,13 @@ ActiveRecord::Schema.define(version: 20161013141120) do
 
   create_table "blog_categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer   "homepage_display", default: 0
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "homepage_display", default: 0
+    t.string   "slug"
   end
+
+  add_index "blog_categories", ["slug"], name: "index_blog_categories_on_slug", unique: true, using: :btree
 
   create_table "blog_category_posts", force: :cascade do |t|
     t.integer  "blog_category_id"
@@ -214,7 +217,7 @@ ActiveRecord::Schema.define(version: 20161013141120) do
     t.string   "featured_image_content_type"
     t.integer  "featured_image_file_size"
     t.datetime "featured_image_updated_at"
-    t.float  "weight"
+    t.integer  "weight"
   end
 
   add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree

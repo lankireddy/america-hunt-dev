@@ -1,9 +1,7 @@
 class HomePageController < ApplicationController
-  STORY_LIMIT = 7
-
   def index
-    @content_posts = Post.content_posts.limit(STORY_LIMIT)
-    @categories = Category.all
+    @widget_categories = BlogCategory.widget.includes(:posts)
+    @name_only_categories = BlogCategory.name_only
     @videos = HomepageVideo.published.order(:order)
   end
 end

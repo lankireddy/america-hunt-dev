@@ -6,6 +6,8 @@ class Post < ActiveRecord::Base
 
 
   TITLE_SHORT_LENGTH=10
+  WIDGET_POST_LIMIT = 7
+
 
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged

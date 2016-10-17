@@ -2,9 +2,9 @@ require 'spec_helper'
 
 RSpec.describe 'posts/index', type: :view do
   include_context 'ad_page'
-  let!(:content_posts) { Fabricate.times 15, :content_post }
+  let!(:posts) { Fabricate.times 15, :content_post }
   before(:each) do
-    @content_posts = Post.content_posts.page(1)
+    @posts = Post.all.page(1)
   end
 
   it 'renders a list of 10 posts' do

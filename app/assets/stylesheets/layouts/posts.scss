@@ -43,21 +43,6 @@ article.post h1 {
   }
 }
 
-#hunting-sales {
-  border: 4px solid $brand-info;
-  h1 {
+.category-link {
     color: $brand-info;
-  }
-}
-
-.link-posts {
-  li {
-    margin-bottom: 1em;
-    a {
-      color: $brand-info;
-      text-transform: uppercase;
-      text-decoration: underline;
-      font-weight: 900;
-    }
-  }
 }

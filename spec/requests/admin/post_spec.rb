@@ -11,6 +11,7 @@ describe 'Post' do
 
   describe 'show' do
     it 'displays the attached categories' do
+      post.blog_categories.clear
       post.blog_categories << (Fabricate :blog_category)
       post.blog_categories << (Fabricate :blog_category)
       expect(post.blog_categories.count).to eq(2)

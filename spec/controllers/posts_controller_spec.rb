@@ -17,7 +17,7 @@ RSpec.describe PostsController, type: :controller do
     it 'assigns all content posts as @content_posts' do
       content_post = Fabricate :content_post
       get :index, {}
-      expect(assigns(:content_posts)).to eq([content_post])
+      expect(assigns(:posts)).to eq([content_post])
     end
 
     it 'orders posts by weight then creation date' do
@@ -30,7 +30,27 @@ RSpec.describe PostsController, type: :controller do
       the_order = [post1.id, post2.id, post3.id, post4.id, post5.id]
 
       get :index, {}
-      expect(assigns(:content_posts).map(&:id)).to eq(the_order)
+      expect(assigns(:posts).map(&:id)).to eq(the_order)
+    end
+
+    describe 'blog category id present' do
+      let!(:selected_category) { Fabricate :blog_category }
+      let!(:category_posts) { Fabricate.times 5, :post, blog_categories: [selected_category] }
+
+      it 'limits posts to blog category' do
+        Fabricate.times 10, :post
+
+        get :index, { blog_category_id: selected_category.id }
+
+        expect(assigns(:posts).count).to eq 5
+        expect(assigns(:posts).ids).to include(*category_posts.map(&:id))
+      end
+
+      it 'includes the category name in the page title' do
+        get :index, { blog_category_id: selected_category.id }
+
+        expect(assigns(:page_title)).to include(selected_category.name)
+      end
     end
   end
 end

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
   resources :posts, only: [:show, :index]
 
-  get 'sales', to: 'posts#sales', as: :sales
+  get 'categories/:blog_category_id' => 'posts#index', as: 'blog_category'
 
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
