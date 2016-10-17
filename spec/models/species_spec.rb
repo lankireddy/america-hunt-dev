@@ -9,8 +9,9 @@ describe Species do
   it { is_expected.to validate_uniqueness_of(:name) }
   it { is_expected.to validate_presence_of(:name) }
 
-  it 'should have a valid fabricator' do
+  it 'should have valid fabricators' do
     expect(Fabricate.build(:species)).to be_valid
+    expect(Fabricate.build(:top_level_species)).to be_valid
   end
 
   describe '#to_s' do

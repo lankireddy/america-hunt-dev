@@ -17,7 +17,7 @@ RSpec.describe 'posts/_list_content', type: :view do
 
   it 'renders a list of posts' do
     render
-    expect(rendered).to have_selector('.panel.post', count: posts.count)
+    expect(rendered).to have_selector('.post', count: posts.count)
   end
 
   it 'has a linked title for each post' do
