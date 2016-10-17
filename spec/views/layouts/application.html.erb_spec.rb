@@ -17,6 +17,6 @@ RSpec.describe 'layouts/application', type: :view do
 
   it 'displays top ad' do
     render
-    expect(rendered).to have_selector('img.header-ad')
+    expect(rendered).to have_selector('.ad-header img')
   end
 end

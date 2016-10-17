@@ -11,8 +11,8 @@
 </head>
 <body class="<%= @body_classes %> <%= yield :body_classes %>">
 <% if @top_ad.present? %>
-  <%= link_to @top_ad.url, target: '_blank' do %>
-    <%= image_tag @top_ad.image.url(:original), class: 'img-responsive header-ad'  %>
+  <%= link_to @top_ad.url, target: '_blank', class:'ad ad-header' do %>
+    <%= image_tag @top_ad.image.url(:original), class: 'img-responsive'  %>
   <% end %>
 <% end %>
 <% if content_for?(:content) %>
