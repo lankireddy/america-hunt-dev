@@ -28,9 +28,11 @@
           </ul>
           <%= link_to "Read More #{category.name}", blog_category_path(category), class:'small link-underline' %>
         <% end %>
-        <% @name_only_categories.each do |category| %>
-          <%= link_to category.name, blog_category_path(category), class: 'h2 h2-bold link-underline category-link' %>
-        <% end %>
+        <ul class="list-unstyled name-only-categories">
+          <%= content_tag_for 'li', @name_only_categories.each do |category| %>
+              <%= link_to category.name, blog_category_path(category), class: 'h2 h2-bold link-underline category-link' %>
+          <% end %>
+        </ul>
       </div>
       <%= render 'shared/ads_sidebar', count: 2 %>
     </div>

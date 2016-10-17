@@ -42,6 +42,12 @@
     }
   }
 }
+.name-only-categories {
+  margin-bottom: 2em;
+  li {
+    margin-bottom: 1em;
+  }
+}
 #join-community {
   background-image: url(image-path("join_community.png"));
   padding: 3em;
