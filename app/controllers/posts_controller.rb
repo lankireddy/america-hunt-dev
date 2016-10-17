@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   before_action :set_blog_category, only: :index
 
   def index
+    @menu_categories = BlogCategory.menu
     if @blog_category
       @page_title = 'America Hunt: ' + @blog_category.name
       @posts = @blog_category.posts

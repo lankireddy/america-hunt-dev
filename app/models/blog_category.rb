@@ -9,6 +9,8 @@ class BlogCategory < ActiveRecord::Base
 
   enum homepage_display: [:not_visible, :name_only, :widget]
 
+  scope :menu, -> { where.not(homepage_display: homepage_displays[:not_visible]) }
+
   def to_s
     name
   end

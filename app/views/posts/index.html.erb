@@ -2,7 +2,9 @@
     <nav class="secondary-nav post-nav">
       <div class="container">
         <ul class="list-inline">
-          <li><%= link_to_active_class 'News', posts_path %></li>
+          <%= content_tag_for 'li', @menu_categories do |blog_category| %>
+              <%= link_to_active_class blog_category.name, blog_category_path(blog_category) %>
+          <% end %>
         </ul>
       </div>
     </nav>

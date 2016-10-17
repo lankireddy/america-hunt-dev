@@ -14,7 +14,14 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'GET #index' do
-    it 'assigns all content posts as @content_posts' do
+    it 'assigns homepage visible categories to @menu_categories' do
+      Fabricate.times 2, :blog_category, homepage_display: 'widget'
+      Fabricate.times 2, :blog_category, homepage_display: 'name_only'
+      get :index, {}
+      expect(assigns(:menu_categories)).to eq(BlogCategory.menu)
+    end
+
+    it 'assigns all posts as @posts' do
       content_post = Fabricate :content_post
       get :index, {}
       expect(assigns(:posts)).to eq([content_post])
