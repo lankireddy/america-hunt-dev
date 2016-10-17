@@ -26,14 +26,16 @@ article.post h1 {
   font-style: italic;
 }
 
-.panel.post .panel-heading {
-  background-color: rgba(0, 0, 0, 0.5);
-  padding-bottom: 15px;
-  a {
-    color: white;
-  }
+.posts-index {
   h2 {
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  .subtitle {
     margin: 0;
+  }
+  a {
+    font-family: "Times New Roman", Times, serif;
   }
 }
 

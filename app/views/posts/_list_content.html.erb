@@ -1,12 +1,6 @@
-<ul class="posts list-unstyled">
-  <%= content_tag_for('li', @posts, class: 'panel', itemscope: '',itemtype: 'http://schema.org/BlogPosting') do |post| %>
-      <div class="panel-heading clearfix">
-        <div class="col-md-12">
-          <h2 class="h6" itemprop="headline"><%= link_to post.title, post_path(post), itemprop: 'url' %></h2>
-        </div>
-      </div>
-      <div class="panel-body">
-        <p><%= post.subtitle %></p>
-      </div>
+<ul class="posts posts-index list-unstyled">
+  <%= content_tag_for('li', @posts, itemscope: '',itemtype: 'http://schema.org/BlogPosting') do |post| %>
+     <h2 class="h3" itemprop="headline"><%= link_to post.title, post_path(post), itemprop: 'url', class:'link-underline' %></h2>
+     <p class="subtitle h4"><%= link_to post.subtitle || '', post_path(post), itemprop: 'url' %></p>
   <% end %>
 </ul>
