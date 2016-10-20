@@ -27,19 +27,6 @@ RSpec.describe PostsController, type: :controller do
       expect(assigns(:posts)).to eq([post])
     end
 
-    it 'orders posts by position then creation date' do
-      post5 = Fabricate(:post, position: nil)
-      post2 = Fabricate(:post, position: 4)
-      post1 = Fabricate(:post, position: 1)
-      post3 = Fabricate(:post, position: 7, created_at: 1.days.from_now)
-      post4 = Fabricate(:post, position: nil, created_at: 1.days.from_now)
-
-      the_order = [post1.id, post2.id, post3.id, post4.id, post5.id]
-
-      get :index, {}
-      expect(assigns(:posts).map(&:id)).to eq(the_order)
-    end
-
     describe 'blog category id present' do
       let!(:selected_category) { Fabricate :blog_category }
       let!(:category_posts) { Fabricate.times 5, :post, blog_categories: [selected_category] }

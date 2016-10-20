@@ -45,17 +45,19 @@ describe Post do
     end
 
     it 'returns posts in the correct order' do
-      post5 = Fabricate(:post, position: nil, title: 'no position, created now')
-      post2 = Fabricate(:post, position: 4, title: 'position 4, created now')
-      post1 = Fabricate(:post, position: 1, title: 'position 1, created now')
-      post3 = Fabricate(:post, position: 7, created_at: 1.days.from_now, title: 'position 7, created tomorrow')
+      post3 = Fabricate(:post, position: 3, created_at: 1.days.from_now, title: 'position 3, created tomorrow')
       post4 = Fabricate(:post, position: nil, created_at: 1.days.from_now, title: 'no position, created tomorrow')
+      post5 = Fabricate(:post, position: nil, title: 'no position, created now')
+      post2 = Fabricate(:post, position: 2, title: 'position 2, created now')
+      post1 = Fabricate(:post, position: 1, title: 'position 1, created now')
 
-      the_order = [post1.title, post2.title, post3.title, post4.title, post5.title]
+      the_order = [post1, post2, post3, post4, post5]
 
       expect(Post.all.ids).to eq Post.all.order(position: :asc, created_at: :desc).ids
 
-      expect(Post.all.map(&:title)).to eq(the_order)
+      expect(Post.all.map(&:title)).to eq(the_order.map(&:title))
+
+      expect(Post.all.first.position).to eq 1
     end
   end
 end
