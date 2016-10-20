@@ -22,17 +22,17 @@ RSpec.describe PostsController, type: :controller do
     end
 
     it 'assigns all posts as @posts' do
-      content_post = Fabricate :content_post
+      post = Fabricate :post
       get :index, {}
-      expect(assigns(:posts)).to eq([content_post])
+      expect(assigns(:posts)).to eq([post])
     end
 
     it 'orders posts by position then creation date' do
-      post5 = Fabricate(:content_post, position: nil)
-      post2 = Fabricate(:content_post, position: 4)
-      post1 = Fabricate(:content_post, position: 1)
-      post3 = Fabricate(:content_post, position: 7, created_at: 1.days.from_now)
-      post4 = Fabricate(:content_post, position: nil, created_at: 1.days.from_now)
+      post5 = Fabricate(:post, position: nil)
+      post2 = Fabricate(:post, position: 4)
+      post1 = Fabricate(:post, position: 1)
+      post3 = Fabricate(:post, position: 7, created_at: 1.days.from_now)
+      post4 = Fabricate(:post, position: nil, created_at: 1.days.from_now)
 
       the_order = [post1.id, post2.id, post3.id, post4.id, post5.id]
 

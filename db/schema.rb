@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< 9de71f13959fa6cf7798fed2871ac00749a40f0d
 ActiveRecord::Schema.define(version: 20161014142838) do
-=======
-ActiveRecord::Schema.define(version: 20161012154945) do
->>>>>>> active admin reordering with acts as list. Replacing weight with position. Default scope order not functioning
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,7 +67,6 @@ ActiveRecord::Schema.define(version: 20161012154945) do
 
   create_table "blog_categories", force: :cascade do |t|
     t.string   "name"
-<<<<<<< 9de71f13959fa6cf7798fed2871ac00749a40f0d
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "homepage_display", default: 0
@@ -80,14 +75,6 @@ ActiveRecord::Schema.define(version: 20161012154945) do
 
   add_index "blog_categories", ["slug"], name: "index_blog_categories_on_slug", unique: true, using: :btree
 
-=======
-    t.boolean  "homepage_display"
-    t.integer  "layout"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
->>>>>>> active admin reordering with acts as list. Replacing weight with position. Default scope order not functioning
   create_table "blog_category_posts", force: :cascade do |t|
     t.integer  "blog_category_id"
     t.integer  "post_id"

@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe 'posts/index', type: :view do
   include_context 'ad_page'
 
-  let!(:posts) { Fabricate.times 15, :content_post }
+  let!(:posts) { Fabricate.times 15, :post }
 
   before(:each) do
     @posts = Post.all.page(1)

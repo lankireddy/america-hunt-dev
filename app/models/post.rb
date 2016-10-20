@@ -20,9 +20,6 @@ class Post < ActiveRecord::Base
 
   default_scope { order(position: :asc, created_at: :desc) }
 
-  scope :content_posts, -> { where.not(body: '') }
-  scope :link_posts, -> { where(body: '') }
-
   paginates_per 10
 
   def slug_candidates

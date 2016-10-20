@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe 'home_page/_location_search', type: :view do
   before(:each) do
-    @content_posts = []
+    @posts = []
   end
 
   it 'renders location search form' do

@@ -8,7 +8,7 @@ RSpec.describe 'posts/show', type: :view do
 
   it 'displays sidebar ads' do
     render
-    expect(rendered).to have_selector('img.ad')
+    expect(rendered).to have_selector('.ad img')
   end
 
   context 'with featured image' do

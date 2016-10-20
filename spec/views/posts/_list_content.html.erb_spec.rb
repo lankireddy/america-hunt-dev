@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe 'posts/_list_content', type: :view do
   let(:posts) do
-    Fabricate.times 5, :content_post
+    Fabricate.times 5, :post
     Post.all
   end
   before(:each) do
@@ -11,6 +11,7 @@ RSpec.describe 'posts/_list_content', type: :view do
 
   it 'renders the most recent post first' do
     render
+    expect(posts.count).to eq 5
     expect(posts.maximum(:created_at)).to eq(posts.first.created_at)
     expect(posts[0].created_at).to_not eq(posts[4].created_at)
   end
