@@ -1,4 +1,5 @@
 ActiveAdmin.register Post do
+  config.per_page = 300
 
   config.sort_order = 'position_asc'
 
