@@ -11,10 +11,13 @@ class LocationsController < ApplicationController
     @locations = @locations.joins(:species).where(species: { id: @species_ids }) if @species_ids.present?
     @locations = @locations.uniq.page params[:page]
 
-    state_name = Location.states.select { |state| state[1] == @state_alpha2 }.first[0]
-    @title = "#{state_name} Hunting Destinations"
-    @page_title = 'America Hunt: ' + @title
-    @page_description = 'Listing of hunting destinations in #{state_name}.'
+    matching_states =  Location.states.select { |state| state[1] == @state_alpha2 }
+    if(matching_states.present?)
+      state_name =matching_states.first[0]
+      @title = "#{state_name} Hunting Destinations"
+      @page_title = 'America Hunt: ' + @title
+      @page_description = 'Listing of hunting destinations in #{state_name}.'
+    end
 
     @location_params = params.except(:page)
     @body_classes = 'content-list margin-header'
