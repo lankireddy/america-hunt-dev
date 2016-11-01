@@ -7,7 +7,7 @@ RSpec.describe 'locations/show', type: :view do
 
   before(:each) do
     @location = Fabricate :location
-    @previous_page = '/states/TX/locations'
+    @previous_page = state_locations_path(state_alpha2: 'TX')
     @page_title = 'America Hunt: ' + @location.name
     @page_description = @location.excerpt
   end
