@@ -1,5 +1,4 @@
 class LocationsController < ApplicationController
-  DEFAULT_SEARCH_RADIUS = 100
   before_action :set_location, only: [:show]
   before_action :set_filters, only: [:index, :new]
 
@@ -8,14 +7,15 @@ class LocationsController < ApplicationController
     @state_alpha2 = params[:state_alpha2]
     @species_ids = params[:species_ids]
 
-    if @state_alpha2
-      @locations = Location.approved.where(state: @state_alpha2)
-      @locations = @locations.joins(:species).where(species: { id: @species_ids}) if(@species_ids.present?)
-      @locations = @locations.uniq.page params[:page]
-    else
-      @locations = Location.none.page params[:page]
-    end
-    @page_title = ['America Hunt: Hunting Destinations near ', @query].join(' ')
+    @locations = Location.approved.where(state: @state_alpha2)
+    @locations = @locations.joins(:species).where(species: { id: @species_ids }) if @species_ids.present?
+    @locations = @locations.uniq.page params[:page]
+
+    state_name = Location.states.select { |state| state[1] == @state_alpha2 }.first[0]
+    @title = "#{state_name} Hunting Destinations"
+    @page_title = 'America Hunt: ' + @title
+    @page_description = 'Listing of hunting destinations in #{state_name}.'
+
     @location_params = params.except(:page)
     @body_classes = 'content-list margin-header'
   end
@@ -23,7 +23,7 @@ class LocationsController < ApplicationController
   # GET /locations/1
   def show
     @state_alpha2 = params[:state_alpha2]
-    @previous_page = request.referer || locations_path(query: @query)
+    @previous_page = request.referer || state_locations_path(state_alpha2: @location.state)
     @page_title = 'America Hunt: ' + @location.name
     @page_description = @location.excerpt
   end

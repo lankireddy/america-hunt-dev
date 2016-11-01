@@ -2,14 +2,15 @@
   <%= render 'filters' %>
 <% end %>
 <div class="col-md-9">
+  <h1><%= @title %></h1>
   <div class="locations">
     <%= div_for(@locations, class: 'panel panel-default', itemscope: '', itemtype: 'http://schema.org/Place' ) do |location| %>
       <div class="panel-heading clearfix">
         <h3 class="panel-title pull-left location-name h3-bold"><%= link_to location, location_path(location, query: @query), itemprop: 'url' %></h3>
         <input class="rating" value="<%= location.average_star_rating %>" data-display-only="true" data-size="xxs" data-container-class="rating-info hide-empty-stars pull-right col-md-offset-1" />
-        <%= link_to location.city_state, locations_path(query: location.city_state), class: 'pull-right city-state-link' %>
+        <%= link_to location.city_state, state_locations_path(state_alpha2: location.state), class: 'pull-right city-state-link' %>
       </div>
-      <%= link_to location_path(location, query: @query), class: 'panel-body' do %>
+      <%= link_to location_path(location), class: 'panel-body' do %>
         <%= location.excerpt %>
       <% end %>
     <% end %>

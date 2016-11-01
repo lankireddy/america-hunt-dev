@@ -10,7 +10,14 @@
   <!-- End Google Tag Manager -->
   <meta charset="utf-8">
   <title><%= @page_title or 'America Hunt' %></title>
+  <meta property="og:title" content="<%= @page_title %>" />
   <meta name="description" content="<%= @page_description %>" />
+  <meta property="og:description" content="<%= @page_description %>" />
+  <% if @page_url.present? %>
+      <meta property="og:url" content="<%= @page_url %>" />
+      <link rel="canonical" href="<%= @page_url %>">
+  <% end %>
+
   <%= content_for(:metas) %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -36,7 +43,7 @@
           <a class="logo" href="/"><%= image_tag('logo_icon_red.png') %></a>
         </div>
         <div class="col-md-8">
-          <%= form_tag '/locations', method: 'get', class: 'location-search location-search-interior' do |f| %>
+          <%= form_tag '#', method: 'get', class: 'location-search location-search-interior' do |f| %>
               <label for="location" class="sr-only">Where would you like to hunt?</label>
               <div class="input-group input-group-xl">
                 <div class="input-group-btn">

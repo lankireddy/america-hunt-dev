@@ -8,32 +8,21 @@ RSpec.describe LocationsController, type: :controller do
 
 
   describe 'GET #index' do
-    it 'assigns no locations to @locations when there is no query' do
-      location = Location.create! valid_attributes
-      get :index, {}
-      expect(assigns(:locations)).to eq([])
-    end
-
-    it 'assigns all categories as @categories' do
-      category = Fabricate :category
-      get :index, {}
-      expect(assigns(:categories)).to eq([category])
-    end
 
     it 'assigns all top level species as @top_level_species' do
       species = Fabricate :species
-      get :index, {}
+      get :index, { state_alpha2: 'ID' }
       expect(assigns(:top_level_species)).to eq([species])
     end
 
     it 'assigns current species_ids as @species_ids' do
       parent_species = Fabricate :species, name: 'Pokemon'
       species_list = Fabricate.times 5, :species, parent_id: parent_species.id
-      get :index, { species_ids: species_list.map(&:id) }
+      get :index, { species_ids: species_list.map(&:id), state_alpha2: 'ID' }
       expect(assigns(:species_ids)).to eq(species_list.map{ |species| species.id.to_s })
     end
 
-    describe 'with location query' do
+    describe 'with state_alpha2' do
       before do
         far_location = Fabricate :location, state: 'Alaska', city: 'Fairbanks', address_1: '100 Main St.'
         city = 'Franklin'
@@ -52,14 +41,23 @@ RSpec.describe LocationsController, type: :controller do
         get :index, { state_alpha2: @state_alpha2 }
       end
 
-      it 'assigns current state as @state_alpha2' do
-        get :index, { state_alpha2: @state_alpha2 }
-        expect(assigns(:state_alpha2)).to eq(@state_alpha2)
-      end
+      describe 'no species' do
+        before do
+          get :index, { state_alpha2: @state_alpha2 }
+        end
 
-      it 'assigns all locations in state as @locations' do
-        get :index, { state_alpha2: @state_alpha2, category_id: '' }
-        expect(assigns(:locations)).to include(*@close_locations)
+        it 'assigns current state as @state_alpha2' do
+          expect(assigns(:state_alpha2)).to eq(@state_alpha2)
+        end
+
+        it 'assigns all locations in state as @locations' do
+          expect(assigns(:locations)).to include(*@close_locations)
+        end
+
+        it 'assigns title and page title that include state name' do
+          expect(assigns(:title)).to include('Tennessee')
+          expect(assigns(:page_title)).to include('Tennessee')
+        end
       end
 
       describe 'filter by species' do
@@ -87,18 +85,21 @@ RSpec.describe LocationsController, type: :controller do
       get :show, { id: location.to_param }
       expect(assigns(:location)).to eq(location)
     end
+
     it 'assigns request referrer to @previous_page' do
-      previous_page = '/locations?query=Franklin, TN'
+      previous_page = '/state/TN/locations'
       expect(controller.request).to receive(:referer).and_return(previous_page)
       location = Location.create! valid_attributes
       get :show, { id: location.to_param }
       expect(assigns(:previous_page)).to eq(previous_page)
     end
+
     it 'assigns the location name as @page_title' do
       location = Location.create! valid_attributes
       get :show, { id: location.to_param }
       expect(assigns(:page_title)).to eq('America Hunt: ' + location.name)
     end
+
     it 'assigns the location excerpt as @page_description' do
       location = Location.create! valid_attributes
       get :show, { id: location.to_param }

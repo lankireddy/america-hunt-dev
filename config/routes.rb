@@ -5,10 +5,12 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :locations, only: [:index, :show, :new, :create] do
+  resources :locations, only: [:show, :new, :create] do
     resources :reviews, only: [:create, :index]
   end
   resources :posts, only: [:show, :index]
+
+  get 'states/:state_alpha2/locations' => 'locations#index', as: 'state_locations'
 
   get 'categories/:blog_category_id' => 'posts#index', as: 'blog_category'
 

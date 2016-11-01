@@ -1,7 +1,6 @@
 <div class="container">
   <div class="row">
-    <%= form_tag '/locations', method: 'get', class: 'location-search' do |f| %>
-        <%= hidden_field_tag 'state_alpha2', @state_alpha2 %>
+    <%= form_tag "/states/#{@state_alpha2}/locations", method: 'get', class: 'location-search' do |f| %>
         <div class="col-md-3">
           <div class="form-group form-group-lg">
             <label for="species_id" class="sr-only">What would you like to hunt for?</label>

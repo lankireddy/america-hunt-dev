@@ -12,19 +12,19 @@ describe 'Location Filter', type: :feature do
     end
 
     it 'displays a button in place of the species select', js: true do
-      visit locations_path
+      visit state_locations_path(state_alpha2: 'ID')
       expect(page).to have_selector('.multiselect-native-select .btn-group')
     end
 
     it 'displays a list of options when clicked', js: true do
-      visit locations_path
+      visit state_locations_path(state_alpha2: 'ID')
       expect(page).to have_selector('.multiselect-native-select .btn-group')
       click_button('What?')
       expect(page).to have_selector('.multiselect-native-select ul.dropdown-menu')
     end
 
     it 'displays an option group for each top level species ', js: true do
-      visit locations_path
+      visit state_locations_path(state_alpha2: 'ID')
       expect(page).to have_selector('.multiselect-native-select .btn-group')
       click_button('What?')
       within(:css, '.multiselect-native-select ul.dropdown-menu') do
