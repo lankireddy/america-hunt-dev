@@ -21,6 +21,26 @@ describe Location do
     expect(Fabricate.build(:location)).to be_valid
   end
 
+  it 'should generate a slug on save' do
+    location = Fabricate.build(:location)
+    location.save
+    expect(location.reload.slug).to_not be_nil
+  end
+
+  it 'should generate new slug when slug is set to nil' do
+    location = Fabricate.build(:location)
+    location.slug = 'custom-slug'
+    location.save
+
+    expect(location.reload.slug).to eq 'custom-slug'
+
+    location.slug = nil
+    location.save
+
+    expect(location.reload.slug).to_not be_nil
+    expect(location.slug).to_not eq 'custom-slug'
+  end
+
   describe '#to_s' do
     it 'returns the name of the location' do
       expect(location.to_s).to eq(location.name)

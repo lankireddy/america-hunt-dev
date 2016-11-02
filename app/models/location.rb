@@ -1,4 +1,15 @@
 class Location < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
+  def slug_candidates
+    [
+        :name,
+        [:name, :state],
+        [:name, :city, :state],
+    ]
+  end
+
   has_many :location_categories, dependent: :destroy
   has_many :categories, through: :location_categories
   has_many :species, through: :location_species
@@ -27,6 +38,10 @@ class Location < ActiveRecord::Base
   after_validation :geocode, if: ->(obj){ obj.address_present? && obj.address_changed? && !obj.coordinates_changed? }
 
   paginates_per 10
+
+  def should_generate_new_friendly_id?
+    slug.blank?
+  end
 
   def address_present?
     address_1.present? && city.present? && state.present?

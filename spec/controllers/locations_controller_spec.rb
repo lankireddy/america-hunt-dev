@@ -73,37 +73,45 @@ RSpec.describe LocationsController, type: :controller do
 
         it 'limits @locations by species when species ids are present' do
           get :index, { state_alpha2: @state_alpha2, species_ids: @matching_specific_species.map(&:id) }
-          expect(assigns(:locations)).to match_array([@close_locations[0],@close_locations[1]])
+          expect(assigns(:locations)).to match_array([@close_locations[0], @close_locations[1]])
         end
       end
     end
   end
 
   describe 'GET #show' do
+    let(:location) { Location.create! valid_attributes }
+
     it 'assigns the requested location as @location' do
-      location = Location.create! valid_attributes
       get :show, { id: location.to_param }
       expect(assigns(:location)).to eq(location)
     end
 
     it 'assigns request referrer to @previous_page' do
-      previous_page = '/state/TN/locations'
+      previous_page = state_locations_path(state_alpha2: 'TN')
       expect(controller.request).to receive(:referer).and_return(previous_page)
-      location = Location.create! valid_attributes
       get :show, { id: location.to_param }
       expect(assigns(:previous_page)).to eq(previous_page)
     end
 
     it 'assigns the location name as @page_title' do
-      location = Location.create! valid_attributes
       get :show, { id: location.to_param }
       expect(assigns(:page_title)).to eq('America Hunt: ' + location.name)
     end
 
     it 'assigns the location excerpt as @page_description' do
-      location = Location.create! valid_attributes
       get :show, { id: location.to_param }
       expect(assigns(:page_description)).to eq(location.excerpt)
+    end
+
+    it 'assigns the friendly url as @page_url' do
+      get :show, { id: location.to_param }
+      expect(assigns(:page_url)).to include(location_path(location.to_param))
+    end
+
+    it 'redirects users that access via id instead of slug' do
+      get :show, { id: location.id }
+      expect(response).to redirect_to(location_path(location.to_param))
     end
   end
 

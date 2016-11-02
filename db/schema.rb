@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161014142838) do
+ActiveRecord::Schema.define(version: 20161101204858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -184,8 +184,10 @@ ActiveRecord::Schema.define(version: 20161014142838) do
     t.string   "featured_image_content_type"
     t.integer  "featured_image_file_size"
     t.datetime "featured_image_updated_at"
+    t.string   "slug"
   end
 
+  add_index "locations", ["slug"], name: "index_locations_on_slug", unique: true, using: :btree
   add_index "locations", ["travelier_id"], name: "index_locations_on_travelier_id", using: :btree
 
   create_table "pages", force: :cascade do |t|

@@ -5,7 +5,8 @@ class ReviewsController < ApplicationController
     @page_title = "America Hunt: #{@location.name} reviews"
     @reviews = @location.reviews.approved.page params[:page]
   end
-  # POST /reviews
+
+  # POST /location/example-location/reviews
   def create
     @review = @location.reviews.build(review_params)
     authorize @review
@@ -23,9 +24,8 @@ class ReviewsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_location
-    @location = Location.find(params[:location_id])
+    @location = Location.friendly.find(params[:location_id])
   end
 
   def review_params
