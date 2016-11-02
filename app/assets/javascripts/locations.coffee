@@ -26,3 +26,8 @@ $ ->
   .on "ajax:error", (e, xhr, status, error) ->
     errors = JSON.parse(xhr.responseText)
     displayErrors(errors)
+  locationSearch = $('.location-search')
+  locationSearch.submit (event) ->
+    event.preventDefault()
+    state_alpha2 = locationSearch.find('#state_alpha2').val()
+    window.location = "/states/#{state_alpha2}/locations"

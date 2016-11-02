@@ -12,13 +12,7 @@ RSpec.describe 'locations/_filters', type: :view do
 
   it 'renders location search form' do
     render
-    expect(rendered).to have_selector('form')
-    expect(rendered).to have_selector('input[type="hidden"][name="state_alpha2"]', visible: false)
+    expect(rendered).to have_selector("form[action='#{state_locations_path(state_alpha2: @state_alpha2)}']")
     expect(rendered).to have_selector('input[type="submit"]')
-  end
-
-  it 'hidden state_alpha2 field has current location in it' do
-    render
-    expect(rendered).to have_selector("input[type='hidden'][name='state_alpha2'][value='#{@state_alpha2}']", visible: false)
   end
 end
