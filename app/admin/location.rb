@@ -5,7 +5,7 @@ ActiveAdmin.register Location do
   scope :pending
   scope :unapproved
 
-  permit_params :name, :website, :contact_page, :phone, :email,
+  permit_params :name, :slug, :website, :contact_page, :phone, :email,
                 :address_1, :address_2, :city, :state, :zip, :lat, :long,
                 :opening_date, :featured, :follow_up, :description,
                 :hunting_area_size, :terrain,
@@ -56,6 +56,7 @@ ActiveAdmin.register Location do
     attributes_table do
       row :name
       row :status
+      row :slug
       row :featured_image do
         image_tag location.featured_image.url(:medium), class: 'featured-image'
       end
@@ -93,6 +94,7 @@ ActiveAdmin.register Location do
             collection: Location.statuses.keys.map { |key| [key, key]},
             include_blank: false,
             selected: f.object.status || 'approved'
+      input :slug
       input :description
       input :featured_image
       input :category_ids, as: :check_boxes, :collection => Category.order('name ASC').all
@@ -150,6 +152,9 @@ ActiveAdmin.register Location do
       else
         render :new
       end
+    end
+    def find_resource
+      Location.friendly.find(params[:id])
     end
   end
 

@@ -1,5 +1,12 @@
 require 'spec_helper'
 
+def fill_required_location_fields
+  fill_in 'location[name]', with: 'File Upload Test'
+  select 'Alaska', from: 'location[state]'
+  fill_in 'location[city]', with: 'Fairbanks'
+  fill_in 'location[zip]', with: '00000'
+end
+
 describe 'Location' do
   let!(:admin_user) { Fabricate :admin_user }
 
@@ -86,10 +93,7 @@ describe 'Location' do
     it 'saves the attached file' do
       visit new_admin_location_path
 
-      fill_in('location[name]', with: 'File Upload Test')
-      select('Alaska', from: 'location[state]')
-      fill_in('location[city]', with: 'Fairbanks')
-      fill_in('location[zip]', with: '00000')
+      fill_required_location_fields
 
       attach_file('location[featured_image]', File.absolute_path("#{Rails.root}/spec/support/files/4.jpg"))
 
@@ -98,6 +102,18 @@ describe 'Location' do
       expect(page).to have_selector('div.flash', text: 'Location was successfully created.')
       new_location = Location.order(:created_at).last
       expect(new_location.featured_image.url).to include('4.jpg')
+    end
+
+    it 'saves custom slug' do
+      visit new_admin_location_path
+
+      fill_required_location_fields
+      fill_in 'location_slug', with: 'custom-slug'
+      click_button 'Create Location'
+
+      expect(page).to have_selector('div.flash', text: 'Location was successfully created.')
+      new_location = Location.order(:created_at).last
+      expect(new_location.slug).to eq('custom-slug')
     end
   end
 end

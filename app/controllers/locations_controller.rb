@@ -23,12 +23,13 @@ class LocationsController < ApplicationController
     @body_classes = 'content-list margin-header'
   end
 
-  # GET /locations/1
+  # GET /locations/example-location
   def show
     @state_alpha2 = params[:state_alpha2]
     @previous_page = request.referer || state_locations_path(state_alpha2: @location.state)
     @page_title = 'America Hunt: ' + @location.name
     @page_description = @location.excerpt
+    @page_url = location_url @location.to_param
   end
 
   # GET /locations/new
@@ -52,9 +53,9 @@ class LocationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_location
-      @location = Location.find(params[:id])
+      @location = Location.friendly.find(params[:id])
+      redirect_to action: action_name, id: @location.friendly_id, status: 301 unless @location.friendly_id == params[:id]
     end
 
     def set_filters
