@@ -34,13 +34,6 @@ RSpec.describe 'locations/index', type: :view do
     expect(rendered).to have_selector('a[rel="next"]')
   end
 
-  it 'links to a search for the state on each location' do
-    render
-    @locations.each do |location|
-      expect(rendered).to have_link(location.city_state, href: state_locations_path(state_alpha2: location.state))
-    end
-  end
-
   it 'has a linked title for each location' do
     render
     @locations.each do |location|

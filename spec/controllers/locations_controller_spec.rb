@@ -54,9 +54,10 @@ RSpec.describe LocationsController, type: :controller do
           expect(assigns(:locations)).to include(*@close_locations)
         end
 
-        it 'assigns title and page title that include state name' do
+        it 'assigns title, page title, and description that include state name' do
           expect(assigns(:title)).to include('Tennessee')
           expect(assigns(:page_title)).to include('Tennessee')
+          expect(assigns(:page_description)).to include('Tennessee')
         end
       end
 

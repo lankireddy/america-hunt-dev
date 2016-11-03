@@ -16,7 +16,7 @@ class LocationsController < ApplicationController
       state_name =matching_states.first[0]
       @title = "#{state_name} Hunting Destinations"
       @page_title = 'America Hunt: ' + @title
-      @page_description = 'Listing of hunting destinations in #{state_name}.'
+      @page_description = "Listing of hunting destinations in #{state_name}."
     end
 
     @location_params = params.except(:page)
