@@ -5,4 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password', name: 'Administrator')
+AdminUser.first_or_create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password', name: 'Administrator')
+admin_id =  AdminUser.first.id
+Page.find_or_create_by(title: 'Press & Media', slug: 'press-&amp;-media', author_id: admin_id) do |page|
+  page.body = '<p>Words</p>'
+end
+
+['About', 'FAQ', 'Newsletter', 'Terms of Service', 'Privacy Policy'].each do |title|
+  Page.find_or_create_by(title: title, slug: title.parameterize, author_id: admin_id) do |page|
+    page.body = '<p>Words</p>'
+  end
+end
+
