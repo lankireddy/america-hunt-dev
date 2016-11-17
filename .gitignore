@@ -40,3 +40,5 @@ avocado.yml
 
 /config/application.yml
 only-failures.log
+
+/public/sitemap*

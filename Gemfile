@@ -45,6 +45,7 @@ gem 'spring', group: :development
 gem 'unicorn'
 gem 'yajl-ruby', require: 'yajl'
 gem 'yarjuf'
+gem 'sitemap_generator'
 
 # Memcached
 # gem 'dalli'
