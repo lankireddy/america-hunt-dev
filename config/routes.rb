@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   get 'categories/:blog_category_id' => 'posts#index', as: 'blog_category'
 
+  get '/sitemap.xml.gz', to: redirect("http://america-hunt-dev.s3.amazonaws.com/sitemaps/sitemap.xml.gz"), as: :sitemap
+
+
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   mount Avocado::Engine => '/avocado'
