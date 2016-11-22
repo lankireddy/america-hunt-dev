@@ -23,6 +23,11 @@ describe 'Page' do
       expect(page).to have_field('page[featured_image]', type: 'file')
     end
 
+    it 'has a caption field' do
+      visit new_admin_page_path
+      expect(page).to have_field('page[caption]', type: 'textarea')
+    end
+
     it 'saves the attached file' do
       visit new_admin_page_path
 

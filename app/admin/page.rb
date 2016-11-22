@@ -1,5 +1,5 @@
 ActiveAdmin.register Page do
-  permit_params :title, :body, :slug, :featured_image, :display_newsletter_sign_up
+  permit_params :title, :body, :slug, :featured_image, :caption, :display_newsletter_sign_up
 
   index do
     column :id
@@ -20,6 +20,7 @@ ActiveAdmin.register Page do
       else
         input :featured_image
       end
+      input :caption
       input :display_newsletter_sign_up
     end
     actions
@@ -31,6 +32,7 @@ ActiveAdmin.register Page do
       row :featured_image do
         image_tag page.featured_image.url(:medium), class: 'featured-image'
       end
+      row :caption
       row :body
       row :created_at
       row :slug
