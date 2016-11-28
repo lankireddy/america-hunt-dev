@@ -33,4 +33,9 @@ class Post < ActiveRecord::Base
   def to_s
     title
   end
+
+  def priority_blog_category
+    blog_categories.menu.order(:name).first
+  end
+
 end

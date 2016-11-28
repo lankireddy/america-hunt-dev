@@ -11,6 +11,8 @@ class BlogCategory < ActiveRecord::Base
 
   scope :menu, -> { where.not(homepage_display: homepage_displays[:not_visible]) }
 
+  scope :priority_categories, -> { menu.order(:name) }
+
   def to_s
     name
   end

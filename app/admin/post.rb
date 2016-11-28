@@ -7,6 +7,14 @@ ActiveAdmin.register Post do
 
   permit_params :title, :subtitle, :body, :position, :external_link, :featured_image, blog_category_ids: []
 
+  #scope("Inactive") { |scope| scope.where(active: false) }
+
+  scope :all, default: true
+
+  BlogCategory.priority_categories.each do |bcat|
+    scope(bcat.name) { |scope| scope.joins(:blog_category_posts).where(blog_category_posts: { id: bcat.id }) }
+  end
+
   index as: :reorderable_table do
     selectable_column
     column :id
