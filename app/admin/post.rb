@@ -12,9 +12,9 @@ ActiveAdmin.register Post do
   scope :all, default: true
 
   BlogCategory.priority_categories.each do |bcat|
-    scope(bcat.name) { |scope| scope.joins(:blog_category_posts).where(blog_category_posts: { id: bcat.id }) }
+    scope(bcat.name) { |scope| scope.joins(:blog_category_posts).where(blog_category_posts: { blog_category_id: bcat.id }) }
   end
-
+  
   index as: :reorderable_table do
     selectable_column
     column :id
