@@ -11,6 +11,18 @@ RSpec.describe 'posts/show', type: :view do
     expect(rendered).to have_selector('.ad img')
   end
 
+  it 'does not display a link to a category if it has no homepage-visible parent category' do
+    render
+    expect(rendered).to_not have_selector('a.priority-blog-category-link')
+  end
+
+  it 'displays a link to its parent category' do
+    @post.blog_categories.first.update(homepage_display: 1)
+    @post.reload
+    render
+    expect(rendered).to have_link("Click here for more #{@post.priority_blog_category.name}", href: blog_category_path(@post.priority_blog_category.friendly_id))
+  end
+
   context 'with featured image' do
     it 'renders featured image as header background' do
       render

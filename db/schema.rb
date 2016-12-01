@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121205950) do
+ActiveRecord::Schema.define(version: 20161201213208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20161121205950) do
     t.string   "slug"
   end
 
+  add_index "blog_categories", ["homepage_display"], name: "index_blog_categories_on_homepage_display", using: :btree
   add_index "blog_categories", ["slug"], name: "index_blog_categories_on_slug", unique: true, using: :btree
 
   create_table "blog_category_posts", force: :cascade do |t|
@@ -81,6 +82,9 @@ ActiveRecord::Schema.define(version: 20161121205950) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
+
+  add_index "blog_category_posts", ["blog_category_id"], name: "index_blog_category_posts_on_blog_category_id", using: :btree
+  add_index "blog_category_posts", ["post_id"], name: "index_blog_category_posts_on_post_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -143,12 +147,18 @@ ActiveRecord::Schema.define(version: 20161121205950) do
     t.datetime "updated_at",  null: false
   end
 
+  add_index "location_species", ["location_id"], name: "index_location_species_on_location_id", using: :btree
+  add_index "location_species", ["species_id"], name: "index_location_species_on_species_id", using: :btree
+
   create_table "location_weapon_types", force: :cascade do |t|
     t.integer  "location_id"
     t.integer  "weapon_type_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
+
+  add_index "location_weapon_types", ["location_id"], name: "index_location_weapon_types_on_location_id", using: :btree
+  add_index "location_weapon_types", ["weapon_type_id"], name: "index_location_weapon_types_on_weapon_type_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.integer  "travelier_id"
@@ -223,6 +233,7 @@ ActiveRecord::Schema.define(version: 20161121205950) do
     t.integer  "position"
   end
 
+  add_index "posts", ["position"], name: "index_posts_on_position", using: :btree
   add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
 
   create_table "reviews", force: :cascade do |t|
@@ -234,6 +245,8 @@ ActiveRecord::Schema.define(version: 20161121205950) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  add_index "reviews", ["location_id"], name: "index_reviews_on_location_id", using: :btree
 
   create_table "species", force: :cascade do |t|
     t.integer  "parent_id"
