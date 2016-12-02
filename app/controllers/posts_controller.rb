@@ -7,7 +7,8 @@ class PostsController < ApplicationController
     @menu_categories = BlogCategory.menu
     if @blog_category
       @page_title = 'America Hunt: ' + @blog_category.name
-      @posts = @blog_category.posts
+      #TODO - should this be ignored if this is not a homepage category?
+      @posts = @blog_category.posts.order(:position)
     else
       @page_title = 'America Hunt: Hunting News'
       @posts = Post.all

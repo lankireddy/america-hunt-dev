@@ -25,6 +25,11 @@
     <section class="body" itemprop="articleBody">
       <%= @post.body.html_safe %>
     </section>
+    <div class="read-more-footer">
+      <% if @post.priority_blog_category %>
+      <%= link_to "Click here for more #{@post.priority_blog_category.name}", blog_category_path(@post.priority_blog_category.friendly_id), class: 'link-underline priority-blog-category-link' %>
+      <% end %>
+    </div>
   </div>
   <%= render 'shared/ads_sidebar', count: 2 %>
 <% end %>

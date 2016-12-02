@@ -40,6 +40,24 @@ RSpec.describe PostsController, type: :controller do
         expect(assigns(:posts).ids).to include(*category_posts.map(&:id))
       end
 
+      it 'displays posts in their sort order' do
+        selected_category.update(homepage_display: 1)
+        category_posts.map(&:reload)
+
+        category_posts.shuffle!
+        category_posts.each_with_index do | cp, i |
+          cp.update(position: i+1)
+        end
+
+        get :index, { blog_category_id: selected_category.friendly_id }
+
+        posts = assigns(:posts)
+
+        posts.each_with_index do | cp, i |
+          cp.position.should eql(i+1)
+        end
+      end
+
       it 'includes the category name in the page title' do
         get :index, { blog_category_id: selected_category.id }
 
