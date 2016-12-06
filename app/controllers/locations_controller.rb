@@ -9,7 +9,7 @@ class LocationsController < ApplicationController
 
     @locations = Location.approved.where(state: @state_alpha2)
     @locations = @locations.joins(:species).where(species: { id: @species_ids }) if @species_ids.present?
-    @locations = @locations.uniq.page params[:page]
+    @locations = @locations.order(id: :desc).uniq.page params[:page]
 
     matching_states =  Location.states.select { |state| state[1] == @state_alpha2 }
     if(matching_states.present?)
