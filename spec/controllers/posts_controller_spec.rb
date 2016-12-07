@@ -29,7 +29,7 @@ RSpec.describe PostsController, type: :controller do
 
     describe 'blog category id present' do
       let!(:selected_category) { Fabricate :blog_category }
-      let!(:category_posts) { Fabricate.times 5, :post, blog_categories: [selected_category] }
+      let!(:category_posts) { Fabricate.times 5, :post, blog_categories: [selected_category], featured_image: nil }
 
       it 'limits posts to blog category' do
         Fabricate.times 10, :post
@@ -40,23 +40,27 @@ RSpec.describe PostsController, type: :controller do
         expect(assigns(:posts).ids).to include(*category_posts.map(&:id))
       end
 
-      it 'displays posts in their sort order' do
-        selected_category.update(homepage_display: 1)
-        category_posts.map(&:reload)
+      describe 'foo' do
+        12.times do
+        it 'displays posts in their sort order' do
+          selected_category.update(homepage_display: 1)
+          category_posts.shuffle!
+          category_posts.each_with_index do | cp, i |
+            cp.reload
+            cp.update(position: i+1)
+          end
 
-        category_posts.shuffle!
-        category_posts.each_with_index do | cp, i |
-          cp.update(position: i+1)
+          get :index, { blog_category_id: selected_category.friendly_id }
+          posts = assigns(:posts)
+
+          posts.each_with_index do | cp, i |
+            cp.position.should eql(i+1)
+          end
         end
-
-        get :index, { blog_category_id: selected_category.friendly_id }
-
-        posts = assigns(:posts)
-
-        posts.each_with_index do | cp, i |
-          cp.position.should eql(i+1)
         end
       end
+
+
 
       it 'includes the category name in the page title' do
         get :index, { blog_category_id: selected_category.id }
