@@ -151,4 +151,50 @@ RSpec.describe Admin::PostsController, type: :controller do
       expect(response).to redirect_to(admin_posts_path)
     end
   end
+
+  describe 'Reordering' do
+    let!(:category_one) { Fabricate(:blog_category, homepage_display: 1) }
+    let!(:category_two) { Fabricate(:blog_category, homepage_display: 1) }
+
+    let(:category_one_posts) { Fabricate.times(5, :post, blog_categories: [category_one], featured_image: nil) }
+    let(:category_two_posts) { Fabricate.times(5, :post, blog_categories: [category_two], featured_image: nil) }
+
+    20.times do |i|
+      it "reorders posts in one category without affecting another - iteration #{i+1}" do
+        category_one_posts.each_with_index do | cp, i |
+          cp.update(position: i+1)
+        end
+
+        category_two_posts.each_with_index do | cp, i |
+          cp.update(position: i+1)
+        end
+
+        target =  category_two_posts.sample
+        target_two = category_two_posts.sample
+
+        while target_two.id == target.id
+          target_two = category_two_posts.sample
+        end
+
+        expect {
+          post :reorder, { id: target.id, position: target_two.position }
+        }.to change{ target.reload.position }.from(target.position).to(target_two.position)
+
+
+        category_one.posts.order(:position).size.should eql(category_one_posts.size)
+        category_two.posts.order(:position).size.should eql(category_two_posts.size)
+
+        category_one.posts.order(:position).each_with_index do | cp, i |
+          cp.position.should eql(i+1)
+        end
+
+        category_two.posts.order(:position).each_with_index do | cp, i |
+          cp.position.should eql(i+1)
+        end
+      end
+    end
+
+
+  end
+
 end
