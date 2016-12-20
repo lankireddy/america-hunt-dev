@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201213208) do
+ActiveRecord::Schema.define(version: 20161219224837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -231,6 +231,7 @@ ActiveRecord::Schema.define(version: 20161201213208) do
     t.integer  "featured_image_file_size"
     t.datetime "featured_image_updated_at"
     t.integer  "position"
+    t.string   "featured_position"
   end
 
   add_index "posts", ["position"], name: "index_posts_on_position", using: :btree

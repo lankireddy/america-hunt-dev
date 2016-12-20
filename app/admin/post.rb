@@ -5,7 +5,7 @@ ActiveAdmin.register Post do
 
   reorderable
 
-  permit_params :title, :subtitle, :body, :position, :external_link, :featured_image, blog_category_ids: []
+  permit_params :title, :subtitle, :body, :position, :external_link, :featured_image, :featured_position, blog_category_ids: []
 
   #scope("Inactive") { |scope| scope.where(active: false) }
 
@@ -38,6 +38,9 @@ ActiveAdmin.register Post do
     attributes_table do
       row :title
       row :subtitle
+      row :featured_position do
+        post.featured_position.humanize
+      end
       row :position
       row :body
       row :external_link
@@ -50,6 +53,7 @@ ActiveAdmin.register Post do
     inputs 'Details' do
       input :title
       input :subtitle
+      input :featured_position
       input :position
       input :body, as: :ckeditor
       input :external_link, as: :url

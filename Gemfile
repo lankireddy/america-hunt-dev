@@ -98,3 +98,5 @@ gem 'pry'
 gem 'rails_12factor', group: :production
 gem 'roo'
 gem 'rubocop'
+gem 'enumerize'
+gem 'activeadmin_addons'
