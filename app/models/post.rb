@@ -24,6 +24,8 @@ class Post < ActiveRecord::Base
 
   paginates_per 10
 
+  before_save :ensure_featured_limits, if: :featured_position_changed?
+
   def slug_candidates
     [:title_short, :title]
   end
@@ -38,6 +40,17 @@ class Post < ActiveRecord::Base
 
   def priority_blog_category
     blog_categories.menu.order(:name).first
+  end
+
+  def ensure_featured_limits
+    return true if featured_position == 'not_featured'
+
+    posts = Post.where(featured_position: featured_position)
+    if posts.any?
+      posts.update_all(featured_position: :not_featured)
+    end
+
+    true
   end
 
 end

@@ -22,6 +22,9 @@ ActiveAdmin.register Post do
     column :created_at
     column :updated_at
     column :title
+    column :featured_position do |post|
+      post.featured_position.humanize
+    end
     column :position
     actions
   end

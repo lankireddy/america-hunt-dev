@@ -60,4 +60,30 @@ describe Post do
       expect(Post.all.first.position).to eq 1
     end
   end
+
+  describe 'featured positioning' do
+    let!(:post_one) { Fabricate(:post, featured_position: :not_featured, featured_image: nil) }
+    let!(:post_two) { Fabricate(:post, featured_position: :not_featured, featured_image: nil) }
+
+    it 'allows multiple posts to be in the un-featured position' do
+      post_three = Fabricate(:post, featured_position: :not_featured, featured_image: nil)
+
+      post_one.featured_position.should eql('not_featured')
+      post_two.featured_position.should eql('not_featured')
+      post_three.featured_position.should eql('not_featured')
+    end
+
+    (Post.featured_position.values - ['not_featured']).each do |pos|
+      it "only allows one post to be in the '#{pos}' position" do
+        post_one.update(featured_position: pos)
+        post_one.reload.featured_position.should eql(pos)
+        post_two.reload.featured_position.should_not eql(pos)
+        post_two.update(featured_position: pos)
+        post_one.reload.featured_position.should_not eql(pos)
+        post_two.reload.featured_position.should eql(pos)
+      end
+    end
+
+  end
+
 end
