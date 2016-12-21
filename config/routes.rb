@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :contact_messages, only: [:new, :create]
   get 'home_page/index'
+  get 'browse', to: 'browse#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -16,14 +17,13 @@ Rails.application.routes.draw do
 
   get '/sitemap.xml.gz', to: redirect("http://america-hunt-dev.s3.amazonaws.com/sitemaps/sitemap.xml.gz"), as: :sitemap
 
-
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   mount Avocado::Engine => '/avocado'
 
   devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout' }
 
-  root to: 'home_page#index'
-
   get ':id' => 'pages#show', as: :page
+
+  root to: 'home_page#index'
 end

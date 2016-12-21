@@ -28,7 +28,7 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KMHHND"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<% if @top_ad.present? %>
+<% if @top_ad.present? && params[:controller] != 'home_page' %>
   <%= link_to @top_ad.url, target: '_blank', class:'ad ad-header' do %>
     <%= image_tag @top_ad.image.url(:original), class: 'img-responsive'  %>
   <% end %>
