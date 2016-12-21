@@ -41,10 +41,31 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-
+        <ul>
+          <li>I AM THE BIG ONE</li>
+          <% @posts.each do |post| %>
+          <li>
+            <h4><%= post.title %></h4>
+            <p><%= post.subtitle %></p>
+          </li>
+          <% end %>
+        </ul>
       </div>
       <div class="col-md-6">
-
+        <ul>
+          <% if @secondary_featured_one.present? %>
+          <li><%= @secondary_featured_one.title %></li>
+          <% end %>
+          <% if @secondary_featured_two.present? %>
+            <li><%= @secondary_featured_two.title %></li>
+          <% end %>
+          <% if @secondary_featured_three.present? %>
+            <li><%= @secondary_featured_three.title %></li>
+          <% end %>
+          <li>I'M THE BOX</li>
+          <li>State WildLife Agency</li>
+          <li>National Hunting Orgs</li>
+        </ul>
       </div>
     </div>
   </div>

@@ -25,6 +25,7 @@ RSpec.describe 'posts/show', type: :view do
 
   context 'with featured image' do
     it 'renders featured image as header background' do
+      @post.update(featured_image: File.new("#{Rails.root}/spec/support/files/4.jpg"))
       render
       expect(view.content_for(:pre_main)).to have_selector("header[style='background-image: url(#{@post.featured_image.url(:hero)})']")
     end

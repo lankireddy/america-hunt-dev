@@ -14,7 +14,8 @@ class Post < ActiveRecord::Base
 
   enumerize :featured_position,
             in: [:not_featured, :primary_featured, :secondary_featured_one, :secondary_featured_two, :secondary_featured_three],
-            default: :not_featured
+            default: :not_featured,
+            scope: true
 
   has_attached_file :featured_image, styles: { hero: '1366x624>', medium: '300x300>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
   validates_attachment_content_type :featured_image, content_type: /\Aimage\/.*\z/

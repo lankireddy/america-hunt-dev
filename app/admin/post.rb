@@ -11,8 +11,14 @@ ActiveAdmin.register Post do
 
   scope :all, default: true
 
-  BlogCategory.priority_categories.each do |bcat|
-    scope(bcat.name) { |scope| scope.joins(:blog_category_posts).where(blog_category_posts: { blog_category_id: bcat.id }) }
+  #This prevents a crash when recreating the DB...
+  begin
+    BlogCategory.priority_categories.each do |bcat|
+      scope(bcat.name) { |scope| scope.joins(:blog_category_posts).where(blog_category_posts: { blog_category_id: bcat.id }) }
+    end
+  rescue
+    Rails.logger.info('[Exception] Caught exception in Admin Post filter config.')
+    Rails.logger.info($!.message)
   end
   
   index as: :reorderable_table do

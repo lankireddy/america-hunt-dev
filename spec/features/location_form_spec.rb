@@ -165,11 +165,13 @@ describe 'Location Form', type: :feature do
       end
 
       it 'saves weapon_type ids on new location', js: true do
+        Rails.logger.info("1")
         new_location_name = 'Category Test'
         first_weapon_type = weapon_types[0]
         visit new_location_path
         fill_in('location[name]', with: new_location_name)
         fill_address_fields
+        Rails.logger.info("2")
         expect(page).to have_selector('.multiselect-native-select .btn-group')
         click_button(button_text)
         check first_weapon_type.name

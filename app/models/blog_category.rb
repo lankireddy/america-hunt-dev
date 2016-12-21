@@ -16,4 +16,8 @@ class BlogCategory < ActiveRecord::Base
   def to_s
     name
   end
+
+  def self.primary_category
+    BlogCategory.where(name: 'Hunting and Shooting News').first || BlogCategory.menu.first
+  end
 end
