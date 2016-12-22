@@ -8,12 +8,14 @@ footer.footer-main {
 
   a {
     color: #ffffff;
+    font-size: 17px;
+
     &:hover {
       color: #990a13;
     }
   }
   .list-inline > li {
-    padding: 0 10px;
+    padding: 0 6px;
   }
   #footer-nav-tier-1 {
     font-weight: 500;
