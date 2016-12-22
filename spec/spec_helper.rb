@@ -48,5 +48,11 @@ RSpec.configure do |config|
   config.after(:suite) do
     FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
   end
+
+  config.before(:each) do
+    Fabricate(:blog_category, name: 'Hunting and Shooting News')
+    Fabricate(:blog_category, name: 'State Wildlife Agency News')
+    Fabricate(:blog_category, name: 'Hunting Organizations')
+  end
 end
 
