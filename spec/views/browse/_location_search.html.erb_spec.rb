@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe 'home/_location_search', type: :view do
+RSpec.describe 'home_page/_location_search', type: :view do
   before(:each) do
     @posts = []
   end
