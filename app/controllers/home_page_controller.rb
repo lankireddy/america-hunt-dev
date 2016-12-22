@@ -12,6 +12,8 @@ class HomePageController < ApplicationController
 
   def collate_posts_for_home
     @primary_category = BlogCategory.primary_category
+    @wildlife_category = BlogCategory.wildlife_category
+    @hunting_org_category = BlogCategory.hunting_org_category
 
     if @primary_category
       featured_ids = []

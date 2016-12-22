@@ -1,6 +1,6 @@
 <% content_for :content do %>
   <%= render 'shared/flash', flash: flash if flash %>
-  <header class="header-homepage">
+  <header class="header-new-homepage">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
@@ -19,57 +19,144 @@
     </div>
   </header>
   <div class="container home-content">
-      <div class="row">
-        <div class="col-md-12">
-          <nav id="home-nav">
-            <ul>
-              <li><a>About Us</a></li>
-              <li><a>Send Us News</a></li>
-              <li><a>Add a Hunting Destination, Guide, or Outfitter</a></li>
-            </ul>
-          </nav>
-        </div>
+    <div class="row">
+      <div class="col-md-12">
+        <nav id="home-nav">
+          <ul>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact_messages/new">Send Us News</a></li>
+            <li><a href="/locations/new">Add a Hunting Destination, Guide, or Outfitter</a></li>
+            <li><a href="/browse" class="red">Hunting Directory</a></li>
+          </ul>
+        </nav>
       </div>
-  </div>
-  <div class="container">
+    </div>
     <div class="row">
       <div class="col-md-12">
         <h4 id="date-today"><%= Date.today.strftime("%A, %B %-d, %Y") %></h4>
       </div>
     </div>
-  </div>
-  <div class="container">
     <div class="row">
       <div class="col-md-6">
         <ul>
-          <li>I AM THE BIG ONE</li>
-          <% @posts.each do |post| %>
-          <li>
-            <h4><%= post.title %></h4>
-            <p><%= post.subtitle %></p>
-          </li>
+          <% if @primary_featured %>
+            <li class="primary-featured">
+              <%= link_to post_path(@primary_featured) do %>
+                <div class="image-container">
+                  <%= image_tag @primary_featured.featured_image.url(:original), class: 'img-responsive'  %>
+                </div>
+                <h1><%= @primary_featured.title %></h1>
+                <p><%= @primary_featured.subtitle %></p>
+              <% end %>
+            </li>
           <% end %>
+          <% @posts.each do |post| %>
+            <li class="news-post">
+              <%= link_to post_path(post) do %>
+                <h3><%= post.title %></h3>
+                <p><%= post.subtitle %></p>
+              <% end %>
+            </li>
+          <% end %>
+          <li class="more-news">
+            <%= link_to 'More News', blog_category_path(@primary_category) %>
+          </li>
         </ul>
       </div>
       <div class="col-md-6">
         <ul>
           <% if @secondary_featured_one.present? %>
-          <li><%= @secondary_featured_one.title %></li>
+            <li class="secondary-featured">
+              <%= link_to post_path(@secondary_featured_one) do %>
+                <div class="row">
+                  <div class="col-md-5">
+                    <%= image_tag @secondary_featured_one.featured_image.url(:original), class: 'img-responsive'  %>
+                  </div>
+                  <div class="col-md-7">
+                    <h2><%= @secondary_featured_one.title %></h2>
+                    <p><%= @secondary_featured_one.subtitle%></p>
+                  </div>
+                </div>
+              <% end %>
+            </li>
           <% end %>
           <% if @secondary_featured_two.present? %>
-            <li><%= @secondary_featured_two.title %></li>
+            <li class="secondary-featured">
+              <%= link_to post_path(@secondary_featured_two) do %>
+                <div class="row">
+                  <div class="col-md-5">
+                    <%= image_tag @secondary_featured_two.featured_image.url(:original), class: 'img-responsive'  %>
+                  </div>
+                  <div class="col-md-7">
+                    <h2><%= @secondary_featured_two.title %></h2>
+                    <p><%= @secondary_featured_two.subtitle%></p>
+                  </div>
+                </div>
+              <% end %>
           <% end %>
           <% if @secondary_featured_three.present? %>
-            <li><%= @secondary_featured_three.title %></li>
+            <li class="secondary-featured">
+              <%= link_to post_path(@secondary_featured_three) do %>
+                <div class="row">
+                  <div class="col-md-5">
+                    <%= image_tag @secondary_featured_three.featured_image.url(:original), class: 'img-responsive'  %>
+                  </div>
+                  <div class="col-md-7">
+                    <h2><%= @secondary_featured_three.title %></h2>
+                    <p><%= @secondary_featured_three.subtitle%></p>
+                  </div>
+                </div>
+              <% end %>
+            </li>
           <% end %>
-          <li>I'M THE BOX</li>
-          <li>State WildLife Agency</li>
-          <li>National Hunting Orgs</li>
+          <li class="misc-box">
+            <div>
+              <h2>Hunting Destinations Guides and Outfitters</h2>
+              <div class="row">
+                <div class="col-md-7">
+                  <%= link_to 'Search Our Database', browse_path %>
+                  <p>Check out our list of all hunting destinations, as well as all guides and outfitters in the U.S.</p>
+                </div>
+                <div class="col-md-5">
+                  <%= image_tag 'home-box-image.jpg', class: 'img-responsive'  %>
+                </div>
+              </div>
+            </div>
+          </li>
+          <% if @wildlife_category.present? %>
+            <li class="secondary-featured wildlife">
+              <%= link_to blog_category_path(@wildlife_category) do %>
+                <div class="row">
+                  <div class="col-md-5">
+                    <%= image_tag 'wildlife-news-pic.jpg', class: 'img-responsive'  %>
+                  </div>
+                  <div class="col-md-7">
+                    <h2>State Wildlife Agency News</h2>
+                    <p>Take a walk in the boots of a Texas Ranger or be a part of the “Thin Green Line” in Minnesota</p>
+                  </div>
+                </div>
+              <% end %>
+            </li>
+          <% end %>
+          <% if @hunting_org_category.present? %>
+            <li class="secondary-featured hunting">
+              <%= link_to blog_category_path(@hunting_org_category) do %>
+                <div class="row">
+                  <div class="col-md-5">
+                    <%= image_tag 'hunting-pic.jpg', class: 'img-responsive'  %>
+                  </div>
+                  <div class="col-md-7">
+                    <h2>National Hunting Organizations</h2>
+                    <p>We've got a database of all organizations in America related to hunting, sport shooting, and archery</p>
+                  </div>
+                </div>
+              <% end %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>
   </div>
-
 
   <aside id="join-community">
     <header>

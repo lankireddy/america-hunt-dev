@@ -27,8 +27,25 @@
   text-align: center;
 
   ul {
+    list-style-type: none;
+
     li {
       display: inline-block;
+      padding: 4px 2%;
+
+       a {
+         font-size: 16px;
+         font-weight: bold;
+         line-height: 1.6;
+         letter-spacing: 1.1px;
+         text-align: left;
+         color: #303030;
+         text-transform: uppercase;
+       }
+
+      a.red {
+        color: #990a13;
+      }
     }
   }
 }
@@ -36,4 +53,163 @@
 #date-today {
   font-weight: bold;
   padding: 10px 0;
+}
+
+.home-content {
+  padding-bottom: 30px;
+
+  ul {
+    list-style-type: none;
+
+    li {
+
+    }
+  }
+
+  .primary-featured {
+    margin-bottom: 20px;
+
+    a {
+      text-decoration: none;
+
+      img {
+        max-width: 500px;
+        max-height: 300px;
+        width: auto;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-weight: bold;
+        line-height: 1;
+        font-size: 30px;
+      }
+
+      p {
+        font-size: 22px;
+        font-weight: lighter;
+        line-height: 1.5;
+      }
+    }
+
+    a:hover h1, h1:hover {
+      text-decoration: underline;
+    }
+
+  }
+
+  .secondary-featured {
+    margin-bottom: 30px;
+
+    a {
+      img {
+        max-width: 200px;
+        max-height: 150px;
+        width: auto;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+      }
+
+      h2 {
+        font-size: 20px;
+        font-weight: 900;
+        line-height: 1.5;
+        color: #303030;
+        margin: 8px 0 0 0;
+        padding: 0;
+      }
+
+      p {
+        font-family: 'Avenir-Book', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 18px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        text-align: left;
+        color: #303030;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  .news-post {
+    a {
+
+      h3 {
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 1;
+        color: #303030;
+        text-decoration: underline;
+        margin: 0;
+        padding: 0;
+      }
+
+      p {
+        font-family: 'Avenir-Book', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        font-style: oblique;
+        line-height: 2;
+        color: #303030;
+      }
+    }
+  }
+
+  .misc-box {
+    border: 4px solid #000000;
+    padding: 20px;
+    margin-bottom: 30px;
+
+    h2 {
+      font-size: 34px;
+      font-weight: bold;
+      line-height: 1.58;
+      letter-spacing: 1px;
+      text-align: left;
+      color: #303030;
+      margin: 0;
+      padding: 0;
+      text-transform: uppercase;
+    }
+
+    a {
+      font-size: 17px;
+      font-weight: bold;
+      line-height: 2;
+      letter-spacing: 0.5px;
+      text-align: center;
+      color: #990a13;
+      text-decoration: underline;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      font-style: oblique;
+      line-height: 1.8;
+      letter-spacing: 0.5px;
+      color: #303030;
+    }
+
+    img {
+
+    }
+  }
+
+}
+
+.more-news {
+  a {
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 1.8;
+    color: #990a13;
+    text-decoration: underline;
+  }
 }

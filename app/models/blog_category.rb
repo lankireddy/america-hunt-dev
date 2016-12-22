@@ -17,7 +17,17 @@ class BlogCategory < ActiveRecord::Base
     name
   end
 
+  # This is so fragile...
   def self.primary_category
     BlogCategory.where(name: 'Hunting and Shooting News').first || BlogCategory.menu.first
   end
+
+  def self.wildlife_category
+    BlogCategory.where(name: 'State Wildlife Agency News').first
+  end
+
+  def self.hunting_org_category
+    BlogCategory.where(name: 'Hunting Organizations').first
+  end
+
 end
