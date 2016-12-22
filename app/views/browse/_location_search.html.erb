@@ -1,0 +1,8 @@
+<%= form_tag '#', method: 'get', class: 'location-search location-search-hp' do |f| %>
+    <div class="form-group form-group-lg">
+      <label for="location">Where would you like to hunt?</label>
+      <%= select_tag 'state_alpha2', options_for_select(Location.states), prompt: 'State?', class:'form-control', required: true %>
+    </div>
+    <div class="clearfix"></div>
+    <%= submit_tag 'Go Hunt!', class: 'btn btn-info btn-search center-block' %>
+<% end %>
