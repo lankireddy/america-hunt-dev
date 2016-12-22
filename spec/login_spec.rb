@@ -5,7 +5,7 @@ feature 'GET /users/login' do
 
   context 'homepage login' do
     before do
-      visit '/'
+      visit '/browse'
     end
 
     context 'correct admin username and password' do
@@ -17,7 +17,7 @@ feature 'GET /users/login' do
       scenario 'allows the user to login' do
         login @user
         expect(page).to have_link('Logout')
-        expect(current_path).to eq root_path
+        expect(current_path).to eq '/browse'
       end
 
       scenario 'shows a successful message after logging in' do

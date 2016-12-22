@@ -1,0 +1,82 @@
+<% content_for :content do %>
+  <%= render 'shared/flash', flash: flash if flash %>
+  <header class="header-homepage">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="logo-header"><%= image_tag('home-logo-large.png') %></h1>
+        </div>
+        <div class="col-md-6">
+          <div class="home-ad-container ad">
+            <% if @top_ad.present? %>
+              <%= link_to @top_ad.url, target: '_blank', class:'ad ad-header' do %>
+                <%= image_tag @top_ad.image.url(:original), class: 'img-responsive'  %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container home-content">
+      <div class="row">
+        <div class="col-md-12">
+          <nav id="home-nav">
+            <ul>
+              <li><a>About Us</a></li>
+              <li><a>Send Us News</a></li>
+              <li><a>Add a Hunting Destination, Guide, or Outfitter</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h4 id="date-today"><%= Date.today.strftime("%A, %B %-d, %Y") %></h4>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <ul>
+          <li>I AM THE BIG ONE</li>
+          <% @posts.each do |post| %>
+          <li>
+            <h4><%= post.title %></h4>
+            <p><%= post.subtitle %></p>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <ul>
+          <% if @secondary_featured_one.present? %>
+          <li><%= @secondary_featured_one.title %></li>
+          <% end %>
+          <% if @secondary_featured_two.present? %>
+            <li><%= @secondary_featured_two.title %></li>
+          <% end %>
+          <% if @secondary_featured_three.present? %>
+            <li><%= @secondary_featured_three.title %></li>
+          <% end %>
+          <li>I'M THE BOX</li>
+          <li>State WildLife Agency</li>
+          <li>National Hunting Orgs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <aside id="join-community">
+    <header>
+      <h1 class="h1-bold">Join the America Hunt Community</h1>
+      <h2>Sign up to receive the Hunters Digest</h2>
+    </header>
+    <p></p>
+    <%= link_to 'Sign Up', new_user_registration_path, class:'btn btn-info btn-lg' %>
+  </aside>
+<% end %>

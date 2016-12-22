@@ -1,0 +1,39 @@
+.header-new-homepage {
+  .logo-header {
+    img {
+      max-width: 100%;
+      height: auto;
+      display: inline-block;
+    }
+  }
+
+  .home-ad-container {
+    text-align: right;
+    margin-top: 12px;
+    margin-bottom: 12px;
+
+    img {
+      max-width: 90%;
+      max-height: 112px;
+      height: auto;
+      display: inline-block;
+    }
+  }
+}
+
+#home-nav {
+  border-top: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  text-align: center;
+
+  ul {
+    li {
+      display: inline-block;
+    }
+  }
+}
+
+#date-today {
+  font-weight: bold;
+  padding: 10px 0;
+}
