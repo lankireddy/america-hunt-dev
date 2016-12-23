@@ -10,9 +10,11 @@ RSpec.describe Admin::BlogCategoriesController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns all blog_categories as @blog_categories' do
-      blog_category = BlogCategory.create! valid_attributes
+      BlogCategory.all.count.should_not eql(0)
       get :index, {}
-      expect(assigns(:blog_categories)).to eq([blog_category])
+      assigned =  assigns(:blog_categories)
+
+      expect(assigned.map(&:id).sort).to eql(BlogCategory.all.map(&:id).sort)
     end
   end
 
