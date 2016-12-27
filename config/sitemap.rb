@@ -13,6 +13,8 @@ SitemapGenerator::Sitemap.adapter = SitemapGenerator::S3Adapter.new(fog_provider
 
 SitemapGenerator::Sitemap.create do
 
+  add browse_path, priority: 0.8, changefreq: 'daily'
+
   Page.find_each do |page|
     add page_path(page), lastmod: page.updated_at
   end
