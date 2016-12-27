@@ -16,4 +16,6 @@ end
     page.body = '<p>Words</p>'
   end
 end
-
+BlogCategory.new(name: 'Hunting and Shooting News').save
+BlogCategory.new(name: 'State Wildlife Agency News').save
+BlogCategory.new(name: 'Hunting Organizations').save
