@@ -25,7 +25,7 @@
           <ul>
             <li><a href="/about">About Us</a></li>
             <li><a href="/contact_messages/new">Send Us News</a></li>
-            <li><a href="/locations/new">Add a Hunting Destination, Guide, or Outfitter</a></li>
+            <li><%= link_to 'Add a Hunting Destination,Guide or Outfitter', new_location_path %></li>
             <li><a href="/browse" class="red">Hunting Directory</a></li>
           </ul>
         </nav>
@@ -60,6 +60,9 @@
           <% end %>
           <li class="more-news">
             <%= link_to 'More News', blog_category_path(@primary_category) %>
+            <div class="below-more-news">
+              <%= link_to 'See our list of hunting, sport shooting and archery organizations', blog_category_path(BlogCategory.hunting_org_category) %>
+            </div>
           </li>
         </ul>
       </div>
@@ -161,7 +164,7 @@
   <aside id="join-community">
     <header>
       <h1 class="h1-bold">Join the America Hunt Community</h1>
-      <h2>Sign up to receive the Hunters Digest</h2>
+      <h2>Leave a review and receive our Hunters Digest</h2>
     </header>
     <p></p>
     <%= link_to 'Sign Up', new_user_registration_path, class:'btn btn-info btn-lg' %>
