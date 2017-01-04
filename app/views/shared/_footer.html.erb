@@ -7,7 +7,7 @@
           <li><%= link_to 'Add a Hunting Destination,Guide or Outfitter', new_location_path %></li>
           <li><%= link_to 'Hunters Digest', '/huntersdigest' %></li>
           <li><%= link_to 'State Wildlife Agency News', blog_category_path(BlogCategory.wildlife_category) if BlogCategory.wildlife_category %></li>
-          <li><%= link_to 'Field Notes From Game Wardens', blog_category_path(BlogCategory.hunting_org_category) %></li>
+          <li><%= link_to 'Field Notes To Game Wardens', blog_category_path(BlogCategory.field_notes_to_game_wardens_category) if BlogCategory.field_notes_to_game_wardens_category %></li>
         </ul>
         <ul id="footer-nav-tier-2" class="footer-nav list-inline">
           <li><%= link_to 'Answers About America Hunt', page_path('faq') %></li>

@@ -30,4 +30,8 @@ class BlogCategory < ActiveRecord::Base
     BlogCategory.where(name: 'Hunting Organizations').first
   end
 
+  def self.field_notes_to_game_wardens_category
+    BlogCategory.where(name: 'Field Notes to Game Wardens').first
+  end
+
 end
