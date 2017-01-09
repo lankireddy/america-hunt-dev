@@ -141,16 +141,18 @@
               <% end %>
             </li>
           <% end %>
-          <% if @hunters_digest_category.present? %>
+          <% if @wildlife_category.present? %>
               <li class="secondary-featured wildlife">
-                <%= link_to blog_category_path(@hunters_digest_category) do %>
+                <%= link_to blog_category_path(@wildlife_category) do %>
                     <div class="row">
                       <div class="col-md-5">
                         <%= image_tag 'wildlife-news-pic.jpg', class: 'img-responsive'  %>
                       </div>
                       <div class="col-md-7">
-                        <h2>Hunters Digest</h2>
-                        <p>If it’s related to hunting, sport shooting or archery, or even related subjects such as conservation, you’ll find it in the Hunters Digest.</p>
+                        <h2><%= @wildlife_category.name %></h2>
+                        <p>Get the local scoop &mdash; the latest field-level
+                          'intel' from each of the states'
+                          wildlife and conservation organizations</p>
                       </div>
                     </div>
                 <% end %>
