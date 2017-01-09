@@ -142,21 +142,21 @@
             </li>
           <% end %>
           <% if @wildlife_category.present? %>
-              <li class="secondary-featured wildlife">
-                <%= link_to blog_category_path(@wildlife_category) do %>
-                    <div class="row">
-                      <div class="col-md-5">
-                        <%= image_tag 'wildlife-news-pic.jpg', class: 'img-responsive'  %>
-                      </div>
-                      <div class="col-md-7">
-                        <h2><%= @wildlife_category.name %></h2>
-                        <p>Get the local scoop &mdash; the latest field-level
-                          'intel' from each of the states'
-                          wildlife and conservation organizations</p>
-                      </div>
-                    </div>
-                <% end %>
-              </li>
+            <li class="secondary-featured wildlife">
+              <%= link_to blog_category_path(@wildlife_category) do %>
+                <div class="row">
+                  <div class="col-md-5">
+                    <%= image_tag 'wildlife-news-pic.jpg', class: 'img-responsive'  %>
+                  </div>
+                  <div class="col-md-7">
+                    <h2><%= @wildlife_category.name %></h2>
+                    <p>Get the local scoop &mdash; the latest field-level
+                      'intel' from each of the states'
+                      wildlife and conservation organizations</p>
+                  </div>
+                </div>
+              <% end %>
+            </li>
           <% end %>
         </ul>
       </div>
