@@ -14,6 +14,8 @@ class HomePageController < ApplicationController
     @primary_category = BlogCategory.primary_category
     @wildlife_category = BlogCategory.wildlife_category
     @hunting_org_category = BlogCategory.hunting_org_category
+    @field_notes_from_game_wardens_category = BlogCategory.field_notes_from_game_wardens_category
+    @hunters_digest_category = BlogCategory.hunters_digest_category
 
     if @primary_category
       featured_ids = []

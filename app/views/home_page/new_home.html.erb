@@ -126,35 +126,35 @@
               </div>
             </div>
           </li>
-          <% if @wildlife_category.present? %>
-            <li class="secondary-featured wildlife">
-              <%= link_to blog_category_path(@wildlife_category) do %>
-                <div class="row">
-                  <div class="col-md-5">
-                    <%= image_tag 'wildlife-news-pic.jpg', class: 'img-responsive'  %>
-                  </div>
-                  <div class="col-md-7">
-                    <h2>State Wildlife Agency News</h2>
-                    <p>Take a walk in the boots of a Texas Ranger or be a part of the “Thin Green Line” in Minnesota</p>
-                  </div>
-                </div>
-              <% end %>
-            </li>
-          <% end %>
-          <% if @hunting_org_category.present? %>
+          <% if @field_notes_from_game_wardens_category.present? %>
             <li class="secondary-featured hunting">
-              <%= link_to blog_category_path(@hunting_org_category) do %>
+              <%= link_to blog_category_path(@field_notes_from_game_wardens_category) do %>
                 <div class="row">
                   <div class="col-md-5">
                     <%= image_tag 'hunting-pic.jpg', class: 'img-responsive'  %>
                   </div>
                   <div class="col-md-7">
-                    <h2>National Hunting Organizations</h2>
-                    <p>We've got a database of all organizations in America related to hunting, sport shooting, and archery</p>
+                    <h2><%= @field_notes_from_game_wardens_category.name %></h2>
+                    <p>Field notes from state game wardens and wildlife officers from all 50 states and Canada about the encounters of these men and women in green enforcing our game laws.</p>
                   </div>
                 </div>
               <% end %>
             </li>
+          <% end %>
+          <% if @hunters_digest_category.present? %>
+              <li class="secondary-featured wildlife">
+                <%= link_to blog_category_path(@hunters_digest_category) do %>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <%= image_tag 'wildlife-news-pic.jpg', class: 'img-responsive'  %>
+                      </div>
+                      <div class="col-md-7">
+                        <h2>Hunters Digest</h2>
+                        <p>If it’s related to hunting, sport shooting or archery, or even related subjects such as conservation, you’ll find it in the Hunters Digest.</p>
+                      </div>
+                    </div>
+                <% end %>
+              </li>
           <% end %>
         </ul>
       </div>

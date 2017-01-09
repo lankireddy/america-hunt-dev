@@ -31,7 +31,11 @@ class BlogCategory < ActiveRecord::Base
   end
 
   def self.field_notes_from_game_wardens_category
-    BlogCategory.where(name: 'Field Notes from Game Wardens').first
+    BlogCategory.where(name: 'The Thin Green Line').first
+  end
+
+  def self.hunters_digest_category
+    BlogCategory.where(name: 'Hunters Digest').first
   end
 
 end
