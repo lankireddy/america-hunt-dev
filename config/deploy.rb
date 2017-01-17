@@ -1,8 +1,8 @@
 require File.expand_path('../environment',  __FILE__)
 
-set :application, 'travelier-scraper-2'
+set :application, 'america-hunt'
 set :deploy_user, 'apps'
-set :repo_url, 'git@bitbucket.org:metova/travelier-web-scraper-2.git'
+set :repo_url, 'git@lab.metova.com:metova/america-hunt-web.git'
 set :deploy_to, "/apps/#{fetch(:application)}"
 set :ssh_options, { forward_agent: true }
 set :keep_releases, 3
