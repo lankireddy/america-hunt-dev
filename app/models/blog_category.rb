@@ -13,24 +13,33 @@ class BlogCategory < ActiveRecord::Base
 
   scope :priority_categories, -> { menu.order(:name) }
 
+  HUNTING_AND_SHOOTING_NEWS_TITLE = 'Hunting and Shooting News'
+  WILDLIFE_NEWS_TITLE = 'State Wildlife Agency News'
+  HUNTING_ORG_TILE = 'Hunting Organizations'
+  FIELD_NOTES_FROM_GAME_WARDENS_TITLE = 'The Thin Green Line'
+
   def to_s
     name
   end
 
+  def self.static_category(name)
+    BlogCategory.find_by(name: name)
+  end
+
   # This is so fragile...
   def self.primary_category
-    BlogCategory.where(name: 'Hunting and Shooting News').first || BlogCategory.menu.first
+    static_category(HUNTING_AND_SHOOTING_NEWS_TITLE) || BlogCategory.menu.first
   end
 
   def self.wildlife_category
-    BlogCategory.where(name: 'State Wildlife Agency News').first
+    static_category(WILDLIFE_NEWS_TITLE)
   end
 
   def self.hunting_org_category
-    BlogCategory.where(name: 'Hunting Organizations').first
+    static_category(HUNTING_ORG_TILE)
   end
 
   def self.field_notes_from_game_wardens_category
-    BlogCategory.where(name: 'The Thin Green Line').first
+    static_category(FIELD_NOTES_FROM_GAME_WARDENS_TITLE)
   end
 end

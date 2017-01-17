@@ -26,4 +26,12 @@ describe HomePageController do
       expect(assigns(:videos)).to match_array(videos)
     end
   end
+
+  describe 'Get #new_home' do
+    it 'assigns the then green line category' do
+      thin_green_line = Fabricate.create :blog_category, name: 'The Thin Green Line'
+      get :new_home
+      expect(assigns(:field_notes_from_game_wardens_category).id).to eq thin_green_line.id
+    end
+  end
 end

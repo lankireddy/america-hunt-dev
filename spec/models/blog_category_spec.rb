@@ -27,4 +27,10 @@ describe BlogCategory do
       expect(menu_categories.ids).to_not include(*not_visible_categories.map(&:id))
     end
   end
+
+  describe 'self.field_notes_from_game_wardens_category' do
+    other_category = Fabricate.create :blog_category
+    thin_green_category = Fabricate.create :blog_category, name: BlogCategory.FIELD_NOTES_FROM_GAME_WARDENS_TITLE
+    expect(BlogCategory.field_notes_from_game_wardens_category.id).to eq thin_green_category.id
+  end
 end
