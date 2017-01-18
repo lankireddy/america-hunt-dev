@@ -2,8 +2,8 @@ describe 'HomePage' do
 
   context 'secondary featured blog category tiles' do
     let!(:tile_categories) { [
-        Fabricate.create( :blog_category, name: BlogCategory.WILDLIFE_NEWS_TITLE ),
-        Fabricate.create( :blog_category, name: BlogCategory.FIELD_NOTES_FROM_GAME_WARDENS_TITLE )
+        BlogCategory.find_by(name: BlogCategory::WILDLIFE_NEWS_TITLE ),
+        BlogCategory.find_by(name: BlogCategory::FIELD_NOTES_FROM_GAME_WARDENS_TITLE )
     ]
     }
 
@@ -13,7 +13,7 @@ describe 'HomePage' do
 
     it 'displays a link for each category' do
       tile_categories.each do |category|
-        expect(page).to have_selector(nil, href: blog_category_path(category))
+        expect(page).to have_link(nil, href: blog_category_path(category))
       end
     end
 

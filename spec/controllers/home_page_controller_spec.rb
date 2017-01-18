@@ -35,11 +35,8 @@ describe HomePageController do
         hunting_org_category: BlogCategory.find_by(name: BlogCategory::HUNTING_ORG_TILE),
         primary_category: BlogCategory.find_by(name: BlogCategory::HUNTING_AND_SHOOTING_NEWS_TITLE)
       }
-      binding.pry
       get :new_home
       home_page_categories.each do |variable, category|
-        puts variable
-        puts category
         expect(assigns(variable).name).to eq category.name
         expect(assigns(variable).id).to eq category.id
       end

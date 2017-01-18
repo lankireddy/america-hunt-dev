@@ -28,9 +28,17 @@ describe BlogCategory do
     end
   end
 
+  describe 'self.static category' do
+    it 'finds the category by name' do
+      name = BlogCategory::FIELD_NOTES_FROM_GAME_WARDENS_TITLE
+      expect(BlogCategory.find_by(name: name).id).to eq(BlogCategory.static_category(name).id)
+    end
+  end
+
   describe 'self.field_notes_from_game_wardens_category' do
-    other_category = Fabricate.create :blog_category
-    thin_green_category = Fabricate.create :blog_category, name: BlogCategory.FIELD_NOTES_FROM_GAME_WARDENS_TITLE
-    expect(BlogCategory.field_notes_from_game_wardens_category.id).to eq thin_green_category.id
+    it 'finds the correct category' do
+      thin_green_category = BlogCategory.find_by(name: BlogCategory::FIELD_NOTES_FROM_GAME_WARDENS_TITLE)
+      expect(BlogCategory.field_notes_from_game_wardens_category.id).to eq thin_green_category.id
+    end
   end
 end
