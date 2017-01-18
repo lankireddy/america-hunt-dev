@@ -16,7 +16,7 @@ end
     page.body = '<p>Words</p>'
   end
 end
-BlogCategory.new(name: 'Hunting and Shooting News').save
-BlogCategory.new(name: 'State Wildlife Agency News').save
-BlogCategory.new(name: 'Hunting Organizations').save
-BlogCategory.new(name: 'Field Notes from Game Wardens').save
+BlogCategory.new(name: BlogCategory::HUNTING_AND_SHOOTING_NEWS_TITLE).save
+BlogCategory.new(name: BlogCategory::WILDLIFE_NEWS_TITLE).save
+BlogCategory.new(name: BlogCategory::HUNTING_ORG_TILE).save
+BlogCategory.new(name: BlogCategory::FIELD_NOTES_FROM_GAME_WARDENS_TITLE).save
