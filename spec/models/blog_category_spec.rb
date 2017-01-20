@@ -28,17 +28,16 @@ describe BlogCategory do
     end
   end
 
-  describe 'self.static category' do
-    it 'finds the category by name' do
-      name = BlogCategory::FIELD_NOTES_FROM_GAME_WARDENS_TITLE
-      expect(BlogCategory.find_by(name: name).id).to eq(BlogCategory.static_category(name).id)
-    end
-  end
-
-  describe 'self.field_notes_from_game_wardens_category' do
+  describe 'category finders' do
     it 'finds the correct category' do
-      thin_green_category = BlogCategory.find_by(name: BlogCategory::FIELD_NOTES_FROM_GAME_WARDENS_TITLE)
+      thin_green_category = BlogCategory.find_by(name: I18n.t('categories.field_notes_from_game_wardens.name'))
       expect(BlogCategory.field_notes_from_game_wardens_category.id).to eq thin_green_category.id
+    end
+
+    it 'assigns the description and image to the category' do
+      method_result = BlogCategory.field_notes_from_game_wardens_category
+      expect(method_result.image).to eq(I18n.t('categories.field_notes_from_game_wardens.image'))
+      expect(method_result.description).to eq(I18n.t('categories.field_notes_from_game_wardens.description'))
     end
   end
 end
