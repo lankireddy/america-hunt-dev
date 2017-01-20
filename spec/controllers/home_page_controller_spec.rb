@@ -34,5 +34,10 @@ describe HomePageController do
         expect(assigns("#{name}_category").name).to eq I18n.t(:name, scope: [:categories, name])
       end
     end
+
+    it 'assigns the secondary categories' do
+      get :new_home
+      expect(assigns('secondary_featured_categories')).to match_array([BlogCategory.field_notes_from_game_wardens_category, BlogCategory.wildlife_category])
+    end
   end
 end
