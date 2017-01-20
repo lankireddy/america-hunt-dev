@@ -29,16 +29,9 @@ describe HomePageController do
 
   describe 'Get #new_home' do
     it 'assigns the home page categories' do
-      home_page_categories = {
-        field_notes_from_game_wardens_category: BlogCategory.find_by(name: BlogCategory::FIELD_NOTES_FROM_GAME_WARDENS_TITLE),
-        wildlife_category: BlogCategory.find_by(name: BlogCategory::WILDLIFE_NEWS_TITLE),
-        hunting_org_category: BlogCategory.find_by(name: BlogCategory::HUNTING_ORG_TILE),
-        primary_category: BlogCategory.find_by(name: BlogCategory::HUNTING_AND_SHOOTING_NEWS_TITLE)
-      }
       get :new_home
-      home_page_categories.each do |variable, category|
-        expect(assigns(variable).name).to eq category.name
-        expect(assigns(variable).id).to eq category.id
+      BlogCategory::STATIC_CATEGORIES.each do |name|
+        expect(assigns("#{name}_category").name).to eq I18n.t(:name, scope: [:categories, name])
       end
     end
   end
