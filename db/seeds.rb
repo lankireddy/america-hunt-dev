@@ -16,7 +16,6 @@ end
     page.body = '<p>Words</p>'
   end
 end
-BlogCategory.new(name: BlogCategory::HUNTING_AND_SHOOTING_NEWS_TITLE).save
-BlogCategory.new(name: BlogCategory::WILDLIFE_NEWS_TITLE).save
-BlogCategory.new(name: BlogCategory::HUNTING_ORG_TILE).save
-BlogCategory.new(name: BlogCategory::FIELD_NOTES_FROM_GAME_WARDENS_TITLE).save
+BlogCategory::STATIC_CATEGORIES.each do |category_key|
+  BlogCategory.find_or_create_by(name: I18n.t(:name, scope: [:categories, category_key]))
+end

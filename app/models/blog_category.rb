@@ -13,33 +13,23 @@ class BlogCategory < ActiveRecord::Base
 
   scope :priority_categories, -> { menu.order(:name) }
 
-  HUNTING_AND_SHOOTING_NEWS_TITLE = 'Hunting and Shooting News'
-  WILDLIFE_NEWS_TITLE = 'State Wildlife Agency News'
-  HUNTING_ORG_TILE = 'Hunting Organizations'
-  FIELD_NOTES_FROM_GAME_WARDENS_TITLE = 'The Thin Green Line'
+  attr_accessor :description, :image
+
+  STATIC_CATEGORIES = [:primary, :wildlife, :hunting_org, :field_notes_from_game_wardens]
 
   def to_s
     name
   end
 
-  def self.static_category(name)
-    BlogCategory.find_by(name: name)
-  end
-
-  # This is so fragile...
-  def self.primary_category
-    static_category(HUNTING_AND_SHOOTING_NEWS_TITLE) || BlogCategory.menu.first
-  end
-
-  def self.wildlife_category
-    static_category(WILDLIFE_NEWS_TITLE)
-  end
-
-  def self.hunting_org_category
-    static_category(HUNTING_ORG_TILE)
-  end
-
-  def self.field_notes_from_game_wardens_category
-    static_category(FIELD_NOTES_FROM_GAME_WARDENS_TITLE)
+  class << self
+    STATIC_CATEGORIES.each do |method|
+      define_method "#{method}_category" do
+        scope = [:categories, method]
+        category = BlogCategory.find_by(name: I18n.t(:name, scope: scope))
+        category.description = I18n.t(:description, scope: scope)
+        category.image = I18n.t(:image, scope: scope)
+        category
+      end
+    end
   end
 end
