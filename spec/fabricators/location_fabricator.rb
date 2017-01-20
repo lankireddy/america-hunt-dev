@@ -13,7 +13,7 @@ Fabricator(:location) do
   long         { Faker::Address.longitude }
   description  { Faker::Lorem.paragraph }
   hunting_area_size { Faker::Lorem.sentence }
-  terrain  { Faker::Lorem.paragraph }
+  terrain      { Faker::Lorem.paragraph }
   status       'approved'
   featured_image { File.new("#{Rails.root}/spec/support/files/4.jpg") }
 end

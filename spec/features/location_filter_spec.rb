@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'Location Filter', type: :feature do
-
   describe 'species multi-select' do
     let!(:top_level_species) { Fabricate.times 5, :top_level_species }
 
@@ -40,7 +39,7 @@ describe 'Location Filter', type: :feature do
       expect(page).to have_selector('.multiselect-native-select .btn-group')
       click_button('What?')
       within(:css, '.multiselect-native-select ul.dropdown-menu') do
-        page.all('.multiselect-group b').each { |label| label.click }
+        page.all('.multiselect-group b').each(&:click)
         Species.specific.each do |species|
           expect(page).to have_selector('label', text: species.name)
         end
@@ -58,11 +57,11 @@ describe 'Location Filter', type: :feature do
         first('.caret-container').click
         check first_species.name
       end
-      #using trigger instead of button_click because
+      # using trigger instead of button_click because
       # capybara is incorrect about the button being hidden
       find('.btn-search').trigger('click')
 
-      expect(CGI::parse(URI.parse(current_url).query)['species_ids[]']).to eq([first_species.id.to_s])
+      expect(CGI.parse(URI.parse(current_url).query)['species_ids[]']).to eq([first_species.id.to_s])
     end
   end
 end

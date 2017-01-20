@@ -1,5 +1,4 @@
 describe HomePageController do
-
   describe 'GET #index' do
     it 'returns http success' do
       get :index
@@ -20,10 +19,10 @@ describe HomePageController do
     end
 
     it 'assigns published videos to @videos' do
-      videos = Fabricate.times 2, :homepage_video, published: true
-      unpublished_videos = Fabricate.times 2, :homepage_video
+      published_videos = Fabricate.times 2, :homepage_video, published: true
+      Fabricate.times 2, :homepage_video, published: false
       get :index, {}
-      expect(assigns(:videos)).to match_array(videos)
+      expect(assigns(:videos)).to match_array(published_videos)
     end
   end
 

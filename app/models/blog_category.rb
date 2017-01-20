@@ -15,7 +15,7 @@ class BlogCategory < ActiveRecord::Base
 
   attr_accessor :description, :image
 
-  STATIC_CATEGORIES = [:primary, :wildlife, :hunting_org, :field_notes_from_game_wardens]
+  STATIC_CATEGORIES = [:primary, :wildlife, :hunting_org, :field_notes_from_game_wardens].freeze
 
   def to_s
     name

@@ -9,5 +9,4 @@ Fabricator(:user) do
   state        { Faker::Address.state }
   zip          { Faker::Address.zip }
   profile_image { File.new("#{Rails.root}/spec/support/files/4.jpg") }
-
 end

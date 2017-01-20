@@ -1,5 +1,4 @@
 describe Post do
-
   it { is_expected.to have_many :blog_category_posts }
   it { is_expected.to have_many(:blog_categories).through(:blog_category_posts) }
 
@@ -28,7 +27,7 @@ describe Post do
 
   describe 'default_scope' do
     it 'returns posts in order of position when all have positions' do
-      for i in 1..10
+      (1..10).each do |i|
         Fabricate :post, position: i
       end
       expect(Post.all.ids).to eq Post.all.order(position: :asc).ids
@@ -83,7 +82,5 @@ describe Post do
         post_two.reload.featured_position.should eql(pos)
       end
     end
-
   end
-
 end

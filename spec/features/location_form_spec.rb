@@ -7,7 +7,6 @@ def fill_address_fields
 end
 
 describe 'Location Form', type: :feature do
-
   describe 'only displays the form for logged in users' do
     it 'doesn\'t show the form to non-logged visitors' do
       visit new_location_path
@@ -61,7 +60,7 @@ describe 'Location Form', type: :feature do
         it 'displays an option for each specific species ', js: true do
           skip 'webkit issues'
           within(:css, '.multiselect-native-select ul.dropdown-menu') do
-            page.all('.caret-container').each { |caret| caret.click }
+            page.all('.caret-container').each(&:click)
             Species.specific.each do |species|
               expect(page).to have_selector('label', text: species.name)
             end
@@ -92,7 +91,6 @@ describe 'Location Form', type: :feature do
     describe 'category multiselect' do
       let!(:categories) { Fabricate.times 5, :category }
       let!(:button_text) { 'No Categories' }
-
 
       it 'displays a button in place of the category select', js: true do
         visit new_location_path
@@ -138,7 +136,6 @@ describe 'Location Form', type: :feature do
       let!(:weapon_types) { Fabricate.times 5, :weapon_type }
       let!(:button_text) { 'No Weapon Types' }
 
-
       it 'displays a button in place of the weapon_type select', js: true do
         visit new_location_path
         expect(page).to have_selector(".multiselect-native-select button.multiselect[title='#{button_text}']")
@@ -165,13 +162,11 @@ describe 'Location Form', type: :feature do
       end
 
       it 'saves weapon_type ids on new location', js: true do
-        Rails.logger.info("1")
         new_location_name = 'Category Test'
         first_weapon_type = weapon_types[0]
         visit new_location_path
         fill_in('location[name]', with: new_location_name)
         fill_address_fields
-        Rails.logger.info("2")
         expect(page).to have_selector('.multiselect-native-select .btn-group')
         click_button(button_text)
         check first_weapon_type.name

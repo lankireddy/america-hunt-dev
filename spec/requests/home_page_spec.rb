@@ -1,11 +1,8 @@
 describe 'HomePage' do
-
   context 'secondary featured blog category tiles' do
-    let!(:tile_categories) { [
-        BlogCategory.wildlife_category,
-        BlogCategory.field_notes_from_game_wardens_category
-    ]
-    }
+    let!(:tile_categories) do
+      [BlogCategory.wildlife_category, BlogCategory.field_notes_from_game_wardens_category]
+    end
 
     before do
       visit '/'

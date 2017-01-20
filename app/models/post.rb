@@ -53,5 +53,4 @@ class Post < ActiveRecord::Base
 
     true
   end
-
 end
