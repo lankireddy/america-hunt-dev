@@ -7,20 +7,20 @@ ActiveAdmin.register Post do
 
   permit_params :title, :subtitle, :body, :position, :external_link, :featured_image, :featured_position, blog_category_ids: []
 
-  #scope("Inactive") { |scope| scope.where(active: false) }
+  # scope("Inactive") { |scope| scope.where(active: false) }
 
   scope :all, default: true
 
-  #This prevents a crash when recreating the DB...
+  # This prevents a crash when recreating the DB...
   begin
     BlogCategory.priority_categories.each do |bcat|
       scope(bcat.name) { |scope| scope.joins(:blog_category_posts).where(blog_category_posts: { blog_category_id: bcat.id }) }
     end
   rescue
     Rails.logger.info('[Exception] Caught exception in Admin Post filter config.')
-    Rails.logger.info($!.message)
+    Rails.logger.info($ERROR_INFO.message)
   end
-  
+
   index as: :reorderable_table do
     selectable_column
     column :id
@@ -71,7 +71,7 @@ ActiveAdmin.register Post do
       else
         input :featured_image
       end
-      input :blog_category_ids, as: :check_boxes, :collection => BlogCategory.order('name ASC').all
+      input :blog_category_ids, as: :check_boxes, collection: BlogCategory.order('name ASC').all
     end
     actions
   end
@@ -87,6 +87,7 @@ ActiveAdmin.register Post do
         render :new
       end
     end
+
     def find_resource
       Post.friendly.find(params[:id])
     end

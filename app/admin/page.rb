@@ -10,7 +10,7 @@ ActiveAdmin.register Page do
     actions
   end
 
-  form do |f|
+  form do |_f|
     inputs 'Details' do
       input :title
       input :slug
@@ -52,6 +52,7 @@ ActiveAdmin.register Page do
         render :new
       end
     end
+
     def find_resource
       Page.friendly.find(params[:id])
     end

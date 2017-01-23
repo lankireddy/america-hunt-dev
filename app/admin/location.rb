@@ -91,26 +91,25 @@ ActiveAdmin.register Location do
     inputs 'Details' do
       input :name
       input :status, as: :select,
-            collection: Location.statuses.keys.map { |key| [key, key]},
-            include_blank: false,
-            selected: f.object.status || 'approved'
+                     collection: Location.statuses.keys.map { |key| [key, key] },
+                     include_blank: false,
+                     selected: f.object.status || 'approved'
       input :slug
       input :description
       input :featured_image
-      input :category_ids, as: :check_boxes, :collection => Category.order('name ASC').all
+      input :category_ids, as: :check_boxes, collection: Category.order('name ASC').all
       input :handicap_status, as: :select,
-            collection:  Location.handicap_statuses.keys.map { |key| [(key.to_s[9..-1]).humanize, key]},
-            include_blank: false,
-            selected: 'handicap_unknown'
+                              collection:  Location.handicap_statuses.keys.map { |key| [key.to_s[9..-1].humanize, key] },
+                              include_blank: false,
+                              selected: 'handicap_unknown'
       input :pet_status, as: :select,
-            collection: Location.pet_statuses.keys.map { |key| [(key.to_s[4..-1]).humanize, key]},
-            include_blank: false,
-            selected: 'pet_unknown'
+                         collection: Location.pet_statuses.keys.map { |key| [key.to_s[4..-1].humanize, key] },
+                         include_blank: false,
+                         selected: 'pet_unknown'
       input :child_status, as: :select,
-            collection: Location.child_statuses.keys.map { |key| [(key.to_s[(key.index('_')+1)..-1]).humanize, key]},
-            include_blank: false,
-            selected: 'children_unknown'
-
+                           collection: Location.child_statuses.keys.map { |key| [key.to_s[(key.index('_') + 1)..-1].humanize, key] },
+                           include_blank: false,
+                           selected: 'children_unknown'
     end
     inputs 'Contact Info' do
       input :website, as: :url
@@ -123,8 +122,8 @@ ActiveAdmin.register Location do
       input :address_2
       input :city
       input :state, as: :select,
-            collection: Location.states,
-            prompt: 'Select a State'
+                    collection: Location.states,
+                    prompt: 'Select a State'
       input :zip
       input :lat
       input :long
@@ -153,6 +152,7 @@ ActiveAdmin.register Location do
         render :new
       end
     end
+
     def find_resource
       Location.friendly.find(params[:id])
     end
