@@ -43,7 +43,7 @@
           <% if @location.children_not_allowed? %>
               <div class="location-child"><small class="text-danger">Children not permitted</small></div>
           <% end %>
-          <%= link_to 'Visit the Website', @location.website, itemprop: 'url', class: 'location-website' if @location.website.present? %>
+          <%= link_to 'Visit the Website', @location.website, itemprop: 'url', class: 'location-website', target: '_blank' if @location.website.present? %>
           <%= link_to @location.phone, "tel:#{@location.phone}", itemprop: 'telephone', class: 'location-telephone' if @location.phone.present? %>
         </div>
       </section>
