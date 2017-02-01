@@ -87,22 +87,23 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: 'america-hunt-dev.herokuapp.com' }
   config.action_mailer.smtp_settings = {
-      address:              'smtp.sendgrid.net',
-      port:                 587,
-      domain:               'heroku.com',
-      user_name:            ENV['SENDGRID_USERNAME'],
-      password:             ENV['SENDGRID_PASSWORD'],
-      authentication:       'plain',
-      enable_starttls_auto: true  }
+    address:              'smtp.sendgrid.net',
+    port:                 587,
+    domain:               'heroku.com',
+    user_name:            ENV['SENDGRID_USERNAME'],
+    password:             ENV['SENDGRID_PASSWORD'],
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
   config.paperclip_defaults = {
-      storage: :s3,
-      s3_credentials: {
-          access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-          secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-          bucket: 'america-hunt-dev',
-          s3_region: 'us-west-2'
-      },
-      url: ':s3_domain_url',
-      path: '/:class/:attachment/:id_partition/:style/:filename'
+    storage: :s3,
+    s3_credentials: {
+      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+      bucket: 'america-hunt-dev',
+      s3_region: 'us-west-2'
+    },
+    url: ':s3_domain_url',
+    path: '/:class/:attachment/:id_partition/:style/:filename'
   }
 end

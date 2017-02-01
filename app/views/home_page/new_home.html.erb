@@ -60,9 +60,11 @@
           <% end %>
           <li class="more-news">
             <%= link_to 'More News', blog_category_path(@primary_category) %>
-            <div class="below-more-news">
-              <%= link_to 'See our list of hunting, sport shooting and archery organizations', blog_category_path(@hunting_org_category) %>
-            </div>
+            <% if @under_widget_text_link_category %>
+                <div class="below-more-news">
+                  <%= link_to @under_widget_text_link_category.description, blog_category_path(@under_widget_text_link_category) %>
+                </div>
+            <% end %>
           </li>
         </ul>
       </div>
