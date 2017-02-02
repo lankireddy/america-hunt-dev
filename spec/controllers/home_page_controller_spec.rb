@@ -6,8 +6,9 @@ describe HomePageController do
     end
 
     it 'assigns widget blog categories' do
-      widget_categories = Fabricate.times 2, :blog_category, homepage_display: 'widget'
-      get :index
+      Fabricate.times 2, :blog_category, homepage_display: 'widget'
+      widget_categories = BlogCategory.widget
+          get :index
       expect(assigns(:widget_categories).ids).to match_array(widget_categories.map(&:id))
     end
 
@@ -27,16 +28,14 @@ describe HomePageController do
   end
 
   describe 'Get #new_home' do
-    it 'assigns the home page categories' do
+    it 'assigns the primary categories' do
       get :new_home
-      BlogCategory::STATIC_CATEGORIES.each do |name|
-        expect(assigns("#{name}_category").name).to eq I18n.t(:name, scope: [:categories, name])
-      end
+      expect(assigns('primary_category')).to eq BlogCategory.widget.first
     end
 
     it 'assigns the secondary categories' do
       get :new_home
-      expect(assigns('secondary_featured_categories')).to match_array([BlogCategory.field_notes_from_game_wardens_category, BlogCategory.wildlife_category])
+      expect(assigns('secondary_featured_categories')).to match_array(BlogCategory.secondary_featured.to_a)
     end
   end
 end

@@ -20,9 +20,7 @@ end
 BlogCategory.find_or_create_by(name: 'Hunting and Shooting News',
                                homepage_display: :widget)
 BlogCategory.find_or_create_by(name: 'State Wildlife Agency News',
-                               description: "Get the local scoop &mdash; the latest field-level
-                                         'intel' from each of the states'
-                                         wildlife and conservation organizations",
+                               description: "Get the local scoop - the latest field-level 'intel' from each of the states' wildlife and conservation organizations",
                                homepage_display: :secondary_featured)
 BlogCategory.find_or_create_by(name: 'Hunting Organizations',
                                homepage_display: :under_widget_text_link,

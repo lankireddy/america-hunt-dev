@@ -1,11 +1,16 @@
 describe 'HomePage' do
-  context 'secondary featured blog category tiles' do
-    let!(:tile_categories) do
-      [BlogCategory.wildlife_category, BlogCategory.field_notes_from_game_wardens_category]
-    end
+  context 'blog categories' do
+    let!(:tile_categories) { BlogCategory.secondary_featured }
+    let!(:under_widget_text_link_categories) { BlogCategory.under_widget_text_link }
 
     before do
       visit '/'
+    end
+
+    it 'displays links under widget' do
+      under_widget_text_link_categories.each do |category|
+        expect(page).to have_link(category.description, href: blog_category_path(category))
+      end
     end
 
     it 'displays a link for each category' do
@@ -28,7 +33,7 @@ describe 'HomePage' do
 
     it 'displays a description for each category' do
       tile_categories.each do |category|
-        expect(page).to have_selector('p', text: category.description)
+        expect(page).to have_selector('p', text: category.description.html_safe)
       end
     end
   end

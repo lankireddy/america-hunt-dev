@@ -27,17 +27,4 @@ describe BlogCategory do
       expect(menu_categories.ids).to_not include(*not_visible_categories.map(&:id))
     end
   end
-
-  describe 'category finders' do
-    it 'finds the correct category' do
-      thin_green_category = BlogCategory.find_by(name: I18n.t('categories.field_notes_from_game_wardens.name'))
-      expect(BlogCategory.field_notes_from_game_wardens_category.id).to eq thin_green_category.id
-    end
-
-    it 'assigns the description and image to the category' do
-      method_result = BlogCategory.field_notes_from_game_wardens_category
-      expect(method_result.image).to eq(I18n.t('categories.field_notes_from_game_wardens.image'))
-      expect(method_result.description).to eq(I18n.t('categories.field_notes_from_game_wardens.description'))
-    end
-  end
 end

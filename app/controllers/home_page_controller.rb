@@ -15,11 +15,9 @@ class HomePageController < ApplicationController
   end
 
   def set_categories
-    @primary_category = BlogCategory.primary_category
-    @wildlife_category = BlogCategory.wildlife_category
-    @hunting_org_category = BlogCategory.hunting_org_category
-    @field_notes_from_game_wardens_category = BlogCategory.field_notes_from_game_wardens_category
-    @secondary_featured_categories = [@field_notes_from_game_wardens_category, @wildlife_category]
+    @primary_category = BlogCategory.widget.first
+    @under_widget_text_link_categories = BlogCategory.under_widget_text_link
+    @secondary_featured_categories = BlogCategory.secondary_featured
   end
 
   def collate_posts_for_home

@@ -5,31 +5,18 @@ class BlogCategory < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  has_attached_file :image, styles: { medium: '200x150>', thumb: '100x75>' }, default_url: '/images/:style/missing.png'
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+
   validates :name, presence: true
 
-  enum homepage_display: [:not_visible, :name_only, :widget]
+  enum homepage_display: [:not_visible, :name_only, :widget, :secondary_featured, :under_widget_text_link]
 
   scope :menu, -> { where.not(homepage_display: homepage_displays[:not_visible]) }
 
   scope :priority_categories, -> { menu.order(:name) }
 
-  attr_accessor :description, :image
-
-  STATIC_CATEGORIES = [:primary, :wildlife, :hunting_org, :field_notes_from_game_wardens].freeze
-
   def to_s
     name
-  end
-
-  class << self
-    STATIC_CATEGORIES.each do |method|
-      define_method "#{method}_category" do
-        scope = [:categories, method]
-        category = BlogCategory.find_by(name: I18n.t(:name, scope: scope))
-        category.description = I18n.t(:description, scope: scope)
-        category.image = I18n.t(:image, scope: scope)
-        category
-      end
-    end
   end
 end
