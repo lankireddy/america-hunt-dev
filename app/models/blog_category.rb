@@ -22,12 +22,12 @@ class BlogCategory < ActiveRecord::Base
     self.featured_ids = []
   end
 
-  def not_already_used
+  def unused_posts
     posts.where.not(id: featured_ids)
   end
 
   def featured_post(key)
-    featured_post = posts.with_featured_position(key).first || not_already_used.order(:position).limit(1).first
+    featured_post = posts.with_featured_position(key).first || unused_posts.order(:position).limit(1).first
     featured_ids << featured_post.id if featured_post
     featured_post
   end

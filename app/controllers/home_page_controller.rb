@@ -18,7 +18,7 @@ class HomePageController < ApplicationController
     [:primary_featured, :secondary_featured_one, :secondary_featured_two, :secondary_featured_three].each do |key|
       instance_variable_set("@#{key}", @primary_category.featured_post(key))
     end
-    @posts = @primary_category.not_already_used.order(:position).limit(10).includes(:posts)
+    @posts = @primary_category.unused_posts.order(:position).limit(10).includes(:posts)
   end
 
   private
