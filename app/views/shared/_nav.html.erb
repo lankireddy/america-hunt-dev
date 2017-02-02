@@ -8,17 +8,7 @@
           <a class="logo" href="/"><%= image_tag('logo_icon_red_subtitled.png') %></a>
         </div>
         <div class="col-sm-8 col-md-6">
-          <%= form_tag '#', method: 'get', class: 'location-search location-search-interior' do |f| %>
-              <label for="location" class="sr-only">Where would you like to hunt?</label>
-              <div class="input-group input-group-xl">
-                <div class="input-group-btn">
-                  <%= button_tag(type: 'submit', class: 'btn btn-default') do %>
-                      <span class="glyphicon glyphicon-search"></span>
-                  <% end %>
-                </div>
-                <%= select_tag 'state_alpha2', options_for_select(Location.states, selected: @state_alpha2), prompt: 'State?', class:'form-control', required: true %>
-              </div>
-          <% end %>
+          <%= render '/shared/search_form' %>
         </div>
         <div class="col-md-4">
           <%= render '/shared/membership_links' %>
@@ -58,7 +48,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">News <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <%= content_tag_for 'li', BlogCategory.all.each do |blog_category| %>
-                <%= link_to_active_class blog_category.name, blog_category_path(blog_category) %>
+              <%= link_to_active_class blog_category.name, blog_category_path(blog_category) %>
             <% end %>
           </ul>
         </li>
