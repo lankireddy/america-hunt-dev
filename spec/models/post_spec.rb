@@ -44,8 +44,8 @@ describe Post do
     end
 
     it 'returns posts in the correct order' do
-      post3 = Fabricate(:post, position: 3, created_at: 1.days.from_now, title: 'position 3, created tomorrow')
-      post4 = Fabricate(:post, position: nil, created_at: 1.days.from_now, title: 'no position, created tomorrow')
+      post3 = Fabricate(:post, position: 3, created_at: 1.day.from_now, title: 'position 3, created tomorrow')
+      post4 = Fabricate(:post, position: nil, created_at: 1.day.from_now, title: 'no position, created tomorrow')
       post5 = Fabricate(:post, position: nil, title: 'no position, created now')
       post2 = Fabricate(:post, position: 2, title: 'position 2, created now')
       post1 = Fabricate(:post, position: 1, title: 'position 1, created now')
