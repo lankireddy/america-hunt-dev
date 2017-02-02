@@ -1,5 +1,4 @@
 class HomePageController < ApplicationController
-  before_action :set_categories, only: :new_home
   def index
     @widget_categories = BlogCategory.widget.includes(:posts)
     @name_only_categories = BlogCategory.name_only
@@ -7,6 +6,7 @@ class HomePageController < ApplicationController
   end
 
   def new_home
+    set_categories
     if @primary_category
       collate_posts_for_home
     else
