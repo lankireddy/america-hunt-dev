@@ -50,34 +50,34 @@ class LocationsController < ApplicationController
 
   private
 
-  def set_location
-    @location = Location.friendly.find(params[:id])
-    redirect_to action: action_name, id: @location.friendly_id, status: 301 unless @location.friendly_id == params[:id]
-  end
+    def set_location
+      @location = Location.friendly.find(params[:id])
+      redirect_to action: action_name, id: @location.friendly_id, status: 301 unless @location.friendly_id == params[:id]
+    end
 
-  def set_filter_options
-    @categories = Category.all
-    @top_level_species = Species.top_level
-    @weapon_types = WeaponType.all
-  end
+    def set_filter_options
+      @categories = Category.all
+      @top_level_species = Species.top_level
+      @weapon_types = WeaponType.all
+    end
 
-  def set_state_metas(state_name)
-    @title = "#{state_name} Hunting Destinations"
-    @page_title = 'America Hunt: ' + @title
-    @page_description = "Listing of hunting destinations in #{state_name}."
-  end
+    def set_state_metas(state_name)
+      @title = "#{state_name} Hunting Destinations"
+      @page_title = 'America Hunt: ' + @title
+      @page_description = "Listing of hunting destinations in #{state_name}."
+    end
 
-  def filter_locations
-    @locations = Location.approved.where(state: @state_alpha2)
-    @locations = @locations.joins(:species).where(species: { id: @species_ids }) if @species_ids.present?
-    @locations = @locations.order(id: :desc).uniq.page params[:page]
-  end
+    def filter_locations
+      @locations = Location.approved.where(state: @state_alpha2)
+      @locations = @locations.joins(:species).where(species: { id: @species_ids }) if @species_ids.present?
+      @locations = @locations.order(id: :desc).uniq.page params[:page]
+    end
 
-  # Only allow a trusted parameter "white list" through.
-  def location_params
-    params.require(:location).permit(:name, :website, :phone, :email,
-                                     :address_1, :address_2, :city, :zip, :state, :handicap_status,
-                                     :hunting_area_size, :terrain, :submitter_notes, :featured_image,
-                                     species_ids: [], weapon_type_ids: [], category_ids: [])
-  end
+    # Only allow a trusted parameter "white list" through.
+    def location_params
+      params.require(:location).permit(:name, :website, :phone, :email,
+                                       :address_1, :address_2, :city, :zip, :state, :handicap_status,
+                                       :hunting_area_size, :terrain, :submitter_notes, :featured_image,
+                                       species_ids: [], weapon_type_ids: [], category_ids: [])
+    end
 end

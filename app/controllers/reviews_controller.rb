@@ -23,18 +23,18 @@ class ReviewsController < ApplicationController
 
   private
 
-  def build_review
-    @review = @location.reviews.build(review_params)
-    authorize @review
-    @review.submitter = current_user
-    @review.status = :pending
-  end
+    def build_review
+      @review = @location.reviews.build(review_params)
+      authorize @review
+      @review.submitter = current_user
+      @review.status = :pending
+    end
 
-  def set_location
-    @location = Location.friendly.find(params[:location_id])
-  end
+    def set_location
+      @location = Location.friendly.find(params[:location_id])
+    end
 
-  def review_params
-    params.require(:review).permit(:star_rating, :body, :location_id)
-  end
+    def review_params
+      params.require(:review).permit(:star_rating, :body, :location_id)
+    end
 end

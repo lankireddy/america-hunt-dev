@@ -22,7 +22,6 @@ feature 'GET /users/sign_up' do
       it 'saves the attached file' do
         fill_form '#{SecureRandom.hex(6)}@test.com', 'metova123'
         within('form.user-registration-form') do
-
           attach_file('user_profile_image', File.absolute_path("#{Rails.root}/spec/support/files/4.jpg"))
 
           find('input[type=submit]').click

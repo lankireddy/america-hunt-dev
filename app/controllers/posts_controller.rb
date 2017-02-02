@@ -23,11 +23,11 @@ class PostsController < ApplicationController
 
   private
 
-  def set_post
-    @post = Post.friendly.find(params[:id])
-  end
+    def set_post
+      @post = Post.friendly.find(params[:id])
+    end
 
-  def set_blog_category
-    @blog_category = BlogCategory.friendly.find(params[:blog_category_id]) if params[:blog_category_id].present?
-  end
+    def set_blog_category
+      @blog_category = BlogCategory.friendly.find(params[:blog_category_id]) if params[:blog_category_id].present?
+    end
 end

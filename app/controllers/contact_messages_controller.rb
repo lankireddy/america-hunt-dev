@@ -15,8 +15,7 @@ class ContactMessagesController < ApplicationController
   end
 
   private
-
-  def contact_message_params
-    params.require(:contact_message).permit(:email, :subject, :body)
-  end
+    def contact_message_params
+      params.require(:contact_message).permit(:email, :subject, :body)
+    end
 end
