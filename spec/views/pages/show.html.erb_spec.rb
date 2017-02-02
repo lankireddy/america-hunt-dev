@@ -17,11 +17,6 @@ RSpec.describe 'pages/show', type: :view do
     expect(rendered).to have_selector('section', text: @page.body)
   end
 
-  it 'renders nav' do
-    render
-    expect(view.content_for(:pre_main)).to have_selector('nav.pages-nav')
-  end
-
   it 'renders image tag when featured image present' do
     render
     expect(rendered).to have_selector("img[src='#{@page.featured_image.url}']")

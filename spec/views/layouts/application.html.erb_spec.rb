@@ -20,4 +20,25 @@ RSpec.describe 'layouts/application', type: :view do
     render
     expect(rendered).to have_selector('.ad-header img')
   end
+
+  it 'displays the standard nav bar' do
+    render
+    expect(rendered).to have_selector('nav.navbar-inverse')
+  end
+
+  it 'has a link for each blog category page' do
+    render
+    BlogCategory.all.each do |blog_category|
+      expect(rendered).to have_selector("a[href='#{blog_category_path(blog_category)}']")
+    end
+  end
+
+  it 'has a link for each page' do
+    render
+    expect(rendered).to have_selector("a[href='#{page_path('about')}']")
+    expect(rendered).to have_selector("a[href='#{page_path('press-&amp;-media')}']")
+    expect(rendered).to have_selector("a[href='#{page_path('faq')}']")
+    expect(rendered).to have_selector("a[href='#{page_path('terms-of-service')}']")
+    expect(rendered).to have_selector("a[href='#{page_path('privacy-policy')}']")
+  end
 end

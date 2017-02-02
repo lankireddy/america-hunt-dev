@@ -12,7 +12,7 @@ RSpec.describe Admin::PagesController, type: :controller do
     it 'assigns all pages as @pages' do
       page = Page.create! valid_attributes
       get :index, {}
-      expect(assigns(:pages)).to eq([page])
+      expect(assigns(:pages)).to include page
     end
   end
 
