@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
 
   resources :contact_messages, only: [:new, :create]
   get 'home_page/index'
