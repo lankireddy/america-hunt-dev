@@ -1,14 +1,3 @@
-<% content_for(:pre_main) do %>
-    <nav class="secondary-nav post-nav">
-      <div class="container">
-        <ul class="list-inline">
-          <%= content_tag_for 'li', @menu_categories do |blog_category| %>
-              <%= link_to_active_class blog_category.name, blog_category_path(blog_category) %>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
-<% end %>
 <div class="col-md-9">
   <header class="header-no-hero">
     <h1 class="h1-bold"><%= @blog_category.try(:name) || 'Hunting News' %></h1>

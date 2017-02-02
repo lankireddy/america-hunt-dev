@@ -53,6 +53,15 @@
             <li><%= link_to_active_class 'Privacy Policy', page_path('privacy-policy') %></li>
           </ul>
         </li>
+        <% news = @menu_categories && @menu_categories.any? { |category| current_page?(blog_category_path(category)) } %>
+        <li class="dropdown<%= ' active' if news %>">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">News <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <%= content_tag_for 'li', @menu_categories do |blog_category| %>
+                <%= link_to_active_class blog_category.name, blog_category_path(blog_category) %>
+            <% end %>
+          </ul>
+        </li>
         <li<%= ' class="active"'.html_safe if current_page?('/send-us-news') %>><a href="/send-us-news">Send Us News</a></li>
         <li<%= ' class="active"'.html_safe if current_page?('/locations/new') %>><%= link_to 'Add a Hunting Destination', new_location_path %></li>
         <li<%= ' class="active"'.html_safe if current_page?('/browse') %>><a href="/browse" class="red">Hunting Directory</a></li>
