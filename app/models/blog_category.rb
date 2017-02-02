@@ -16,6 +16,22 @@ class BlogCategory < ActiveRecord::Base
 
   scope :priority_categories, -> { menu.order(:name) }
 
+  attr_accessor :featured_ids
+
+  def after_initialize
+    self.featured_ids = []
+  end
+
+  def not_already_used
+    posts.where.not(id: featured_ids)
+  end
+
+  def featured_post(key)
+    featured_post = posts.with_featured_position(key).first || not_already_used.order(:position).limit(1).first
+    featured_ids << featured_post.id if featured_post
+    featured_post
+  end
+
   def to_s
     name
   end
