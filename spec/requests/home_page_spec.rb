@@ -1,73 +1,40 @@
-
 describe 'HomePage' do
-  before do
-    Fabricate :homepage_video, published: true
-  end
-
-  context 'home_page visited' do
-    before do
-      visit '/browse'
-    end
-
-    context 'extra small screen' do
-      before do
-        page.current_window.resize_to(320, 640)
-      end
-
-      it 'should not display video', js: true do
-        expect(page).to_not have_selector('video')
-      end
-    end
-
-    context ' > extra small screen' do
-      it 'should display a video' do
-        expect(page).to have_selector('video')
-      end
-
-      it 'video should be muted' do
-        expect(page).to have_selector('video[muted]')
-      end
-    end
-  end
-
   context 'blog categories' do
-    let!(:name_only_categories) { Fabricate.times 5, :blog_category, homepage_display: 'name_only' }
-    let!(:widget_categories) { Fabricate.times 2, :blog_category, homepage_display: 'widget' }
-    let!(:widget_1_posts) { Fabricate.times 10, :post, blog_categories: [widget_categories.first] }
-    let!(:widget_2_posts) { Fabricate.times 10, :post, blog_categories: [widget_categories.second] }
+    let!(:tile_categories) { BlogCategory.secondary_featured }
+    let!(:under_widget_text_link_categories) { BlogCategory.under_widget_text_link }
 
     before do
-      visit '/browse'
+      visit '/'
     end
 
-    it 'displays a link for each name only blog category' do
-      name_only_categories.each do |category|
-        expect(page).to have_link(category.name, href: blog_category_path(category))
+    it 'displays links under widget' do
+      under_widget_text_link_categories.each do |category|
+        expect(page).to have_link(category.description, href: blog_category_path(category))
       end
     end
 
-    it 'displays a read more link for each widget blog category' do
-      widget_categories.each do |category|
-        expect(page).to have_link('Read More ' + category.name, href: blog_category_path(category))
+    it 'displays a link for each category' do
+      tile_categories.each do |category|
+        expect(page).to have_link(nil, href: blog_category_path(category))
       end
     end
 
-    it 'displays a title for each widget category' do
-      widget_categories.each do |category|
-        expect(page).to have_selector('h1', text: category.name)
+    it 'displays a title for each category' do
+      tile_categories.each do |category|
+        expect(page).to have_selector('h2', text: category.name)
       end
     end
 
-    it 'displays post link for each post in widget category (up to limit)' do
-      widget_categories.each do |category|
-        category.posts.limit(Post::WIDGET_POST_LIMIT).each do |post|
-          expect(page).to have_link(post.title, href: post_path(post))
-        end
+    it 'displays an image for each category' do
+      tile_categories.each do |category|
+        expect(page).to have_selector(".secondary-featured img[src*='#{ActionController::Base.helpers.image_path(category.image)}']")
       end
     end
 
-    it 'displays only max posts for each widget category' do
-      expect(page).to have_selector('.post', count: Post::WIDGET_POST_LIMIT * 2)
+    it 'displays a description for each category' do
+      tile_categories.each do |category|
+        expect(page).to have_selector('p', text: category.description.html_safe)
+      end
     end
   end
 end

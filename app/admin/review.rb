@@ -1,7 +1,7 @@
 ActiveAdmin.register Review do
   permit_params :status
 
-  actions :all, :except => [:new]
+  actions :all, except: [:new]
 
   scope :approved, default: true
   scope :pending
@@ -29,9 +29,9 @@ ActiveAdmin.register Review do
   form do |f|
     inputs do
       input :status, as: :select,
-            collection: Review.statuses.keys.map { |key| [key, key] },
-            include_blank: false,
-            selected: f.object.status
+                     collection: Review.statuses.keys.map { |key| [key, key] },
+                     include_blank: false,
+                     selected: f.object.status
     end
     actions
   end

@@ -69,4 +69,18 @@ en:
     write_review: 'Write a Review'
     add_review: 'Add a Review'
     sign_in_or_up_html: "Please %{sign_in_link} or %{sign_up_link} to leave a review."
-
+  categories:
+    primary:
+      name: 'Hunting and Shooting News'
+    wildlife:
+      name: 'State Wildlife Agency News'
+      description: "Get the local scoop &mdash; the latest field-level
+                                         'intel' from each of the states'
+                                         wildlife and conservation organizations"
+      image: 'bear.jpg'
+    hunting_org:
+      name: 'Hunting Organizations'
+    field_notes_from_game_wardens:
+      name: 'The Thin Green Line'
+      description: 'Field notes from state game wardens and wildlife officers from all 50 states and Canada about the encounters of these men and women in green enforcing our game laws'
+      image: 'game warden.jpg'

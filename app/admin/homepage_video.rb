@@ -1,5 +1,4 @@
 ActiveAdmin.register HomepageVideo do
-
   scope :published, default: true
   scope :unpublished
 
@@ -15,7 +14,7 @@ ActiveAdmin.register HomepageVideo do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys
+    f.semantic_errors(*f.object.errors.keys)
     inputs do
       input :name
       input :order

@@ -16,7 +16,6 @@ describe Location do
   it { is_expected.to validate_presence_of(:state) }
   it { is_expected.to validate_presence_of(:zip) }
 
-
   it 'should have a valid fabricator' do
     expect(Fabricate.build(:location)).to be_valid
   end

@@ -8,7 +8,6 @@ Bundler.require(*Rails.groups)
 
 module AmericanHunt
   class Application < Rails::Application
-
     config.autoload_paths += %W(
       #{config.root}/lib
     )

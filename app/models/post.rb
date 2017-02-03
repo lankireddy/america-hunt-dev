@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   extend FriendlyId
   acts_as_list
 
-  TITLE_SHORT_LENGTH=10
+  TITLE_SHORT_LENGTH = 10
   WIDGET_POST_LIMIT = 7
 
   friendly_id :slug_candidates, use: :slugged
@@ -47,11 +47,8 @@ class Post < ActiveRecord::Base
     return true if featured_position == 'not_featured'
 
     posts = Post.where(featured_position: featured_position)
-    if posts.any?
-      posts.update_all(featured_position: :not_featured)
-    end
+    posts.update_all(featured_position: :not_featured) if posts.any?
 
     true
   end
-
 end
