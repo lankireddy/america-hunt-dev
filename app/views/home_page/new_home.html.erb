@@ -59,7 +59,7 @@
             </li>
           <% end %>
           <li class="more-news">
-            <%= link_to 'More News', blog_category_path(@primary_category) %>
+            <%= link_to 'More News', blog_category_path(@primary_category) if @primary_category %>
             <%= div_for @under_widget_text_link_categories, class: 'below-more-news' do |category| %>
               <%= link_to category.description, blog_category_path(category) %>
             <% end %>
