@@ -68,5 +68,5 @@ en:
   review:
     write_review: 'Write a Review'
     add_review: 'Add a Review'
-    sign_in_or_up: 'Please %{sign_in_link} or %{sign_up_link} to leave a review.'
+    sign_in_or_up_html: "Please %{sign_in_link} or %{sign_up_link} to leave a review."
 

@@ -61,9 +61,9 @@
           <%= render 'reviews/form' %>
         <% else %>
             <h3><%= t 'review.add_review' %></h3>
-            <p><%= t 'review.sign_in_or_up',
-                     sign_in_link: '<a data-toggle="modal" data-target="#login-modal" class="text-info" href="#">' + t('navigation.links.login') + '</a>',
-                     sign_up_link: link_to(t('navigation.links.register'), new_user_registration_path, class:'text-info') %>
+            <p><%= t 'review.sign_in_or_up_html',
+                     sign_in_link: ('<a data-toggle="modal" data-target="#login-modal" class="text-info" href="#">' + t('navigation.links.login') + '</a>').html_safe,
+                     sign_up_link: link_to(t('navigation.links.register'), new_user_registration_path, class:'text-info').html_safe %>
             </p>
         <% end %>
       </section>
