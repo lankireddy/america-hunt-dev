@@ -64,6 +64,9 @@ en:
   location:
     visit_website: 'Visit the Website'
     more_reviews: 'More Reviews'
+    back: 'Back to search results'
   review:
     write_review: 'Write a Review'
     add_review: 'Add a Review'
+    sign_in_or_up: 'Please %{sign_in_link} or %{sign_up_link} to leave a review.'
+

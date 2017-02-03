@@ -3,7 +3,7 @@
 <% end %>
 <div class="col-md-9">
   <%= link_to @previous_page, class: 'back-link' do %>
-      <span class="glyphicon glyphicon-menu-left"></span>Back to search results
+      <span class="glyphicon glyphicon-menu-left"></span><%= t 'location.back' %>
   <% end %>
   <%= content_tag_for :article, @location, itemscope: '', itemtype: 'http://schema.org/Place' do %>
       <header>
@@ -50,7 +50,7 @@
       <section>
         <header class="clearfix">
           <h2 class="h1-bold pull-left"><%= Review.model_name.human.pluralize %></h2>
-          <a href="#new_review" class="pull-right write-a-review"><%= t 'write_review' %></a>
+          <a href="#new_review" class="pull-right write-a-review"><%= t 'review.write_review' %></a>
         </header>
         <div id="reviews">
           <%= render @location.reviews.approved.limit(4) %>
@@ -60,8 +60,10 @@
         <% if user_signed_in? %>
           <%= render 'reviews/form' %>
         <% else %>
-            <h3><%= t 'add_review' %></h3>
-            <p>Please <a data-toggle="modal" data-target="#login-modal" class="text-info" href="#"><%= t('navigation.links.login') %></a> or <%= link_to t('navigation.links.register'), new_user_registration_path, class:'text-info' %> to leave a review.</p>
+            <h3><%= t 'review.add_review' %></h3>
+            <p><%= t 'review.sign_in_or_up',
+                     sign_in_link: '<a data-toggle="modal" data-target="#login-modal" class="text-info" href="#">' + t('navigation.links.login') + '</a>',
+                     sign_up_link: link_to(t('navigation.links.register'), new_user_registration_path, class:'text-info') %>
         <% end %>
       </section>
   <% end %>
