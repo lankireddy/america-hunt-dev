@@ -8,6 +8,13 @@
     display: inline-block;
     float: none;
     vertical-align: top;
+    width: 100%;
+
+    li {
+      padding: 0 3%;
+      display: inline-block;
+      float: none;
+    }
   }
 }
 
@@ -18,4 +25,22 @@
 .header-main {
   margin: 10px 0;
   text-align: center;
+}
+
+#search-bar .btn {
+  padding: 8px 12px 2px 12px;
+}
+
+
+@media (max-width: $screen-sm-max) {
+  .membership-links.pull-right {
+    float: none !important;
+  }
+}
+@media (max-width: $screen-md-max) {
+  #search-bar .form-control {
+    display: inline;
+    width: auto;
+    padding: 0;
+  }
 }
