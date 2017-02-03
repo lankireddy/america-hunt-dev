@@ -60,5 +60,11 @@ describe 'Post' do
       new_post = Post.order(:created_at).last
       expect(new_post.featured_image.url).to include('4.jpg')
     end
+
+    it 'can add an image to the post body', js: true do
+      visit new_admin_post_path
+      expect(page).to have_selector('a.cke_button__image')
+      page.execute_script %{ $('a.cke_button__image').trigger('click') }
+    end
   end
 end
