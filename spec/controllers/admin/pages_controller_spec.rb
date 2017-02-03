@@ -10,9 +10,9 @@ RSpec.describe Admin::PagesController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns all pages as @pages' do
-      page = Page.create! valid_attributes
+      pages = Page.first(10)
       get :index, {}
-      expect(assigns(:pages)).to eq([page])
+      expect(assigns(:pages).to_ary).to match_array(pages.to_ary)
     end
   end
 
