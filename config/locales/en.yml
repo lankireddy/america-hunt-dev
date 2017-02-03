@@ -24,6 +24,8 @@ en:
       location:
         phone: 'Phone Number'
         email: 'Email Address'
+        pet_no?: 'Dogs not permitted'
+        children_not_allowed?: 'Children not permitted'
       user:
         phone: 'Phone Number'
     errors:
@@ -59,3 +61,9 @@ en:
           other: "all %{count} %{entry_name}"
       more_pages:
         display_entries: "%{entry_name} %{first}&nbsp;-&nbsp;%{last} out of %{total}"
+  location:
+    visit_website: 'Visit the Website'
+    more_reviews: 'More Reviews'
+  review:
+    write_review: 'Write a Review'
+    add_review: 'Add a Review'
