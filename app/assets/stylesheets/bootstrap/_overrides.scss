@@ -18,4 +18,11 @@ $font-size-h2: floor(($font-size-base * 1.7));
 $font-size-h3: floor(($font-size-base * 1.5));
 $font-family-sans-serif: 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-$navbar-inverse-bg: $brand-info;
+$navbar-default-bg: #fff;
+$navbar-default-border: $brand-primary;
+$navbar-default-color: $brand-primary;
+$navbar-default-link-color: $brand-primary;
+$navbar-default-link-hover-color: #777;
+$navbar-padding-vertical: 5px;
+$navbar-height: 30px;
+$navbar-default-toggle-border-color: none;
