@@ -27,6 +27,12 @@
   text-align: center;
 }
 
-#search-bar .btn {
-  padding: 8px 12px 2px 12px;
+#search-bar {
+  .form-control {
+    font-size: 0.8em;
+  }
+
+  .btn {
+    padding: 8px 12px 2px 12px;
+  }
 }
