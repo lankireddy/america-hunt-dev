@@ -62,7 +62,7 @@ describe 'Post' do
     end
 
     it 'can add an image to the post body', js: true do
-      file = File.new("#{Rails.root}/spec/support/files/4.jpg")
+      file = File.new("#{Rails.root}/spec/support/files/test.png")
       visit new_admin_post_path
       fill_in('post[title]', with: 'File Upload Test')
       attach_file('post[featured_image]', File.absolute_path("#{Rails.root}/spec/support/files/4.jpg"))
