@@ -21,11 +21,11 @@ RSpec.describe 'layouts/application', type: :view do
   end
 
   it 'displays the standard nav bar' do
-    expect(rendered).to have_selector('nav.navbar-inverse')
+    expect(rendered).to have_selector('nav.navbar-default')
   end
 
   it 'has a link for each blog category page' do
-    BlogCategory.all.each do |blog_category|
+    BlogCategory.menu.each do |blog_category|
       expect(rendered).to have_selector("a[href='#{blog_category_path(blog_category)}']")
     end
   end
