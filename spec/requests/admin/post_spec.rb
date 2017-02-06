@@ -62,11 +62,23 @@ describe 'Post' do
     end
 
     it 'can add an image to the post body', js: true do
+      file = File.new("#{Rails.root}/spec/support/files/4.jpg")
       visit new_admin_post_path
+      fill_in('post[title]', with: 'File Upload Test')
+      attach_file('post[featured_image]', File.absolute_path("#{Rails.root}/spec/support/files/4.jpg"))
+
       expect(page).to have_selector('a.cke_button__image')
-      # page.execute_script %{ $('a.cke_button__image').trigger('click') }
-      page.execute_script %{ CKEDITOR.tools.callFunction(37, this); }
-      expect(page).to have_selector('.cke_dialog')
+      page.execute_script %{ $('a[title="Source"]').trigger('click') }
+      page.execute_script %{ $('textarea.cke_source').val('<h1>Test Post</h1><img alt="" src="#{file.path}" style="width: 165px; height: 189px;" />') }
+
+      click_button('Create Post')
+
+      expect(page).to have_selector('div.flash', text: 'Post was successfully created.')
+      new_post = Post.order(:created_at).last
+      visit post_path(new_post)
+
+      expect(page).to have_content('Test Post')
+      expect(page).to have_selector("img[src='#{file.path}']")
     end
   end
 end
