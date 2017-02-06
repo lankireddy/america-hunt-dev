@@ -28,7 +28,7 @@ class BlogCategory < ActiveRecord::Base
 
   def featured_post(key)
     featured_post = posts.with_featured_position(key).first || unused_posts.order(:position).limit(1).first
-    featured_ids << featured_post.id if featured_post
+    self.featured_ids << featured_post.id if featured_post
     featured_post
   end
 
