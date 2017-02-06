@@ -31,3 +31,22 @@
 //
 // This structure is based on Jonathan Snook's SMACSS idea. You can find out more
 // about it at https://smacss.com/
+
+@media (max-width: $screen-sm-max) {
+  .membership-links.pull-right {
+    float: none !important;
+  }
+  .home-ad-container {
+    text-align: center;
+  }
+  #date-today {
+    text-align: center;
+  }
+}
+@media (max-width: $screen-md-max) {
+  #search-bar .form-control {
+    display: inline;
+    width: auto;
+    padding: 0;
+  }
+}
