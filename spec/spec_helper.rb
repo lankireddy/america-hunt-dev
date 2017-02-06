@@ -55,4 +55,3 @@ RSpec.configure do |config|
     Fabricate(:blog_category, name: 'Hunting Organizations')
   end
 end
-

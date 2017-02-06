@@ -1,5 +1,4 @@
 ActiveAdmin.register Ad do
-
   scope :all, default: true
   scope :sidebar
   scope :top
@@ -15,7 +14,7 @@ ActiveAdmin.register Ad do
     actions
   end
 
-  form do |f|
+  form do |_f|
     inputs do
       input :name
       input :image

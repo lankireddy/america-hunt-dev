@@ -7,25 +7,24 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :load_ads
-  before_filter :store_current_location, unless: :devise_controller?
+  before_action :store_current_location, unless: :devise_controller?
 
   protected
 
-  def configure_permitted_parameters
-    devise_params = [:first_name, :last_name, :address_1, :city, :state, :zip, :phone, :profile_image, :newsletter_subscriber]
-    devise_parameter_sanitizer.for(:sign_up).push(*devise_params)
-    devise_parameter_sanitizer.for(:account_update).push(*devise_params)
+    def configure_permitted_parameters
+      devise_params = [:first_name, :last_name, :address_1, :city, :state, :zip, :phone, :profile_image, :newsletter_subscriber]
+      devise_parameter_sanitizer.for(:sign_up).concat(devise_params)
+      devise_parameter_sanitizer.for(:account_update).concat(devise_params)
+    end
 
-  end
-
-  def load_ads
-    @top_ad = Ad.top.first
-    @sidebar_ads = Ad.sidebar
-  end
+    def load_ads
+      @top_ad = Ad.top.first
+      @sidebar_ads = Ad.sidebar
+    end
 
   private
 
-  def store_current_location
-    store_location_for(:user, request.url)
-  end
+    def store_current_location
+      store_location_for(:user, request.url)
+    end
 end

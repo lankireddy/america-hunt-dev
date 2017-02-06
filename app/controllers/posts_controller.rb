@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-
   before_action :set_post, only: :show
   before_action :set_blog_category, only: :index
 
@@ -7,7 +6,7 @@ class PostsController < ApplicationController
     @menu_categories = BlogCategory.menu
     if @blog_category
       @page_title = 'America Hunt: ' + @blog_category.name
-      #TODO - should this be ignored if this is not a homepage category?
+      # TODO: - should this be ignored if this is not a homepage category?
       @posts = @blog_category.posts.order(:position)
     else
       @page_title = 'America Hunt: Hunting News'
@@ -23,6 +22,7 @@ class PostsController < ApplicationController
   end
 
   private
+
     def set_post
       @post = Post.friendly.find(params[:id])
     end
@@ -31,4 +31,3 @@ class PostsController < ApplicationController
       @blog_category = BlogCategory.friendly.find(params[:blog_category_id]) if params[:blog_category_id].present?
     end
 end
-

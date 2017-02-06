@@ -6,36 +6,25 @@ class HomePageController < ApplicationController
   end
 
   def new_home
-    collate_posts_for_home
-
-  end
-
-  def collate_posts_for_home
-    @primary_category = BlogCategory.primary_category
-    @wildlife_category = BlogCategory.wildlife_category
-    @hunting_org_category = BlogCategory.hunting_org_category
-    @field_notes_from_game_wardens_category = BlogCategory.field_notes_from_game_wardens_category
-
+    set_categories
     if @primary_category
-      featured_ids = []
-
-      @primary_featured = Post.with_featured_position(:primary_featured).first || @primary_category.posts.order(:position).limit(1).first
-      featured_ids << @primary_featured.id if @primary_featured
-      @secondary_featured_one = Post.with_featured_position(:secondary_featured_one).first || @primary_category.posts.where.not(id: featured_ids).order(:position).limit(1).first
-      featured_ids << @secondary_featured_one.id if @secondary_featured_one
-      @secondary_featured_two = Post.with_featured_position(:secondary_featured_two).first || @primary_category.posts.where.not(id: featured_ids).order(:position).limit(1).first
-      featured_ids << @secondary_featured_two.id if @secondary_featured_two
-      @secondary_featured_three = Post.with_featured_position(:secondary_featured_three).first || @primary_category.posts.where.not(id: featured_ids).order(:position).limit(1).first
-      featured_ids << @secondary_featured_three.id if @secondary_featured_three
-
-      @posts = @primary_category.posts.where.not(id: featured_ids).order(:position).limit(10)
+      collate_posts_for_home
     else
-      @primary_featured = nil
-      @secondary_featured_one = nil
-      @secondary_featured_two = nil
-      @secondary_featured_three = nil
-      @posts = Post.all.limit(10)
+      @posts = Post.all.limit(10).includes(:posts)
     end
   end
 
+  def collate_posts_for_home
+    [:primary_featured, :secondary_featured_one, :secondary_featured_two, :secondary_featured_three].each do |key|
+      instance_variable_set("@#{key}", @primary_category.featured_post(key))
+    end
+    @posts = @primary_category.unused_posts.order(:position).limit(10)
+  end
+
+  private
+    def set_categories
+      @primary_category = BlogCategory.widget.first
+      @under_widget_text_link_categories = BlogCategory.under_widget_text_link
+      @secondary_featured_categories = BlogCategory.secondary_featured
+    end
 end

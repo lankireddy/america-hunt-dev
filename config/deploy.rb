@@ -1,10 +1,10 @@
-require File.expand_path('../environment',  __FILE__)
+require File.expand_path('../environment', __FILE__)
 
 set :application, 'america-hunt'
 set :deploy_user, 'apps'
 set :repo_url, 'git@lab.metova.com:metova/america-hunt-web.git'
 set :deploy_to, "/apps/#{fetch(:application)}"
-set :ssh_options, { forward_agent: true }
+set :ssh_options, forward_agent: true
 set :keep_releases, 3
 set :pty, false
 

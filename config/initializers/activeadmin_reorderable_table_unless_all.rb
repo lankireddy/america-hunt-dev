@@ -1,4 +1,4 @@
-#This is a shim to prevent ordering posts on the 'all' index
+# This is a shim to prevent ordering posts on the 'all' index
 
 module ActiveAdmin
   module Views
@@ -10,10 +10,9 @@ module ActiveAdmin
 
         super(collection, options) do
           reorder_column unless params['scope'] && params['scope'] == 'all' && params['controller'] == 'admin/posts'
-          block.call if block.present?
+          yield if block.present?
         end
       end
-
     end
   end
 end

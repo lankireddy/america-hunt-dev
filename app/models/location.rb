@@ -4,9 +4,9 @@ class Location < ActiveRecord::Base
 
   def slug_candidates
     [
-        :name,
-        [:name, :state],
-        [:name, :city, :state],
+      :name,
+      [:name, :state],
+      [:name, :city, :state]
     ]
   end
 
@@ -23,7 +23,7 @@ class Location < ActiveRecord::Base
   validates :travelier_id, uniqueness: true, allow_nil: true
   validates :name, :state, :city, :zip, presence: true
 
-  has_attached_file :featured_image, styles: {medium: '300x300>', thumb: '100x100>'}, default_url: '/images/:style/missing.png'
+  has_attached_file :featured_image, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
   validates_attachment_content_type :featured_image, content_type: /\Aimage\/.*\z/
 
   enum handicap_status: [:handicap_na, :handicap_inaccessible, :handicap_accessible, :handicap_limited, :handicap_unknown]
@@ -32,10 +32,10 @@ class Location < ActiveRecord::Base
   enum status: [:approved, :pending, :unapproved, :modified]
 
   EXCERPT_LENGTH = 40
-  EXCLUDED_STATES = ['AA','GU','AE','AP','AS','DC','VI','UM','PR','MP']
+  EXCLUDED_STATES = %w(AA GU AE AP AS DC VI UM PR MP).freeze
 
   geocoded_by :geocode_street_address, latitude: :lat, longitude: :long
-  after_validation :geocode, if: ->(obj){ obj.address_present? && obj.address_changed? && !obj.coordinates_changed? }
+  after_validation :geocode, if: ->(obj) { obj.address_present? && obj.address_changed? && !obj.coordinates_changed? }
 
   paginates_per 10
 

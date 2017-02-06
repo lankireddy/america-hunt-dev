@@ -11,7 +11,7 @@ ActiveAdmin.register Species do
     actions
   end
 
-  form do |f|
+  form do |_f|
     inputs do
       input :parent_id, as: :select, collection: Species.top_level
       input :name

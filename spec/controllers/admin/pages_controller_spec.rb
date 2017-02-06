@@ -10,16 +10,16 @@ RSpec.describe Admin::PagesController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns all pages as @pages' do
-      page = Page.create! valid_attributes
+      pages = Page.first(10)
       get :index, {}
-      expect(assigns(:pages)).to include page
+      expect(assigns(:pages).to_ary).to match_array(pages.to_ary)
     end
   end
 
   describe 'GET #show' do
     it 'assigns the requested page as @page' do
       page = Page.create! valid_attributes
-      get :show, { id: page.to_param }
+      get :show, id: page.to_param
       expect(assigns(:page)).to eq(page)
     end
   end
@@ -34,7 +34,7 @@ RSpec.describe Admin::PagesController, type: :controller do
   describe 'GET #edit' do
     it 'assigns the requested page as @page' do
       page = Page.create! valid_attributes
-      get :edit, { id: page.to_param }
+      get :edit, id: page.to_param
       expect(assigns(:page)).to eq(page)
     end
   end
@@ -42,31 +42,31 @@ RSpec.describe Admin::PagesController, type: :controller do
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new Page' do
-        expect {
-          post :create, { page: valid_attributes }
-        }.to change(Page, :count).by(1)
+        expect do
+          post :create, page: valid_attributes
+        end.to change(Page, :count).by(1)
       end
 
       it 'assigns a newly created page as @page' do
-        post :create, { page: valid_attributes }
+        post :create, page: valid_attributes
         expect(assigns(:page)).to be_a(Page)
         expect(assigns(:page)).to be_persisted
       end
 
       it 'redirects to the created page' do
-        post :create, { page: valid_attributes }
+        post :create, page: valid_attributes
         expect(response).to redirect_to(admin_page_path(Page.last))
       end
     end
 
     context 'with invalid params' do
       it 'assigns a newly created but unsaved page as @page' do
-        post :create, { page: invalid_attributes }
+        post :create, page: invalid_attributes
         expect(assigns(:page)).to be_a_new(Page)
       end
 
       it 're-renders the "new" template' do
-        post :create, { page: invalid_attributes }
+        post :create, page: invalid_attributes
         expect(response).to render_template('new')
       end
     end
@@ -74,26 +74,26 @@ RSpec.describe Admin::PagesController, type: :controller do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) {
+      let(:new_attributes) do
         { title: Faker::Commerce.department }
-      }
+      end
 
       it 'updates the requested page' do
         page = Page.create! valid_attributes
-        put :update, { id: page.to_param, page: new_attributes}
+        put :update, id: page.to_param, page: new_attributes
         page.reload
         expect(page.title).to eq(new_attributes[:title])
       end
 
       it 'assigns the requested page as @page' do
         page = Page.create! valid_attributes
-        put :update, { id: page.to_param, page: valid_attributes }
+        put :update, id: page.to_param, page: valid_attributes
         expect(assigns(:page)).to eq(page)
       end
 
       it 'redirects to the page' do
         page = Page.create! valid_attributes
-        put :update, { id: page.to_param, page: valid_attributes }
+        put :update, id: page.to_param, page: valid_attributes
         expect(response).to redirect_to(admin_page_path(page))
       end
     end
@@ -101,13 +101,13 @@ RSpec.describe Admin::PagesController, type: :controller do
     context 'with invalid params' do
       it 'assigns the page as @page' do
         page = Page.create! valid_attributes
-        put :update, { id: page.to_param, page: invalid_attributes }
+        put :update, id: page.to_param, page: invalid_attributes
         expect(assigns(:page)).to eq(page)
       end
 
       it 're-renders the "edit" template' do
         page = Page.create! valid_attributes
-        put :update, { id: page.to_param, page: invalid_attributes }
+        put :update, id: page.to_param, page: invalid_attributes
         expect(response).to render_template('edit')
       end
     end
@@ -116,14 +116,14 @@ RSpec.describe Admin::PagesController, type: :controller do
   describe 'DELETE #destroy' do
     it 'destroys the requested page' do
       page = Page.create! valid_attributes
-      expect {
-        delete :destroy, { id: page.to_param }
-      }.to change(Page, :count).by(-1)
+      expect do
+        delete :destroy, id: page.to_param
+      end.to change(Page, :count).by(-1)
     end
 
     it 'redirects to the pages list' do
       page = Page.create! valid_attributes
-      delete :destroy, { id: page.to_param }
+      delete :destroy, id: page.to_param
       expect(response).to redirect_to(admin_pages_path)
     end
   end

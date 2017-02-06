@@ -1,14 +1,33 @@
 # This is the configuration used to check the rubocop source code.
 
 AllCops:
+  TargetRubyVersion: 2.3
   Exclude:
     - 'vendor/**/*'
     - 'spec/fixtures/**/*'
     - 'tmp/**/*'
-  TargetRubyVersion: 1.9
+    - '**/*.erb'
+    - 'lib/templates/rspec/**/*'
+    - bin/*
+    - Vagrantfile
+
+Style/Documentation:
+  Enabled: false
 
 Style/Encoding:
   EnforcedStyle: never
+
+Style/EmptyLinesAroundAccessModifier:
+  Enabled: false
+
+Style/IndentationConsistency:
+  EnforcedStyle: rails
+
+Metrics/LineLength:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
 
 Style/FrozenStringLiteralComment:
   Enabled: false

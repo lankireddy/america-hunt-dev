@@ -11,8 +11,8 @@ class CreateLocations < ActiveRecord::Migration
       t.string :address_2
       t.string :city
       t.string :zip
-      t.decimal :lat, :precision => 10, :scale => 6
-      t.decimal :long, :precision => 10, :scale => 6
+      t.decimal :lat, precision: 10, scale: 6
+      t.decimal :long, precision: 10, scale: 6
       t.date :opening_date
       t.boolean :featured
       t.boolean :follow_up

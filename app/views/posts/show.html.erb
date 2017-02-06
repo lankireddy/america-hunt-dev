@@ -26,6 +26,7 @@
       <%= @post.body.html_safe %>
     </section>
     <div class="read-more-footer">
+      <%= t('posts.share_on_social') %> <%= social_share_button_tag(@post.title) %>
       <% if @post.priority_blog_category %>
       <%= link_to "Click here for more #{@post.priority_blog_category.name}", blog_category_path(@post.priority_blog_category.friendly_id), class: 'link-underline priority-blog-category-link' %>
       <% end %>

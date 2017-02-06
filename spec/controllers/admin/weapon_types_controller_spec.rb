@@ -19,7 +19,7 @@ RSpec.describe Admin::WeaponTypesController, type: :controller do
   describe 'GET #show' do
     it 'assigns the requested weapon_type as @weapon_type' do
       weapon_type = WeaponType.create! valid_attributes
-      get :show, { id: weapon_type.to_param }
+      get :show, id: weapon_type.to_param
       expect(assigns(:weapon_type)).to eq(weapon_type)
     end
   end
@@ -34,7 +34,7 @@ RSpec.describe Admin::WeaponTypesController, type: :controller do
   describe 'GET #edit' do
     it 'assigns the requested weapon_type as @weapon_type' do
       weapon_type = WeaponType.create! valid_attributes
-      get :edit, { id: weapon_type.to_param }
+      get :edit, id: weapon_type.to_param
       expect(assigns(:weapon_type)).to eq(weapon_type)
     end
   end
@@ -42,31 +42,31 @@ RSpec.describe Admin::WeaponTypesController, type: :controller do
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new WeaponType' do
-        expect {
-          post :create, { weapon_type: valid_attributes }
-        }.to change(WeaponType, :count).by(1)
+        expect do
+          post :create, weapon_type: valid_attributes
+        end.to change(WeaponType, :count).by(1)
       end
 
       it 'assigns a newly created weapon_type as @weapon_type' do
-        post :create, { weapon_type: valid_attributes }
+        post :create, weapon_type: valid_attributes
         expect(assigns(:weapon_type)).to be_a(WeaponType)
         expect(assigns(:weapon_type)).to be_persisted
       end
 
       it 'redirects to the created weapon_type' do
-        post :create, { weapon_type: valid_attributes }
+        post :create, weapon_type: valid_attributes
         expect(response).to redirect_to(admin_weapon_type_path(WeaponType.last))
       end
     end
 
     context 'with invalid params' do
       it 'assigns a newly created but unsaved weapon_type as @weapon_type' do
-        post :create, { weapon_type: invalid_attributes }
+        post :create, weapon_type: invalid_attributes
         expect(assigns(:weapon_type)).to be_a_new(WeaponType)
       end
 
       it 're-renders the "new" template' do
-        post :create, { weapon_type: invalid_attributes }
+        post :create, weapon_type: invalid_attributes
         expect(response).to render_template('new')
       end
     end
@@ -74,26 +74,26 @@ RSpec.describe Admin::WeaponTypesController, type: :controller do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) {
+      let(:new_attributes) do
         { name: Faker::Commerce.department }
-      }
+      end
 
       it 'updates the requested weapon_type' do
         weapon_type = WeaponType.create! valid_attributes
-        put :update, { id: weapon_type.to_param, :weapon_type => new_attributes}
+        put :update, id: weapon_type.to_param, weapon_type: new_attributes
         weapon_type.reload
         expect(weapon_type.name).to eq(new_attributes[:name])
       end
 
       it 'assigns the requested weapon_type as @weapon_type' do
         weapon_type = WeaponType.create! valid_attributes
-        put :update, { id: weapon_type.to_param, :weapon_type => valid_attributes }
+        put :update, id: weapon_type.to_param, weapon_type: valid_attributes
         expect(assigns(:weapon_type)).to eq(weapon_type)
       end
 
       it 'redirects to the weapon_type' do
         weapon_type = WeaponType.create! valid_attributes
-        put :update, { id: weapon_type.to_param, :weapon_type => valid_attributes }
+        put :update, id: weapon_type.to_param, weapon_type: valid_attributes
         expect(response).to redirect_to(admin_weapon_type_path(weapon_type))
       end
     end
@@ -101,13 +101,13 @@ RSpec.describe Admin::WeaponTypesController, type: :controller do
     context 'with invalid params' do
       it 'assigns the weapon_type as @weapon_type' do
         weapon_type = WeaponType.create! valid_attributes
-        put :update, { id: weapon_type.to_param, :weapon_type => invalid_attributes }
+        put :update, id: weapon_type.to_param, weapon_type: invalid_attributes
         expect(assigns(:weapon_type)).to eq(weapon_type)
       end
 
       it 're-renders the "edit" template' do
         weapon_type = WeaponType.create! valid_attributes
-        put :update, { id: weapon_type.to_param, :weapon_type => invalid_attributes }
+        put :update, id: weapon_type.to_param, weapon_type: invalid_attributes
         expect(response).to render_template('edit')
       end
     end
@@ -116,14 +116,14 @@ RSpec.describe Admin::WeaponTypesController, type: :controller do
   describe 'DELETE #destroy' do
     it 'destroys the requested weapon_type' do
       weapon_type = WeaponType.create! valid_attributes
-      expect {
-        delete :destroy, { id: weapon_type.to_param }
-      }.to change(WeaponType, :count).by(-1)
+      expect do
+        delete :destroy, id: weapon_type.to_param
+      end.to change(WeaponType, :count).by(-1)
     end
 
     it 'redirects to the weapon_types list' do
       weapon_type = WeaponType.create! valid_attributes
-      delete :destroy, { id: weapon_type.to_param }
+      delete :destroy, id: weapon_type.to_param
       expect(response).to redirect_to(admin_weapon_types_path)
     end
   end

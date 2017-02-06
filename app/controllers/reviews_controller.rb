@@ -1,3 +1,4 @@
+# Review list for after first 10, create endpoint for json
 class ReviewsController < ApplicationController
   before_action :set_location
 
@@ -8,10 +9,7 @@ class ReviewsController < ApplicationController
 
   # POST /location/example-location/reviews
   def create
-    @review = @location.reviews.build(review_params)
-    authorize @review
-    @review.submitter = current_user
-    @review.status = :pending
+    build_review
     respond_to do |format|
       format.json do
         if @review.save
@@ -24,11 +22,19 @@ class ReviewsController < ApplicationController
   end
 
   private
-  def set_location
-    @location = Location.friendly.find(params[:location_id])
-  end
 
-  def review_params
-    params.require(:review).permit(:star_rating, :body, :location_id)
-  end
+    def build_review
+      @review = @location.reviews.build(review_params)
+      authorize @review
+      @review.submitter = current_user
+      @review.status = :pending
+    end
+
+    def set_location
+      @location = Location.friendly.find(params[:location_id])
+    end
+
+    def review_params
+      params.require(:review).permit(:star_rating, :body, :location_id)
+    end
 end
