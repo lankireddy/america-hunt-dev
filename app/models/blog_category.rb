@@ -18,7 +18,9 @@ class BlogCategory < ActiveRecord::Base
 
   attr_accessor :featured_ids
 
-  def after_initialize
+  after_initialize :setup_featured_ids
+
+  def setup_featured_ids
     self.featured_ids = []
   end
 
