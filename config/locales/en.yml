@@ -84,3 +84,5 @@ en:
       name: 'The Thin Green Line'
       description: 'Field notes from state game wardens and wildlife officers from all 50 states and Canada about the encounters of these men and women in green enforcing our game laws'
       image: 'game warden.jpg'
+  posts:
+    share_on_social: 'Share on social media:'

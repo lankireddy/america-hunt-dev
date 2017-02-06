@@ -58,6 +58,12 @@ RSpec.describe 'posts/show', type: :view do
     end
   end
 
+  it 'displays social links for the article' do
+    render
+    expect(rendered).to have_selector('a[data-site="facebook"]')
+    expect(rendered).to have_selector('a[data-site="twitter"]')
+  end
+
   it 'renders page body in section' do
     render
     expect(rendered).to have_selector('section', text: @post.body)
