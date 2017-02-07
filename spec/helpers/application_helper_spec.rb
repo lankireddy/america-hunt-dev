@@ -13,7 +13,7 @@ describe ApplicationHelper do
   describe '#li_dropdown_link_to_active_class' do
     it 'returns the dropdown' do
       dropdown_text =   '<li class="dropdown">
-                          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#">About Us <span class="caret"></span></a>
+                          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#">About Us <span class="caret" /></a>
                           <ul class="dropdown-menu">
                             <li><a href="/about">About</a></li>
                             <li><a href="/press-&amp;-media">Press &amp; Media</a></li>
@@ -41,7 +41,7 @@ describe ApplicationHelper do
 
   describe '#a_dropdown' do
     it 'returns the link for the dropdown itself' do
-      a_text = '<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#">About Us <span class="caret"></span></a>'.squish.strip.gsub(/> </, '><')
+      a_text = '<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#">About Us <span class="caret" /></a>'.squish.strip.gsub(/> </, '><')
       expect(helper.a_dropdown name).to eq a_text.squish.strip.gsub(/> </, '><')
     end
   end

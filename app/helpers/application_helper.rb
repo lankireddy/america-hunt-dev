@@ -1,12 +1,12 @@
 module ApplicationHelper
   def li_link_to_active_class(name, options = {}, html_options = {})
-    html_options[:class] = html_options[:class].to_s + ' active' if current_page?(options.to_s)
+    html_options[:class] =  (html_options[:class] || []) << 'active' if current_page?(options.to_s)
     content_tag(:li, link_to(name, options), class: html_options[:class])
   end
 
   def li_dropdown_link_to_active_class(name, pages = {}, html_options = {})
-    html_options[:class] = html_options[:class].to_s.present? ? html_options[:class].to_s + ' dropdown' : 'dropdown'
-    html_options[:class] = html_options[:class].to_s + ' active' if active_dropdown(pages)
+    html_options[:class] = (html_options[:class] || []) << 'dropdown'
+    html_options[:class] << 'active' if active_dropdown(pages)
     content_tag(:li, a_dropdown(name) + ul_dropdown(pages), class: html_options[:class])
   end
 
@@ -18,7 +18,9 @@ module ApplicationHelper
 
   def a_dropdown(name)
     link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button', aria: { haspopup: 'true', expanded: 'false' } do
-      (name + ' <span class="caret"></span>').html_safe
+      concat name
+      concat ' '
+      concat tag(:span, class: :caret)
     end
   end
 
