@@ -67,10 +67,15 @@ ActiveRecord::Schema.define(version: 20170202190041) do
 
   create_table "blog_categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.integer  "homepage_display", default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "homepage_display",   default: 0
     t.string   "slug"
+    t.text     "description"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "blog_categories", ["homepage_display"], name: "index_blog_categories_on_homepage_display", using: :btree

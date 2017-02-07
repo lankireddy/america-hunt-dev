@@ -12,5 +12,4 @@ class Review < ActiveRecord::Base
   paginates_per 10
 
   scope :rated, -> { where.not(star_rating: [0, nil]) }
-
 end

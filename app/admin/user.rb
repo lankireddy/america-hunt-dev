@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
   permit_params :email, :first_name, :last_name, :address_1, :city, :state, :zip, :phone
 
-  actions :all, :except => [:new]
+  actions :all, except: [:new]
 
   index do
     column :id
@@ -13,7 +13,7 @@ ActiveAdmin.register User do
     actions
   end
 
-  form do |f|
+  form do |_f|
     inputs 'Contact Info' do
       input :email
       input :first_name

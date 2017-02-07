@@ -59,10 +59,10 @@
             </li>
           <% end %>
           <li class="more-news">
-            <%= link_to 'More News', blog_category_path(@primary_category) %>
-            <div class="below-more-news">
-              <%= link_to 'See our list of hunting, sport shooting and archery organizations', blog_category_path(BlogCategory.hunting_org_category) %>
-            </div>
+            <%= link_to 'More News', blog_category_path(@primary_category) if @primary_category %>
+            <%= div_for @under_widget_text_link_categories, class: 'below-more-news' do |category| %>
+              <%= link_to category.description, blog_category_path(category) %>
+            <% end %>
           </li>
         </ul>
       </div>
@@ -126,35 +126,18 @@
               </div>
             </div>
           </li>
-          <% if @field_notes_from_game_wardens_category.present? %>
+          <% @secondary_featured_categories.each do |category| %>
             <li class="secondary-featured hunting">
-              <%= link_to blog_category_path(@field_notes_from_game_wardens_category) do %>
-                <div class="row">
-                  <div class="col-md-5">
-                    <%= image_tag 'game warden.jpg', class: 'img-responsive'  %>
+              <%= link_to blog_category_path(category) do %>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <%= image_tag category.image, class: 'img-responsive'  %>
+                    </div>
+                    <div class="col-md-7">
+                      <h2><%= category.name %></h2>
+                      <p><%= raw category.description %></p>
+                    </div>
                   </div>
-                  <div class="col-md-7">
-                    <h2><%= @field_notes_from_game_wardens_category.name %></h2>
-                    <p>Field notes from state game wardens and wildlife officers from all 50 states and Canada about the encounters of these men and women in green enforcing our game laws.</p>
-                  </div>
-                </div>
-              <% end %>
-            </li>
-          <% end %>
-          <% if @wildlife_category.present? %>
-            <li class="secondary-featured wildlife">
-              <%= link_to blog_category_path(@wildlife_category) do %>
-                <div class="row">
-                  <div class="col-md-5">
-                    <%= image_tag 'bear.jpg', class: 'img-responsive'  %>
-                  </div>
-                  <div class="col-md-7">
-                    <h2><%= @wildlife_category.name %></h2>
-                    <p>Get the local scoop &mdash; the latest field-level
-                      'intel' from each of the states'
-                      wildlife and conservation organizations</p>
-                  </div>
-                </div>
               <% end %>
             </li>
           <% end %>

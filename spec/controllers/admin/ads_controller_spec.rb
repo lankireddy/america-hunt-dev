@@ -17,7 +17,7 @@ RSpec.describe Admin::AdsController, type: :controller do
   describe 'GET #show' do
     it 'assigns the requested ad as @ad' do
       ad = Ad.create! valid_attributes
-      get :show, { id: ad.to_param }
+      get :show, id: ad.to_param
       expect(assigns(:ad)).to eq(ad)
     end
   end
@@ -32,7 +32,7 @@ RSpec.describe Admin::AdsController, type: :controller do
   describe 'GET #edit' do
     it 'assigns the requested ad as @ad' do
       ad = Ad.create! valid_attributes
-      get :edit, { id: ad.to_param }
+      get :edit, id: ad.to_param
       expect(assigns(:ad)).to eq(ad)
     end
   end
@@ -40,31 +40,31 @@ RSpec.describe Admin::AdsController, type: :controller do
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new Ad' do
-        expect {
-          post :create, { ad: valid_attributes }
-        }.to change(Ad, :count).by(1)
+        expect do
+          post :create, ad: valid_attributes
+        end.to change(Ad, :count).by(1)
       end
 
       it 'assigns a newly created ad as @ad' do
-        post :create, { ad: valid_attributes }
+        post :create, ad: valid_attributes
         expect(assigns(:ad)).to be_a(Ad)
         expect(assigns(:ad)).to be_persisted
       end
 
       it 'redirects to the created ad' do
-        post :create, { ad: valid_attributes }
+        post :create, ad: valid_attributes
         expect(response).to redirect_to(admin_ad_path(Ad.last))
       end
     end
 
     context 'with invalid params' do
       it 'assigns a newly created but unsaved ad as @ad' do
-        post :create, { ad: invalid_attributes }
+        post :create, ad: invalid_attributes
         expect(assigns(:ad)).to be_a_new(Ad)
       end
 
       it 're-renders the "new" template' do
-        post :create, { ad: invalid_attributes }
+        post :create, ad: invalid_attributes
         expect(response).to render_template('new')
       end
     end
@@ -72,26 +72,26 @@ RSpec.describe Admin::AdsController, type: :controller do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) {
+      let(:new_attributes) do
         { name: Faker::Commerce.department }
-      }
+      end
 
       it 'updates the requested ad' do
         ad = Ad.create! valid_attributes
-        put :update, { id: ad.to_param, :ad => new_attributes}
+        put :update, id: ad.to_param, ad: new_attributes
         ad.reload
         expect(ad.name).to eq(new_attributes[:name])
       end
 
       it 'assigns the requested ad as @ad' do
         ad = Ad.create! valid_attributes
-        put :update, { id: ad.to_param, ad: valid_attributes }
+        put :update, id: ad.to_param, ad: valid_attributes
         expect(assigns(:ad)).to eq(ad)
       end
 
       it 'redirects to the ad' do
         ad = Ad.create! valid_attributes
-        put :update, { id: ad.to_param, ad: valid_attributes }
+        put :update, id: ad.to_param, ad: valid_attributes
         expect(response).to redirect_to(admin_ad_path(ad))
       end
     end
@@ -99,13 +99,13 @@ RSpec.describe Admin::AdsController, type: :controller do
     context 'with invalid params' do
       it 'assigns the ad as @ad' do
         ad = Ad.create! valid_attributes
-        put :update, { id: ad.to_param, ad: invalid_attributes }
+        put :update, id: ad.to_param, ad: invalid_attributes
         expect(assigns(:ad)).to eq(ad)
       end
 
       it 're-renders the "edit" template' do
         ad = Ad.create! valid_attributes
-        put :update, { id: ad.to_param, ad: invalid_attributes }
+        put :update, id: ad.to_param, ad: invalid_attributes
         expect(response).to render_template('edit')
       end
     end
@@ -114,14 +114,14 @@ RSpec.describe Admin::AdsController, type: :controller do
   describe 'DELETE #destroy' do
     it 'destroys the requested ad' do
       ad = Ad.create! valid_attributes
-      expect {
-        delete :destroy, { id: ad.to_param }
-      }.to change(Ad, :count).by(-1)
+      expect do
+        delete :destroy, id: ad.to_param
+      end.to change(Ad, :count).by(-1)
     end
 
     it 'redirects to the ads list' do
       ad = Ad.create! valid_attributes
-      delete :destroy, { id: ad.to_param }
+      delete :destroy, id: ad.to_param
       expect(response).to redirect_to(admin_ads_path)
     end
   end

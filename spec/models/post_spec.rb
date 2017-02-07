@@ -1,5 +1,4 @@
 describe Post do
-
   it { is_expected.to have_many :blog_category_posts }
   it { is_expected.to have_many(:blog_categories).through(:blog_category_posts) }
 
@@ -28,7 +27,7 @@ describe Post do
 
   describe 'default_scope' do
     it 'returns posts in order of position when all have positions' do
-      for i in 1..10
+      (1..10).each do |i|
         Fabricate :post, position: i
       end
       expect(Post.all.ids).to eq Post.all.order(position: :asc).ids
@@ -45,8 +44,8 @@ describe Post do
     end
 
     it 'returns posts in the correct order' do
-      post3 = Fabricate(:post, position: 3, created_at: 1.days.from_now, title: 'position 3, created tomorrow')
-      post4 = Fabricate(:post, position: nil, created_at: 1.days.from_now, title: 'no position, created tomorrow')
+      post3 = Fabricate(:post, position: 3, created_at: 1.day.from_now, title: 'position 3, created tomorrow')
+      post4 = Fabricate(:post, position: nil, created_at: 1.day.from_now, title: 'no position, created tomorrow')
       post5 = Fabricate(:post, position: nil, title: 'no position, created now')
       post2 = Fabricate(:post, position: 2, title: 'position 2, created now')
       post1 = Fabricate(:post, position: 1, title: 'position 1, created now')
@@ -83,7 +82,5 @@ describe Post do
         post_two.reload.featured_position.should eql(pos)
       end
     end
-
   end
-
 end

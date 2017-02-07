@@ -532,6 +532,8 @@ GEM
     sitemap_generator (5.2.0)
       builder (~> 3.0)
     slop (3.6.0)
+    social-share-button (0.8.8)
+      coffee-rails
     spring (1.7.1)
     sprockets (3.6.2)
       concurrent-ruby (~> 1.0)
@@ -655,6 +657,7 @@ DEPENDENCIES
   simplecov
   sinatra
   sitemap_generator
+  social-share-button
   spring
   sqlite3
   timecop

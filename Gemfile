@@ -41,6 +41,7 @@ gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'simple_form'
 gem 'sinatra', require: false
+gem 'social-share-button'
 gem 'spring', group: :development
 gem 'unicorn'
 gem 'yajl-ruby', require: 'yajl'
