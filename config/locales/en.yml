@@ -45,6 +45,7 @@ en:
         login: 'Login'
         register: 'Sign Up'
         edit_profile: 'Edit Profile'
+        where_to_hunt: 'Show Places To Hunt In the State Of...'
   views:
     pagination:
       first: "&laquo; First"

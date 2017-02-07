@@ -1,40 +1,37 @@
-<% content_for :content do %>
+<% content_for :home_header do %>
   <%= render 'shared/flash', flash: flash if flash %>
-  <header class="header-new-homepage">
+  <header class="header-new-homepage header-main">
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <h1 class="logo-header"><%= image_tag('home-logo-large.png') %></h1>
         </div>
-        <div class="col-md-6">
-          <div class="home-ad-container ad">
-            <% if @top_ad.present? %>
-              <%= link_to @top_ad.url, target: '_blank', class:'ad ad-header' do %>
-                <%= image_tag @top_ad.image.url(:original), class: 'img-responsive'  %>
-              <% end %>
-            <% end %>
-          </div>
+        <div class="col-md-5">
+          <%= render '/shared/search_form' %>
+        </div>
+        <div class="col-md-3">
+          <%= render '/shared/membership_links' %>
         </div>
       </div>
     </div>
   </header>
+<% end %>
+<% content_for :content do %>
   <div class="container home-content">
     <div class="row">
-      <div class="col-md-12">
-        <nav id="home-nav">
-          <ul>
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/send-us-news">Send Us News</a></li>
-            <li><%= link_to 'Add a Hunting Destination,Guide or Outfitter', new_location_path %></li>
-            <li><a href="/browse" class="red">Hunting Directory</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <h4 id="date-today"><%= Date.today.strftime("%A, %B %-d, %Y") %></h4>
       </div>
+      <div class="col-md-6">
+        <div class="home-ad-container ad">
+          <% if @top_ad.present? %>
+            <%= link_to @top_ad.url, target: '_blank', class:'ad ad-header' do %>
+              <%= image_tag @top_ad.image.url(:original), class: 'img-responsive'  %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
     </div>
     <div class="row">
       <div class="col-md-6">
