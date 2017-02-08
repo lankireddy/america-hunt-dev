@@ -29,5 +29,5 @@ $ ->
   locationSearch = $('.location-search')
   locationSearch.submit (event) ->
     event.preventDefault()
-    state_alpha2 = locationSearch.find('#state_alpha2').val()
+    state_alpha2 = $(this).find('#state_alpha2').val()
     window.location = "/states/#{state_alpha2}/locations"

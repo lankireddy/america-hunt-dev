@@ -6,3 +6,7 @@
 .inline-block {
   display: inline-block;
 }
+
+.header-overlayed {
+  margin-top: -$navbar-margin-bottom;
+}

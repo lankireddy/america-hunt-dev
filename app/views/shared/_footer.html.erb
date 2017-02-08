@@ -4,7 +4,7 @@
       <div class="col-md-8">
         <ul id="footer-nav-tier-1" class="footer-nav list-inline">
           <li><%= link_to 'Contact', new_contact_message_path %></li>
-          <li><%= link_to 'Add a Hunting Destination,Guide or Outfitter', new_location_path %></li>
+          <li><%= link_to 'Add a Hunting Destination, Guide or Outfitter', new_location_path %></li>
           <li><%= link_to 'Hunters Digest', '/huntersdigest' %></li>
           <% BlogCategory.secondary_featured.each do |category| %>
               <li><%= link_to category.name, blog_category_path(category) %></li>

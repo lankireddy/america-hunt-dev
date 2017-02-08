@@ -1,0 +1,45 @@
+<% if content_for?(:home_header) %>
+  <%= content_for(:home_header) %>
+<% else %>
+  <header class="header-main">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 col-md-2">
+          <a class="logo" href="/"><%= image_tag('logo_icon_red_subtitled.png') %></a>
+        </div>
+        <div class="col-sm-8 col-md-6">
+          <%= render '/shared/search_form' %>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <%= render '/shared/membership_links' %>
+        </div>
+      </div>
+    </div>
+  </header>
+<% end %>
+<nav class="navbar navbar-default home-nav">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ah-navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="ah-navbar-collapse">
+      <ul class="nav navbar-nav">
+        <% about_pages = [{ title: 'About', path: page_path('about') }, { title: 'Press & Media', path: page_path('press-&amp;-media') }, { title: 'FAQ', path: page_path('faq') }, { title: 'Terms of Service', path: page_path('terms-of-service') }, { title: 'Privacy Policy', path: page_path('privacy-policy') }] %>
+        <%= li_dropdown_link_to_active_class 'About Us', about_pages %>
+        <% news_pages = BlogCategory.menu.inject([]) { |pages, category| pages << { title: category.name, path: blog_category_path(category) } } %>
+        <%= li_dropdown_link_to_active_class 'News', news_pages %>
+        <%= li_link_to_active_class 'Send Us News', page_path('send-us-news') %>
+        <%= li_link_to_active_class 'Add a Hunting Destination', new_location_path %>
+        <%= li_link_to_active_class 'Hunting Directory', browse_path %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

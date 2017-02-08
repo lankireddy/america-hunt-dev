@@ -17,3 +17,13 @@ $font-size-h1: floor(($font-size-base * 2.15));
 $font-size-h2: floor(($font-size-base * 1.7));
 $font-size-h3: floor(($font-size-base * 1.5));
 $font-family-sans-serif: 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+$navbar-default-bg: #fff;
+$navbar-default-border: $brand-primary;
+$navbar-default-color: $brand-primary;
+$navbar-default-link-color: $brand-primary;
+$navbar-default-link-hover-color: #777;
+$navbar-padding-vertical: 5px;
+$navbar-height: 30px;
+$navbar-default-toggle-border-color: none;
+$nav-link-padding: 10px 5px;

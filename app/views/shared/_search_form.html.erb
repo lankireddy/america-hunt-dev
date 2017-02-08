@@ -1,0 +1,9 @@
+<%= form_tag '#', method: 'get', class: 'form-inline membership-links location-search location-search-interior' do |f| %>
+  <label for="location" class="sr-only"><%= I18n.t('navigation.links.where_to_hunt') %></label>
+  <div class="form-group" id="search-bar">
+    <%= select_tag 'state_alpha2', options_for_select(Location.states, selected: @state_alpha2), prompt: t('navigation.links.where_to_hunt'), class:'form-control', required: true %>
+    <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+        <span class="glyphicon glyphicon-search"></span>
+    <% end %>
+  </div>
+<% end %>

@@ -3,13 +3,6 @@
 <header class="header-browse header-overlayed">
   <%= video_tag @videos.first.video.url, autoplay: true, muted: true, id:'video-background', class:'hidden-xs', data: { playlist: '[' + @videos.map { |video| "\"#{video.video.url}\"" }.join(',') + ']'} if @videos.present?  %>
   <div class="container over-video-content">
-    <div class="row">
-      <h1 class="col-md-3 logo-header"><%= image_tag('logo_white.png') %></h1>
-      <div class="col-md-3 pull-right">
-        <%= render '/shared/membership_links' %>
-      </div>
-    </div>
-
     <h2 class="h1 text-center">America’s hunting directory for every hunt.</h2>
     <%= render 'location_search' %>
   </div>
