@@ -103,6 +103,8 @@ Rails.application.configure do
       bucket: 'america-hunt-dev',
       s3_region: 'us-west-2'
     },
+    s3_host_name:   's3-us-west-2.amazonaws.com',
+    s3_region:      'us-west-2',
     url: ':s3_domain_url',
     path: '/:class/:attachment/:id_partition/:style/:filename'
   }
