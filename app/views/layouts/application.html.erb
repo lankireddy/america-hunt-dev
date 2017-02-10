@@ -17,6 +17,11 @@
       <meta property="og:url" content="<%= @page_url %>" />
       <link rel="canonical" href="<%= @page_url %>">
   <% end %>
+  <% if @post.present? %>
+    <meta property="og:image" content="<%= @post.featured_image.url(:hero) %>"/>
+    <meta name="twitter:image" content="<%= @post.featured_image.url(:hero) %>">
+    <meta property="og:type" content="article" />
+  <% end %>
 
   <%= content_for(:metas) %>
   <%= favicon_link_tag 'favicon.png' %>
