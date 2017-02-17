@@ -43,6 +43,14 @@
   #date-today {
     text-align: center;
   }
+  #join-community {
+    h1 {
+      font-size: 40px;
+    }
+  }
+  .mobile-center {
+    text-align: center;
+  }
 }
 @media (max-width: $screen-md-max) {
   #search-bar .form-control {
