@@ -78,3 +78,166 @@
 .devise-links {
   margin-top: 1em;
 }
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+  header.header-main {
+
+    .header-login-col {
+      .membership-links {
+        float: none !important;
+        text-align: center;
+        margin: 0;
+
+        .btn-login {
+          display: inline-block;
+          text-align: center;
+          margin: 0 auto;
+          width: 100%;
+        }
+
+        .btn-sign-up {
+          margin: 0;
+        }
+      }
+    }
+
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+  header.header-main {
+
+    .header-login-col {
+      .membership-links {
+        float: none !important;
+        text-align: center;
+        margin: 0;
+
+        .btn-login {
+          display: inline-block;
+          text-align: center;
+          margin: 0 auto;
+          width: 100%;
+        }
+
+        .btn-sign-up {
+          margin: 0;
+        }
+      }
+    }
+
+  }
+
+  .pre-main .header-interior {
+    margin-bottom: 2em;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .header-interior {
+    height: 50vw;
+
+    h1{
+      margin-top: 15%;
+    }
+  }
+
+  body .header-post h1 {
+    font-size: 1.9em;
+  }
+
+  body .header-post h3 {
+    font-size: 1.4em;
+  }
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+  header.header-main {
+
+    .header-logo-col {
+      text-align: center;
+    }
+
+    .header-state-col {
+      form {
+        .input-group-xl {
+          margin-left: 0em;
+          margin-right: 0em;
+        }
+      }
+    }
+
+    .header-login-col {
+      .membership-links {
+        float: none !important;
+        text-align: center;
+        margin: 0;
+
+        .btn-login {
+          display: inline-block;
+          text-align: center;
+          margin: 0 auto;
+          width: 100%;
+        }
+
+        .btn-sign-up {
+          margin: 0;
+        }
+      }
+    }
+
+  }
+
+
+
+  .pre-main .header-interior {
+    margin-bottom: 2em;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .header-interior {
+    height: 50vw;
+
+    h1{
+      margin-top: 10%;
+    }
+  }
+
+  body .header-post h1 {
+    font-size: 1.5em;
+  }
+
+  body .header-post h3 {
+    font-size: 1.1em;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+  .header-interior {
+    height: 50vw;
+
+    h1{
+      margin-top: 8%;
+    }
+  }
+
+  body .header-post h1 {
+    font-size: 1.3em;
+  }
+
+  body .header-post h3 {
+    font-size: 1.0em;
+  }
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+
+}
