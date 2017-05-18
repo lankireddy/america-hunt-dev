@@ -1,5 +1,9 @@
-<ul class="posts posts-index list-unstyled">
+<ul class="posts posts-index list-unstyled">	
+  <% @i = 0 %>	
   <%= content_tag_for('li', @posts, itemscope: '',itemtype: 'http://schema.org/BlogPosting') do |post| %>
+
+  	 <%= image_tag post.featured_image  if @i <= 1%>
+  	 <% @i += 1 %>
      <h2 class="h4" itemprop="headline"><%= link_to post.title, post_path(post), itemprop: 'url', class:'link-underline' %></h2>
      <p class="subtitle h5"><%= link_to post.subtitle || '', post_path(post), itemprop: 'url' %></p>
   <% end %>

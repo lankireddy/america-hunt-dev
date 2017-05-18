@@ -2,6 +2,16 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  prepend_before_filter :confirm_connection
+def confirm_connection
+  c = ActiveRecord::Base.connection
+  begin
+    c.select_all "SELECT 1"
+  rescue ActiveRecord::StatementInvalid
+    ActiveRecord::Base.logger.warn "Reconnecting to database"
+    c.reconnect!
+  end
+end
 
   include Pundit
 

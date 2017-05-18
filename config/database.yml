@@ -1,18 +1,18 @@
-postgres: &postgres
-  adapter: postgresql
-  encoding: utf8
-  host: <%= ENV['DB_HOST'] %>
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
-  database: <%= ENV['DB_NAME'] %>
-
-test:
-  <<: *postgres
-  database: <%= ENV['DB_NAME'] %>_test<%= ENV['TEST_ENV_NUMBER'] %>
+#postgres: &postgres
+  
+#test:
+ # <<: *postgres
+  #database: <%= ENV['DB_NAME'] %>_test<%= ENV['TEST_ENV_NUMBER'] %>
 
 development:
-  <<: *postgres
+  adapter: postgresql
+  encoding: utf8
+  Port: 5432
+  host: ec2-54-83-202-115.compute-1.amazonaws.com
+  username: bxhykjwadpttjk
+  password: jcug-HMCuLfdjuKtUt6WH94EX_
+  database: d8oi539fehu269
 
-production:
-  <<: *postgres
-  pool: 25
+#production:
+#  <<: *postgres
+#  pool: 25

@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.6'
 gem 'pg'
+gem 'puma'
 gem 'metova'
-
 gem 'bootstrap-sass'
 gem 'coffee-rails'
 gem 'jquery-rails'
@@ -71,7 +71,7 @@ end
 
 group :development, :test do
   gem 'better_errors'
-  gem 'binding_of_caller'
+  #gem 'binding_of_caller'
   gem 'fabrication'
   gem 'launchy'
   gem 'quiet_assets'

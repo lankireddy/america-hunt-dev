@@ -23,7 +23,7 @@ class Post < ActiveRecord::Base
 
   default_scope { order(position: :asc, created_at: :desc) }
 
-  paginates_per 10
+  paginates_per 30
 
   before_save :ensure_featured_limits, if: :featured_position_changed?
 

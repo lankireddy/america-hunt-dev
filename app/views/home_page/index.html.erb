@@ -15,7 +15,10 @@
         <%= content_tag_for 'section', @widget_categories, class:'post-widget' do |category| %>
           <h1 class="h2 h2-bold"><%= category.name %></h1>
           <ul class="list-unstyled">
+            <% @i = 0 %>
             <%= content_tag_for 'li', category.posts.limit(Post::WIDGET_POST_LIMIT) do |post| %>
+                <%= image_tag post.featured_image if @i <= 1 %>
+                <% @i += 1%>
                 <%= link_to post.title, post_path(post) %>
             <% end %>
           </ul>

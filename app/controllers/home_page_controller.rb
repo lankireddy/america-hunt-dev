@@ -25,6 +25,6 @@ class HomePageController < ApplicationController
     def set_categories
       @primary_category = BlogCategory.widget.first
       @under_widget_text_link_categories = BlogCategory.under_widget_text_link
-      @secondary_featured_categories = BlogCategory.secondary_featured
+      @secondary_featured_categories = BlogCategory.secondary_featured[1]
     end
 end
